@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthentificationService} from '../../../services/services/authentification.service';
+import {User} from '../../../services/models/user';
+
 
 @Component({
   selector: 'app-blank-page',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlankPageComponent implements OnInit {
 
-  constructor() { }
+
+  users: Array<User> = [];
+
+
+  constructor( private service: AuthentificationService) { }
 
   ngOnInit(): void {
   }
-
 }
