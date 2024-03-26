@@ -28,6 +28,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TagInputModule } from 'ngx-chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
+import { AddCoursComponent } from './add-cours/add-cours.component';
+import { GetCoursComponent } from './get-cours/get-cours.component';
+import { UpdateCoursComponent } from './update-cours/update-cours.component';
 
 
 @NgModule({
@@ -53,7 +56,10 @@ import { NgSelect2Module } from 'ng-select2';
     EditBlogComponent,
     ProfessorPendingBlogComponent,
     CartComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    AddCoursComponent,
+    GetCoursComponent,
+    UpdateCoursComponent
   ],
   imports: [
     CommonModule,

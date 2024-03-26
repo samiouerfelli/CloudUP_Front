@@ -18,6 +18,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { NgSelect2Module } from 'ng-select2';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { Daterangepicker } from 'ng2-daterangepicker';
     StudentsRoutingModule,
     NgSelect2Module,
     CrystalLightboxModule,
-    Daterangepicker
+    Daterangepicker,
+    FormsModule
   ]
 })
 export class StudentsModule { }

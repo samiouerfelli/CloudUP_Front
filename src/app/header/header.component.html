@@ -1,7 +1,7 @@
 <!-- Header -->
 <header class="header">
     <nav class="navbar navbar-expand-lg header-nav header-inner-nav">
-        
+
         <div class="container">
             <div class="navbar-header">
                 <a id="mobile_btn" href="javascript:void(0);">
@@ -32,10 +32,12 @@
                         <a href="">INSTRUCTORS <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <li [ngClass]="[active2Route === 'professor-dashboard' ? 'active' : '']"><a routerLink='/instructors/professor-dashboard'>Professor Dashboard</a></li>
-                            <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/instructors/course'>Course</a></li>
+                          <li [ngClass]="[active2Route === 'add-course' ? 'active' : '']"><a routerLink='/instructors/add-course'>Add Course</a></li>
+                          <li [ngClass]="[active2Route === 'get-course' ? 'active' : '']"><a routerLink='/instructors/get-course'>My Courses</a></li>
                             <li [ngClass]="[active2Route === 'sessions' ? 'active' : '']"><a routerLink='/instructors/sessions'>Sessions</a></li>
                             <li [ngClass]="[active2Route === 'schedule-timings' ? 'active' : '']"><a routerLink='/instructors/schedule-timings'>Schedule Timing</a></li>
                             <li [ngClass]="[active2Route === 'my-students' ? 'active' : '']"><a routerLink='/instructors/my-students'>Students List</a></li>
+                           <!-- <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/instructors/course'>Course</a></li>
                             <li [ngClass]="[active2Route === 'student-profile' ? 'active' : '']"><a routerLink='/instructors/student-profile'>Students Profile</a></li>
                             <li [ngClass]="[active2Route === 'chat-professor' ? 'active' : '']"><a routerLink='/instructors/chat-professor'>Chat</a></li>
                             <li [ngClass]="[active2Route === 'invoices' ? 'active' : '']"><a routerLink='/pages/invoices'>Invoices</a></li>
@@ -49,31 +51,33 @@
                                     <li [ngClass]="[active2Route === 'blog-details' ? 'active' : '']"><a routerLink='/blog/blog-details'>Blog view</a></li>
                                     <li [ngClass]="[active2Route === 'professor-add-blog' ? 'active' : '']"><a routerLink='/instructors/professor-add-blog'>Add Blog</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li class="has-submenu" [ngClass]="[activeRoute === 'students' ? 'active' : '']">
                         <a href="">STUDENTS <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
+                      <ul class="submenu">
                             <li class="has-submenu">
-                                <a href="#">Professor</a>
-                                <ul class="submenu">
-                                    <li [ngClass]="[active2Route === 'map-grid' ? 'active' : '']"><a routerLink='/students/map-grid'>Map Grid</a></li>
-                                    <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/students/map-list'>Map List</a></li>
-                                </ul>
+                              <!-- <a href="#">Professor</a>
+                               <ul class="submenu">
+                                   <li [ngClass]="[active2Route === 'map-grid' ? 'active' : '']"><a routerLink='/students/map-grid'>Map Grid</a></li>
+                                   <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/students/map-list'>Map List</a></li>
+                               </ul> -->
+
                             </li>
-                            <li [ngClass]="[active2Route === 'search' ? 'active' : '']"><a routerLink='/students/search'>Search Professor</a></li>
-                            <li [ngClass]="[active2Route === 'professor-profile' ? 'active' : '']"><a routerLink='/students/professor-profile'>Professor Profile</a></li>
+                          <li [ngClass]="[active2Route === 'student-dashboard' ? 'active' : '']"><a routerLink='/students/student-dashboard'>Student Dashboard</a></li>
+
+                          <li [ngClass]="[active2Route === 'search' ? 'active' : '']"><a routerLink='/students/search'>Search Professor</a></li>
+                          <!--  <li [ngClass]="[active2Route === 'professor-profile' ? 'active' : '']"><a routerLink='/students/professor-profile'>Professor Profile</a></li>
                             <li [ngClass]="[active2Route === 'booking' ? 'active' : '']"><a routerLink='/students/booking'>Booking</a></li>
                             <li [ngClass]="[active2Route === 'checkout' ? 'active' : '']"><a routerLink='/students/checkout'>Checkout</a></li>
-                            <li [ngClass]="[active2Route === 'booking-success' ? 'active' : '']"><a routerLink='/students/booking-success'>Booking Success</a></li>
-                            <li [ngClass]="[active2Route === 'student-dashboard' ? 'active' : '']"><a routerLink='/students/student-dashboard'>Student Dashboard</a></li>
-                            <li [ngClass]="[active2Route === 'favourites' ? 'active' : '']"><a routerLink='/students/favourites'>Favourites</a></li>
                             <li [ngClass]="[active2Route === 'chat' ? 'active' : '']"><a routerLink='/students/chat'>Chat</a></li>
+                            <li [ngClass]="[active2Route === 'booking-success' ? 'active' : '']"><a routerLink='/students/booking-success'>Booking Success</a></li> -->
+                            <li [ngClass]="[active2Route === 'favourites' ? 'active' : '']"><a routerLink='/students/favourites'>Favourites</a></li>
                             <li [ngClass]="[active2Route === 'profile-settings' ? 'active' : '']"><a routerLink='/students/profile-settings'>Profile Settings</a></li>
                             <li [ngClass]="[active2Route === 'change-password' ? 'active' : '']"><a routerLink='/students/change-password'>Change Password</a></li>
                         </ul>
-                    </li>	
+                    </li>
                     <li class="has-submenu" [ngClass]="[activeRoute === 'pages' ? 'active' : '']">
                         <a href="">Pages <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
@@ -115,12 +119,12 @@
                 <li class="nav-item contact-item">
                     <a routerLink='/pages/login'>Sign up</a>
                 </li>
-                
+
                 <!-- Flag -->
                 <li class="nav-item dropdown flag-nav">
                     <a class="nav-link dropdown-toggle align-items-center text-center" data-toggle="dropdown" href="#" role="button">
                     <img src="assets/img/flags/us-1.png" alt="" width="18" height="12" class="lang-flag">
-                    ENG 
+                    ENG
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="javascript:void(0);" class="dropdown-item">
@@ -137,8 +141,8 @@
                         </a>
                     </div>
                 </li>
-                <!-- /Flag --> 
-                
+                <!-- /Flag -->
+
                 <li class="nav-item d-flex">
                     <a routerLink='/students/booking' class="nav-booking mr-2">
                         <img src="assets/img/course.png" width="22" alt="">
