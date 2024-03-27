@@ -9,6 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import { RecformulaireComponent } from './recformulaire/recformulaire.component';
+import {MatButtonModule} from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -16,13 +20,16 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ReclamationComponent
+    ReclamationComponent,
+    RecformulaireComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,  
     AppRoutingModule,
     CarouselModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

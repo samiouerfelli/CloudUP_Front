@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '', loadChildren: () => import('./all-modules/all-modules.module').then(m => m.AllModulesModule) },
