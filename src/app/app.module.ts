@@ -12,6 +12,12 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { RecformulaireComponent } from './recformulaire/recformulaire.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import { HttpClientModule } from  '@angular/common/http'
+
+
+
 
 
 @NgModule({
@@ -29,7 +35,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     CarouselModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
