@@ -3,18 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { RecformulaireComponent } from '../recformulaire/recformulaire.component';
 import { ReclamationService } from '../reclamation.service';
 import { HttpClient } from '@angular/common/http';
+import { Reclamation } from '../reclamation';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-export class Reclamation {
-  constructor(
-  id:number,
-  description:string,
-  object:string,
-  type:string,
-  traite:string,
-  ) {
-
-  }
-}
 
 @Component({
   selector: 'app-reclamation',
@@ -24,15 +15,26 @@ export class Reclamation {
 })
 
 export class ReclamationComponent implements OnInit{
-  reclamation:any;
+  reclamation:Reclamation[] = [];
 
-  constructor(private _dialog: MatDialog, private http:HttpClient,private recs:ReclamationService) {}
+  constructor(private _dialog: MatDialog, private http:HttpClient,private recs:ReclamationService,
+    private snackBar:MatSnackBar) {}
 
   openAddFormulaire() {
-    this._dialog.open(RecformulaireComponent);
+    
+    this._dialog.open(RecformulaireComponent).afterClosed().subscribe(
+      result=> {this.snackBar.open(result,'',{duration: 1000});
+      this.GetAllReclams();
+      }
+    );
   }
 
+
   ngOnInit(): void {
-    this.recs.getReclams().subscribe((data) => console.log(this.reclamation=data));
+    this.GetAllReclams()
+  }
+  GetAllReclams()
+  {
+    this.recs.getReclams().subscribe((data) => {this.reclamation=data;});
   }
 }

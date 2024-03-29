@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Ajouter Reclamation</h2>
 <mat-dialog-content class="mat-typography">
 <!-- Page Content -->
-<form [formGroup]="RecForm" (ngSubmit)="onFormSubmit()">
+<form [formGroup]="RecForm">
 <div class="content">
     <div class="container">
 
@@ -9,17 +9,14 @@
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="doc-review review-listing custom-edit-service">
                     <div class="card">
-                        <div class="card-body">	
-            
-                            <form method="post" enctype="multipart/form-data" autocomplete="off" id="update_service" action="">
-                                <input type="hidden" name="csrf_token_name" value="0146f123a4c7ae94253b39bca6bd5a5e">
+                        <div class="card-body">
 
                                 <div class="service-fields mb-3">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label>Objet <span class="text-danger">*</span></label>
-                                                <input class="form-control" type="text" placeholder="Objet" formControlName="Objet">
+                                                <input class="form-control" type="text" placeholder="Objet" formControlName="objet">
                                             </div>
                                         </div>
                                     </div>
@@ -31,7 +28,7 @@
                                             <div class="form-group">
                                                 <label>Categorie <span class="text-danger">*</span></label>
                                                 <mat-form-field appearence="outline">
-                                                    <mat-select placeholder="Categorie" formControlName="Categorie">
+                                                    <mat-select placeholder="Categorie" formControlName="type">
                                                       <mat-option *ngFor="let val of Categorie" [value]="val">
                                                         {{val}}
                                                       </mat-option>
@@ -48,14 +45,14 @@
                                         <div class="col-lg-12">
                                             <div class="form-grouprec">
                                                 <label>Description <span class="text-danger">*</span></label>
-                                                <textarea type="text" class="form-control service-desc" name="Description" placeholder="Description.." formControlName="Description"></textarea>
+                                                <textarea type="text" class="form-control service-desc" name="Description" placeholder="description.." formControlName="description"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit-section">
-                                    <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit">Submit</button>                                </div>
-                            </form>
+                                    <button class="btn btn-primary submit-btn" (click)="onFormSubmit()" type="submit" [disabled]="RecForm.invalid">Submit</button>                                
+                                </div>
                         </div>
                     </div>
                     <!-- /Add Blog -->

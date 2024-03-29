@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ReclamationService } from '../reclamation.service';
 
 
 @Component({
@@ -15,20 +17,27 @@ Categorie: string [] = [
   'Business',
   'Evenement'
 ];
-constructor (private fb: FormBuilder) {
+constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<RecformulaireComponent>,
+  private recs: ReclamationService) {
   this.RecForm=this.fb.group({
-    Objet: [],
-    Categorie: [],
-    Description:[],
+    objet: [null,Validators.required],
+    type: [null,Validators.required],
+    description:[null,Validators.required],
   });
 }
   onFormSubmit() {
     if (this.RecForm.valid)
     {
-      console.log(this.RecForm.value);
+      this.recs.AddReclams(this.RecForm.value).subscribe( 
+        (res)=>{console.log(res);
+          this.closeDialog("Ajout avec succés!")},
+        ()=>{this.closeDialog("Erreur")})
+      
     }
+  }
+  closeDialog(msg:string) { 
+    this.dialogRef.close(msg);
+  }
   }
 
 
-
-}

@@ -12,9 +12,11 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { RecformulaireComponent } from './recformulaire/recformulaire.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import { HttpClientModule } from  '@angular/common/http'
+import { HttpClientModule } from  '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 
@@ -27,7 +29,7 @@ import { HttpClientModule } from  '@angular/common/http'
     FooterComponent,
     HomeComponent,
     ReclamationComponent,
-    RecformulaireComponent
+    RecformulaireComponent  
   ],
   imports: [
     BrowserModule,  
@@ -38,7 +40,8 @@ import { HttpClientModule } from  '@angular/common/http'
     MatDialogModule,
     ReactiveFormsModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
