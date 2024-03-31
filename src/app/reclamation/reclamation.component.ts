@@ -22,7 +22,10 @@ export class ReclamationComponent implements OnInit{
 
   openAddFormulaire() {
     
-    this._dialog.open(RecformulaireComponent).afterClosed().subscribe(
+    this._dialog.open(RecformulaireComponent,{
+      data:{ 
+        title:"Ajouter une reclamation"},
+    }).afterClosed().subscribe(
       result=> {this.snackBar.open(result,'',{duration: 1000});
       this.GetAllReclams();
       }
@@ -37,4 +40,17 @@ export class ReclamationComponent implements OnInit{
   {
     this.recs.getReclams().subscribe((data) => {this.reclamation=data;});
   }
+  UpdateReclams(reclamation:Reclamation)
+  {
+    this._dialog.open(RecformulaireComponent,{
+      data:{ 
+        title:"Modifier reclamation",
+        reclamation:reclamation},
+    }).afterClosed().subscribe(
+      result=> {this.snackBar.open(result,'',{duration: 1000});
+      this.GetAllReclams();
+      }
+    );
+  }
+  
 }
