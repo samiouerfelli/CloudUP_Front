@@ -42,7 +42,7 @@ constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<Recformulair
   onFormSubmit() {
     if (this.RecForm.valid)
     {
-      if (this.data.reclamation.id)
+      if (this.data.reclamation?.id)
       {
         this.recs.UpdateReclams(this.RecForm.value).subscribe( 
           (res)=>{console.log(res);
@@ -51,6 +51,7 @@ constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<Recformulair
       }
       else
       {
+
       this.recs.AddReclams(this.RecForm.value).subscribe( 
         (res)=>{console.log(res);
           this.closeDialog("Ajout avec succés!")},

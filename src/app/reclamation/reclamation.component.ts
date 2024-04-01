@@ -5,6 +5,7 @@ import { ReclamationService } from '../reclamation.service';
 import { HttpClient } from '@angular/common/http';
 import { Reclamation } from '../reclamation';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDeleteComponent } from '../confirmation-delete/confirmation-delete.component';
 
 
 @Component({
@@ -52,5 +53,25 @@ export class ReclamationComponent implements OnInit{
       }
     );
   }
-  
+  DeleteReclams(recid: number)
+  {
+    this._dialog.open(ConfirmationDeleteComponent,{
+      
+    }).afterClosed().subscribe((result)=>
+    {
+      if(result)
+      {this.recs.DeleteReclams(recid).subscribe((res) => 
+        {this.snackBar.open('Supprimé avec succés','',{duration: 1000});
+        this.GetAllReclams()
+      })}
+      else
+      {
+        this.snackBar.open('Transaction annulé','',{duration: 1000})
+      }
+    }
+    )
+      
+      
+    
+  }
 }
