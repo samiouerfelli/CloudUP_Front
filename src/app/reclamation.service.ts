@@ -12,6 +12,7 @@ export class ReclamationService {
   readonly ENDPOINT_AJOUT = "/addreclamation"
   readonly ENDPOINT_UPDATE="/updatereclam"
   readonly ENDPOINT_DELETE="/deletereclam/"
+  readonly ENDPOINT_GETID="/getidreclam/"
   constructor(private HttpClient: HttpClient) {
 
    }
@@ -31,4 +32,9 @@ export class ReclamationService {
    {
     return this.HttpClient.delete(this.API_URL+this.ENDPOINT_DELETE+id);
    }
+   FindID(id:number)
+   {
+    return this.HttpClient.get(this.API_URL+this.ENDPOINT_GETID+id);
+   }
+
 }

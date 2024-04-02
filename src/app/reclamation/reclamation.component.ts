@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Reclamation } from '../reclamation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDeleteComponent } from '../confirmation-delete/confirmation-delete.component';
+import { DialogRef } from '@angular/cdk/dialog';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { ConfirmationDeleteComponent } from '../confirmation-delete/confirmation
 
 export class ReclamationComponent implements OnInit{
   reclamation:Reclamation[] = [];
+  search: string = "";
 
   constructor(private _dialog: MatDialog, private http:HttpClient,private recs:ReclamationService,
     private snackBar:MatSnackBar) {}
@@ -74,4 +76,29 @@ export class ReclamationComponent implements OnInit{
       
     
   }
+  RetrieveID()
+  { 
+    if (this.search)
+    {
+    console.log(this.search)
+      this.recs.FindID(Number (this.search)).subscribe((data) => {
+        
+        if(data) this.reclamation=[data];
+        else console.log("data not found..")
+      
+      },err => {
+        console.log("erreur")
+      });
+    }  
+}
+ViewDetails (reclamation:Reclamation)
+{
+  this._dialog.open(RecformulaireComponent,{
+    data:{ 
+      title:"Details",
+      reclamation:reclamation,
+      view:true
+      },
+  });
+}
 }

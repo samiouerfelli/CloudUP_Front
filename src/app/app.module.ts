@@ -46,7 +46,8 @@ import { ConfirmationDeleteComponent } from './confirmation-delete/confirmation-
     MatSelectModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

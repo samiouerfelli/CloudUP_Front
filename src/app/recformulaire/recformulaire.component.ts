@@ -19,7 +19,7 @@ Categorie: string [] = [
   'Evenement'
 ];
 constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<RecformulaireComponent>,
-  private recs: ReclamationService, @Inject(MAT_DIALOG_DATA) public data: {title: string,reclamation:Reclamation}) {
+  private recs: ReclamationService, @Inject(MAT_DIALOG_DATA) public data: {title: string,reclamation:Reclamation,view:boolean}) {
   this.RecForm=this.fb.group({
     id: [null],
     objet: [null,Validators.required],
@@ -37,6 +37,8 @@ constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<Recformulair
         description:this.data.reclamation.description  
       };
       this.RecForm.setValue(updatereclam)
+      if(this.data.view)
+      this.RecForm.disable()
     }
   }
   onFormSubmit() {

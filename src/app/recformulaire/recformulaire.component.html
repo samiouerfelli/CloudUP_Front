@@ -45,12 +45,13 @@
                                         <div class="col-lg-12">
                                             <div class="form-grouprec">
                                                 <label>Description <span class="text-danger">*</span></label>
-                                                <textarea type="text" class="form-control service-desc" name="Description" placeholder="description.." formControlName="description"></textarea>
+                                                <textarea type="text" class="form-control service-desc" name="Description" 
+                                                placeholder="description.." formControlName="description"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="submit-section">
+                                <div class="submit-section" *ngIf="!data.view">
                                     <button class="btn btn-primary submit-btn" (click)="onFormSubmit()" type="submit" [disabled]="RecForm.invalid">Submit</button>                                
                                 </div>
                         </div>
