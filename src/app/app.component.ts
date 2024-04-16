@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router, Event } from '@angular/router';
+import { WebSocketService } from './all-modules/web-socket-service.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   activeRoute!: string;
   active2Route!: string;
   hideFooter: boolean = false;
-  constructor(private router: Router) { 
+  constructor(private router: Router,private webSocketService:WebSocketService) { 
+    webSocketService._connect()
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         const url = event.url.split("/");

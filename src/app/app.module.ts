@@ -18,6 +18,8 @@ import { HttpClientModule } from  '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import { ConfirmationDeleteComponent } from './confirmation-delete/confirmation-delete.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -33,7 +35,8 @@ import { ConfirmationDeleteComponent } from './confirmation-delete/confirmation-
     HomeComponent,
     ReclamationComponent,
     RecformulaireComponent,
-    ConfirmationDeleteComponent  
+    ConfirmationDeleteComponent,
+    ChatComponent  
   ],
   imports: [
     BrowserModule,  
@@ -47,7 +50,8 @@ import { ConfirmationDeleteComponent } from './confirmation-delete/confirmation-
     HttpClientModule,
     MatSnackBarModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -32,15 +32,18 @@
                                 <div class="input-group">
                                 <input [(ngModel)]="search" type="text" placeholder="Search..." class="form-control">
                                 <div class="input-group-append" >
-                                    <button  (click)="RetrieveID()" class="btn btn-primary">
+                                    <button (click)="RetrieveObjet()" class="btn btn-primary">
                                         <i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                             </ul>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-auto d-flex align-items-between flex-column">
                             <a class="btn btn-primary btn-sm" (click)="openAddFormulaire()"><i class="fas fa-plus mr-1"></i> Ajouter Reclamation</a>
+                            <a class="btn btn-info btn-sm"  routerLink="/chat"><i class="fas fa-plus mr-1"></i>Discussion</a>
+
                         </div>
+                      
                     </div>
                 
                     <!-- Add Blog -->
@@ -74,7 +77,11 @@
                                                     {{r.objet}}
                                                 </td>
                                                 <td>
+                                                    <span class="badge" [ngClass]="[r.traite === 'Resolue' ? 'bg-success' :'',
+                                                    r.traite === 'EnAttente' ? 'bg-info' :'',
+                                                    r.traite === 'EnCours' ? 'bg-warning' :'',]">
                                                     {{r.traite}}
+                                                </span>
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
@@ -95,16 +102,35 @@
                                                 </tr>
                                             </tbody> 
                                         </table>
+                                        
                                     </div>
                                     <!-- /Invoice Table -->
                                     
                                 </div>
                             </div>
-
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous" style="color: blue;">
+                                      <span aria-hidden="true">&laquo; Previous</span>
+                                    </a>
+                                  </li>
+                                  <li class="page-item" *ngFor="let PageNumber of []constructor(state.appData.page.totalPages)"
+                                  ;let x = index;>
+                                    <a class="page-link" style="color: blue;">
+                                        {{x}}
+                                    </a></li>
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next" style="color: blue;">
+                                      <span aria-hidden="true">Next &raquo;</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </nav>
                         </div>
                     </div>
                     <!-- /Add Blog -->
-
+                    
                 </div>
             </div>
         </div>

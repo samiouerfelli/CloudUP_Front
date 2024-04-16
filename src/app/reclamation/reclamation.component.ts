@@ -7,6 +7,8 @@ import { Reclamation } from '../reclamation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDeleteComponent } from '../confirmation-delete/confirmation-delete.component';
 import { DialogRef } from '@angular/cdk/dialog';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { ChatComponent } from '../chat/chat.component';
 
 
 @Component({
@@ -17,11 +19,14 @@ import { DialogRef } from '@angular/cdk/dialog';
 })
 
 export class ReclamationComponent implements OnInit{
-  reclamation:Reclamation[] = [];
+  reclamation:any;
   search: string = "";
-
+  page: number=0;
+  size: number=10;
+  x!:number;
+  index!:number;
   constructor(private _dialog: MatDialog, private http:HttpClient,private recs:ReclamationService,
-    private snackBar:MatSnackBar) {}
+    private snackBar:MatSnackBar,private offcanvasService :NgbOffcanvas) {}
 
   openAddFormulaire() {
     
@@ -41,14 +46,19 @@ export class ReclamationComponent implements OnInit{
   }
   GetAllReclams()
   {
-    this.recs.getReclams().subscribe((data) => {this.reclamation=data;});
+    this.recs.getRs(this.page,this.size).subscribe((data:any) => {
+      console.log(data)
+      this.reclamation=data.content;
+    })
   }
   UpdateReclams(reclamation:Reclamation)
   {
     this._dialog.open(RecformulaireComponent,{
       data:{ 
         title:"Modifier reclamation",
-        reclamation:reclamation},
+        reclamation:reclamation,
+        view:false
+      },
     }).afterClosed().subscribe(
       result=> {this.snackBar.open(result,'',{duration: 1000});
       this.GetAllReclams();
@@ -76,15 +86,19 @@ export class ReclamationComponent implements OnInit{
       
     
   }
-  RetrieveID()
+  RetrieveObjet()
   { 
     if (this.search)
     {
     console.log(this.search)
-      this.recs.FindID(Number (this.search)).subscribe((data) => {
-        
-        if(data) this.reclamation=[data];
-        else console.log("data not found..")
+      this.recs.FindObjet(String (this.search)).subscribe((data) => {
+        console.log(data)
+        if(data) 
+        {console.log("a")
+          this.reclamation=data 
+          console.log(this.reclamation)}
+        else 
+        {console.log("data not found..")}
       
       },err => {
         console.log("erreur")
@@ -100,5 +114,7 @@ ViewDetails (reclamation:Reclamation)
       view:true
       },
   });
+  
 }
+
 }
