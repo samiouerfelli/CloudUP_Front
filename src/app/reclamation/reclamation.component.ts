@@ -23,8 +23,9 @@ export class ReclamationComponent implements OnInit{
   search: string = "";
   page: number=0;
   size: number=10;
-  x!:number;
-  index!:number;
+  pages!:Array<number>
+  temps:any;
+  canEdit: boolean = true;
   constructor(private _dialog: MatDialog, private http:HttpClient,private recs:ReclamationService,
     private snackBar:MatSnackBar,private offcanvasService :NgbOffcanvas) {}
 
@@ -44,11 +45,18 @@ export class ReclamationComponent implements OnInit{
   ngOnInit(): void {
     this.GetAllReclams()
   }
+  SetPage(i:number)
+  {
+    this.page=i;
+    this.GetAllReclams();
+  }
+  
   GetAllReclams()
   {
     this.recs.getRs(this.page,this.size).subscribe((data:any) => {
       console.log(data)
       this.reclamation=data.content;
+      this.pages=new Array(data['totalPages'])
     })
   }
   UpdateReclams(reclamation:Reclamation)
@@ -86,7 +94,7 @@ export class ReclamationComponent implements OnInit{
       
     
   }
-  RetrieveObjet()
+ /* RetrieveObjet()
   { 
     if (this.search)
     {
@@ -104,17 +112,36 @@ export class ReclamationComponent implements OnInit{
         console.log("erreur")
       });
     }  
-}
+}*/
 ViewDetails (reclamation:Reclamation)
-{
+{ console.log(reclamation.time);
+  this.temps=reclamation.time
   this._dialog.open(RecformulaireComponent,{
+
     data:{ 
       title:"Details",
       reclamation:reclamation,
       view:true
       },
-  });
-  
-}
+  }
+);
 
 }
+FindObj()
+{
+  if (!this.search) {
+    this.GetAllReclams();
+  } else {
+  this.recs.FindObjet(this.search).subscribe({
+    next : value => {
+      this.reclamation = value; },
+    error: (err) => {
+      console.error('Erreur', err);
+    }
+  });
+}
+}
+}
+
+  
+

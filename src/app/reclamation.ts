@@ -4,4 +4,5 @@ export class Reclamation {
     description?: string;
     type?: string;
     traite?: string;
+    time?: Date;
 }

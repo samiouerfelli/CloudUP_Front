@@ -16,6 +16,7 @@ export class ReclamationService {
   readonly ENDPOINT_DELETE="/deletereclam/"
   readonly ENDPOINT_GETOBJET="/findobjetrec/"
   readonly ENDPOINT_PAGINATION="/pagination"
+  readonly ENDPOINT_IDRECLAM="/getidreclam/"
   constructor(private HttpClient: HttpClient) {
 
    }
@@ -39,12 +40,16 @@ export class ReclamationService {
    {
     return this.HttpClient.get(this.API_URL+this.ENDPOINT_GETOBJET+objet);
    }
-   getRs(page: number = 0, size: number = 10): Observable<Reclamation[]> {
+   getRs(page: number, size: number = 10): Observable<Reclamation[]> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
 
     return this.HttpClient.get<Reclamation[]>(`${this.API_URL}${this.ENDPOINT_PAGINATION}`, { params });
+  }
+  GetReclamID(id:number)
+  {
+    return this.HttpClient.get(this.API_URL+this.ENDPOINT_IDRECLAM+id)
   }
 
 }

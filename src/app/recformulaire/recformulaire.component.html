@@ -51,6 +51,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="service-fields mb-3" *ngIf="data.view" >
+                                    <div class="form-grouprec">
+                                        <label>Date: <span class="text-danger"></span></label>
+                                        <input class="form-control" type="text" formControlName="time" [(ngModel)]="time">
+                                    </div>
+                                </div>
                                 <div class="submit-section" *ngIf="!data.view">
                                     <button class="btn btn-primary submit-btn" (click)="onFormSubmit()" type="submit" [disabled]="RecForm.invalid">Submit</button>                                
                                 </div>
