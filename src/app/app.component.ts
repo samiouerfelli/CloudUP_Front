@@ -14,8 +14,11 @@ export class AppComponent {
   activeRoute!: string;
   active2Route!: string;
   hideFooter: boolean = false;
-  constructor(private router: Router,private webSocketService:WebSocketService) { 
+  userId:string="UNKNOWN"
+  constructor(private router: Router,private webSocketService:WebSocketService) {
+    this.initUser() 
     webSocketService._connect()
+
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         const url = event.url.split("/");
@@ -41,5 +44,11 @@ export class AppComponent {
         }
       }
     });
+  }
+  initUser() {
+      
+    const userId = window.prompt("login");
+    this.userId=userId!
+    localStorage.setItem('userId',userId!)
   }
 }

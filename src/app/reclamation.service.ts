@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReclamationService {
+  sendPrivateMsg(idUser: string, msg: string) {
+    throw new Error('Method not implemented.');
+  }
 
   API_URL: string = environment.apiUrl
   readonly ENDPOINT_RECLAMS = "/getallreclams"
@@ -50,6 +53,28 @@ export class ReclamationService {
   GetReclamID(id:number)
   {
     return this.HttpClient.get(this.API_URL+this.ENDPOINT_IDRECLAM+id)
+  }
+////////////////////////////// to chat !service
+readonly ENDPOINT_PrivateCHat="/get-private-chat/"
+readonly ENDPOINT_PrivateSend="/send-private-message/"
+readonly ENDPOINT_AdminPrivateCHat="/getadmin-private-chat"
+readonly ENDPOINT_AdminPrivateSend="/send-admin-private-message/"
+getprivatechat(idUser:string)
+  {
+    return this.HttpClient.get(this.API_URL+this.ENDPOINT_PrivateCHat+idUser)
+  }
+  sendprivateMsg(idUser:string,msg:any)
+  {
+    return this.HttpClient.post(this.API_URL+this.ENDPOINT_PrivateSend+idUser,msg)
+  }
+
+  getAdminprivatechat()
+  {
+    return this.HttpClient.get(this.API_URL+this.ENDPOINT_AdminPrivateCHat)
+  }
+  sendAdminprivateMsg(idUser:string,msg:any)
+  {
+    return this.HttpClient.post(this.API_URL+this.ENDPOINT_AdminPrivateSend+idUser,msg)
   }
 
 }
