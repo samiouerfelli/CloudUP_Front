@@ -1,0 +1,6 @@
+/* Optional: Adjust the alignment of the checkbox if it is not vertically centered */
+.input-group-text {
+  display: flex;
+  align-items: center;
+
+}

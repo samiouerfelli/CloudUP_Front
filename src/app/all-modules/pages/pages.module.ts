@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
@@ -15,6 +15,9 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import {FormsModule} from '@angular/forms';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
+import {CodeInputModule} from 'angular-code-input';
 
 
 @NgModule({
@@ -31,11 +34,16 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     RegisterComponent,
     ForgotPasswordComponent,
     TermConditionComponent,
-    PrivacyPolicyComponent
-  ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule
-  ]
+    PrivacyPolicyComponent,
+    ActivateAccountComponent,
+],
+    imports: [
+        CommonModule,
+        PagesRoutingModule,
+        FormsModule,
+        CodeInputModule
+    ],
+  schemas : [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class PagesModule { }
