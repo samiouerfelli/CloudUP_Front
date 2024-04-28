@@ -1,0 +1,184 @@
+
+<div class="content">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+        <!-- Profile Sidebar -->
+        <div class="profile-sidebar">
+          <div class="widget-profile pro-widget-content">
+            <div class="profile-info-widget">
+              <a href="#" class="booking-doc-img">
+                <img src="assets/img/admins/admin-02.jpg" alt="User Image">
+              </a>
+              <div class="profile-det-info">
+                <h3>Prof. Darren Elder</h3>
+
+                <div class="student-details">
+                  <h5 class="mb-0">Senior Professor - Civil &  Mechanical Engineering</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-widget">
+            <nav class="dashboard-menu">
+              <ul>
+                <li >
+                  <a routerLink='/instructors/professor-dashboard'>
+                    <i class="fas fa-columns"></i>
+                    <span>Dashboard</span>
+                  </a>
+                </li>
+                <li class="active">
+                  <a routerLink='/instructors/add-course'>
+                    <i class="fas fa-columns"></i>
+                    <span>Add Course</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/get-course'>
+                    <i class="fas fa-columns"></i>
+                    <span>Courses List</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/sessions'>
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Appointments</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/my-students'>
+                    <i class="fas fa-user-injured"></i>
+                    <span>My Students</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/schedule-timings'>
+                    <i class="fas fa-hourglass-start"></i>
+                    <span>Schedule Timings</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/pages/invoices'>
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Invoices</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/reviews'>
+                    <i class="fas fa-star"></i>
+                    <span>Reviews</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/chat-professor'>
+                    <i class="fas fa-comments"></i>
+                    <span>Message</span>
+                    <small class="unread-msg">23</small>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/professor-profile-settings'>
+                    <i class="fas fa-user-cog"></i>
+                    <span>Profile Settings</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/social-media'>
+                    <i class="fas fa-share-alt"></i>
+                    <span>Social Media</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/professor-change-password'>
+                    <i class="fas fa-lock"></i>
+                    <span>Change Password</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/'>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /Profile Sidebar -->
+
+      </div>
+
+      <div class="col-md-7 col-lg-8 col-xl-9">
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Update Course Section -->
+            <div class="update-course-section">
+              <h4 class="mb-4">Update Course Details</h4>
+              <div class="card-body" *ngIf="updateForm">
+                <form [formGroup]="updateForm" (ngSubmit)="UpdateCourse()">
+                  <!-- Course Name -->
+                  <div class="mb-3">
+                    <label class="form-label" >Course Name</label>
+                    <input type="text" class="form-control" formControlName="nomCours" placeholder="Enter course name">
+                  </div>
+
+                  <!-- Course Description -->
+                  <div class="mb-3">
+                    <label class="form-label">Course Description</label>
+                    <textarea class="form-control" formControlName="descriptionCours" rows="3" placeholder="Enter course description"></textarea>
+                  </div>
+
+                  <!-- Course Duration -->
+                  <div class="mb-3">
+                    <label class="form-label">Course Duration</label>
+                    <input type="text" class="form-control" formControlName="dureeC" placeholder="Enter course duration">
+                  </div>
+                  <!-- Course Price -->
+                  <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <input type="text" class="form-control" formControlName="price" placeholder="Enter course price">
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Course Level</label>
+                    <select class="form-control "  formControlName="niveau">
+                      <option>LEVEL_1A</option>
+                      <option>LEVEL_2A</option>
+                      <option>LEVEL_3A</option>
+                      <option>LEVEL_3B</option>
+                      <option>LEVEL_4EME</option>
+                      <option>LEVEL_5EME</option>
+
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Course Modularity </label>
+                    <select class="form-control" formControlName="type">
+                      <option>En_ligne</option>
+                      <option>En_Présentiel</option>
+                    </select>
+                  </div>
+                  <!-- Submit Button -->
+                  <button type="submit" [disabled]="updateForm.invalid" class="btn btn-primary">Submit Update</button>
+                </form>
+              </div>
+              <!-- /Add Course Section -->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- /Page Content -->

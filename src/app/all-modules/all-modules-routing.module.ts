@@ -5,11 +5,15 @@ import { AllModulesComponent } from './all-modules.component';
 const routes: Routes = [
   { path: '', component: AllModulesComponent,
     children: [
-      { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
-      { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
-      { path: 'instructors', loadChildren: () => import('./instructors/instructors.module').then(m => m.InstructorsModule) },
-      { path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) },
-    ] 
+      { path: 'blog',
+        loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+      { path: 'pages',
+        loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
+      { path: 'instructors',
+        loadChildren: () => import('./instructors/instructors.module').then(m => m.InstructorsModule) },
+      { path: 'students',
+        loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) },
+    ]
   },
 ];
 

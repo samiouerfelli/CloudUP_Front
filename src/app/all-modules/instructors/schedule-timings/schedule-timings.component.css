@@ -1,0 +1,46 @@
+#daterange {
+  border: none;
+}
+
+
+.schedule-widget .schedule-cont .time-slot {
+  padding: 15px;
+  white-space: nowrap;
+  overflow-x: auto; /* Allows horizontal scrolling if content is too wide */
+}
+
+.schedule-widget .schedule-cont .time-slot .availability {
+  display: inline-block; /* Allows the background to fit the content */
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 20px;
+  margin-right: 20px; /* Space between items */
+  margin-bottom: 20px; /* Space between rows when wrapped */
+}
+
+.schedule-widget .schedule-header .schedule-nav .nav-link {
+  padding: 0.5rem 1rem; /* Comfortable click/tap target */
+}
+
+.submit-section .btn {
+  margin-top: 10px; /* Spacing from the above element */
+}
+
+
+
+.slot-item {
+  display: flexbox;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.slot-time {
+  margin-right: 1px; /* Adjust the right margin as needed */
+}
+
+.delete_schedule {
+  padding: 2px; /* Adds space around the delete icon for easier clicking */
+  margin-left: 1px; /* Adds space between the time and the delete icon */
+}
+
