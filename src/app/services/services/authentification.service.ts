@@ -14,13 +14,47 @@ import { Authenticate$Params } from '../fn/authentification/authenticate';
 import { AuthentificationResponse } from '../models/authentification-response';
 import { confirm } from '../fn/authentification/confirm';
 import { Confirm$Params } from '../fn/authentification/confirm';
+import { findAll } from '../fn/authentification/find-all';
+import { FindAll$Params } from '../fn/authentification/find-all';
+import { logout } from '../fn/authentification/logout';
+import { Logout$Params } from '../fn/authentification/logout';
 import { register } from '../fn/authentification/register';
 import { Register$Params } from '../fn/authentification/register';
+import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthentificationService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `logout()` */
+  static readonly LogoutPath = '/auth/logout';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `logout()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  logout$Response(params?: Logout$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+}>> {
+    return logout(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `logout$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  logout(params?: Logout$Params, context?: HttpContext): Observable<{
+}> {
+    return this.logout$Response(params, context).pipe(
+      map((r: StrictHttpResponse<{
+}>): {
+} => r.body)
+    );
   }
 
   /** Path part for operation `authenticate()` */
@@ -74,6 +108,31 @@ export class AuthentificationService extends BaseService {
       map((r: StrictHttpResponse<{
 }>): {
 } => r.body)
+    );
+  }
+
+  /** Path part for operation `findAll()` */
+  static readonly FindAllPath = '/auth/findAll';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAll()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAll$Response(params?: FindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
+    return findAll(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAll$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAll(params?: FindAll$Params, context?: HttpContext): Observable<Array<User>> {
+    return this.findAll$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<User>>): Array<User> => r.body)
     );
   }
 

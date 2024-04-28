@@ -19,14 +19,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { ConfirmationDeleteComponent } from './confirmation-delete/confirmation-delete.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChatComponent } from './chat/chat.component';
-
-
-
-
-
-
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import {HttpTokenInterceptor} from './Interceptor/http-token.interceptor';
 
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
@@ -63,7 +58,12 @@ export function tokenGetter() {
     }),
   ],
   providers: [
-    HttpClient
+    HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpTokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
