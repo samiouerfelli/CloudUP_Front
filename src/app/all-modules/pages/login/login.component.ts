@@ -19,12 +19,10 @@ export class LoginComponent {
   // tslint:disable-next-line:typedef
   login() {
     this.errorMsg = [];
-    this.authService.authenticate({
-      body: this.authRequest
-    }).subscribe({
+    this.authService.authenticate({body: this.authRequest}).subscribe({
       next: (res) => {
        this.tokenService.token = res.token as string;
-       this.router.navigate(['books']);
+       this.router.navigate(['Home']);
 
       },
       error: (err) => {

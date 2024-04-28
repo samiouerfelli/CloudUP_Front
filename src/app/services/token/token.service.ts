@@ -11,7 +11,7 @@ export class TokenService {
     localStorage.setItem('isLogedIn', 'true');
   }
   // tslint:disable-next-line:typedef
-  get token(){
+  get gettoken(){
     return localStorage.getItem('token') as string;
   }
 }
