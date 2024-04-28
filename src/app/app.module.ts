@@ -14,7 +14,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import { HttpClientModule } from  '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import { ConfirmationDeleteComponent } from './confirmation-delete/confirmation-delete.component';
@@ -26,7 +25,13 @@ import { ChatComponent } from './chat/chat.component';
 
 
 
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
+// tslint:disable-next-line:typedef
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,9 +56,15 @@ import { ChatComponent } from './chat/chat.component';
     MatSnackBarModule,
     MatIconModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter}
+    }),
   ],
-  providers: [],
+  providers: [
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

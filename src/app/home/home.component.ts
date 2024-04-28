@@ -7,13 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   slideIndex= 1;
-  
+
+  // tslint:disable-next-line:typedef
   plusSlides(n: any){
     this.currentSlide(n)
   };
+  // tslint:disable-next-line:typedef
   currentSlide(n: any) {
+    // tslint:disable-next-line:indent
   	this.showSlides(this.slideIndex = n);
 }
+  // tslint:disable-next-line:typedef
   showSlides(ne: any){
     var i;
     var slides = document.getElementsByClassName("mySlides");

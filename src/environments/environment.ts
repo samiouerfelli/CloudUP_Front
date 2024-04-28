@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  urlWebSocket: "http://localhost:8087/websocket",
-  apiUrl: "http://localhost:8087/api"
+  urlWebSocket: "http://localhost:8087/api/v1/websocket",
+  apiUrl: "http://localhost:8087/api/v1/reclamation"
 
 };
 
