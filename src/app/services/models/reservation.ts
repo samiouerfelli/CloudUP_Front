@@ -1,5 +1,5 @@
-import {User} from './user.model';
-import {Cours} from './cours.model';
+import {User} from './user';
+import {Cours} from './cours';
 
 export interface Reservation {
   idR: number;

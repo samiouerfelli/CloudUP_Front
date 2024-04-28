@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../../environments/environment';
 // @ts-ignore
-import {Cours} from '../Models/cours.model';
+import {Cours} from '../../models/cours';
 
 @Injectable({
   providedIn: 'root'

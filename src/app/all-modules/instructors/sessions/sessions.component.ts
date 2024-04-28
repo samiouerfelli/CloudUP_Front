@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {error} from 'protractor';
-import {ReservationService} from '../../../Services/reservation.service';
-import {Etat, Reservation} from '../../../Models/reservation.model';
+import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
+import {Etat, Reservation} from '../../../services/models/reservation';
 
 
 @Component({

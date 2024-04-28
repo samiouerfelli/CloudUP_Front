@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {CoursServiceService} from '../../../Services/cours-service.service';
+import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
 // @ts-ignore
-import {Cours} from '../../../Models/cours.model';
+import {Cours} from '../../../services/models/cours';
 
 @Component({
   selector: 'app-get-cours',

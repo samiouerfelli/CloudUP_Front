@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import {ReservationService} from '../../../Services/reservation.service';
-import {TimeSlotService} from '../../../Services/time-slot.service';
+import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
+import {TimeSlotService} from '../../../services/services/CoursReservationServices/time-slot.service';
 // @ts-ignore
-import {Etat, Reservation} from '../../../Models/reservation.model';
+import {Etat, Reservation} from '../../../services/models/reservation';
 // @ts-ignore
-import {TimeSlot} from '../../../Models/TimeSlot.model';
+import {TimeSlot} from '../../../services/models/timeslot';
 // @ts-ignore
-import {User} from '../../../Models/user.model';
+import {User} from '../../../services/models/user';
 
 @Component({
   selector: 'app-booking',

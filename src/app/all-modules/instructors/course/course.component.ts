@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {User} from '../../../Models/user.model';
-import {Cours} from '../../../Models/cours.model';
-import {CoursServiceService} from '../../../Services/cours-service.service';
-import {ReservationService} from '../../../Services/reservation.service';
+import {User} from '../../../services/models/user';
+import {Cours} from '../../../services/models/cours';
+import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
+import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
 
 @Component({
   selector: 'app-course',

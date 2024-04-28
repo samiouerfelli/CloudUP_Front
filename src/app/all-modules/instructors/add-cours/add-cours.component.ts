@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
-import {CoursServiceService} from '../../../Services/cours-service.service';
+import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
 // @ts-ignore
-import {Cours, Niveau} from '../../../Models/cours.model';
+import {Cours, Niveau} from '../../../services/models/cours';
 
 
 

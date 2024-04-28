@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TimeSlotService} from '../../../Services/time-slot.service';
+import {TimeSlotService} from '../../../services/services/CoursReservationServices/time-slot.service';
 
 @Component({
   selector: 'app-schedule-timings',
