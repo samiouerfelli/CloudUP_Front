@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { TokenService } from '../services/token/token.service';
 
 @Component({
   selector: 'app-home',
@@ -142,7 +143,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showSlides(this.slideIndex)
+    this.showSlides(this.slideIndex);
+    
   }
+ 
 
 }

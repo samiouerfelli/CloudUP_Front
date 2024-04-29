@@ -15,7 +15,7 @@ export class WebSocketService {
   @Output() MsgReceived: EventEmitter<boolean> = new EventEmitter();
 
   constructor() {
-    localStorage.clear()
+    
     this.ws = new SockJS(this.webSocketEndPoint, null, { transports: this.sockJsProtocols });
     
   }
