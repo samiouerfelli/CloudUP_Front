@@ -13,10 +13,12 @@ import { RegisterComponent } from './register/register.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { VideoCallComponent } from './video-call/video-call.component';
 import { VoiceCallComponent } from './voice-call/voice-call.component';
+import {ActivateAccountComponent} from './activate-account/activate-account.component';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
     children: [
+      {path: 'activate-account', component: ActivateAccountComponent },
       { path: 'voice-call', component: VoiceCallComponent },
       { path: 'video-call', component: VideoCallComponent },
       { path: 'calendar', component: CalendarComponent },
@@ -29,7 +31,7 @@ const routes: Routes = [
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'term-condition', component: TermConditionComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent }
-    ] 
+    ]
   }
 ];
 

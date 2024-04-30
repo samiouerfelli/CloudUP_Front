@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,20 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  slideIndex= 1;
-  
-  plusSlides(n: any){
+  slideIndex = 1;
+
+  // tslint:disable-next-line:typedef
+  plusSlides(n: any) {
     this.currentSlide(n)
   };
+
+  // tslint:disable-next-line:typedef
   currentSlide(n: any) {
-  	this.showSlides(this.slideIndex = n);
-}
-  showSlides(ne: any){
+    // tslint:disable-next-line:indent
+    this.showSlides(this.slideIndex = n);
+  }
+
+  // tslint:disable-next-line:typedef
+  showSlides(ne: any) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("testi-user-img");
-    if (ne > slides.length) {this.slideIndex = 1}
-    if (ne < 1) {this.slideIndex = slides.length}
+    if (ne > slides.length) {
+      this.slideIndex = 1
+    }
+    if (ne < 1) {
+      this.slideIndex = slides.length
+    }
     for (i = 0; i < slides.length; i++) {
       slides[i].classList.add("d-none");
       slides[i].className = slides[i].className.replace("d-block", "d-none");
@@ -27,54 +37,55 @@ export class HomeComponent implements OnInit {
     for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
     }
-    slides[this.slideIndex-1].classList.add("d-block");
-    dots[this.slideIndex-1].className += " active";
+    slides[this.slideIndex - 1].classList.add("d-block");
+    dots[this.slideIndex - 1].className += " active";
   }
+
   coursesCarouselOptions = {
-    loop:true,
-		margin:15,
-		nav:true,
-		navText: ['<span class="fas fa-chevron-left"></span>','<span class="fas fa-chevron-right"></span>'],
-		responsive:{
-			0:{
-				items:1
-			},
-			500:{
-				items:1
-			},
-			768:{
-				items:2
-			},
-			1000:{
-				items:3
-			},
-			1300:{
-				items:4
-			}
-		}
+    loop: true,
+    margin: 15,
+    nav: true,
+    navText: ['<span class="fas fa-chevron-left"></span>', '<span class="fas fa-chevron-right"></span>'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      500: {
+        items: 1
+      },
+      768: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      },
+      1300: {
+        items: 4
+      }
+    }
   };
   popularcoursesCarouselOptions = {
-    loop:true,
-		margin:15,
-		nav:true,
-		navText: ['<span class="fas fa-chevron-left"></span>','<span class="fas fa-chevron-right"></span>'],
-		responsive:{
-			0:{
-				items:1
-			},
-			500:{
-				items:1
-			},
-			768:{
-				items:1
-			},
-			1000:{
-				items:2
-			},
-			1300:{
-				items:2
-			}
-		}
+    loop: true,
+    margin: 15,
+    nav: true,
+    navText: ['<span class="fas fa-chevron-left"></span>', '<span class="fas fa-chevron-right"></span>'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      500: {
+        items: 1
+      },
+      768: {
+        items: 1
+      },
+      1000: {
+        items: 2
+      },
+      1300: {
+        items: 2
+      }
+    }
   };
   coursesCarouselslides = [
     {
@@ -126,7 +137,9 @@ export class HomeComponent implements OnInit {
       count2: "17 Courses",
     },
   ];
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.showSlides(this.slideIndex)
