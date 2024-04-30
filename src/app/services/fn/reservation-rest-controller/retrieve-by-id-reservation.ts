@@ -6,14 +6,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { User } from '../../models/user';
+import { Reservation } from '../../models/reservation';
 
-export interface FindAll$Params {
+export interface RetrieveByIdReservation$Params {
+  idR: number;
 }
 
-export function findAll(http: HttpClient, rootUrl: string, params?: FindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
-  const rb = new RequestBuilder(rootUrl, findAll.PATH, 'get');
+export function retrieveByIdReservation(http: HttpClient, rootUrl: string, params: RetrieveByIdReservation$Params, context?: HttpContext): Observable<StrictHttpResponse<Reservation>> {
+  const rb = new RequestBuilder(rootUrl, retrieveByIdReservation.PATH, 'get');
   if (params) {
+    rb.path('idR', params.idR, {});
   }
 
   return http.request(
@@ -21,9 +23,9 @@ export function findAll(http: HttpClient, rootUrl: string, params?: FindAll$Para
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<User>>;
+      return r as StrictHttpResponse<Reservation>;
     })
   );
 }
 
-findAll.PATH = '/auth/findAll';
+retrieveByIdReservation.PATH = '/auth/retrieveByIdReservation/{idR}';

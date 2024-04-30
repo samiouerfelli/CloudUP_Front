@@ -1,0 +1,18 @@
+.pagination .page-link.active {
+                    background-color: #007bff; /* Your primary color */
+                    color: white;
+                  }
+                  .pagination .page-item {
+                    margin-right: 4px; /* Adjust the spacing to your preference */
+                  }
+                  .pagination .page-link:hover {
+                    background-color: #0056b3; /* A slightly darker shade than the active state */
+                    color: white;
+                  }
+                  .pagination .page-link.disabled, .pagination .page-link.disabled:hover {
+                    color: #6c757d; /* A greyed-out color */
+                    pointer-events: none;
+                    background-color: #fff;
+                    border-color: #dee2e6;
+                  }
+                                                                        

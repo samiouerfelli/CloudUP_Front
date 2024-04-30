@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthentificationService} from '../../../services/services/authentification.service';
-import {User} from '../../../services/models/user';
+import {User} from "../../../services/models/user";
 
 
 @Component({
@@ -23,14 +23,14 @@ export class BlankPageComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   private getAllUsers() {
-    this.service.findAll().subscribe({
+   /* this.service.findAll().subscribe({
       next : data => {
         this.users = data;
       },
       error : err => {
         console.log(err);
       }
-    });
+    });*/
 
   }
 }

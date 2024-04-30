@@ -57,7 +57,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #slotForm="ngForm" (ngSubmit)="saveNewSlot(slotForm.value)">
+      <form #slotForm="ngForm" (ngSubmit)="saveSlot(slotForm.value)">
         <div class="form-group">
           <label for="date">Date</label>
           <input type="date" class="form-control" id="date" name="date" ngModel required>

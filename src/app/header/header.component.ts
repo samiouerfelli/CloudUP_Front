@@ -1,4 +1,5 @@
 // @ts-ignore
+// @ts-ignore
 
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, Event} from '@angular/router';
@@ -104,18 +105,21 @@ export class HeaderComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   logout() {
-    const token = localStorage.getItem('token');
-    const header = new HttpHeaders({Authorization: `Bearer ${token}`});
-    this.authService.logout({body: header}).subscribe({
-      next: async () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('isLogedIn');
-        await this.sleep(1000);
-        this.router.navigate(['Home']);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    /* const token = localStorage.getItem('token');
+     const header = new HttpHeaders({Authorization: `Bearer ${token}`});
+     this.authService.logout({body: header}).subscribe({
+       next: async () => {
+         localStorage.removeItem('token');
+         localStorage.removeItem('isLogedIn');
+         await this.sleep(1000);
+         this.router.navigate(['Home']);
+       },
+       error: (err) => {
+         console.log(err);
+       }
+     });
+   }
+
+ */
   }
 }

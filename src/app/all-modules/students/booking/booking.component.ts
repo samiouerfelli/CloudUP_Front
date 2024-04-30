@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
 import {TimeSlotService} from '../../../services/services/CoursReservationServices/time-slot.service';
 // @ts-ignore
-import {Etat, Reservation} from '../../../services/models/reservation';
+import {Etat, Reservation} from '../../../services/models/MyModels/reservation';
 // @ts-ignore
-import {TimeSlot} from '../../../services/models/timeslot';
+import {TimeSlot} from '../../../services/models/MyModels/timeslot';
 // @ts-ignore
-import {User} from '../../../services/models/user';
+import {User} from '../../../services/models/MyModels/user';
+import {SlotsControllerService} from '../../../services/services/slots-controller.service';
+import {TimeSlotResponse} from '../../../services/models/time-slot-response';
 
 @Component({
   selector: 'app-booking',
@@ -16,32 +18,51 @@ import {User} from '../../../services/models/user';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-  public selectedProfessorId!: any  ;
-  public selectedCoursId!: any ;
+  public selectedProfessorId!: any;
+  public selectedCoursId!: any;
   timeSlots!: any[];
   days = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
-  selectedDay!: string;
+  selectedDay!: string ;
 
-  public professor!: User ;
-  public reservation!: Reservation ;
+  public professor!: User;
+  public reservation!: Reservation;
   public daterange: any = {};
   reservationDate = new Date(); // Current date and time
   reservationStatus = Etat.Pending;
   public selectedDate!: string;
-
-
+  selectedSlot: TimeSlotResponse | null = null;
 
 
   constructor(private reservationService: ReservationService,
               private timeSlotService: TimeSlotService,
+              private service: SlotsControllerService,
               private route: ActivatedRoute,
-              private router: Router, ) { }
+              private router: Router) {
+  }
 
 
-  selectedSlot: TimeSlot | null = null;
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.selectedProfessorId = +params.professorId;
+      this.selectedCoursId = +params.coursID;
+    });
+  }
 
+  selectDay(day: string): void {
+    this.selectedDay = day;
+    // Fetch the time slots for the selected day from your service
+    this.service.getSlotsForBooking({userID: this.selectedProfessorId, day}).subscribe(
+      slots => {
+        this.timeSlots = slots;
+      },
+      error => {
+        console.error('Error fetching time slots:', error);
+        this.timeSlots = [];
+      }
+    );
+  }
 
-  selectSlot(slot: TimeSlot): void {
+  selectSlot(slot: TimeSlotResponse): void {
     console.log('Selected slot:', slot);
     if (slot && slot.startTime) {
       this.selectedSlot = slot;
@@ -51,7 +72,22 @@ export class BookingComponent implements OnInit {
     }
   }
 
+/*
   // tslint:disable-next-line:typedef
+  getSlotsForBooking(professorId: number, day: string) {
+    this.service.getSlotsForBooking({userID: professorId, day}).subscribe(
+      value => {
+        this.timeSlots = value;
+      },
+      error => {
+        console.error('Error fetching time slots', error);
+      }
+    );
+
+  }*/
+
+
+ /* // tslint:disable-next-line:typedef
   loadAvailableTimeSlots(professorId: number) {
     this.timeSlotService.getAvailableTimeSlots(professorId).subscribe(
       (slots) => {
@@ -61,15 +97,9 @@ export class BookingComponent implements OnInit {
         console.error('Error fetching time slots', error);
       }
     );
-  }
+  }*/
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.selectedProfessorId = +params.professorId; // The '+' converts the parameter to a number
-      this.selectedCoursId = +params.coursID; // Likewise for coursID
-      // ...
-    });
-  }
+
   private formatDate(date: string): string {
     // You will need to convert this date to the format your backend expects
     // This is just a placeholder; you'll need to implement the actual conversion
@@ -108,10 +138,12 @@ export class BookingComponent implements OnInit {
 
       this.reservationService.addReservation(reservationData, etudiantID, selectedProfessorId, selectedCoursId)
         .subscribe({
-          next: (response) => {console.log('Reservation added:', response);
-                               this.router.navigateByUrl(`/students/booking-success`); },
-          error: (error) => console.error('Error adding reservation:', error)}
-
+            next: (response) => {
+              console.log('Reservation added:', response);
+              this.router.navigateByUrl(`/students/booking-success`);
+            },
+            error: (error) => console.error('Error adding reservation:', error)
+          }
         );
     } else {
       console.error('No time slot selected or start time is undefined.');
@@ -119,17 +151,32 @@ export class BookingComponent implements OnInit {
   }
 
 
-
-
   onDateChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.selectedDate = input.value; // The value will be in "yyyy-MM-dd" format
   }
 
-  selectDay(day: string): void {
+
+  /*
+    selectDay(day: string): void {
+      this.selectedDay = day;
+      // Fetch the time slots for the selected day from your service
+      this.timeSlotService.getTimeSlotsForDay(this.selectedProfessorId, day).subscribe(
+        slots => {
+          this.timeSlots = slots;
+        },
+        error => {
+          console.error('Error fetching time slots:', error);
+          this.timeSlots = [];
+        }
+      );
+    }*/
+
+  /*
+   selectDay(day: string): void {
     this.selectedDay = day;
     // Fetch the time slots for the selected day from your service
-    this.timeSlotService.getTimeSlotsForDay(this.selectedProfessorId, day).subscribe(
+    this.service.getSlotsOfConnectedUserOnly({day}).subscribe(
       slots => {
         this.timeSlots = slots;
       },
@@ -139,5 +186,6 @@ export class BookingComponent implements OnInit {
       }
     );
   }
+   */
 
 }

@@ -1,4 +1,4 @@
-import {User} from './user';
+import {User} from "../user";
 
 export interface Cours {
   idCours: number;
@@ -35,6 +35,6 @@ export enum Spécialité {
 }
 
 export enum Modularité {
-  Online = 'Online',
+  En_Ligne = 'En_Ligne',
   En_Présentiel = 'Présentiel'
 }

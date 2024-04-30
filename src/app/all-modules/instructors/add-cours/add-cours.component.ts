@@ -4,8 +4,9 @@ import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
 // @ts-ignore
-import {Cours, Niveau} from '../../../services/models/cours';
-
+import { Niveau} from '../../../services/models/MyModels/cours';
+import {CoursControllerService} from 'src/app/services/services';
+import {CoursRequest} from 'src/app/services/models';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AddCoursComponent implements OnInit {
   public showNameDropdown = environment.showNameDropdown;
 
   constructor(private fb: FormBuilder, private coursService: CoursServiceService,
+              private service: CoursControllerService,
               private router: Router) {
   }
 
@@ -26,28 +28,33 @@ export class AddCoursComponent implements OnInit {
     this.courseForm = this.fb.group({
       nomCours: this.fb.control('', [Validators.required, Validators.maxLength(20)]),
       descriptionCours: this.fb.control('', Validators.maxLength(50)),
+      dureeC: this.fb.control('', [Validators.required]),
+      price: this.fb.control('', [Validators.min(20), Validators.required]),
       niveau: this.fb.control('', Validators.required),
       option: [],
-      type: this.fb.control('', Validators.required),
-      price: this.fb.control('', [Validators.min(20), Validators.required]),
-      dureeC: this.fb.control('', [Validators.required])
+      type: this.fb.control('', Validators.required)
     });
     this.onChanges();
 
   }
 
-
   // tslint:disable-next-line:typedef
   saveCourse() {
-    const course: Cours = this.courseForm.value;
-    this.coursService.saveCourse(course).subscribe({
-      next: data => {
-        alert('cours ajouté avec succès');
-        this.router.navigateByUrl('/instructors/get-course');
-      }, error: err => {
-        console.log(err);
+    const course: CoursRequest = this.courseForm.value;
+    const params = {
+      body: course
+    };
+    this.service.saveCours(params).subscribe(
+      {
+        next: data => {
+          alert('cours ajouté avec succès');
+          this.router.navigateByUrl('/instructors/get-course');
+        }, error: err => {
+          console.log(err);
+        }
+
       }
-    });
+    );
   }
 
   // tslint:disable-next-line:typedef
@@ -61,6 +68,7 @@ export class AddCoursComponent implements OnInit {
       }
     });
   }
+
 
 }
 

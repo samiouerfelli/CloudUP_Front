@@ -4,7 +4,10 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { ReservationRestControllerService } from './services/reservation-rest-controller.service';
+import { CoursControllerService } from './services/cours-controller.service';
 import { AuthentificationService } from './services/authentification.service';
+import { SlotsControllerService } from './services/slots-controller.service';
 
 /**
  * Module that provides all services and configuration.
@@ -14,7 +17,10 @@ import { AuthentificationService } from './services/authentification.service';
   exports: [],
   declarations: [],
   providers: [
+    ReservationRestControllerService,
+    CoursControllerService,
     AuthentificationService,
+    SlotsControllerService,
     ApiConfiguration
   ],
 })

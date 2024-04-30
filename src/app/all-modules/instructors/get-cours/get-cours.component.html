@@ -1,5 +1,6 @@
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">
+
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-12 col-12">
@@ -34,7 +35,7 @@
                 <h3>Prof. Darren Elder</h3>
 
                 <div class="student-details">
-                  <h5 class="mb-0">Senior Professor - Civil &  Mechanical Engineering</h5>
+                  <h5 class="mb-0">Senior Professor - Civil & Mechanical Engineering</h5>
                 </div>
               </div>
             </div>
@@ -112,6 +113,7 @@
                 <li>
                   <a routerLink='/instructors/professor-change-password'>
                     <i class="fas fa-lock"></i>
+                    <i class="bi bi-arrows-angle-expand"></i>
                     <span>Change Password</span>
                   </a>
                 </li>
@@ -137,21 +139,14 @@
           <div class="card-body">
             <div class="table-responsive">
               <div class="card-body">
-                <input type = "text" class="form-control" id="filter-text-box" [(ngModel)]="keyword" (ngModelChange)="searchCourse()">
+                <input type="text" class="form-control" id="filter-text-box" [(ngModel)]="keyword"
+                       (ngModelChange)="searchCourse()">
               </div>
 
-              <!--
-               <div class="card-body">
-                 <div class="table-responsive">
-                   <div class="card-body">
-                     <input type = "text" [(ngModel)]="keyword">
-                     <button (click)="searchCourse()" class="btn btn-outline-success">Search</button>
-                   </div>
-                   -->
+
               <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th>ID Course</th>
                   <th>Course Name</th>
                   <th>Niveau</th>
                   <th>Option</th>
@@ -162,36 +157,106 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                <tr *ngFor="let cr of courses " >
-                  <td>{{cr.idCours}}</td>
-                  <td>{{cr.nomCours}}</td>
-                  <td>{{cr.niveau}}</td>
-                  <td>{{cr.option}}</td>
-                  <td>{{cr.descriptionCours}}</td>
-                  <td>{{cr.dureeC}}</td>
-                  <td>{{cr.type}}</td>
-                  <td>{{cr.price}}</td>
-
-                  <td> <button (click)="handleDeleteCours(cr)" class="btn btn-outline-danger">Delete</button> </td>
+                <tr *ngFor="let cr of coursResponse.content ">
+                  <td>{{ cr.nomCours }}</td>
+                  <td>{{ cr.niveau }}</td>
+                  <td>{{ cr.option }}</td>
+                  <td>{{ cr.descriptionCours }}</td>
+                  <td>{{ cr.dureeC }}</td>
+                  <td>{{ cr.type }}</td>
+                  <td>{{ cr.price }}</td>
+                  <td>
+                    <button (click)="handleDeleteCours(cr.idCours)" class="btn btn-outline-danger">Delete</button>
+                  </td>
 
                   <td>
                     <button (click)="handleEditCours(cr.idCours)" class="btn btn-outline-danger ">Edit</button>
                   </td>
                 </tr>
-                <!-- You can replicate the above TR for as many courses as you have. -->
                 </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <!-- /Courses List -->
-      </div>
+                <div class="d-flex justify-content-center mt-3">
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a
+                          (click)="goToFirstPage()"
+                          class="page-link"
+                          href="javascript:void(0)"
+                          aria-label="Previous"
+                          [class.disabled]="page === 0"
+                        >
+                          <i class="fa-solid fa-angles-left"></i>
+                        </a>
+                      </li>
+                      <li class="page-item">
+                        <a
+                          (click)="goToPreviousPage()"
+                          class="page-link"
+                          href="javascript:void(0)"
+                          aria-label="Previous"
+                          [class.disabled]="page === 0"
+                        >
+                          <i class="fa-solid fa-angle-left"></i>
+                        </a>
+                      </li>
+                      <li
+                        class="page-item"
+                        *ngFor="let pageIndex of pages"
+                      >
+                        <a
+                          (click)="gotToPage(pageIndex)"
+                          class="page-link"
+                          [class.active]="page === pageIndex"
+                          href="javascript:void(0)"
+                        >{{ pageIndex + 1 }}</a>
+                      </li>
+                      <li class="page-item">
+                        <a
+                          (click)="goToNextPage()"
+                          class="page-link"
+                          href="javascript:void(0)"
+                          aria-label="Next"
+                          [class.disabled]="isLastPage"
+                        >
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                      </li>
+                      <li class="page-item">
+                        <a
+                          (click)="goToLastPage()"
+                          class="page-link"
+                          href="javascript:void(0)"
+                          aria-label="Next"
+                          [class.disabled]="isLastPage"
+                        >
+                          <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
 
 
-    </div>
-  </div>
-</div>
+                <!--
+
+                                   <td> <button (click)="handleDeleteCours(cr)" class="btn btn-outline-danger">Delete</button> </td>
+
+                                   <td>
+                                     <button (click)="handleEditCours(cr.idCours)" class="btn btn-outline-danger ">Edit</button>
+                                   </td>
+                                 </tr>
+                                 </tbody>
+                               </table>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
 
 
-<!-- /Page Content -->
+                     </div>
+                   </div>
+                 </div>
+                 ---------------------------------->
+
+
+                <!-- /Page Content -->

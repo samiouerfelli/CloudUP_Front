@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TimeSlotService} from '../../../services/services/CoursReservationServices/time-slot.service';
+import {SlotsControllerService} from '../../../services/services/slots-controller.service';
 
 @Component({
   selector: 'app-schedule-timings',
@@ -13,47 +14,41 @@ export class ScheduleTimingsComponent implements OnInit {
   professorId = 1;
 
 
-
-
-  constructor(private timeSlotService: TimeSlotService) {}
-
-
-  // tslint:disable-next-line:typedef
+  constructor(private timeSlotService: TimeSlotService,
+              private service: SlotsControllerService) {
+  }
 
   // tslint:disable-next-line:typedef
-  saveNewSlot(formData: any) {
+  saveSlot(formData: any) {
     const startDateTime = this.formatDateTime(formData.date, formData.time);
     const endDateTime = this.formatDateTime(formData.date, formData.endTime);
     const date = new Date(formData.date);
-    const dayOfWeek = date.toLocaleString('en-US', { weekday: 'long' });
-    const professorId = 1 ;
-
-    const newTimeSlot = {
+    const day = date.toLocaleString('en-US', {weekday: 'long'});
+    let newTimeSlot: { dayOfWeek: string; startTime: string; endTime: string };
+    newTimeSlot = {
       startTime: startDateTime,
       endTime: endDateTime,
-      dayOfWeek:  dayOfWeek.toUpperCase(),
-      professor: { id: professorId }
+      dayOfWeek: day.toUpperCase()
+    };
+    const params = {
+      body: newTimeSlot
     };
 
-    this.timeSlotService.addTimeSlot(professorId, newTimeSlot).subscribe(
-      response => {
+    this.service.saveSlot(params).subscribe({
+      error: err => {
+        console.log('Error saving time slot:', err);
+        alert('There was an error saving the time slot.');
+      },
+      next: response => {
         console.log('TimeSlot saved:', response);
         alert('TimeSlot ajouté avec succès');
-        // this.fetchTimeSlotsForProfessor();
-        this.selectedDay = dayOfWeek;
-        this.selectDay(dayOfWeek);
-        this.timeSlotService.getTimeSlotsForDay(this.professorId, dayOfWeek);
-      },
-      error => {
-        console.error('Error saving time slot:', error);
-        alert('There was an error saving the time slot.');
-
-        // Handle the error appropriately
+        this.selectDay(params.body.dayOfWeek);
+        this.service.getSlotsOfConnectedUserOnly({day: params.body.dayOfWeek});
       }
-    );
+    });
+
+
   }
-
-
 
   formatDateTime(date: string, time: string, hoursToAdd = 0): string {
     const timeParts = time.split(':');
@@ -84,7 +79,7 @@ export class ScheduleTimingsComponent implements OnInit {
   selectDay(day: string): void {
     this.selectedDay = day;
     // Fetch the time slots for the selected day from your service
-    this.timeSlotService.getTimeSlotsForDay(this.professorId, day).subscribe(
+    this.service.getSlotsOfConnectedUserOnly({day}).subscribe(
       slots => {
         this.timeSlots = slots;
       },
@@ -97,20 +92,16 @@ export class ScheduleTimingsComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   deleteSlot(slotId: number) {
-    if (confirm('Are you sure you want to delete this TimeSlot?')) {
-
-      this.timeSlotService.deleteTimeSlot(slotId).subscribe(
-        () => {
-          this.timeSlots = this.timeSlots.filter(slot => slot.id !== slotId);
-        },
-        error => {
-          console.error('Failed to delete time slot', error);
-        }
-      );
+    if (!confirm('Are you sure you want to delete this TimeSlot?')) {
+      return;
     }
+    this.service.deleteCours({idS: slotId}).subscribe(
+      value => {
+        this.timeSlots = this.timeSlots.filter(slot => slot.id !== slotId);
+      },
+      error => {
+        console.error('Failed to delete time slot', error);
+      });
   }
-
-
-
 
 }

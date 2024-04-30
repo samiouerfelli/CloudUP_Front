@@ -1,12 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
 import { GrantedAuthority } from '../models/granted-authority';
-import { TokenAuth } from '../models/token-auth';
+import { Reservation } from '../models/reservation';
+import { TimeSlot } from '../models/time-slot';
 export interface User {
   accountLocked?: boolean;
   accountNonExpired?: boolean;
   accountNonLocked?: boolean;
   authorities?: Array<GrantedAuthority>;
+  availableTimeSlots?: Array<TimeSlot>;
   createdDate?: string;
   credentialsNonExpired?: boolean;
   email: string;
@@ -19,7 +21,7 @@ export interface User {
   password?: string;
   phoneNumber: string;
   prenom?: string;
+  reservations?: Array<Reservation>;
   roles?: 'Professor' | 'Student' | 'Club' | 'Admin';
-  tokenAuths?: Array<TokenAuth>;
   username?: string;
 }

@@ -11,19 +11,71 @@
     }
   ],
   "paths": {
-    "/auth/logout": {
-      "post": {
+    "/auth/updateReservation": {
+      "put": {
         "tags": [
-          "Authentification"
+          "reservation-rest-controller"
         ],
-        "operationId": "logout",
+        "operationId": "updateReservation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reservation"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateCours/{coursID}": {
+      "put": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "updateCours",
+        "parameters": [
+          {
+            "name": "coursID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoursRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
                 }
               }
             }
@@ -61,6 +113,116 @@
         }
       }
     },
+    "/auth/addSlots": {
+      "post": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "saveSlot",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addReservation": {
+      "post": {
+        "tags": [
+          "reservation-rest-controller"
+        ],
+        "operationId": "addReservation",
+        "parameters": [
+          {
+            "name": "etudiantID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          {
+            "name": "coursID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CoursParticuliers"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reservation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addCours": {
+      "post": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "saveCours",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoursRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/Register": {
       "post": {
         "tags": [
@@ -91,12 +253,124 @@
         }
       }
     },
-    "/auth/findAll": {
+    "/auth/retrieveCoursByName/{name}": {
       "get": {
         "tags": [
-          "Authentification"
+          "cours-controller"
         ],
-        "operationId": "findAll",
+        "operationId": "findCoursByName",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseCoursResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByIdReservation/{idR}": {
+      "get": {
+        "tags": [
+          "reservation-rest-controller"
+        ],
+        "operationId": "retrieveByIdReservation",
+        "parameters": [
+          {
+            "name": "idR",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByIdCours/{idC}": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "findCoursByID",
+        "parameters": [
+          {
+            "name": "idC",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoursResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveAllReservation": {
+      "get": {
+        "tags": [
+          "reservation-rest-controller"
+        ],
+        "operationId": "retrieveAllReservation",
         "responses": {
           "200": {
             "description": "OK",
@@ -105,8 +379,167 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/User"
+                    "$ref": "#/components/schemas/Reservation"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveAllCours": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "findAllCours",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseCoursResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getSlotsOfConnectedUserOnly/{day}": {
+      "get": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "getSlotsOfConnectedUserOnly",
+        "parameters": [
+          {
+            "name": "day",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeSlotResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getSlotsForBooking/{userID}/{day}": {
+      "get": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "getSlotsForBooking",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "day",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeSlotResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/findCoursByOwner": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "findCoursByOwner",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponseCoursResponse"
                 }
               }
             }
@@ -136,10 +569,345 @@
           }
         }
       }
+    },
+    "/auth/deleteSlot/{idS}": {
+      "delete": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "deleteCours",
+        "parameters": [
+          {
+            "name": "idS",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteReservation/{idR}": {
+      "delete": {
+        "tags": [
+          "reservation-rest-controller"
+        ],
+        "operationId": "deleteReservation",
+        "parameters": [
+          {
+            "name": "idR",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteCours/{idC}": {
+      "delete": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "deleteCours_1",
+        "parameters": [
+          {
+            "name": "idC",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "CoursParticuliers": {
+        "type": "object",
+        "properties": {
+          "idCours": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "niveau": {
+            "type": "string",
+            "enum": [
+              "LEVEL_1A",
+              "LEVEL_2A",
+              "LEVEL_3A",
+              "LEVEL_3B",
+              "LEVEL_4EME",
+              "LEVEL_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "GAMIX",
+              "GL",
+              "INFINI",
+              "ERP_BI",
+              "DS",
+              "SIM",
+              "TWIN",
+              "SLEAM",
+              "NIDS",
+              "SE"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "En_Ligne",
+              "En_Présentiel"
+            ]
+          },
+          "nomCours": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "float"
+          },
+          "descriptionCours": {
+            "type": "string"
+          },
+          "dureeC": {
+            "type": "number",
+            "format": "float"
+          },
+          "professeur": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "GrantedAuthority": {
+        "type": "object",
+        "properties": {
+          "authority": {
+            "type": "string"
+          }
+        }
+      },
+      "Reservation": {
+        "type": "object",
+        "properties": {
+          "idR": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dateR": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "statusR": {
+            "type": "string",
+            "enum": [
+              "Confirmed",
+              "Pending",
+              "Canceled"
+            ]
+          },
+          "professeur": {
+            "$ref": "#/components/schemas/User"
+          },
+          "etudiant": {
+            "$ref": "#/components/schemas/User"
+          },
+          "cours": {
+            "$ref": "#/components/schemas/CoursParticuliers"
+          }
+        }
+      },
+      "TimeSlot": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dayOfWeek": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "email",
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "motDePasse": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "pattern": "^\\+(?:[0-9] ?){6,14}[0-9]$",
+            "type": "string"
+          },
+          "roles": {
+            "type": "string",
+            "enum": [
+              "Professor",
+              "Student",
+              "Club",
+              "Admin"
+            ]
+          },
+          "accountLocked": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reservations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reservation"
+            }
+          },
+          "availableTimeSlots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSlot"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "authorities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GrantedAuthority"
+            }
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "credentialsNonExpired": {
+            "type": "boolean"
+          },
+          "accountNonExpired": {
+            "type": "boolean"
+          },
+          "accountNonLocked": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CoursRequest": {
+        "type": "object",
+        "properties": {
+          "idCours": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "niveau": {
+            "type": "string",
+            "enum": [
+              "LEVEL_1A",
+              "LEVEL_2A",
+              "LEVEL_3A",
+              "LEVEL_3B",
+              "LEVEL_4EME",
+              "LEVEL_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "GAMIX",
+              "GL",
+              "INFINI",
+              "ERP_BI",
+              "DS",
+              "SIM",
+              "TWIN",
+              "SLEAM",
+              "NIDS",
+              "SE"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "En_Ligne",
+              "En_Présentiel"
+            ]
+          },
+          "nomCours": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "float"
+          },
+          "dureeC": {
+            "type": "number",
+            "format": "float"
+          },
+          "descriptionCours": {
+            "type": "string"
+          }
+        }
+      },
       "AuthentificationRequest": {
         "required": [
           "email",
@@ -161,6 +929,26 @@
         "type": "object",
         "properties": {
           "token": {
+            "type": "string"
+          }
+        }
+      },
+      "TimeSlotRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dayOfWeek": {
             "type": "string"
           }
         }
@@ -204,120 +992,121 @@
           }
         }
       },
-      "GrantedAuthority": {
+      "CoursResponse": {
         "type": "object",
         "properties": {
-          "authority": {
+          "idCours": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "niveau": {
+            "type": "string",
+            "enum": [
+              "LEVEL_1A",
+              "LEVEL_2A",
+              "LEVEL_3A",
+              "LEVEL_3B",
+              "LEVEL_4EME",
+              "LEVEL_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "GAMIX",
+              "GL",
+              "INFINI",
+              "ERP_BI",
+              "DS",
+              "SIM",
+              "TWIN",
+              "SLEAM",
+              "NIDS",
+              "SE"
+            ]
+          },
+          "nomCours": {
             "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "float"
+          },
+          "descriptionCours": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "En_Ligne",
+              "En_Présentiel"
+            ]
+          },
+          "dureeC": {
+            "type": "number",
+            "format": "float"
+          },
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
-      "TokenAuth": {
+      "PageResponseCoursResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoursResponse"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TimeSlotResponse": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
           },
-          "token": {
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dayOfWeek": {
             "type": "string"
           },
-          "tokenType": {
-            "type": "string",
-            "enum": [
-              "BEARER"
-            ]
-          },
-          "revoked": {
-            "type": "boolean"
-          },
-          "expired": {
-            "type": "boolean"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        }
-      },
-      "User": {
-        "required": [
-          "email",
-          "phoneNumber"
-        ],
-        "type": "object",
-        "properties": {
           "idUser": {
             "type": "integer",
             "format": "int64"
-          },
-          "nom": {
-            "type": "string"
-          },
-          "prenom": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "motDePasse": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "pattern": "^\\+(?:[0-9] ?){6,14}[0-9]$",
-            "type": "string"
-          },
-          "roles": {
-            "type": "string",
-            "enum": [
-              "Professor",
-              "Student",
-              "Club",
-              "Admin"
-            ]
-          },
-          "tokenAuths": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TokenAuth"
-            }
-          },
-          "accountLocked": {
-            "type": "boolean"
-          },
-          "enabled": {
-            "type": "boolean"
-          },
-          "createdDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "name": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "authorities": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GrantedAuthority"
-            }
-          },
-          "lastModifiedDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "accountNonExpired": {
-            "type": "boolean"
-          },
-          "credentialsNonExpired": {
-            "type": "boolean"
-          },
-          "accountNonLocked": {
-            "type": "boolean"
           }
         }
       }
