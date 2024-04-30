@@ -38,8 +38,10 @@
     "ngx-chips": "^2.2.2",
     "ngx-dropzone": "^3.0.0",
     "ngx-owl-carousel-o": "^5.0.0",
+    "ngx-toastr": "^18.0.0",
     "rxjs": "~6.6.0",
     "select2": "^4.1.0-rc.0",
+    "sweetalert2": "^11.10.8",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },
