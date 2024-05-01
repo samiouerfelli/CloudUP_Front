@@ -1,3 +1,6 @@
+
+
+
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">
   <div class="container">
@@ -6,10 +9,10 @@
         <nav aria-label="breadcrumb" class="page-breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Course</li>
+            <li class="breadcrumb-item active" aria-current="page">Appointments</li>
           </ol>
         </nav>
-        <h2 class="breadcrumb-title">Dashboard</h2>
+        <h2 class="breadcrumb-title">Appointments</h2>
       </div>
     </div>
   </div>
@@ -42,13 +45,13 @@
           <div class="dashboard-widget">
             <nav class="dashboard-menu">
               <ul>
-                <li >
+                <li>
                   <a routerLink='/instructors/professor-dashboard'>
                     <i class="fas fa-columns"></i>
                     <span>Dashboard</span>
                   </a>
                 </li>
-                <li class="active">
+                <li>
                   <a routerLink='/instructors/add-course'>
                     <i class="fas fa-columns"></i>
                     <span>Add Course</span>
@@ -57,16 +60,17 @@
                 <li>
                   <a routerLink='/instructors/get-course'>
                     <i class="fas fa-columns"></i>
-                    <span>Courses List</span>
+                    <span> Courses List </span>
                   </a>
                 </li>
-                <li>
+
+                <li >
                   <a routerLink='/instructors/sessions'>
                     <i class="fas fa-calendar-check"></i>
                     <span>Appointments</span>
                   </a>
                 </li>
-                <li>
+                <li class="active">
                   <a routerLink='/instructors/mysessions'>
                     <i class="fas fa-calendar-check"></i>
                     <span>My Appointments</span>
@@ -134,93 +138,93 @@
         <!-- /Profile Sidebar -->
 
       </div>
+      <!--
+                         <div class="col-md-7 col-lg-8 col-xl-9">
+                             <div class="appointments">
+
+                                 <div class="appointment-list">
+                                     <div class="profile-info-widget">
+                                         <a routerLink='/instructors/student-profile' class="booking-doc-img">
+                                             <img src="assets/img/clients/client.jpg" alt="User Image">
+                                         </a>
+                                         <div class="profile-det-info">
+                                             <h3><a routerLink='/instructors/student-profile'>Richard Wilson</a></h3>
+                                             <div class="student-details">
+                                                 <h5><i class="far fa-clock"></i> 14 Nov 2019, 10.00 AM</h5>
+                                                 <h5><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5>
+                                                 <h5><i class="fas fa-envelope"></i> richard@example.com</h5>
+                                                 <h5 class="mb-0"><i class="fas fa-phone"></i> +1 923 782 4575</h5>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="appointment-action">
+                                         <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
+                                             <i class="far fa-eye"></i> View
+                                         </a>
+                                         <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                             <i class="fas fa-check"></i> Accept
+                                         </a>
+                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+                                             <i class="fas fa-times"></i> Cancel
+                                         </a>
+                                     </div>
+                                 </div>
+-->
+
+
+
+
 
       <div class="col-md-7 col-lg-8 col-xl-9">
+        <div class="appointments">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">Student </th>
+              <th scope="col">Course Name</th>
+              <th scope="col">Reservation Date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Professeur</th>
+              <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of list">
+              <td>{{reservation.id_etudiant}} </td>
+              <td>{{reservation.id_cours}} </td>
+              <td>{{reservation.dateR | date: 'EEE, MMM d, h:mm a':'GMT+0100'}} </td>
+              <td>{{reservation.statusR}} </td>
+              <td>{{reservation.id_professeur}} </td>
 
 
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Add Course Section -->
-            <div class="add-course-section">
-              <h4 class="mb-4">Add Course Details</h4>
-              <form [formGroup]="courseForm" (ngSubmit)="saveCourse()">
-                <!-- Course Name -->
-                <div class="mb-3">
-                  <label class="form-label" >Course Name</label>
-                  <input type="text" class="form-control" formControlName="nomCours" placeholder="Enter course name">
-                </div>
+              <!--
+              <tr *ngFor="let rs of reservations">
+                <td>{{ rs.etudiant.nom + ' '+rs.etudiant.prenom }}</td>
+                <td>{{ rs.cours.nomCours }}</td>
+                <td>
+                  {{ rs.dateR | date: 'EEE, MMM d, h:mm a':'GMT+0100' }}
+                </td>
+                <td>{{ rs.statusR }}</td>
+                -->
+              <div class="appointment-action">
 
-                <!-- Course Description -->
-                <div class="mb-3">
-                  <label class="form-label">Course Description</label>
-                  <textarea class="form-control" formControlName="descriptionCours" rows="3" placeholder="Enter course description"></textarea>
-                </div>
+                <td>
 
-                <!-- Course Duration -->
-                <div class="mb-3">
-                  <label class="form-label">Course Duration</label>
-                  <input type="text" class="form-control" formControlName="dureeC" placeholder="Enter course duration">
-                </div>
-                <!-- Course Price -->
-                <div class="mb-3">
-                  <label class="form-label">Price</label>
-                  <input type="text" class="form-control" formControlName="price" placeholder="Enter course price">
-                </div>
+                  <!-- 'Cancel' button is visible but disabled if status is not 'En_attente' -->
+                  <button [hidden]="reservation.statusR !== 'Pending'" (click)="cancelReservation(reservation)" class="btn btn-sm bg-danger-light">
+                    <i class="fas fa-times"></i> Cancel
+                  </button>
+                </td>
+                <!-- ... other HTML content ... -->
 
-                <!-- Course Level -->
-                <div class="mb-3">
-                  <label>Course Level</label>
-                  <select class="form-control "  formControlName="niveau">
-                    <option>LEVEL_1A</option>
-                    <option>LEVEL_2A</option>
-                    <option>LEVEL_3A</option>
-                    <option>LEVEL_4EME</option>
-                    <option>LEVEL_5EME</option>
-
-                  </select>
-                </div>
-                <div class="mb-3" *ngIf="showNameDropdown">
-                  <label>Options Name</label>
-                  <select class="form-control" formControlName="option">
-                    <option>ARCTIC</option>
-                    <option >DS</option>
-                    <option>SE</option>
-                    <option >TWIN</option>
-                    <option >GL</option>
-                    <option >SIM</option>
-                    <option>NIDS</option>
-                    <option >SLEAM</option>
-                    <option >INFINI</option>
-                    <option > ERP_BI</option>
-                    <option > GAMIX </option>
-
-
-                  </select>
-                </div>
-
-                <div class="mb-3">
-                  <label>Course Modularity </label>
-                  <select class="form-control" formControlName="type">
-                    <option>En_Ligne</option>
-                    <option>En_Présentiel</option>
-                  </select>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit"  [disabled]="courseForm.invalid" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
-            <!-- /Add Course Section -->
-
-          </div>
+              </div>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-
     </div>
-  </div>
-
-</div>
 
 
 
-<!-- /Page Content -->
+    <!-- /Page Content -->

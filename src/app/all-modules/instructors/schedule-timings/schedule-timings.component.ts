@@ -62,18 +62,6 @@ export class ScheduleTimingsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // Other initialization logic
-  }
-
-  fetchTimeSlotsForProfessor(): void {
-    this.timeSlotService.getTimeSlots(this.professorId).subscribe(
-      (slots) => {
-        this.timeSlots = slots;
-      },
-      (error) => {
-        console.error('Error fetching time slots for professor:', error);
-      }
-    );
   }
 
   selectDay(day: string): void {
@@ -103,5 +91,17 @@ export class ScheduleTimingsComponent implements OnInit {
         console.error('Failed to delete time slot', error);
       });
   }
-
 }
+
+/*
+    fetchTimeSlotsForProfessor(): void {
+      this.timeSlotService.getTimeSlots(this.professorId).subscribe(
+        (slots) => {
+          this.timeSlots = slots;
+        },
+        (error) => {
+          console.error('Error fetching time slots for professor:', error);
+        }
+      );
+    }
+  */

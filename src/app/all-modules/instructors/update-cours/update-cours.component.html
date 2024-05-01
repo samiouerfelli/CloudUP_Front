@@ -156,11 +156,29 @@
 
                     </select>
                   </div>
+                  <div class="mb-3" *ngIf="showNameDropdown">
+                    <label>Options Name</label>
+                    <select class="form-control" formControlName="option">
+                      <option>ARCTIC</option>
+                      <option >DS</option>
+                      <option>SE</option>
+                      <option >TWIN</option>
+                      <option >GL</option>
+                      <option >SIM</option>
+                      <option>NIDS</option>
+                      <option >SLEAM</option>
+                      <option >INFINI</option>
+                      <option > ERP_BI</option>
+                      <option > GAMIX </option>
+
+
+                    </select>
+                  </div>
 
                   <div class="mb-3">
                     <label>Course Modularity </label>
                     <select class="form-control" formControlName="type">
-                      <option>En_ligne</option>
+                      <option>En_Ligne</option>
                       <option>En_Présentiel</option>
                     </select>
                   </div>

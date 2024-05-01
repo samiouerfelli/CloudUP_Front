@@ -4,6 +4,6 @@ export interface TimeSlotResponse {
   dayOfWeek?: string;
   endTime?: string;
   id?: number;
-  idUser?: number;
+  idUser: number;
   startTime?: string;
 }

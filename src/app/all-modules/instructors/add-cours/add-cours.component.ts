@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
 // @ts-ignore
-import { Niveau} from '../../../services/models/MyModels/cours';
 import {CoursControllerService} from 'src/app/services/services';
 import {CoursRequest} from 'src/app/services/models';
+import {Niveau} from '../../../services/models/MyModels/cours';
 
 
 @Component({
@@ -15,13 +15,14 @@ import {CoursRequest} from 'src/app/services/models';
   styleUrls: ['./add-cours.component.css']
 })
 export class AddCoursComponent implements OnInit {
-  public courseForm!: FormGroup;
-  public showNameDropdown = environment.showNameDropdown;
 
   constructor(private fb: FormBuilder, private coursService: CoursServiceService,
               private service: CoursControllerService,
               private router: Router) {
   }
+  public courseForm!: FormGroup;
+  public showNameDropdown = environment.showNameDropdown;
+
 
   // tslint:disable-next-line:typedef
   ngOnInit() {

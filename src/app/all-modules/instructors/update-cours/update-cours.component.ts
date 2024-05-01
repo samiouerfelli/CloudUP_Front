@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {CoursControllerService} from '../../../services/services/cours-controller.service';
-import {CoursRequest} from '../../../services/models/cours-request';
+import {CoursRequest, Niveau} from '../../../services/models/cours-request';
 
 // @ts-ignore
 // @ts-ignore
@@ -37,12 +37,15 @@ export class UpdateCoursComponent implements OnInit {
           niveau: [cours.niveau, Validators.required],
           type: [cours.type, Validators.required],
           option: [cours.option]
-        });
+        }
+      );
       },
       error: err => {
         console.error('Failed to load course details', err);
       }
     });
+
+
   }
 
 
@@ -56,6 +59,17 @@ export class UpdateCoursComponent implements OnInit {
         this.router.navigateByUrl('/instructors/get-course');
       }, error: err => {
         console.log(err);
+      }
+    });
+  }
+  // tslint:disable-next-line:typedef
+  onChanges() {
+    // tslint:disable-next-line:no-non-null-assertion
+    this.updateForm.get('niveau')!.valueChanges.subscribe(val => {
+      this.showNameDropdown = (val === Niveau.LEVEL_4EME || val === Niveau.LEVEL_5EME);
+      if (this.showNameDropdown) {
+        // tslint:disable-next-line:no-non-null-assertion
+        this.updateForm.get('option')!.setValue('');
       }
     });
   }

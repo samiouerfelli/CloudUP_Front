@@ -71,6 +71,12 @@
                   </a>
                 </li>
                 <li>
+                  <a routerLink='/instructors/mysessions'>
+                    <i class="fas fa-calendar-check"></i>
+                    <span>My Appointments</span>
+                  </a>
+                </li>
+                <li>
                   <a routerLink='/instructors/my-students'>
                     <i class="fas fa-user-injured"></i>
                     <span>My Students</span>
@@ -178,26 +184,37 @@
               <th scope="col">Course Name</th>
               <th scope="col">Reservation Date</th>
               <th scope="col">Status</th>
+              <th scope="col">Professeur</th>
               <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let rs of reservations">
-              <td>{{ rs.etudiant.nom + ' '+rs.etudiant.prenom }}</td>
-              <td>{{ rs.cours.nomCours }}</td>
-              <td>
-                {{ rs.dateR | date: 'EEE, MMM d, h:mm a':'GMT+0100' }} <!-- Change to 'GMT+0200' during daylight saving time -->
-              </td>
-              <td>{{ rs.statusR }}</td>
+            <tr *ngFor="let reservation of list">
+              <td>{{reservation.id_etudiant}} </td>
+              <td>{{reservation.id_cours}} </td>
+              <td>{{reservation.dateR | date: 'EEE, MMM d, h:mm a':'GMT+0100'}} </td>
+              <td>{{reservation.statusR}} </td>
+              <td>{{reservation.id_professeur}} </td>
+
+
+              <!--
+              <tr *ngFor="let rs of reservations">
+                <td>{{ rs.etudiant.nom + ' '+rs.etudiant.prenom }}</td>
+                <td>{{ rs.cours.nomCours }}</td>
+                <td>
+                  {{ rs.dateR | date: 'EEE, MMM d, h:mm a':'GMT+0100' }}
+                </td>
+                <td>{{ rs.statusR }}</td>
+                -->
               <div class="appointment-action">
 
                 <td>
                   <!-- 'Accept' button is visible but disabled if status is not 'En_attente' -->
-                  <button [hidden]="rs.statusR !== 'Pending'" (click)="confirmReservation(rs)" class="btn btn-sm bg-success-light">
+                  <button [hidden]="reservation.statusR !== 'Pending'" (click)="confirmReservation(reservation)" class="btn btn-sm bg-success-light">
                     <i class="fas fa-check"></i> Accept
                   </button>
                   <!-- 'Cancel' button is visible but disabled if status is not 'En_attente' -->
-                  <button [hidden]="rs.statusR !== 'Pending'" (click)="cancelReservation(rs)" class="btn btn-sm bg-danger-light">
+                  <button [hidden]="reservation.statusR !== 'Pending'" (click)="cancelReservation(reservation)" class="btn btn-sm bg-danger-light">
                     <i class="fas fa-times"></i> Cancel
                   </button>
                 </td>

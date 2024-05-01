@@ -6,7 +6,6 @@ import {NavigationEnd, Router, Event} from '@angular/router';
 import {AuthentificationService} from '../services/services';
 import {TokenService} from '../services/token/token.service';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
-import {tap} from "rxjs/operators";
 
 declare var $: any;
 
@@ -45,15 +44,15 @@ export class HeaderComponent implements OnInit {
     // Sidebar
 
     if ($(window).width() <= 991) {
-      let Sidemenu = function () {
+      const Sidemenu = function() {
         this.$menuItem = $('.main-nav a');
       };
 
       // tslint:disable-next-line:typedef
       function init() {
 
-        let $this = Sidemenu;
-        $('.main-nav a').on('click', function (e: { preventDefault: () => void; }) {
+        const $this = Sidemenu;
+        $('.main-nav a').on('click', function(e: { preventDefault: () => void; }) {
           if ($(this).parent().hasClass('has-submenu')) {
             e.preventDefault();
           }
@@ -77,7 +76,7 @@ export class HeaderComponent implements OnInit {
 
     $('body').append('<div class="sidebar-overlay"></div>');
     // tslint:disable-next-line:only-arrow-functions typedef
-    $(document).on('click', '#mobile_btn', function () {
+    $(document).on('click', '#mobile_btn', function() {
       $('main-wrapper').toggleClass('slide-nav');
       $('.sidebar-overlay').toggleClass('opened');
       $('html').addClass('menu-opened');
@@ -85,14 +84,14 @@ export class HeaderComponent implements OnInit {
     });
 
     // tslint:disable-next-line:typedef
-    $(document).on('click', '.sidebar-overlay', function () {
+    $(document).on('click', '.sidebar-overlay', function() {
       $('html').removeClass('menu-opened');
       $(this).removeClass('opened');
       $('main-wrapper').removeClass('slide-nav');
     });
 
     // tslint:disable-next-line:only-arrow-functions typedef
-    $(document).on('click', '#menu_close', function () {
+    $(document).on('click', '#menu_close', function() {
       $('html').removeClass('menu-opened');
       $('.sidebar-overlay').removeClass('opened');
       $('main-wrapper').removeClass('slide-nav');
@@ -105,7 +104,7 @@ export class HeaderComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   logout() {
-    /* const token = localStorage.getItem('token');
+     const token = localStorage.getItem('token');
      const header = new HttpHeaders({Authorization: `Bearer ${token}`});
      this.authService.logout({body: header}).subscribe({
        next: async () => {
@@ -119,7 +118,4 @@ export class HeaderComponent implements OnInit {
        }
      });
    }
-
- */
-  }
 }

@@ -31,6 +31,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { AddCoursComponent } from './add-cours/add-cours.component';
 import { GetCoursComponent } from './get-cours/get-cours.component';
 import { UpdateCoursComponent } from './update-cours/update-cours.component';
+import { MysessionComponent } from './mysession/mysession.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { UpdateCoursComponent } from './update-cours/update-cours.component';
     CourseDetailsComponent,
     AddCoursComponent,
     GetCoursComponent,
-    UpdateCoursComponent
+    UpdateCoursComponent,
+    MysessionComponent
   ],
   imports: [
     CommonModule,

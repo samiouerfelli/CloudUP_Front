@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {error} from 'protractor';
+import {Component, OnInit} from '@angular/core';
 import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
-import {Etat, Reservation} from '../../../services/models/MyModels/reservation';
+import {ReservationControllerService} from '../../../services/services/reservation-controller.service';
+import {Etat, ReservationResponse} from '../../../services/models/reservation-response';
+import {ReservationRequest} from '../../../services/models/reservation-request';
 
 
 @Component({
@@ -11,51 +12,52 @@ import {Etat, Reservation} from '../../../services/models/MyModels/reservation';
 })
 
 export class SessionsComponent implements OnInit {
-  public reservations: Array<Reservation> = [];
-  dateR: Date = new Date();
-  constructor(private reservationService: ReservationService) {
+  public list: ReservationResponse[] = [];
+  constructor(private service: ReservationControllerService) {
   }
 
   ngOnInit(): void {
-    this.loadAppointments();
+    this.getReservationForProfessor();
   }
 
   // tslint:disable-next-line:typedef
-  loadAppointments() {
-    this.reservationService.getReservation().subscribe(
-      data => {
-        this.reservations = data;
-      },
-      // tslint:disable-next-line:no-shadowed-variable
-      error => {
-        console.error('Error fetching appointments', error);
-      }
-    );
+  getReservationForProfessor(): void {
+    this.service.getReservationByOwnerProfeesor().subscribe({
+      next: (value) => this.list = value,
+      error: (error) => console.error('Failed to fetch reservations:', error)
+    });
   }
-  // tslint:disable-next-line:typedef
-  confirmReservation(reservation: Reservation) {
-    reservation.statusR = Etat.Confirmed; // Update the status to confirmed
-    this.reservationService.updateReservationStatus(reservation).subscribe(
+  // tslint:disable-next-line:typedef no-shadowed-variable
+  confirmReservation( Reservation: ReservationResponse) {
+    const id = Reservation.idR;
+    const request: ReservationRequest = {
+      statusR : Etat.Confirmed,
+      idR: id
+    };
+    // this.service.getReservationById({idReservation: id});
+    this.service.updateReservationStatus({ body: request}).subscribe(
       updatedReservation => {
-        this.loadAppointments();
+        this.getReservationForProfessor();
       },
       error => {
-        console.error('Error confirming reservation', error);
-        // Handle error, such as showing an error message to the user
+        console.log(error);
       }
     );
   }
 
-  // tslint:disable-next-line:typedef
-  cancelReservation(reservation: Reservation) {
-    reservation.statusR = Etat.Canceled; // Update the status to cancelled
-    this.reservationService.updateReservationStatus(reservation).subscribe(
+  // tslint:disable-next-line:typedef no-shadowed-variable
+  cancelReservation(Reservation: ReservationResponse) {
+    const id = Reservation.idR;
+    const request: ReservationRequest = {
+      statusR : Etat.Canceled,
+      idR: id
+    };
+    this.service.updateReservationStatus({ body: request}).subscribe(
       updatedReservation => {
-        this.loadAppointments();
+        this.getReservationForProfessor();
       },
       error => {
-        console.error('Error cancelling reservation', error);
-        // Handle error
+        console.log(error);
       }
     );
   }
