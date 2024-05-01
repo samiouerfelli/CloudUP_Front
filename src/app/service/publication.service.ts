@@ -30,10 +30,6 @@ export class PublicationService {
     return this.http.get<Array<Publication>>('Http://localhost:8080/api/v1/auth/retrieveByContent?content=' + query);
   }
 
-  searchByCategory(query: categories): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>>('');
-  }
-
   addPublication(publication: {
     commentaries: any[];
     subject: string;
@@ -87,9 +83,6 @@ export class PublicationService {
   }
   incrementViewsForPublication(id: number): Observable<any> {
     return this.http.put(`Http://localhost:8080/api/v1/auth/publications/${id}/increment-views`, {});
-  }
-  deleteComment(commentId: number): Observable<void> {
-    return this.http.delete<void>(`Http://localhost:8080/api/v1/auth/deleteC/${commentId}`);
   }
   searchByTags(tag: string): Observable<Array<Publication>> {
     return this.http.get<Array<Publication>> ('Http://localhost:8080/api/v1/auth/retrieveByTagsP?tags=' + tag);
