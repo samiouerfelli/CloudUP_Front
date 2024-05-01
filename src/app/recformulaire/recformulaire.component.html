@@ -1,0 +1,76 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content class="mat-typography">
+<!-- Page Content -->
+<form [formGroup]="RecForm">
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="doc-review review-listing custom-edit-service">
+                    <div class="card">
+                        <div class="card-body">
+
+                                <div class="service-fields mb-3">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label>Objet <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" placeholder="Objet" formControlName="objet">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="service-fields mb-3">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Categorie <span class="text-danger">*</span></label>
+                                                <mat-form-field appearence="outline">
+                                                    <mat-select placeholder="Categorie" formControlName="type">
+                                                      <mat-option *ngFor="let val of Categorie" [value]="val">
+                                                        {{val}}
+                                                      </mat-option>
+                                                    </mat-select>
+                                                  </mat-form-field>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="service-fields mb-3">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-grouprec">
+                                                <label>Description <span class="text-danger">*</span></label>
+                                                <textarea type="text" class="form-control service-desc" name="Description" 
+                                                placeholder="description.." formControlName="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service-fields mb-3" *ngIf="data.view" >
+                                    <div class="form-grouprec">
+                                        <label>Date: <span class="text-danger"></span></label>
+                                        <input class="form-control" type="text" formControlName="time" [(ngModel)]="time">
+                                    </div>
+                                </div>
+                                <div class="submit-section" *ngIf="!data.view">
+                                    <button class="btn btn-primary submit-btn" (click)="onFormSubmit()" type="submit" [disabled]="RecForm.invalid">Submit</button>                                
+                                </div>
+                        </div>
+                    </div>
+                    <!-- /Add Blog -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</form> 		
+</mat-dialog-content>
+ 
+  

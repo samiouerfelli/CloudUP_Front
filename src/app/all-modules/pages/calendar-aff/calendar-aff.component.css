@@ -1,0 +1,48 @@
+.button-container {
+  position: relative;
+}
+.button-container {
+  position: fixed;
+  top: 50%; /* Adjust this value to position the buttons vertically */
+  right: 0; /* Adjust this value to position the buttons horizontally */
+  transform: translateY(-50%);
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 0; /* Adjust this value to position the delete button vertically */
+  right: 0; /* Adjust this value to position the delete button horizontally */
+}
+
+.button-container button {
+  margin-top: 10px;
+}
+
+.button-container .btn-outline-danger {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.button-container .btn-outline-primary:nth-child(2) {
+  width: 120px;
+}
+
+.button-container .btn-outline-success,
+.button-container .btn-outline-primary {
+  width: calc(50% - 15px);
+}
+.button-container {
+  position: sticky;
+  top: 20px;
+}
+
+.button-container button {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.button-container .btn-outline-danger {
+  margin-bottom: 10px;
+}

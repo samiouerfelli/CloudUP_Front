@@ -13,10 +13,15 @@ import { RegisterComponent } from './register/register.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { VideoCallComponent } from './video-call/video-call.component';
 import { VoiceCallComponent } from './voice-call/voice-call.component';
+import {ActivateAccountComponent} from './activate-account/activate-account.component';
+import { CalendarAffComponent } from './calendar-aff/calendar-aff.component';
+
+import{EventCategoryComponent} from '../admin/event-category/event-category/event-category.component'
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
     children: [
+      {path: 'activate-account', component: ActivateAccountComponent },
       { path: 'voice-call', component: VoiceCallComponent },
       { path: 'video-call', component: VideoCallComponent },
       { path: 'calendar', component: CalendarComponent },
@@ -28,8 +33,10 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'term-condition', component: TermConditionComponent },
-      { path: 'privacy-policy', component: PrivacyPolicyComponent }
-    ] 
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+      { path: 'calendar-event-aff/:eventId',component: CalendarAffComponent},
+      { path: 'event-category',component: EventCategoryComponent}
+    ]
   }
 ];
 

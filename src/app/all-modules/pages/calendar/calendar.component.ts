@@ -1,5 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { PostService } from '../../service/Evenement.service';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
+import { DialogRef } from '@angular/cdk/dialog';
+import { AddEventComponent } from 'src/app/all-modules/pages/add-event/add-event.component';
+import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { Router } from '@angular/router';
 declare var FullCalendar: any;
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -7,75 +17,80 @@ declare var FullCalendar: any;
   encapsulation: ViewEncapsulation.None
 })
 export class CalendarComponent implements OnInit {
-
-  constructor() { }
+  calendarEl: any;
+  events: any[] = []; // Array to store fetched events
+  selectedEvent: any;
+  constructor(private postService: PostService, private snackBar:MatSnackBar, private http:HttpClient,public dialog: MatDialog,private router: Router) { }
 
   ngOnInit(): void {
-    var calendarEl = document.getElementById('calendar');
+    const calendarEl = document.getElementById('calendar');
+    console.log("aaaaaaaaaaa")
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialDate: new Date(),
-      editable: true,
-      selectable: true,
-      businessHours: true,
-      dayMaxEvents: true, // allow "more" link when too many events
-      headerToolbar: {
-        start: 'prev,next today',
-        center: 'title',
-        end: 'dayGridMonth,dayGridWeek,dayGridDay',
+    this.postService.GetAll().subscribe(
+      (data) => {
+        this.events = data.map((event:any) => ({
+          id:event.id,
+          description:event.description,
+          maxparticipant:event.maxparticipant,
+          lieu:event.lieu,
+          title: event.nom,
+          start: event.dateDebut,
+          end: event.dateDebut,
+          color: 'blue'
+        }));
+console.log(data)
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialDate: new Date(),
+          editable: true,
+          selectable: true,
+          businessHours: true,
+
+          dayMaxEvents: true,
+          headerToolbar: {
+            start: 'prev,next today',
+            center: 'title',
+            end: 'dayGridMonth,dayGridWeek,dayGridDay',
+          },
+          themeSystem: 'bootstrap',
+          events: this.events,
+          select: this.handleDateSelect.bind(this),
+          eventClick: this.handleEventClick.bind(this),
+          backgroundColor: '#007bff', // Change background color
+          borderColor: '#007bff' // Change border color
+        });
+
+        calendar.render();
       },
-      themeSystem: 'bootstrap',
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2021-04-01',
-        },
-        {
-          title: 'Long Event',
-          start: '2021-04-07',
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2021-04-09T16:00:00',
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2021-04-16T16:00:00',
-        },
-        {
-          title: 'Conference',
-          start: '2020-06-11',
-        },
-        {
-          title: 'Meeting',
-          start: '2020-06-12T10:30:00',
-        },
-        {
-          title: 'Lunch',
-          start: '2021-04-12T12:00:00',
-        },
-        {
-          title: 'Meeting',
-          start: '2021-04-12T14:30:00',
-        },
-        {
-          title: 'Happy Hour',
-          start: '2021-04-12T17:30:00',
-        },
-        {
-          title: 'Dinner',
-          start: '2021-04-12T20:00:00',
-        },
-        {
-          title: 'Birthday Party',
-          start: '2021-04-13T07:00:00',
-        },
-      ],
-    });
+      (error) => {
+        console.error('Error fetching events:', error);
+      }
 
-    calendar.render();
+    );
+
+  }
+  handleDateSelect(info:any) {
+    const selectedDate = info.startStr; // Get the selected date string
+    console.log(selectedDate)
+    this.openDialog(selectedDate); // Open dialog passing the selected date
   }
 
+  handleEventClick(info:any) {
+    this.selectedEvent = info.event;
+    console.log("Selected Event:", this.selectedEvent.title);
+    this.router.navigate(['/pages/calendar-event-aff', this.selectedEvent.id]);
+  }
+ openDialog(selectedDate?: string): void {
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.data = { selectedDate };
+  const dialogRef = this.dialog.open(AddEventComponent,dialogConfig)
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.snackBar.open(result,'',{duration: 1000})
+
+      this.events.push(result);
+      this.calendarEl.fullCalendar('renderEvents', this.events);
+    }
+  });
+ }
 }

@@ -1,0 +1,112 @@
+  .makeItMiddle{
+    transform: translate(-50%, -50%);
+  }
+  /* .mat-dialog-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000; /* Ensure a higher z-index to appear on top */
+    .modal-content { /* Assuming this class is used for the widgetHolder-content div */
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      max-width: 500px; /* Adjust as needed */
+      margin: 0 auto; /* Center the modal horizontally */
+    }
+
+  .form-grouprec {
+    font-size: 20px; /* Taille de police de 16 pixels */
+        width: 500px; /* Largeur de la zone de texte */
+        height: 300px; /* Hauteur de la zone de texte */
+  }
+
+    .widgetHolder-content {
+      display: flex;
+      justify-content: center; /* Horizontally center */
+      align-items: center; /* Vertically center */
+      height: 100vh; /* Set height to full viewport height */
+    }
+
+    .form {
+      width: 80%; /* Adjust width as needed */
+    }
+    /* Headers */
+    h1 {
+      margin-top: 0; /* Remove default top margin */
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* Form Layout */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* Spacing between form elements */
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .col-md-6 {
+      width: 50%;
+      padding: 5px; /* Adjust padding if needed */
+    }
+
+    /* Labels and Inputs */
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      width: 100%;
+    }
+
+    /* Error Messages */
+    .invalid-feedback {
+      color: red;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+
+    /* Buttons */
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .mat-raised-button { /* Assuming you're using Material Design buttons */
+      background-color: #4CAF50; /* Green color */
+      color: white;
+    }
+
+    .mat-raised-button:hover {
+      background-color: #3e8e41;
+    }
+
+    .close-button { /* Assuming this is for the Fermer button */
+      background-color: #f0b9b2; /* Light red color */
+      color: #8b0000;
+    }
+
+    .close-button:hover {
+      background-color: #e3a097;
+    }
+
+    /* Hide the extra content (zadazdza) */
+    .hidden {
+      display: none;
+    }
