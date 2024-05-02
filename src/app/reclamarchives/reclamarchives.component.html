@@ -1,4 +1,14 @@
+<head>
+    <style>
+        .clickable {
+            cursor: pointer; /* Change le curseur pour indiquer que l'élément est cliquable */
+        }
 
+        .clickable:hover {
+            color: blue; /* Change la couleur du texte lorsque survolé */
+        }
+    </style>
+</head>
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">
     <div class="container">
@@ -10,7 +20,7 @@
                         <li class="breadcrumb-item active" aria-current="page">Reclamation</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">Reclamation</h2>
+                <h2 class="breadcrumb-title">Archive</h2>
             </div>
         </div>
     </div>
@@ -36,22 +46,16 @@
                             </div>
                             </ul>
                         </div>
-                        <div class="col-auto d-flex align-items-between flex-column">
-                            <a class="btn btn-primary btn-sm" (click)="openAddFormulaire()"><i class="fas fa-plus mr-1"></i> Ajouter Reclamation</a>
-                            <a class="btn btn-info btn-sm"  routerLink="/reclamation/chat"><i class="fas fa-plus mr-1"></i>Discussion</a>
-
-                        </div>
+                        
                       
                     </div>
-                    <th class="text-left"><u class="clickable" routerLink="/reclamation/archives">Archive</u></th>
+                    <th class="text-left"><u class="clickable" routerLink="/reclamation">Liste de reclamations</u></th>
                     <!-- Add Blog -->
-                            
-                 
                     <div class="card">
-                        
                         <div class="card-body">	            
                             <div class="card card-table">
                                 <div class="card-body">
+                                
                                     <!-- Invoice Table -->
                                     <div class="table-responsive">
                                         <table class="table table-hover table-center mb-0">
@@ -89,14 +93,6 @@
                                                             <i class="far fa-eye"></i> 
                                                         </a>
                                                         
-                                                        <a (click)="UpdateReclams(r)" class="btn btn-sm bg-primary-light" *ngIf="getuser()!='Admin'">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                                                              </svg>
-                                                        </a>
-                                                        <a (click)="DeleteReclams(r.id!)" class="btn btn-sm bg-danger-light" *ngIf="getuser()!='Admin'">
-                                                            <i class="fa fa-trash"></i> 
-                                                        </a>
                                                     </div>
                                                 </td>
                                                 </tr>
@@ -109,27 +105,28 @@
                                 </div>
                             </div>
                             <div>
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-end">
-                                  <li class="page-item" (click)="SetPage(page-1)">
-                                    <a class="page-link" aria-label="Previous" style="color: blue;">
-                                    
-                                      <span aria-hidden="true">&laquo; Previous</span>
-                                    </a>
-                                  </li>
-                                  <li class="page-item" *ngFor="let x of pages,let i=index" (click)="SetPage(i)">
-                                    <a class="page-link" style="color: blue;">
-                                        {{i+1}}
-                                    </a></li>
-                                  <li class="page-item" (click)="SetPage(page+1)">
-                                    <a class="page-link" aria-label="Next" style="color: blue;"
-                                    >
-                                      <span aria-hidden="true">Next &raquo;</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </nav>
-                        </div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-end">
+                                      <li class="page-item" (click)="SetPage(page-1)">
+                                        <a class="page-link" aria-label="Previous" style="color: blue;">
+                                        
+                                          <span aria-hidden="true">&laquo; Previous</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item" *ngFor="let x of pages,let i=index" (click)="SetPage(i)">
+                                        <a class="page-link" style="color: blue;">
+                                            {{i+1}}
+                                        </a></li>
+                                      <li class="page-item" (click)="SetPage(page+1)">
+                                        <a class="page-link" aria-label="Next" style="color: blue;"
+                                        >
+                                          <span aria-hidden="true">Next &raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                            </div>
+                            
                     </div>
                     </div>
                     <!-- /Add Blog -->

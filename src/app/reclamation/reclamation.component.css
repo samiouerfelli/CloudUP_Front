@@ -16,3 +16,6 @@
 .show > .example-btn.dropdown-toggle:focus {
 	box-shadow: unset;
 }
+.th-pointer{
+	cursor: pointer;
+}

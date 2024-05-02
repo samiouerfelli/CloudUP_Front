@@ -25,7 +25,8 @@ export class WebSocketService {
     stompClient.connect(
       {},
       async function () {
-        const userId = localStorage.getItem('userId')
+        const userId = JSON.parse(localStorage.getItem('user')!).idUser
+        console.log(userId)
         stompClient.subscribe('/topic/'+userId+'/.chat', function (message) {
           console.log("Received message: " + message.body);
           let sound = new Howl({ src: ['/assets/sounds/notification.mp3'], volume: 3 });

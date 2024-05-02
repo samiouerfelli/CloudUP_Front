@@ -22,7 +22,8 @@ import { ChatComponent } from './chat/chat.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import {HttpTokenInterceptor} from './Interceptor/http-token.interceptor';
-
+import {MatSortModule} from '@angular/material/sort';
+import { ReclamarchivesComponent } from './reclamarchives/reclamarchives.component';
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -36,7 +37,8 @@ export function tokenGetter() {
     ReclamationComponent,
     RecformulaireComponent,
     ConfirmationDeleteComponent,
-    ChatComponent  
+    ChatComponent,
+    ReclamarchivesComponent  
   ],
   imports: [
     BrowserModule,  
@@ -56,6 +58,7 @@ export function tokenGetter() {
       config: {
         tokenGetter}
     }),
+    MatSortModule
   ],
   providers: [
     HttpClient,

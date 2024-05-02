@@ -110,6 +110,8 @@ export class HeaderComponent implements OnInit {
       next: async () => {
         localStorage.removeItem('token');
         localStorage.removeItem('isLogedIn');
+        localStorage.removeItem('user');
+
         await this.sleep(1000);
         this.router.navigate(['Home']);
       },

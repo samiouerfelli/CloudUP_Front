@@ -19,7 +19,6 @@ export class AppComponent implements OnInit{
   activeRoute!: string;
   active2Route!: string;
   hideFooter: boolean = false;
-  userId:string="UNKNOWN"
    
     
 
@@ -58,12 +57,6 @@ export class AppComponent implements OnInit{
         }
       }
     });
-  }
-  initUser() {
-      
-    const userId = window.prompt("login");
-    this.userId=userId!
-    localStorage.setItem('userId',userId!)
   }
 
     ngOnInit(): void {

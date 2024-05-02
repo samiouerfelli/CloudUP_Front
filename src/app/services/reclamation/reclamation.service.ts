@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Reclamation } from './reclamation';
+import { Reclamation } from '../../reclamation';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -20,6 +20,10 @@ export class ReclamationService {
   readonly ENDPOINT_GETOBJET="/findobjetrec/"
   readonly ENDPOINT_PAGINATION="/pagination"
   readonly ENDPOINT_IDRECLAM="/getidreclam/"
+  readonly ENDPOINT_SORT="/getreclamtraite"
+  readonly ENDPOINT_SORTASC="/getreclamtraiteasc"
+  readonly ENDPOINT_ARCHIVE = "/getarchivereclam"
+  readonly ENDPOINT_traitereclam = "/traitereclam"
   constructor(private HttpClient: HttpClient) {
 
    }
@@ -43,10 +47,12 @@ export class ReclamationService {
    {
     return this.HttpClient.get(this.API_URL+this.ENDPOINT_GETOBJET+objet);
    }
-   getRs(page: number, size: number = 10): Observable<Reclamation[]> {
+   getRs(page: number, size: number = 10,sortBy:string,sortOrder:string): Observable<Reclamation[]> {
     const params = new HttpParams()
       .set('page', page.toString())
-      .set('size', size.toString());
+      .set('size', size.toString())
+      .set('sortBy', sortBy.toString())
+      .set('sortOrder', sortOrder.toString());
 
     return this.HttpClient.get<Reclamation[]>(`${this.API_URL}${this.ENDPOINT_PAGINATION}`, { params });
   }
@@ -54,27 +60,28 @@ export class ReclamationService {
   {
     return this.HttpClient.get(this.API_URL+this.ENDPOINT_IDRECLAM+id)
   }
-////////////////////////////// to chat !service
-readonly ENDPOINT_PrivateCHat="/get-private-chat/"
-readonly ENDPOINT_PrivateSend="/send-private-message/"
-readonly ENDPOINT_AdminPrivateCHat="/getadmin-private-chat"
-readonly ENDPOINT_AdminPrivateSend="/send-admin-private-message/"
-getprivatechat(idUser:string)
+  GetSort()
   {
-    return this.HttpClient.get(this.API_URL+this.ENDPOINT_PrivateCHat+idUser)
+    return this.HttpClient.get<Reclamation[]>(this.API_URL+this.ENDPOINT_SORT)
   }
-  sendprivateMsg(idUser:string,msg:any)
-  {
-    return this.HttpClient.post(this.API_URL+this.ENDPOINT_PrivateSend+idUser,msg)
-  }
+  GetArchive(page: number, size: number = 10,sortBy:string,sortOrder:string): Observable<Reclamation[]> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('sortBy', sortBy.toString())
+      .set('sortOrder', sortOrder.toString());
 
-  getAdminprivatechat()
-  {
-    return this.HttpClient.get(this.API_URL+this.ENDPOINT_AdminPrivateCHat)
+
+    return this.HttpClient.get<Reclamation[]>(`${this.API_URL}${this.ENDPOINT_ARCHIVE}`, { params });
   }
-  sendAdminprivateMsg(idUser:string,msg:any)
+  GetSortAsc()
   {
-    return this.HttpClient.post(this.API_URL+this.ENDPOINT_AdminPrivateSend+idUser,msg)
+    return this.HttpClient.get<Reclamation[]>(this.API_URL+this.ENDPOINT_SORTASC)
   }
+  Traitereclam(reclamation:Reclamation)
+   {
+    return this.HttpClient.put(this.API_URL+this.ENDPOINT_traitereclam,reclamation)
+   }
+  
 
 }

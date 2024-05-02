@@ -36,8 +36,12 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <div>
-                                                            <div class="user-name" *ngIf="idUser!='admin'">ADMIN</div>
-                                                            <div class="user-name" *ngIf="idUser=='admin'">{{allchat.creator}}</div>
+                                                            <div class="user-name" *ngIf="userrole=='Admin'">
+                                                                {{allchat?.creator?.nom}} 
+                                                                {{allchat?.creator?.prenom}}
+                                                            </div>
+                                                            <span class="bg-danger"></span>
+                                                            <div class="user-name" *ngIf="userrole!='Admin'">ADMIN</div>
 
                                                             <div class="user-last-chat">
                                                                 {{message.content}} </div>
@@ -45,6 +49,7 @@
                                                         <div>
                                                             <div class="last-chat-time block">  
                                                                  {{message.timestamp}}</div>
+                                                                 <span *ngIf="unreadMessageCount (allchat)!=0" style="font-size: 12px;" class="badge badge-info">{{unreadMessageCount (allchat)}}</span>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -59,7 +64,7 @@
                         <!-- /Chat Left -->
                     
                         <!-- Chat Right -->
-                        <div class="chat-cont-right">
+                        <div class="chat-cont-right" >
                             <div class="chat-header">
                                 <a id="back_user_list" href="javascript:void(0)" class="back-user-list">
                                     <i class="material-icons">chevron_left</i>
@@ -71,8 +76,12 @@
                                         </div>
                                     </div>
                                     <div class="media-body">
-                                                    <div class="user-name" *ngIf="idUser!='admin'">ADMIN</div>
-                                                            <div class="user-name" *ngIf="idUser=='admin'">{{privateChat?.creator}}</div>
+                                                    <div class="user-name" *ngIf="userrole=='Admin'">
+                                                        {{privateChat?.creator?.nom}} 
+                                                        {{privateChat?.creator?.prenom}}
+                                                    </div>
+                                                    <div class="user-name" *ngIf="userrole!='Admin'">ADMIN</div>
+
                                         <div class="user-status">online</div>
                                     </div>
                                 </div>
@@ -93,7 +102,7 @@
                                     <ul class="list-unstyled">
                                         <ng-container  *ngIf="privateChat!=null">
                                             <ng-container *ngFor="let msg of privateChat.messages">
-                                                <li class="media sent" *ngIf="msg.senderId==idUser">
+                                                <li class="media sent" *ngIf="userId==msg.senderId" >
                                                     <div class="media-body">
                                                         <div class="msg-box">
                                                             <div>
@@ -109,7 +118,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class="media received"  *ngIf="msg.senderId!=idUser">
+                                                <li class="media received" *ngIf="userId!=msg.senderId" >
                                 
                                        
                                                 <div class="avatar">
@@ -148,7 +157,7 @@
                                     </div>
                                     <input [(ngModel)]="msg" type="text" class="input-msg-send form-control" placeholder="Type something">
                                     <div class="input-group-append">
-                                        <button (click)="sendPrivateMsg()" type="button" class="btn msg-send-btn"><i class="fab fa-telegram-plane"></i></button>
+                                        <button (click)="sendPrivateMsg(privateChat?.creator?.idUser)" type="button" class="btn msg-send-btn"><i class="fab fa-telegram-plane"></i></button>
                                     </div>
                                 </div>
                             </div>

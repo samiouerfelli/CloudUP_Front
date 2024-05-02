@@ -5,4 +5,5 @@ export class Reclamation {
     type?: string;
     traite?: string;
     time?: Date;
+    archive?:boolean;
 }

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReclamationService } from '../reclamation.service';
+import { ReclamationService } from '../services/reclamation/reclamation.service';
 import { Reclamation } from '../reclamation';
 import * as moment from 'moment';
 
@@ -20,6 +20,10 @@ Categorie: string [] = [
   'Business',
   'Evenement'
 ];
+Statut: string [] = [
+  'EnCours',
+  'Resolue'
+];
   time: string | Date | undefined;
 
 constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<RecformulaireComponent>,
@@ -30,6 +34,7 @@ constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<Recformulair
     type: [null,Validators.required],
     description:[null,Validators.required],
     time:[null],
+   
 
   });
 }
@@ -55,7 +60,12 @@ constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<Recformulair
       this.RecForm.setValue(updatereclam)
       if(this.data.view)
       this.RecForm.disable()
+      if(this.getuser()=="Admin"){
+        this.RecForm.addControl('traite', this.fb.control(this.data.reclamation.traite));
+  
+      }
     }
+  
   }
   
   onFormSubmit() {
@@ -81,6 +91,25 @@ constructor (private fb: FormBuilder,public dialogRef: MatDialogRef<Recformulair
   closeDialog(msg:string) { 
     this.dialogRef.close(msg);
   }
+  getuser()
+{
+  const userrole = JSON.parse(localStorage.getItem('user')!).authorities[0].authority
+  return userrole
+}
+SetStatut()
+{
+  
+
+  if(this.RecForm.value.traite==""){
+    console.log("seleeeeeect")
+  }else{
+    console.log(this.RecForm.getRawValue())
+    this.recs.Traitereclam(this.RecForm.getRawValue()).subscribe(    (res)=>{console.log(res);
+      this.closeDialog("Update avec succés!")},
+    ()=>{this.closeDialog("Erreur")})
+    }
+  }
+
   }
 
 
