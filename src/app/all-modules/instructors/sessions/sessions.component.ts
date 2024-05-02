@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
 import {ReservationControllerService} from '../../../services/services/reservation-controller.service';
 import {Etat, ReservationResponse} from '../../../services/models/reservation-response';
 import {ReservationRequest} from '../../../services/models/reservation-request';
+import { Router } from '@angular/router';
 
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-sessions',
@@ -13,13 +14,47 @@ import {ReservationRequest} from '../../../services/models/reservation-request';
 
 export class SessionsComponent implements OnInit {
   public list: ReservationResponse[] = [];
-  constructor(private service: ReservationControllerService) {
+  public list2: ReservationResponse[] = [];
+
+  constructor(private service: ReservationControllerService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.getReservationForProfessor();
   }
+  /* ----- */
 
+  getReservationForStudent(): void {
+    this.service.getReservationByOwnerStudent().subscribe({
+      next: (value) => this.list2 = value,
+      error: (error) => console.error('Failed to fetch reservations:', error)
+    });
+  }
+
+  cancelReservation2(Reservation: ReservationResponse) {
+    const id = Reservation.idR;
+    const request: ReservationRequest = {
+      statusR : Etat.Canceled,
+      idR: id
+    };
+    this.service.updateReservationStatus({ body: request}).subscribe(
+      updatedReservation => {
+        this.getReservationForStudent();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
+  updateReservationDate(reservationID: any,professorId : any){
+    this.router.navigate(['/students/booking', {reservationID,professorId}]);
+    environment.isReservationSaved=true;
+  }
+
+/* ---------- */
   // tslint:disable-next-line:typedef
   getReservationForProfessor(): void {
     this.service.getReservationByOwnerProfeesor().subscribe({

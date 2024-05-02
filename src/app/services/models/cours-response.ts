@@ -5,11 +5,13 @@ export interface CoursResponse {
   dureeC?: number;
   idCours: number;
   idUser: number;
-  niveau?:Niveau;
+  niveau?: Niveau;
   nomCours?: string;
   option?: 'ARCTIC' | 'GAMIX' | 'GL' | 'INFINI' | 'ERP_BI' | 'DS' | 'SIM' | 'TWIN' | 'SLEAM' | 'NIDS' | 'SE';
   price?: number;
   type?: 'En_Ligne' | 'En_Pr\xE9sentiel';
+  usernameCours?: string;
+
 }
 export enum Niveau {
 

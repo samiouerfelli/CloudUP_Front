@@ -9,7 +9,7 @@ import {SlotsControllerService} from '../../../services/services/slots-controlle
 })
 export class ScheduleTimingsComponent implements OnInit {
   days = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
-  selectedDay!: string;
+  selectedDay!: string ;
   timeSlots!: any[];
   professorId = 1;
 
@@ -62,6 +62,7 @@ export class ScheduleTimingsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.selectDay ("MONDAY");
   }
 
   selectDay(day: string): void {
@@ -93,15 +94,3 @@ export class ScheduleTimingsComponent implements OnInit {
   }
 }
 
-/*
-    fetchTimeSlotsForProfessor(): void {
-      this.timeSlotService.getTimeSlots(this.professorId).subscribe(
-        (slots) => {
-          this.timeSlots = slots;
-        },
-        (error) => {
-          console.error('Error fetching time slots for professor:', error);
-        }
-      );
-    }
-  */

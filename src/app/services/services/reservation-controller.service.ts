@@ -11,6 +11,8 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { deleteReservation } from '../fn/reservation-controller/delete-reservation';
 import { DeleteReservation$Params } from '../fn/reservation-controller/delete-reservation';
+import { getMyStudents } from '../fn/reservation-controller/get-my-students';
+import { GetMyStudents$Params } from '../fn/reservation-controller/get-my-students';
 import { getReservationById } from '../fn/reservation-controller/get-reservation-by-id';
 import { GetReservationById$Params } from '../fn/reservation-controller/get-reservation-by-id';
 import { getReservationByOwnerProfeesor } from '../fn/reservation-controller/get-reservation-by-owner-profeesor';
@@ -22,8 +24,11 @@ import { GetReservationStatus$Params } from '../fn/reservation-controller/get-re
 import { ReservationResponse } from '../models/reservation-response';
 import { saveReservation } from '../fn/reservation-controller/save-reservation';
 import { SaveReservation$Params } from '../fn/reservation-controller/save-reservation';
+import { updateReservationDate } from '../fn/reservation-controller/update-reservation-date';
+import { UpdateReservationDate$Params } from '../fn/reservation-controller/update-reservation-date';
 import { updateReservationStatus } from '../fn/reservation-controller/update-reservation-status';
 import { UpdateReservationStatus$Params } from '../fn/reservation-controller/update-reservation-status';
+import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationControllerService extends BaseService {
@@ -77,6 +82,31 @@ export class ReservationControllerService extends BaseService {
    */
   updateReservationStatus(params: UpdateReservationStatus$Params, context?: HttpContext): Observable<number> {
     return this.updateReservationStatus$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `updateReservationDate()` */
+  static readonly UpdateReservationDatePath = '/auth/updateReservationDate';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateReservationDate()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateReservationDate$Response(params: UpdateReservationDate$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return updateReservationDate(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `updateReservationDate$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateReservationDate(params: UpdateReservationDate$Params, context?: HttpContext): Observable<number> {
+    return this.updateReservationDate$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }
@@ -178,6 +208,31 @@ export class ReservationControllerService extends BaseService {
   getReservationById(params: GetReservationById$Params, context?: HttpContext): Observable<ReservationResponse> {
     return this.getReservationById$Response(params, context).pipe(
       map((r: StrictHttpResponse<ReservationResponse>): ReservationResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `getMyStudents()` */
+  static readonly GetMyStudentsPath = '/auth/getMyStudents';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getMyStudents()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getMyStudents$Response(params?: GetMyStudents$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
+    return getMyStudents(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getMyStudents$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getMyStudents(params?: GetMyStudents$Params, context?: HttpContext): Observable<Array<User>> {
+    return this.getMyStudents$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<User>>): Array<User> => r.body)
     );
   }
 

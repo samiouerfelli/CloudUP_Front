@@ -3,7 +3,7 @@
 export interface ReservationRequest {
   dateR?: string;
   idR?: number;
-  statusR?: Etat;
+  statusR?:Etat;
 }
 export enum Etat {
   Confirmed='Confirmed',

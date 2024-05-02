@@ -14,8 +14,7 @@ export class MysessionComponent implements OnInit {
 public reservations: Array<Reservation> = [];
   public list: ReservationResponse[] = [];
   dateR: Date = new Date();
-  constructor(private reservationService: ReservationService,
-              private service: ReservationControllerService) {
+  constructor(private service: ReservationControllerService) {
   }
 
   ngOnInit(): void {

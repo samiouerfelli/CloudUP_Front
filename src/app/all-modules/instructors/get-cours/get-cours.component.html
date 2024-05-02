@@ -67,12 +67,7 @@
                     <span>Appointments</span>
                   </a>
                 </li>
-                <li>
-                  <a routerLink='/instructors/mysessions'>
-                    <i class="fas fa-calendar-check"></i>
-                    <span>My Appointments</span>
-                  </a>
-                </li>
+                
                 <li>
                   <a routerLink='/instructors/my-students'>
                     <i class="fas fa-user-injured"></i>
@@ -147,7 +142,7 @@
               <div class="card-body">
                 <input type="text" class="form-control" id="filter-text-box" [(ngModel)]="keyword"
                        (ngModelChange)="searchCourse()">
-              </div>
+                </div>
 
 
               <table class="table table-striped">
@@ -171,98 +166,27 @@
                   <td>{{ cr.dureeC }}</td>
                   <td>{{ cr.type }}</td>
                   <td>{{ cr.price }}</td>
-                  <td>
-                    <button (click)="handleDeleteCours(cr.idCours)" class="btn btn-outline-danger">Delete</button>
-                  </td>
 
                   <td>
-                    <button (click)="handleEditCours(cr.idCours)" class="btn btn-outline-danger ">Edit</button>
+                    <div class="table-action">
+                      <a  href="javascript:void(0);" class="btn btn-sm bg-success-light" (click)="handleEditCours(cr.idCours)">
+                        <i class="fas fa-edit"></i>      Edit     
+                      </a>  
+                      <a href="javascript:void(0);" class="btn btn-sm bg-danger-light" (click)="handleDeleteCours(cr.idCours)">
+                        <i class="far fa-trash-alt"></i>    Delete
+                      </a>
+                    </div>
                   </td>
+
+                 
                 </tr>
-                </tbody>
-                <div class="d-flex justify-content-center mt-3">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a
-                          (click)="goToFirstPage()"
-                          class="page-link"
-                          href="javascript:void(0)"
-                          aria-label="Previous"
-                          [class.disabled]="page === 0"
-                        >
-                          <i class="fa-solid fa-angles-left"></i>
-                        </a>
-                      </li>
-                      <li class="page-item">
-                        <a
-                          (click)="goToPreviousPage()"
-                          class="page-link"
-                          href="javascript:void(0)"
-                          aria-label="Previous"
-                          [class.disabled]="page === 0"
-                        >
-                          <i class="fa-solid fa-angle-left"></i>
-                        </a>
-                      </li>
-                      <li
-                        class="page-item"
-                        *ngFor="let pageIndex of pages"
-                      >
-                        <a
-                          (click)="gotToPage(pageIndex)"
-                          class="page-link"
-                          [class.active]="page === pageIndex"
-                          href="javascript:void(0)"
-                        >{{ pageIndex + 1 }}</a>
-                      </li>
-                      <li class="page-item">
-                        <a
-                          (click)="goToNextPage()"
-                          class="page-link"
-                          href="javascript:void(0)"
-                          aria-label="Next"
-                          [class.disabled]="isLastPage"
-                        >
-                          <i class="fa-solid fa-chevron-right"></i>
-                        </a>
-                      </li>
-                      <li class="page-item">
-                        <a
-                          (click)="goToLastPage()"
-                          class="page-link"
-                          href="javascript:void(0)"
-                          aria-label="Next"
-                          [class.disabled]="isLastPage"
-                        >
-                          <i class="fa-solid fa-angles-right"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-
-
-                <!--
-
-                                   <td> <button (click)="handleDeleteCours(cr)" class="btn btn-outline-danger">Delete</button> </td>
-
-                                   <td>
-                                     <button (click)="handleEditCours(cr.idCours)" class="btn btn-outline-danger ">Edit</button>
-                                   </td>
-                                 </tr>
-                                 </tbody>
-                               </table>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-
-
-                     </div>
-                   </div>
-                 </div>
-                 ---------------------------------->
-
-
-                <!-- /Page Content -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+                     

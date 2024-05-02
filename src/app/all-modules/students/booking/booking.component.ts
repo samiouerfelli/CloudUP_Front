@@ -6,7 +6,8 @@ import {Etat} from '../../../services/models/MyModels/reservation';
 // @ts-ignore
 import {SlotsControllerService} from '../../../services/services/slots-controller.service';
 import {ReservationControllerService} from '../../../services/services/reservation-controller.service';
-import {ReservationRequest, TimeSlotResponse} from 'src/app/services/models';
+import {ReservationRequest, ReservationResponse, TimeSlotResponse} from 'src/app/services/models';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-booking',
@@ -16,6 +17,11 @@ import {ReservationRequest, TimeSlotResponse} from 'src/app/services/models';
 export class BookingComponent implements OnInit {
   public selectedProfessorId!: any;
   public selectedCoursId!: any;
+  public selectedReservation! : any
+  public selectedReservationProfessor! : any
+
+  public status : any = environment.isReservationSaved;
+
   timeSlots!: any[];
   days = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
   selectedDay!: string;
@@ -36,7 +42,39 @@ export class BookingComponent implements OnInit {
       this.selectedProfessorId = +params.professorId;
       this.selectedCoursId = +params.coursID;
     });
+    this.route.params.subscribe(param => {this.selectedReservation = +param.reservationID;this.selectedReservationProfessor= +param.professorId})
   }
+  
+
+  editReservationDate(selectedReservation:any)
+  {
+    let request : ReservationRequest ;
+
+      if (this.selectedSlot && this.selectedSlot.startTime) {
+      request = {
+        idR: this.selectedReservation,
+        dateR: this.selectedSlot.startTime
+      };
+      console.log('Reservation data being sent:', request);
+
+        this.serviceReservation.updateReservationDate({body:request}).subscribe(
+        next => {
+                  environment.isReservationSaved=false;
+                  this.status=false;
+                  this.router.navigate(['/instructors/sessions']),
+                  this.getReservationForStudent();
+                  
+                })
+        }
+}
+public list2: ReservationResponse[] = [];
+
+getReservationForStudent(): void {
+  this.serviceReservation.getReservationByOwnerStudent().subscribe({
+    next: (value) => this.list2 = value,
+    error: (error) => console.error('Failed to fetch reservations:', error)
+  });
+}
 
 // tslint:disable-next-line:typedef
   addReservation(selectedCoursId: number) {
@@ -79,6 +117,9 @@ export class BookingComponent implements OnInit {
     );
   }
 
+
+
+
   selectSlot(slot: TimeSlotResponse): void {
     console.log('Selected slot:', slot);
     if (slot && slot.startTime) {
@@ -92,6 +133,23 @@ export class BookingComponent implements OnInit {
   onDateChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.selectedDate = input.value; // The value will be in "yyyy-MM-dd" format
+  }
+  
+
+
+
+  /*selectedReservationProfessor*/
+  selectDayForReservation(day: string): void {
+    this.selectedDay = day;
+    this.service.getSlotsForBooking({userID: this.selectedReservationProfessor, day}).subscribe(
+      slots => {
+        this.timeSlots = slots;
+      },
+      error => {
+        console.error('Error fetching time slots:', error);
+        this.timeSlots = [];
+      }
+    );
   }
 
 
