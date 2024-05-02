@@ -11,12 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import {HttpTokenInterceptor} from './Interceptor/http-token.interceptor';
+import Swal from 'sweetalert2';
 
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
+// @ts-ignore
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -31,7 +34,8 @@ export function tokenGetter() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter}
+        tokenGetter
+      }
     }),
   ],
   providers: [
@@ -41,7 +45,6 @@ export function tokenGetter() {
       useClass: HttpTokenInterceptor,
       multi: true
     }
-  ],
-  bootstrap: [AppComponent]
+  ]
 })
 export class AppModule { }

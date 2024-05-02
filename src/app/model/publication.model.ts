@@ -25,5 +25,6 @@ export interface Publication {
   subject: string;
   tags: string;
   username: string;
+  image: string;
 }
 

@@ -28,7 +28,11 @@
         <!-- Blog Post -->
         <div class="blog" *ngFor="let p of (searchResults && searchResults.length > 0) ? searchResults : (publication | async)">
           <h3 class="blog-title"><a [routerLink]="['/blog/blog-details', p.idpub]" (click)="redirectToDetails(p)">{{p.subject}}</a>
-            <div *ngIf="p.closed == 'true'" style="text-align: right; color: #EE2C4D; font-weight: bold;">SOLVED</div>
+            <button type="button" class="btn btn-outline-success" *ngIf="p.closed == 'true'"
+                    style="float: right; color: #ffffff; background-color: #EE2C4D; border-color: #EE2C4D; font-weight: bold;" disabled>
+              Solved
+            </button>
+
           </h3>
           <div class="blog-info clearfix">
             <div class="post-left">

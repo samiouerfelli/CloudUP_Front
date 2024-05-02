@@ -41,9 +41,16 @@ export class PublicationService {
     nbr_vue: number;
     tags: string;
     username: string
-  },             idUSER: number): Observable<number> { // Modifiez le type de retour pour qu'il soit Observable<number>
-    // tslint:disable-next-line:max-line-length
-    return this.http.post<number>(`Http://localhost:8080/api/v1/auth/${idUSER}/1/addPub`, publication); // Ajoutez le type de retour pour récupérer l'ID
+  },             idUSER: number, files: File[]): Observable<number> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data; boundary=----WebKitFormBoundarypuLbGvpwNK9G9NTe');
+    const formData: FormData = new FormData();
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < files.length; i++) {
+      formData.append('file', files[i]);
+    }
+    formData.append('publication', JSON.stringify(publication));
+    return this.http.post<number>(`Http://localhost:8080/api/v1/auth/${idUSER}/1/addPub`, formData, { headers });
   }
 
 

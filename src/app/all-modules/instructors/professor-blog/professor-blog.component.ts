@@ -49,6 +49,23 @@ export class ProfessorBlogComponent implements OnInit {
   getIDUSER(token: string): Observable<number> {
     return this.authservice.getIDFromToken(token);
   }
+
+  confirmDelete(id: number): void {
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Êtes-vous sûr de vouloir supprimer cette publication ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer',
+      cancelButtonText: 'Non, annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deletePublication(id);
+      }
+    });
+  }
   deletePublication(id: number): void {
     // Fetch all comments associated with the publication
     this.publicationService.fetchCommentsByPublicationId(id).subscribe(

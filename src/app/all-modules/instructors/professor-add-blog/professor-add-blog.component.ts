@@ -14,6 +14,8 @@ import {Observable} from 'rxjs';
   styleUrls: ['./professor-add-blog.component.css']
 })
 export class ProfessorAddBlogComponent implements OnInit {
+  constructor(private publicationService: PublicationService, private route: ActivatedRoute, private authservice: AuthentificationService
+  ) { }
   @ViewChild('contentInput') contentInput!: ElementRef<HTMLTextAreaElement>;
   publication: Publication | undefined;
   private router: Router | undefined;
@@ -22,8 +24,6 @@ export class ProfessorAddBlogComponent implements OnInit {
   tagInput = ''; // Initialisation des tags dans le champ de saisie
   tagsArray: string[] = [];
   idUser = 0;
-  constructor(private publicationService: PublicationService, private route: ActivatedRoute, private authservice: AuthentificationService
-  ) { }
   protected tags!: string ;
   protected subject!: string;
   protected content!: string;
@@ -48,6 +48,7 @@ export class ProfessorAddBlogComponent implements OnInit {
   // tslint:disable-next-line:typedef
 
   protected readonly Categories = categories;
+  files: File[] = [];
 
   ngOnInit(): void {
     // Vérifier si nous sommes en mode édition
@@ -77,7 +78,6 @@ export class ProfessorAddBlogComponent implements OnInit {
       console.error('Token is not defined.');
       return;
     }
-
     // Get the user ID from the token
     this.getIDUSER(token).subscribe(
       (idUser: number) => {
@@ -86,10 +86,10 @@ export class ProfessorAddBlogComponent implements OnInit {
         // Set the ID user to the component's property
         this.idUser = idUser;
 
-        // Continue with your submission logic here...
         this.submitted = true;
         // Convertir le tableau de tags en une chaîne de caractères séparée par des virgules
         this.tags = this.tagsArray.join(' ');
+
         // Create the new publication object
         const newPublication: {
           commentaries: any[];
@@ -116,7 +116,7 @@ export class ProfessorAddBlogComponent implements OnInit {
         };
 
         // Add the publication
-        this.publicationService.addPublication(newPublication, this.idUser).subscribe(
+        this.publicationService.addPublication(newPublication, this.idUser, this.files).subscribe(
           (newPublicationId: number) => {
             console.log('Publication ajoutée avec succès. ID:', newPublicationId);
             Swal.fire({
@@ -171,5 +171,14 @@ export class ProfessorAddBlogComponent implements OnInit {
     if (index >= 0 && index < this.tagsArray.length) {
       this.tagsArray.splice(index, 1); // Supprime le tag à l'index spécifié
     }
+  }
+  // tslint:disable-next-line:typedef
+  onSelect(event: { addedFiles: any; }) {
+    this.files.push(...event.addedFiles);
+  }
+
+  // tslint:disable-next-line:typedef
+  onRemove(event: File) {
+    this.files.splice(this.files.indexOf(event), 1);
   }
 }
