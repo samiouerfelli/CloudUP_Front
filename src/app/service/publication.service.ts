@@ -41,19 +41,9 @@ export class PublicationService {
     nbr_vue: number;
     tags: string;
     username: string
-  },             idUSER: number, files: File[]): Observable<number> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data; boundary=----WebKitFormBoundarypuLbGvpwNK9G9NTe');
-    const formData: FormData = new FormData();
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < files.length; i++) {
-      formData.append('file', files[i]);
-    }
-    formData.append('publication', JSON.stringify(publication));
-    return this.http.post<number>(`Http://localhost:8080/api/v1/auth/${idUSER}/1/addPub`, formData, { headers });
+  },             idUSER: number): Observable<Publication> {
+    return this.http.post<Publication>(`Http://localhost:8080/api/v1/auth/${idUSER}/1/addPub`, publication);
   }
-
-
   public countCategoriesOccurences(): Observable<Map<categories, number>> {
     return this.getPublications().pipe(
       map((publications: Publication[]) => {
@@ -97,5 +87,11 @@ export class PublicationService {
   fetchPubByIdUser(idUser: number): Observable<Publication[]> {
     return this.http.get<Publication[]>(`Http://localhost:8080/api/v1/auth/retrieveByUser/${idUser}`);
   }
+  uploadImage(imageFile: File, idpub: number): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('imageFile', imageFile, imageFile.name);
+    return this.http.post(`http://localhost:8080/api/v1/auth/upload/${idpub}`, formData);
+  }
+
 
 }

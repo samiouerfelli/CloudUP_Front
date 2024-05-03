@@ -8,17 +8,19 @@ import {Observable} from 'rxjs';
 
 
 
+
 @Component({
   selector: 'app-professor-add-blog',
   templateUrl: './professor-add-blog.component.html',
   styleUrls: ['./professor-add-blog.component.css']
 })
 export class ProfessorAddBlogComponent implements OnInit {
-  constructor(private publicationService: PublicationService, private route: ActivatedRoute, private authservice: AuthentificationService
+  constructor(private publicationService: PublicationService,
+              private router: Router, private route: ActivatedRoute,
+              private authservice: AuthentificationService
   ) { }
   @ViewChild('contentInput') contentInput!: ElementRef<HTMLTextAreaElement>;
   publication: Publication | undefined;
-  private router: Router | undefined;
   editMode = false;
   submitted = false;
   tagInput = ''; // Initialisation des tags dans le champ de saisie
@@ -42,14 +44,8 @@ export class ProfessorAddBlogComponent implements OnInit {
     categories.STUDY_TIPS,
     categories.UNIVERSITY_DETAILS,
     categories.ROBOTICS
-    // Ajoutez d'autres catégories selon vos besoins
   ];
-
-  // tslint:disable-next-line:typedef
-
-  protected readonly Categories = categories;
-  files: File[] = [];
-
+  selectedFile!: File;
   ngOnInit(): void {
     // Vérifier si nous sommes en mode édition
     const token = localStorage.getItem('token');
@@ -69,7 +65,7 @@ export class ProfessorAddBlogComponent implements OnInit {
     return this.authservice.getIDFromToken(token);
   }
 
-  onSubmit(): void {
+  /*onSubmit(): void {
     const token = localStorage.getItem('token'); // Retrieve the token
     console.log('token recupere:' + token);
 
@@ -114,9 +110,9 @@ export class ProfessorAddBlogComponent implements OnInit {
           close: 'false',
           commentaries: []
         };
-
         // Add the publication
-        this.publicationService.addPublication(newPublication, this.idUser, this.files).subscribe(
+        // @ts-ignore
+        this.publicationService.addPublication( newPublication, this.idUser, this.selectedFile).subscribe(
           (newPublicationId: number) => {
             console.log('Publication ajoutée avec succès. ID:', newPublicationId);
             Swal.fire({
@@ -125,7 +121,9 @@ export class ProfessorAddBlogComponent implements OnInit {
               text: 'Publication ajoutée avec succès',
               showConfirmButton: false,
               timer: 3000 // Durée en millisecondes pour laquelle la notification sera affichée (2 secondes dans cet exemple)
+
             });
+            this.router.navigate(['blog/blog-list']);
           },
           (error) => {
             console.error('Erreur lors de l ajout de la publication:', error);
@@ -136,7 +134,94 @@ export class ProfessorAddBlogComponent implements OnInit {
         console.error('Erreur lors de la récupération de l\'ID de l\'utilisateur:', error);
       }
     );
+  }*/
+
+  onSubmit(): void {
+    const token = localStorage.getItem('token'); // Retrieve the token
+    if (!token) {
+      console.error('Token is not defined.');
+      return;
+    }
+
+    this.getIDUSER(token).subscribe(
+      (idUser: number) => {
+        // Convert the tags array to a comma-separated string
+        this.tags = this.tagsArray.join(' ');
+
+        // Create a new publication object
+        const newPublication: {
+          commentaries: any[];
+          subject: string;
+          datePub: Date;
+          categories: categories;
+          nbr_com: number;
+          close: string;
+          content: string;
+          nbr_vue: number;
+          tags: string;
+          username: string;
+        } = {
+          categories: this.selectedCategory,
+          content: this.content,
+          subject: this.subject,
+          tags: this.tags,
+          datePub: new Date(),
+          username: '',
+          nbr_vue: 0,
+          nbr_com: 0,
+          close: 'false',
+          commentaries: []
+        };
+
+        // First, add the publication
+        this.publicationService.addPublication(newPublication, idUser).subscribe(
+          (newPub: Publication) => {
+            const newPublicationId = newPub.idpub;
+            console.log('Publication added successfully. ID:', newPublicationId);
+            if (this.selectedFile) {
+              // Then, upload the image
+              this.publicationService.uploadImage(this.selectedFile, newPublicationId).subscribe(
+                () => {
+                  console.log('Image uploaded successfully.');
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Publication added successfully',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+                  this.router.navigate(['blog/blog-list']);
+                },
+                (error) => {
+                  console.error('Error uploading image:', error);
+                  // Handle error
+                }
+              );
+            } else {
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Publication added successfully',
+                showConfirmButton: false,
+                timer: 3000
+              });
+              this.router.navigate(['blog/blog-list']);
+            }
+          },
+          (error) => {
+            console.error('Error adding publication:', error);
+            // Handle error
+          }
+        );
+      },
+      (error) => {
+        console.error('Error retrieving user ID:', error);
+        // Handle error
+      }
+    );
   }
+
+
 
   getPublicationDetails(id: number): void {
     this.publicationService.getPublicationById(id).subscribe(
@@ -172,13 +257,9 @@ export class ProfessorAddBlogComponent implements OnInit {
       this.tagsArray.splice(index, 1); // Supprime le tag à l'index spécifié
     }
   }
-  // tslint:disable-next-line:typedef
-  onSelect(event: { addedFiles: any; }) {
-    this.files.push(...event.addedFiles);
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
   }
 
-  // tslint:disable-next-line:typedef
-  onRemove(event: File) {
-    this.files.splice(this.files.indexOf(event), 1);
-  }
+
 }
