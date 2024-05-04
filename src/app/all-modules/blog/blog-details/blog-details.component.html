@@ -41,7 +41,7 @@
             <div class="blog-content">
               <p>{{ c }}</p>
             </div>
-            <div class="blog-image">
+            <div class="blog-image" *ngIf="imageUrl!= null">
               <img [src]="'data:image;base64,' + imageUrl" alt="Publication Image">
             </div>
 
@@ -89,11 +89,11 @@
                 <div class="comment-actions">
                   <div class="d-flex justify-content-between align-items-center">
                     <div>
-                      <ng-container *ngIf="!isEditing || editingCommentId !== comment.idCom && comment.closed === 'false'">
-                        <button *ngIf="name === comment.username" class="btn btn-primary btn-sm" (click)="toggleEditForm(comment.idCom)">
+                      <ng-container *ngIf="!isEditing || editingCommentId !== comment.idCom">
+                        <button *ngIf="name === comment.username && comment.solution === 'false'" class="btn btn-primary btn-sm" (click)="toggleEditForm(comment.idCom)">
                           <i class="far fa-edit"></i> Edit
                         </button>
-                        <a *ngIf="name === comment.username" href="javascript:void(0);" class="text-danger btn btn-lg" (click)="confirmDelete(comment.idCom)">
+                        <a *ngIf="name === comment.username && comment.solution === 'false'" href="javascript:void(0);" class="text-danger btn btn-lg" (click)="confirmDelete(comment.idCom)">
                           <i class="far fa-trash-alt"></i>
                         </a>
                       </ng-container>
@@ -119,6 +119,9 @@
               </div>
             </div>
           </div>
+          <br>
+          <br>
+          <br>
 
           <!-- add comment -->
           <div class="card new-comment clearfix" *ngIf="closed != 'true'">
@@ -168,6 +171,9 @@
 
         </div>
       </div>
+      <br>
+      <br>
+      <br>
 
       <!-- Blog Sidebar -->
       <div class="col-lg-4 col-md-12 sidebar-right theiaStickySidebar">

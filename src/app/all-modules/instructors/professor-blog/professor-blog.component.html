@@ -42,14 +42,7 @@
                 <div *ngIf="editingPublicationId !== publication.idpub">
                   <div class="blog-image">
                     <a [routerLink]="['/blog/blog-details', publication.idpub]" (click)="redirectToDetails(publication)">
-                      <div *ngIf="publication.image && publication.image.trim() !== ''">
-                      <img class="img-fluid" [src]="'data:image;base64,' + publication.image" alt="Post Image" style="max-width: 50px; height: auto;">
-                      </div>
-
-                   <div *ngIf="!publication.image || publication.image.trim() === ''">
-                    <!-- Image par défaut -->
-                    <img class="img-fluid" src="src/assets/img/blog/OIP.jpg" alt="Image par défaut" style="max-width: 50px; height: auto;">
-                  </div>
+                      <img src='assets/img/blog/OIP.jpg' class="img-fluid" alt="" style="max-width: 70px; height: auto;">
                     </a>
                   </div>
 

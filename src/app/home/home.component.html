@@ -882,12 +882,7 @@
         <div class="blog-box blog-grid-box">
           <div class="blog-grid-box-img">
             <a [routerLink]="['/blog/blog-details', p.idpub]" (click)="redirectToDetails(p)">
-              <ng-container *ngIf="p.image">
-                <img [src]="'data:image;base64,' + p.image" class="img-fluid" alt="">
-              </ng-container>
-              <ng-container *ngIf="!p.image">
                 <img src='assets/img/blog/OIP.jpg' class="img-fluid" alt="">
-              </ng-container>
             </a>
           </div>
           <div class="blog-grid-box-content">
