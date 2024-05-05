@@ -19,6 +19,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import {FormsModule} from "@angular/forms";
+import {NgxPayPalModule} from "ngx-paypal";
 
 
 @NgModule({
@@ -37,13 +38,14 @@ import {FormsModule} from "@angular/forms";
     ProfileSettingsComponent,
     ChangePasswordComponent
   ],
-  imports: [
-    CommonModule,
-    StudentsRoutingModule,
-    NgSelect2Module,
-    CrystalLightboxModule,
-    Daterangepicker,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        StudentsRoutingModule,
+        NgSelect2Module,
+        CrystalLightboxModule,
+        Daterangepicker,
+        FormsModule,
+        NgxPayPalModule
+    ]
 })
 export class StudentsModule { }

@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+// @ts-ignore
+import {Etat} from '../../../services/models/MyModels/reservation';
 
-import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
-import {TimeSlotService} from '../../../services/services/CoursReservationServices/time-slot.service';
 // @ts-ignore
-import {Etat, Reservation} from '../../../services/models/reservation';
-// @ts-ignore
-import {TimeSlot} from '../../../services/models/timeslot';
-// @ts-ignore
-import {User} from '../../../services/models/user';
+import {SlotsControllerService} from '../../../services/services/slots-controller.service';
+import {ReservationControllerService} from '../../../services/services/reservation-controller.service';
+import {ReservationRequest, ReservationResponse, TimeSlotResponse} from 'src/app/services/models';
+import {environment} from '../../../../environments/environment';
+import {OtpControllerService} from "../../../services/services/otp-controller.service";
+import {sendReservationDetails} from "../../../services/fn/otp-controller/send-reservation-details";
 
 @Component({
   selector: 'app-booking',
@@ -16,120 +17,107 @@ import {User} from '../../../services/models/user';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-  public selectedProfessorId!: any  ;
-  public selectedCoursId!: any ;
+
+
+  constructor(private service: SlotsControllerService,
+              private serviceReservation: ReservationControllerService,
+              private smsService: OtpControllerService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
+
+  public selectedProfessorId!: any;
+  public selectedCoursId!: any;
+  public selectedReservation!: any;
+  public selectedReservationProfessor!: any;
+
+  public status: any = environment.isReservationSaved;
+
   timeSlots!: any[];
   days = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
   selectedDay!: string;
-
-  public professor!: User ;
-  public reservation!: Reservation ;
-  public daterange: any = {};
   reservationDate = new Date(); // Current date and time
   reservationStatus = Etat.Pending;
-  public selectedDate!: string;
-
-
-
-
-  constructor(private reservationService: ReservationService,
-              private timeSlotService: TimeSlotService,
-              private route: ActivatedRoute,
-              private router: Router, ) { }
-
-
-  selectedSlot: TimeSlot | null = null;
-
-
-  selectSlot(slot: TimeSlot): void {
-    console.log('Selected slot:', slot);
-    if (slot && slot.startTime) {
-      this.selectedSlot = slot;
-      this.reservationDate = new Date(slot.startTime);
-    } else {
-      console.error('Slot or slot.startTime is undefined');
-    }
-  }
-
-  // tslint:disable-next-line:typedef
-  loadAvailableTimeSlots(professorId: number) {
-    this.timeSlotService.getAvailableTimeSlots(professorId).subscribe(
-      (slots) => {
-        this.timeSlots = slots;
-      },
-      (error) => {
-        console.error('Error fetching time slots', error);
-      }
-    );
-  }
+  public selectedDate!: any;
+  selectedSlot: TimeSlotResponse | null = null;
+  public list2: ReservationResponse[] = [];
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.selectedProfessorId = +params.professorId; // The '+' converts the parameter to a number
-      this.selectedCoursId = +params.coursID; // Likewise for coursID
-      // ...
+      this.selectedProfessorId = +params.professorId;
+      this.selectedCoursId = +params.coursID;
+    });
+    this.route.params.subscribe(param => {
+      this.selectedReservation = +param.reservationID;
+      this.selectedReservationProfessor = +param.professorId;
     });
   }
-  private formatDate(date: string): string {
-    // You will need to convert this date to the format your backend expects
-    // This is just a placeholder; you'll need to implement the actual conversion
-    return date;
-  }
+
 
   // tslint:disable-next-line:typedef
-  /* addReservation(etudiantID: number, selectedProfessorId: number, selectedCoursId: number) {
-     if (!this.selectedSlot) {
-       alert('Please select a time slot first.');
-       return;}
-     const reservation = {
-       dateR: this.formatDate(this.selectedDate),
+  editReservationDate(selectedReservation: any) {
+    let request: ReservationRequest;
 
-       statusR: this.reservationStatus
-     };
-     console.log('Sending reservation data:', reservation);
+    if (this.selectedSlot && this.selectedSlot.startTime) {
+      request = {
+        idR: this.selectedReservation,
+        dateR: this.selectedSlot.startTime
+      };
+      console.log('Reservation data being sent:', request);
 
+      this.serviceReservation.updateReservationDate({body: request}).subscribe(
+        next => {
+          environment.isReservationSaved = false;
+          this.status = false;
+          this.router.navigate(['/instructors/sessions']),
+            this.getReservationForStudent();
 
-     this.reservationService.addReservation(reservation, etudiantID, selectedProfessorId, selectedCoursId).subscribe({
-       next: (response) => {console.log('Reservation added:', response);
-                            this.router.navigateByUrl(`/students/booking-success`); },
-       error: (error) => console.error('Error adding reservation:', error)
-     });
-   }*/
+        });
+    }
+  }
+
+  getReservationForStudent(): void {
+    this.serviceReservation.getReservationByOwnerStudent().subscribe({
+      next: (value) => this.list2 = value,
+      error: (error) => console.error('Failed to fetch reservations:', error)
+    });
+  }
 
 // tslint:disable-next-line:typedef
-  addReservation(etudiantID: number, selectedProfessorId: number, selectedCoursId: number) {
+  addReservation(selectedCoursId: number) {
+    let request: ReservationRequest;
     if (this.selectedSlot && this.selectedSlot.startTime) {
-      const reservationData = {
-        dateR: this.selectedSlot.startTime,
-        statusR: this.reservationStatus
+      request = {
+        statusR: this.reservationStatus,
+        dateR: this.selectedSlot.startTime
       };
-
-      console.log('Reservation data being sent:', reservationData);
-
-      this.reservationService.addReservation(reservationData, etudiantID, selectedProfessorId, selectedCoursId)
-        .subscribe({
-          next: (response) => {console.log('Reservation added:', response);
-                               this.router.navigateByUrl(`/students/booking-success`); },
-          error: (error) => console.error('Error adding reservation:', error)}
-
-        );
+      console.log('Reservation data being sent:', request);
+      this.serviceReservation.saveReservation({body: request, idCours: selectedCoursId}).subscribe({
+        next: (response) => {
+          console.log('Reservation added:', response );
+          // Call the method to send SMS
+          this.smsService.sendReservationDetails({body: response}).subscribe({
+            next: (smsResponse) => {
+              console.log('SMS Confirmation sent:', smsResponse);
+              this.router.navigateByUrl(`/students/booking-success`);
+            },
+            error: (smsError) => {
+              console.error('Error sending SMS confirmation:', smsError);
+              this.router.navigateByUrl(`/students/booking-success`);
+            }
+          });
+        },
+        error: (error) => console.error('Error adding reservation:', error)
+      });
     } else {
       console.error('No time slot selected or start time is undefined.');
     }
   }
 
 
-
-
-  onDateChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.selectedDate = input.value; // The value will be in "yyyy-MM-dd" format
-  }
-
   selectDay(day: string): void {
     this.selectedDay = day;
-    // Fetch the time slots for the selected day from your service
-    this.timeSlotService.getTimeSlotsForDay(this.selectedProfessorId, day).subscribe(
+    this.service.getSlotsForBooking({userID: this.selectedProfessorId, day}).subscribe(
       slots => {
         this.timeSlots = slots;
       },
@@ -140,4 +128,39 @@ export class BookingComponent implements OnInit {
     );
   }
 
+
+  selectSlot(slot: TimeSlotResponse): void {
+    console.log('Selected slot:', slot);
+    if (slot && slot.startTime) {
+      this.selectedSlot = slot;
+      this.reservationDate = new Date(slot.startTime);
+    } else {
+      console.error('Slot or slot.startTime is undefined');
+    }
+  }
+
+  onDateChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.selectedDate = input.value; // The value will be in "yyyy-MM-dd" format
+  }
+
+
+  /*selectedReservationProfessor*/
+  selectDayForReservation(day: string): void {
+    this.selectedDay = day;
+    this.service.getSlotsForBooking({userID: this.selectedReservationProfessor, day}).subscribe(
+      slots => {
+        this.timeSlots = slots;
+      },
+      error => {
+        console.error('Error fetching time slots:', error);
+        this.timeSlots = [];
+      }
+    );
+  }
+
+
 }
+
+
+

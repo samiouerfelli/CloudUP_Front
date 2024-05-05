@@ -1,5 +1,6 @@
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">
+
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-12 col-12">
@@ -34,7 +35,7 @@
                 <h3>Prof. Darren Elder</h3>
 
                 <div class="student-details">
-                  <h5 class="mb-0">Senior Professor - Civil &  Mechanical Engineering</h5>
+                  <h5 class="mb-0">Senior Professor - Civil & Mechanical Engineering</h5>
                 </div>
               </div>
             </div>
@@ -66,6 +67,7 @@
                     <span>Appointments</span>
                   </a>
                 </li>
+                
                 <li>
                   <a routerLink='/instructors/my-students'>
                     <i class="fas fa-user-injured"></i>
@@ -112,6 +114,7 @@
                 <li>
                   <a routerLink='/instructors/professor-change-password'>
                     <i class="fas fa-lock"></i>
+                    <i class="bi bi-arrows-angle-expand"></i>
                     <span>Change Password</span>
                   </a>
                 </li>
@@ -137,21 +140,14 @@
           <div class="card-body">
             <div class="table-responsive">
               <div class="card-body">
-                <input type = "text" class="form-control" id="filter-text-box" [(ngModel)]="keyword" (ngModelChange)="searchCourse()">
-              </div>
+                <input type="text" class="form-control" id="filter-text-box" [(ngModel)]="keyword"
+                       (ngModelChange)="searchCourse()">
+                </div>
 
-              <!--
-               <div class="card-body">
-                 <div class="table-responsive">
-                   <div class="card-body">
-                     <input type = "text" [(ngModel)]="keyword">
-                     <button (click)="searchCourse()" class="btn btn-outline-success">Search</button>
-                   </div>
-                   -->
+
               <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th>ID Course</th>
                   <th>Course Name</th>
                   <th>Niveau</th>
                   <th>Option</th>
@@ -162,36 +158,35 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                <tr *ngFor="let cr of courses " >
-                  <td>{{cr.idCours}}</td>
-                  <td>{{cr.nomCours}}</td>
-                  <td>{{cr.niveau}}</td>
-                  <td>{{cr.option}}</td>
-                  <td>{{cr.descriptionCours}}</td>
-                  <td>{{cr.dureeC}}</td>
-                  <td>{{cr.type}}</td>
-                  <td>{{cr.price}}</td>
-
-                  <td> <button (click)="handleDeleteCours(cr)" class="btn btn-outline-danger">Delete</button> </td>
+                <tr *ngFor="let cr of coursResponse.content ">
+                  <td>{{ cr.nomCours }}</td>
+                  <td>{{ cr.niveau }}</td>
+                  <td>{{ cr.option }}</td>
+                  <td>{{ cr.descriptionCours }}</td>
+                  <td>{{ cr.dureeC }}</td>
+                  <td>{{ cr.type }}</td>
+                  <td>{{ cr.price }}</td>
 
                   <td>
-                    <button (click)="handleEditCours(cr.idCours)" class="btn btn-outline-danger ">Edit</button>
+                    <div class="table-action">
+                      <a  href="javascript:void(0);" class="btn btn-sm bg-success-light" (click)="handleEditCours(cr.idCours)">
+                        <i class="fas fa-edit"></i>      Edit     
+                      </a>  
+                      <a href="javascript:void(0);" class="btn btn-sm bg-danger-light" (click)="handleDeleteCours(cr.idCours)">
+                        <i class="far fa-trash-alt"></i>    Delete
+                      </a>
+                    </div>
                   </td>
+
+                 
                 </tr>
-                <!-- You can replicate the above TR for as many courses as you have. -->
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
-        <!-- /Courses List -->
       </div>
-
-
     </div>
   </div>
 </div>
-
-
-<!-- /Page Content -->
+</div>
+                     

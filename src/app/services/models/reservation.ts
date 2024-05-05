@@ -1,16 +1,12 @@
-import {User} from './user';
-import {Cours} from './cours';
-
+/* tslint:disable */
+/* eslint-disable */
+import { CoursParticuliers } from '../models/cours-particuliers';
+import { User } from '../models/user';
 export interface Reservation {
-  idR: number;
-  dateR: Date;
-  statusR: Etat;
-  professeur: User;
-  etudiant: User;
-  cours: Cours;
-}
-export enum Etat {
-  Confirmed = 'Confirmed',
-  Pending= 'Pending',
-  Canceled= 'Canceled'
+  cours?: CoursParticuliers;
+  dateR?: string;
+  etudiant?: User;
+  idR?: number;
+  professeur?: User;
+  statusR?: 'Confirmed' | 'Pending' | 'Canceled';
 }

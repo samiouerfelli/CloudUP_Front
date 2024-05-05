@@ -6,7 +6,8 @@
         <div class="schedule-nav">
           <ul class="nav nav-tabs nav-justified">
             <li class="nav-item" *ngFor="let day of days">
-              <a class="nav-link" [class.active]="selectedDay === day" (click)="selectDay(day)">{{ day }}</a>
+              <a class="nav-link" [class.active]="selectedDay === day" (click)="selectDay(day)" (click)="selectDayForReservation(day)" >{{ day }}</a>
+
             </li>
           </ul>
         </div>
@@ -43,10 +44,10 @@
 </div>
 
 
-
-
 <div class="submit-section proceed-btn text-right">
-  <button (click)="addReservation(2, selectedProfessorId, selectedCoursId)" class="btn btn-primary">Confirm</button>
+  <button *ngIf="!status" (click)="addReservation(selectedCoursId)"  class="btn btn-primary">Confirm</button>
+  <button *ngIf="status"(click)="editReservationDate(selectedCoursId)" class="btn btn-primary">update</button>
+
 </div>
 
 <!--  routerLink='/students/booking-success' /Submit Section -->

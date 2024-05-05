@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
-import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
-// @ts-ignore
-import {Cours} from '../../../services/models/cours';
+import {CoursControllerService} from '../../../services/services/cours-controller.service';
+import {CoursRequest, Niveau} from '../../../services/models/cours-request';
 
+// @ts-ignore
 // @ts-ignore
 @Component({
   selector: 'app-update-cours',
@@ -18,42 +18,64 @@ export class UpdateCoursComponent implements OnInit {
   public showNameDropdown = environment.showNameDropdown;
 
 
-  constructor(private route: ActivatedRoute ,
-              private coursService: CoursServiceService,
+  constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
+              private service: CoursControllerService,
               private router: Router) {
   }
-  // tslint:disable-next-line:typedef
-  ngOnInit() {
-    this.coursId = this.route.snapshot.params.idCours;
-    this.coursService.getCoursByID(this.coursId).subscribe({
-      next : (value) => {
-        this.updateForm = this.fb.group({
-            nomCours : this.fb.control(value.nomCours, [Validators.required, Validators.maxLength(20)  ]),
-            descriptionCours : this.fb.control(value.descriptionCours, Validators.max(50)),
-            price : this.fb.control(value.price, [Validators.min(20), Validators.required]),
-            dureeC : this.fb.control(value.dureeC, Validators.required),
-            niveau : this.fb.control(value.niveau, Validators.required),
-            type: this.fb.control(value.type, Validators.required),
-            option: this.fb.control(value.option)
-          }
-        );
 
+  ngOnInit(): void {
+    console.log(this.coursId);
+    this.coursId = this.route.snapshot.params.idCours;
+    this.service.findCoursById({idC: this.coursId}).subscribe({
+      next: (cours) => {
+        this.updateForm = this.fb.group({
+          nomCours: [cours.nomCours, [Validators.required, Validators.maxLength(20)]],
+          descriptionCours: [cours.descriptionCours, [Validators.maxLength(50)]],
+          price: [cours.price, [Validators.required, Validators.min(20)]],
+          dureeC: [cours.dureeC, Validators.required],
+          niveau: [cours.niveau, Validators.required],
+          type: [cours.type, Validators.required],
+          option: [cours.option]
+        }
+      );
       },
-      error : err =>
-      {console.log(err); }
+      error: err => {
+        console.error('Failed to load course details', err);
+      }
     });
 
-  }
-  // tslint:disable-next-line:typedef
-  UpdateCourse() {
-    const cours: Cours = this.updateForm.value;
-    cours.idCours = this.coursId;
-    this.coursService.updateCours(cours).subscribe({
-      next: value => {
-        alert('Update DONE') ;
-        this.router.navigateByUrl('/instructors/get-course') ;
-      }, error : err => {console.log(err); }});
 
   }
+
+
+  // tslint:disable-next-line:typedef
+  UpdateCourse() {
+    const cours: CoursRequest = this.updateForm.value;
+    cours.idCours = this.coursId;
+    this.service.updateCours({coursID: this.coursId, body: cours}).subscribe({
+      next: value => {
+        alert('Update DONE');
+        this.router.navigateByUrl('/instructors/get-course');
+      }, error: err => {
+        console.log(err);
+      }
+    });
+  }
+  // tslint:disable-next-line:typedef
+  onChanges() {
+    // tslint:disable-next-line:no-non-null-assertion
+    this.updateForm.get('niveau')!.valueChanges.subscribe(val => {
+      this.showNameDropdown = (val === Niveau.LEVEL_4EME || val === Niveau.LEVEL_5EME);
+      if (this.showNameDropdown) {
+        // tslint:disable-next-line:no-non-null-assertion
+        this.updateForm.get('option')!.setValue('');
+      }
+    });
+  }
 }
+
+
+
+
+

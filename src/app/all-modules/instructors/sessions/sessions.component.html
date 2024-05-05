@@ -1,6 +1,3 @@
-
-
-
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">
   <div class="container">
@@ -10,6 +7,7 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Appointments</li>
+
           </ol>
         </nav>
         <h2 class="breadcrumb-title">Appointments</h2>
@@ -37,7 +35,7 @@
                 <h3>Prof. Darren Elder</h3>
 
                 <div class="student-details">
-                  <h5 class="mb-0">Senior Professor - Civil &  Mechanical Engineering</h5>
+                  <h5 class="mb-0"></h5>
                 </div>
               </div>
             </div>
@@ -132,85 +130,134 @@
         <!-- /Profile Sidebar -->
 
       </div>
-      <!--
-                         <div class="col-md-7 col-lg-8 col-xl-9">
-                             <div class="appointments">
-
-                                 <div class="appointment-list">
-                                     <div class="profile-info-widget">
-                                         <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                             <img src="assets/img/clients/client.jpg" alt="User Image">
-                                         </a>
-                                         <div class="profile-det-info">
-                                             <h3><a routerLink='/instructors/student-profile'>Richard Wilson</a></h3>
-                                             <div class="student-details">
-                                                 <h5><i class="far fa-clock"></i> 14 Nov 2019, 10.00 AM</h5>
-                                                 <h5><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5>
-                                                 <h5><i class="fas fa-envelope"></i> richard@example.com</h5>
-                                                 <h5 class="mb-0"><i class="fas fa-phone"></i> +1 923 782 4575</h5>
-                                             </div>
-                                         </div>
-                                     </div>
-                                     <div class="appointment-action">
-                                         <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                             <i class="far fa-eye"></i> View
-                                         </a>
-                                         <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                             <i class="fas fa-check"></i> Accept
-                                         </a>
-                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                             <i class="fas fa-times"></i> Cancel
-                                         </a>
-                                     </div>
-                                 </div>
--->
-
-
-
-
 
       <div class="col-md-7 col-lg-8 col-xl-9">
-        <div class="appointments">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th scope="col">Student </th>
-              <th scope="col">Course Name</th>
-              <th scope="col">Reservation Date</th>
-              <th scope="col">Status</th>
-              <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let rs of reservations">
-              <td>{{ rs.etudiant.nom + ' '+rs.etudiant.prenom }}</td>
-              <td>{{ rs.cours.nomCours }}</td>
-              <td>
-                {{ rs.dateR | date: 'EEE, MMM d, h:mm a':'GMT+0100' }} <!-- Change to 'GMT+0200' during daylight saving time -->
-              </td>
-              <td>{{ rs.statusR }}</td>
-              <div class="appointment-action">
+        <div class="card">
+          <div class="card-body pt-0">
+            <!-- Tab Menu -->
+            <nav class="user-tabs mb-4">
+              <!--     -->
+              <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#appointments"
+                     (click)="getReservationForProfessor()">Sessions</a>
+                </li>
 
-                <td>
-                  <!-- 'Accept' button is visible but disabled if status is not 'En_attente' -->
-                  <button [hidden]="rs.statusR !== 'Pending'" (click)="confirmReservation(rs)" class="btn btn-sm bg-success-light">
-                    <i class="fas fa-check"></i> Accept
-                  </button>
-                  <!-- 'Cancel' button is visible but disabled if status is not 'En_attente' -->
-                  <button [hidden]="rs.statusR !== 'Pending'" (click)="cancelReservation(rs)" class="btn btn-sm bg-danger-light">
-                    <i class="fas fa-times"></i> Cancel
-                  </button>
-                </td>
-                <!-- ... other HTML content ... -->
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#my_appointments" (click)="getReservationForStudent()">My
+                    Sessions</a>
+                </li>
+              </ul>
+            </nav>
 
+
+            <!-- Tab Content -->
+            <div class="tab-content pt-0">
+              <div class="tab-pane fade show active in" id="appointments" role="tabpanel">
+                <div class="card card-table mb-0">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-center mb-0">
+                        <thead>
+                        <tr>
+                          <th scope="col">Student Name</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Reservation Date</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let reservation of list">
+                          <td>{{ reservation.etudiantName }}</td>
+                          <td>{{ reservation.nomcours }}</td>
+                          <td>{{ reservation.dateR | date:'EEE, MMM d' }}<span
+                            class="d-block">{{ reservation.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
+
+                          <td>
+                            <ng-container [ngSwitch]="reservation.statusR">
+                              <span *ngSwitchCase="'Canceled'"
+                                    class="badge badge-pill bg-danger-light">{{ reservation.statusR }}</span>
+                              <span *ngSwitchCase="'Confirmed'"
+                                    class="badge badge-pill bg-success-light">{{ reservation.statusR }}</span>
+                              <span *ngSwitchCase="'Pending'"
+                                    class="badge badge-pill bg-warning-light">{{ reservation.statusR }}</span>
+                            </ng-container>
+                          </td>
+                          <td>
+                            <div class="table-action">
+                              <a href="javascript:void(0);" class="btn btn-sm bg-success-light"
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="confirmReservation(reservation)" (click)="sendSmsConfirmation(reservation)">
+                                <i class="fas fa-check"></i> Confirm
+                              </a>
+
+                              <a href="javascript:void(0);" class="btn btn-sm bg-danger-light"
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="cancelReservation(reservation)" (click)="sendSmsCancelation(reservation)">
+                                <i class="far fa-trash-alt"></i> Cancel
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </tr>
-            </tbody>
-          </table>
+
+              <div class="tab-pane fade" id="my_appointments" role="tabpanel">
+                <div class="card card-table mb-0">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-center mb-0">
+                        <thead>
+                        <tr>
+                          <th scope="col">Professor Name</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Reservation Date</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let reservation2 of list2">
+                          <td>{{ reservation2.professeurName }}</td>
+                          <td>{{ reservation2.nomcours }}</td>
+                          <td>{{ reservation2.dateR | date:'EEE, MMM d' }}<span
+                            class="d-block ">{{ reservation2.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
+                          <td>
+                            <ng-container [ngSwitch]="reservation2.statusR">
+                              <span *ngSwitchCase="'Canceled'"
+                                    class="badge badge-pill bg-danger-light">{{ reservation2.statusR }}</span>
+                              <span *ngSwitchCase="'Confirmed'"
+                                    class="badge badge-pill bg-success-light">{{ reservation2.statusR }}</span>
+                              <span *ngSwitchCase="'Pending'"
+                                    class="badge badge-pill bg-warning-light">{{ reservation2.statusR }}</span>
+                            </ng-container>
+                          </td>
+                          <td>
+                            <div class="table-action">
+                              <a *ngIf="reservation2.statusR === 'Pending'" href="javascript:void(0);"
+                                 class="btn btn-sm bg-success-light"
+                                 (click)="updateReservationDate(reservation2.idR,reservation2.id_professeur)">
+                                <i class="fas fa-edit"></i> Edit
+                              </a>
+                              <a href="javascript:void(0);" class="btn btn-sm bg-danger-light"
+                                 *ngIf="reservation2.statusR === 'Pending'" (click)="cancelReservation2(reservation2)" (click)="sendSmsCancelation(reservation2)">
+                                <i class="far fa-trash-alt"></i>Cancel
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-
-
-    <!-- /Page Content -->
+  </div>
+</div>
+<!-- /Page Content -->

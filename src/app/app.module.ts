@@ -14,6 +14,7 @@ import {AngularEnumsListModule} from 'angular-enum-list';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import {HttpTokenInterceptor} from './Interceptor/http-token.interceptor';
+import {NgxPayPalModule} from 'ngx-paypal';
 
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
@@ -34,6 +35,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPayPalModule,
     AngularEnumsListModule.forRoot(),
     CommonModule,
     BrowserAnimationsModule,

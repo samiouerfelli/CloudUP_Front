@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationStart, Router, Event, ActivatedRoute} from '@angular/router';
 import {MyHttpService} from './my-http.service';
+import {saveSlot} from "./services/fn/slots-controller/save-slot";
 
 @Component({
   selector: 'app-root',
@@ -63,4 +64,6 @@ export class AppComponent implements OnInit{
           }
         );
     }
+
+  protected readonly saveSlot = saveSlot;
 }

@@ -176,7 +176,7 @@
       <div class="col-md-12 col-lg-8 col-xl-9">
 
         <div class="row course">
-          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let cr of courses">
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let cr of coursResponse.content">
             <div class="profile-widget">
               <div class="doc-img">
                 <a routerLink='/instructors/course-details'>
@@ -199,7 +199,7 @@
                 <!-- NAME OF PROFESSOR -->
                 <p class="speciality">{{cr.option}}</p>
 
-                <p class="nom">{{cr.professeur.prenom + " "+ cr.professeur.nom}}</p>
+                <p class="nom">{{cr.usernameCours}}</p>
                 <!-- Course Duration -->
                 <p class="course-duration">Duration: {{ cr.dureeC }} Hours</p>
                 <p class="course-modularity">Modularity: {{ cr.type }} </p>
@@ -210,7 +210,7 @@
                   </div>
                   <div class="col-6">
                     <!--   <a routerLink='/students/booking'   class="btn book-btn" >Book Now</a> -->
-                    <button class="btn book-btn" (click)="bookCourse(cr.professeur.idUser,cr.idCours)">Book Now</button>
+                    <button class="btn book-btn" (click)="bookCourse(cr.idUser,cr.idCours)">Book Now</button>
 
 
                   </div>

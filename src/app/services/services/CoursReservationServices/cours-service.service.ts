@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 // @ts-ignore
-import {Cours} from '../../models/cours';
+import {Cours} from '../../models/MyModels/cours';
 
 @Injectable({
   providedIn: 'root'
