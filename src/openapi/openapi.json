@@ -11,6 +11,36 @@
     }
   ],
   "paths": {
+    "/auth/validateOtp": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "validateOtp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpValidationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/updateUser": {
       "post": {
         "tags": [
@@ -35,6 +65,26 @@
                 "schema": {
                   "type": "integer",
                   "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sendUpdateConfirmationSMS": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "sendUpdateConfirmationSMS",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -211,36 +261,6 @@
         }
       }
     },
-    "/auth/callback": {
-      "get": {
-        "tags": [
-          "authentification-github-controller"
-        ],
-        "operationId": "callback",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/auth/activate-account": {
       "get": {
         "tags": [
@@ -267,6 +287,17 @@
   },
   "components": {
     "schemas": {
+      "OtpValidationRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "otpNumber": {
+            "type": "string"
+          }
+        }
+      },
       "UpdateRequest": {
         "required": [
           "nom",
@@ -614,10 +645,10 @@
           "membership": {
             "type": "string"
           },
-          "name": {
+          "password": {
             "type": "string"
           },
-          "password": {
+          "name": {
             "type": "string"
           },
           "authorities": {
@@ -632,6 +663,12 @@
           "accountNonLocked": {
             "type": "boolean"
           },
+          "accountNonExpired": {
+            "type": "boolean"
+          },
+          "credentialsNonExpired": {
+            "type": "boolean"
+          },
           "dateOfBirth": {
             "type": "string",
             "format": "date"
@@ -639,12 +676,6 @@
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
-          },
-          "credentialsNonExpired": {
-            "type": "boolean"
-          },
-          "accountNonExpired": {
-            "type": "boolean"
           }
         }
       }

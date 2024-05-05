@@ -289,3 +289,95 @@
   </div>
 </div>
 <!-- /Appointment Details Modal -->
+
+<!-- /Activation-account -->
+
+<div class="modal fade custom-modal" id="Activation-account">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Active account</h5>
+        <button type="button" #closeActiveAccount class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container" *ngIf="submitted else codeForm">
+          <div class="activation-message" *ngIf="isOk; else activationError">
+            <h2>Activation Successful!</h2>
+            <p>Your account has been successfully activated.</p>
+            <button class="btn btn-primary" (click)="redirectToLogin()">Go to Login</button>
+          </div>
+          <ng-template #activationError>
+            <div class="activation-error">
+              <h2>Activation Failed!</h2>
+              <p>{{ message }}</p>
+              <button class="btn btn-primary" (click)="submitted = false">Try again</button>
+            </div>
+          </ng-template>
+        </div>
+        <ng-template #codeForm>
+          <div class="container">
+            <div class="text-center" style="width: 400px;">
+              <h2>Type your activation code</h2>
+              <code-input [isCodeHidden]="false"
+                          [codeLength]="6"
+                          [code]="'number'"
+                          (codeCompleted)="onCodeCompleted($event)">
+              </code-input>
+              <button class="btn btn-primary mt-3" (click)="redirectToLogin()">Go to Login</button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Activation-account -->
+
+
+
+<!-- /Update-account -->
+
+<div class="modal fade custom-modal" id="Update-account">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update account</h5>
+        <button type="button" #closeUpdateAccount class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container" *ngIf="submittedU else codeFormU">
+          <div class="activation-message" *ngIf="isOkU else activationErrorU">
+            <h2>Update Successful!</h2>
+            <p>Your account has been successfully Updated.</p>
+            <button class="btn btn-primary" (click)="redirectToHome()">Go to Home</button>
+          </div>
+          <ng-template #activationErrorU>
+            <div class="activation-error">
+              <h2>Update Failed!</h2>
+              <p>{{ message }}</p>
+              <button class="btn btn-primary" (click)="submittedU = false">Try again</button>
+            </div>
+          </ng-template>
+        </div>
+        <ng-template #codeFormU>
+          <div class="container">
+            <div class="text-center" style="width: 400px;">
+              <h2>Type your activation codeee</h2>
+              <code-input [isCodeHidden]="false"
+                          [codeLength]="6"
+                          [code]="'number'"
+                          (codeCompleted)="onCodeCompletedU($event)">
+              </code-input>
+              <button class="btn btn-primary mt-3" (click)="redirectToHome()">Go to Home</button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Update-account -->

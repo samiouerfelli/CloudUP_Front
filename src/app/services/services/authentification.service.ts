@@ -14,18 +14,104 @@ import { Authenticate$Params } from '../fn/authentification/authenticate';
 import { AuthentificationResponse } from '../models/authentification-response';
 import { confirm } from '../fn/authentification/confirm';
 import { Confirm$Params } from '../fn/authentification/confirm';
-import { findAll } from '../fn/authentification/find-all';
-import { FindAll$Params } from '../fn/authentification/find-all';
+import { findUserById } from '../fn/authentification/find-user-by-id';
+import { FindUserById$Params } from '../fn/authentification/find-user-by-id';
+import { getUser } from '../fn/authentification/get-user';
+import { GetUser$Params } from '../fn/authentification/get-user';
 import { logout } from '../fn/authentification/logout';
 import { Logout$Params } from '../fn/authentification/logout';
 import { register } from '../fn/authentification/register';
 import { Register$Params } from '../fn/authentification/register';
+import { sendUpdateConfirmationSms } from '../fn/authentification/send-update-confirmation-sms';
+import { SendUpdateConfirmationSms$Params } from '../fn/authentification/send-update-confirmation-sms';
+import { updateUser } from '../fn/authentification/update-user';
+import { UpdateUser$Params } from '../fn/authentification/update-user';
+import { uploadUserPhoto } from '../fn/authentification/upload-user-photo';
+import { UploadUserPhoto$Params } from '../fn/authentification/upload-user-photo';
 import { User } from '../models/user';
+import { UserResponse } from '../models/user-response';
+import { validateOtp } from '../fn/authentification/validate-otp';
+import { ValidateOtp$Params } from '../fn/authentification/validate-otp';
 
 @Injectable({ providedIn: 'root' })
 export class AuthentificationService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `validateOtp()` */
+  static readonly ValidateOtpPath = '/auth/validateOtp';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `validateOtp()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  validateOtp$Response(params: ValidateOtp$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+    return validateOtp(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `validateOtp$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  validateOtp(params: ValidateOtp$Params, context?: HttpContext): Observable<boolean> {
+    return this.validateOtp$Response(params, context).pipe(
+      map((r: StrictHttpResponse<boolean>): boolean => r.body)
+    );
+  }
+
+  /** Path part for operation `updateUser()` */
+  static readonly UpdateUserPath = '/auth/updateUser';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateUser()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateUser$Response(params: UpdateUser$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return updateUser(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `updateUser$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateUser(params: UpdateUser$Params, context?: HttpContext): Observable<number> {
+    return this.updateUser$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `sendUpdateConfirmationSms()` */
+  static readonly SendUpdateConfirmationSmsPath = '/auth/sendUpdateConfirmationSMS';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `sendUpdateConfirmationSms()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendUpdateConfirmationSms$Response(params?: SendUpdateConfirmationSms$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return sendUpdateConfirmationSms(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `sendUpdateConfirmationSms$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendUpdateConfirmationSms(params?: SendUpdateConfirmationSms$Params, context?: HttpContext): Observable<string> {
+    return this.sendUpdateConfirmationSms$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
+    );
   }
 
   /** Path part for operation `logout()` */
@@ -51,6 +137,35 @@ export class AuthentificationService extends BaseService {
   logout(params?: Logout$Params, context?: HttpContext): Observable<{
 }> {
     return this.logout$Response(params, context).pipe(
+      map((r: StrictHttpResponse<{
+}>): {
+} => r.body)
+    );
+  }
+
+  /** Path part for operation `uploadUserPhoto()` */
+  static readonly UploadUserPhotoPath = '/auth/image';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `uploadUserPhoto()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  uploadUserPhoto$Response(params?: UploadUserPhoto$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+}>> {
+    return uploadUserPhoto(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `uploadUserPhoto$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  uploadUserPhoto(params?: UploadUserPhoto$Params, context?: HttpContext): Observable<{
+}> {
+    return this.uploadUserPhoto$Response(params, context).pipe(
       map((r: StrictHttpResponse<{
 }>): {
 } => r.body)
@@ -111,28 +226,53 @@ export class AuthentificationService extends BaseService {
     );
   }
 
-  /** Path part for operation `findAll()` */
-  static readonly FindAllPath = '/auth/findAll';
+  /** Path part for operation `findUserById()` */
+  static readonly FindUserByIdPath = '/auth/{idUser}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `findAll()` instead.
+   * To access only the response body, use `findUserById()` instead.
    *
    * This method doesn't expect any request body.
    */
-  findAll$Response(params?: FindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
-    return findAll(this.http, this.rootUrl, params, context);
+  findUserById$Response(params: FindUserById$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResponse>> {
+    return findUserById(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `findAll$Response()` instead.
+   * To access the full response (for headers, for example), `findUserById$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  findAll(params?: FindAll$Params, context?: HttpContext): Observable<Array<User>> {
-    return this.findAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<User>>): Array<User> => r.body)
+  findUserById(params: FindUserById$Params, context?: HttpContext): Observable<UserResponse> {
+    return this.findUserById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserResponse>): UserResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `getUser()` */
+  static readonly GetUserPath = '/auth/getUser';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getUser()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getUser$Response(params?: GetUser$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+    return getUser(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getUser$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getUser(params?: GetUser$Params, context?: HttpContext): Observable<User> {
+    return this.getUser$Response(params, context).pipe(
+      map((r: StrictHttpResponse<User>): User => r.body)
     );
   }
 

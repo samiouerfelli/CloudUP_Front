@@ -24,23 +24,23 @@ import {TagInputModule} from "ngx-chips";
 
 
 @NgModule({
-  declarations: [
-    PagesComponent,
-    VoiceCallComponent,
-    VideoCallComponent,
-    CalendarComponent,
-    ComponentsComponent,
-    InvoicesComponent,
-    InvoiceViewComponent,
-    BlankPageComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
-    TermConditionComponent,
-    PrivacyPolicyComponent,
-    ActivateAccountComponent,
-    UpdateAccountComponent,
-],
+    declarations: [
+        PagesComponent,
+        VoiceCallComponent,
+        VideoCallComponent,
+        CalendarComponent,
+        ComponentsComponent,
+        InvoicesComponent,
+        InvoiceViewComponent,
+        BlankPageComponent,
+        LoginComponent,
+        RegisterComponent,
+        ForgotPasswordComponent,
+        TermConditionComponent,
+        PrivacyPolicyComponent,
+        ActivateAccountComponent,
+        UpdateAccountComponent,
+    ],
     imports: [
         CommonModule,
         PagesRoutingModule,
@@ -50,7 +50,10 @@ import {TagInputModule} from "ngx-chips";
         TagInputModule,
         ReactiveFormsModule
     ],
-  schemas : [CUSTOM_ELEMENTS_SCHEMA]
+    exports: [
+        UpdateAccountComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
 export class PagesModule { }

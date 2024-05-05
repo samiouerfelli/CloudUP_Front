@@ -6,6 +6,8 @@ import {AuthentificationService} from '../services/services';
 import {TokenService} from '../services/token/token.service';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {User} from '../services/models/user';
+import {Subscription} from 'rxjs';
+import {LoginService} from '../all-modules/pages/login/login.service';
 
 declare var $: any;
 
@@ -16,10 +18,13 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
   private selectedPicture: string | undefined;
+   nom!: string | null;
+   prenom!: string | null;
   constructor(private router: Router,
               protected tokenService: TokenService,
               private authService: AuthentificationService,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private loginService: LoginService) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url.split('/');
@@ -29,8 +34,11 @@ export class HeaderComponent implements OnInit {
         this.active2Route = this.url1;
       }
     });
+
+    this.nom = localStorage.getItem('nom');
+    this.prenom = localStorage.getItem('prenom');
   }
-user! : User;
+user!: User;
   url!: string;
   url1!: string;
   activeRoute!: string;
@@ -129,6 +137,10 @@ user! : User;
       next: async () => {
         localStorage.removeItem('token');
         localStorage.removeItem('isLogedIn');
+        localStorage.removeItem('nom');
+        localStorage.removeItem('prenom');
+
+
         await this.sleep(1000);
         this.router.navigate(['Home']);
       },

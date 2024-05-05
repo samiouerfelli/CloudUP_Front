@@ -1,72 +1,80 @@
 <!-- Page Content -->
 <div class="content">
-    <div class="container">
+  <div class="container">
 
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
 
-              <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
-                <p *ngFor="let msg of errorMsg">{{msg}}</p>
-              </div>
-              <div class="mb-3">
-                <label for="firstname" class="form-label">Firstname</label>
-                <input [(ngModel)]="registerRequest.nom" type="text" class="form-control" id="firstname" placeholder="Firstname">
-              </div>
-              <div class="mb-3">
-                <label for="lastname" class="form-label">Lastname</label>
-                <input [(ngModel)]="registerRequest.prenom" type="text" class="form-control" id="lastname" placeholder="Lastname">
-              </div>
-              <div class="mb-3">
-                <label for="phoneNumber" class="form-label">Phone number</label>
-                <input [(ngModel)]="registerRequest.phoneNumber" type="text" class="form-control" id="phoneNumber" placeholder="+216xxxxxxxx">
-              </div>
-              <div class="mb-3">
-                <label for="login" class="form-label">Email address</label>
-                <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login" placeholder="name@esprit.tn">
-              </div>
-              <div class="form-group mb-3">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group">
-                  <input [type]="hide ? 'password' : 'text'" class="form-control" id="password" [(ngModel)]="registerRequest.motDePasse" placeholder="Password">
-                  <div class="input-group-append">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
+          <p *ngFor="let msg of errorMsg">{{ msg }}</p>
+        </div>
+        <div class="mb-3">
+          <label for="firstname" class="form-label">Firstname</label>
+          <input [(ngModel)]="registerRequest.nom" type="text" class="form-control" id="firstname"
+                 placeholder="Firstname" required>
+        </div>
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Lastname</label>
+          <input [(ngModel)]="registerRequest.prenom" type="text" class="form-control" id="lastname"
+                 placeholder="Lastname" required>
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone number</label>
+          <input [(ngModel)]="registerRequest.phoneNumber" type="text" class="form-control" id="phoneNumber"
+                 placeholder="+216xxxxxxxx" required>
+        </div>
+        <div class="mb-3">
+          <label for="login" class="form-label">Email address</label>
+          <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login"
+                 placeholder="name@esprit.tn" required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <input [type]="hide ? 'password' : 'text'" class="form-control" id="password"
+                   [(ngModel)]="registerRequest.motDePasse" placeholder="Password" required>
+            <div class="input-group-append">
       <span class="input-group-text" (click)="hide = !hide">
         <i [class]="hide ? 'far fa-eye' : 'far fa-eye-slash'"></i>
       </span>
-                  </div>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label>Your Status</label>
-                <select [(ngModel)]="registerRequest.roles" class=" form-control select">
-                  <option>-</option>
-                  <option>Professor</option>
-                  <option>Student</option>
-                  <option>Club</option>
-                </select>
-              </div>
-
-              <div class="text-right">
-                                    <a class="forgot-link" routerLink='/pages/login'>Already have an account?</a>
-                                </div>
-                                <button (click)="register()" class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
-                                <div class="login-or">
-                                    <span class="or-line"></span>
-                                    <span class="span-or">or</span>
-                                </div>
-                                <div class="row form-row social-login">
-                                    <div class="col-6">
-                                        <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
-                                    </div>
-                                </div>
-                            <!-- /Register Form -->
-
-                    </div>
-                </div>
-                <!-- /Register Content -->
-
             </div>
+          </div>
         </div>
+        <div class="mb-3">
+          <label>Your Status</label>
+          <select [(ngModel)]="registerRequest.roles" class=" form-control select" required>
+            <option>-</option>
+            <option>Professor</option>
+            <option>Student</option>
+            <option>Club</option>
+          </select>
+        </div>
+
+        <div class="text-right">
+          <a class="forgot-link" routerLink='/pages/login'>Already have an account?</a>
+        </div>
+        <h4 class="card-title d-flex justify-content-between">
+          <button (click)="register()" type="submit" class="btn btn-primary btn-block btn-lg login-btn" > Sign up
+          </button>
+        </h4>
+        <div class="login-or">
+          <span class="or-line"></span>
+          <span class="span-or">or</span>
+        </div>
+        <div class="row form-row social-login">
+          <div class="col-6">
+            <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
+          </div>
+          <div class="col-6">
+            <a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
+          </div>
+        </div>
+        <!-- /Register Form -->
+
+      </div>
+    </div>
+    <!-- /Register Content -->
+
+  </div>
+</div>
 
