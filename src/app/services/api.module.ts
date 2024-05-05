@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AuthentificationService } from './services/authentification.service';
+import { AuthentificationGithubControllerService } from './services/authentification-github-controller.service';
 
 /**
  * Module that provides all services and configuration.
@@ -15,6 +16,7 @@ import { AuthentificationService } from './services/authentification.service';
   declarations: [],
   providers: [
     AuthentificationService,
+    AuthentificationGithubControllerService,
     ApiConfiguration
   ],
 })

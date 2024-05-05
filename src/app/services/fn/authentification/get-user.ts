@@ -8,11 +8,11 @@ import { RequestBuilder } from '../../request-builder';
 
 import { User } from '../../models/user';
 
-export interface FindAll$Params {
+export interface GetUser$Params {
 }
 
-export function findAll(http: HttpClient, rootUrl: string, params?: FindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
-  const rb = new RequestBuilder(rootUrl, findAll.PATH, 'get');
+export function getUser(http: HttpClient, rootUrl: string, params?: GetUser$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+  const rb = new RequestBuilder(rootUrl, getUser.PATH, 'get');
   if (params) {
   }
 
@@ -21,9 +21,9 @@ export function findAll(http: HttpClient, rootUrl: string, params?: FindAll$Para
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<User>>;
+      return r as StrictHttpResponse<User>;
     })
   );
 }
 
-findAll.PATH = '/auth/findAll';
+getUser.PATH = '/auth/getUser';

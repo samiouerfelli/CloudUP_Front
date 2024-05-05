@@ -17,20 +17,5 @@ export class BlankPageComponent implements OnInit {
   constructor( private service: AuthentificationService) { }
 
   ngOnInit(): void {
-    this.getAllUsers();
-
-  }
-
-  // tslint:disable-next-line:typedef
-  private getAllUsers() {
-    this.service.findAll().subscribe({
-      next : data => {
-        this.users = data;
-      },
-      error : err => {
-        console.log(err);
-      }
-    });
-
   }
 }

@@ -13,11 +13,7 @@ export class ProfessorProfileSettingsComponent implements OnInit {
     'Study Care', 'Course List'
   ];
   ngOnInit(): void {
-    
-(function($) {
-  "use strict";
-
-// Pricing Options Show
+(function($) {"use strict";
 
 $('#pricing_select input[name="rating_option"]').on('click', function() {
   if ($(this).val() == 'price_free') {
@@ -38,7 +34,7 @@ $('#pricing_select input[name="rating_option"]').on('click', function() {
   });
 
   $(".add-education").on('click', function () {
-  
+
   var educationcontent = '<div class="row form-row education-cont">' +
     '<div class="col-12 col-md-10 col-lg-11">' +
       '<div class="row form-row">' +
@@ -64,7 +60,7 @@ $('#pricing_select input[name="rating_option"]').on('click', function() {
     '</div>' +
     '<div class="col-12 col-md-2 col-lg-1"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>' +
   '</div>';
-  
+
       $(".education-info").append(educationcontent);
       return false;
   });
@@ -77,7 +73,7 @@ $('#pricing_select input[name="rating_option"]').on('click', function() {
   });
 
   $(".add-experience").on('click', function () {
-  
+
   var experiencecontent = '<div class="row form-row experience-cont">' +
     '<div class="col-12 col-md-10 col-lg-11">' +
       '<div class="row form-row">' +
@@ -109,7 +105,7 @@ $('#pricing_select input[name="rating_option"]').on('click', function() {
     '</div>' +
     '<div class="col-12 col-md-2 col-lg-1"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>' +
   '</div>';
-  
+
       $(".experience-info").append(experiencecontent);
       return false;
   });
@@ -141,7 +137,7 @@ $('#pricing_select input[name="rating_option"]').on('click', function() {
       '<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
     '</div>' +
   '</div>';
-  
+
       $(".awards-info").append(regcontent);
       return false;
   });
@@ -167,7 +163,7 @@ $('#pricing_select input[name="rating_option"]').on('click', function() {
       '<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
     '</div>' +
   '</div>';
-  
+
       $(".membership-info").append(membershipcontent);
       return false;
   });
@@ -199,7 +195,7 @@ $('#pricing_select input[name="rating_option"]').on('click', function() {
       '<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
     '</div>' +
   '</div>';
-  
+
       $(".registrations-info").append(regcontent);
       return false;
   });
