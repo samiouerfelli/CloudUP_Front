@@ -145,7 +145,7 @@
                     <label>Tags</label>
                     <div class="tags-input-container">
                       <!-- Supprimer la classe "form-control" pour permettre l'affichage des tags côte à côte -->
-                      <input type="text" placeholder="Tags..."class="form-control" id="tags" name="tags" [(ngModel)]="tagInput" (keydown)="handleKeyDown($event)">
+                      <input type="text" placeholder="Press space to enter the new tag"class="form-control" id="tags" name="tags" [(ngModel)]="tagInput" (keydown)="handleKeyDown($event)">
                       <div class="tags-container">
                         <!-- Ajouter la classe "tags-list" pour afficher les tags côte à côte -->
                         <div *ngFor="let tag of tagsArray; let i = index" class="tag">

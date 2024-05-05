@@ -34,10 +34,62 @@
             </div>
           </div>
           <!-- Blog -->
-          <div class="row blog-grid-row">
-            <div class="col-md-4 col-sm-12" *ngFor="let publication of filteredPublications; let i = index">
+          <div class="row blog-grid-row" *ngIf="role === 'Admin' && publications && publications.length > 0">
+
+              <div class="col-md-4 col-sm-12" *ngFor="let publication of publications; let i = index">
+                <!-- Contenu de la publication -->
+                <div *ngIf="editingPublicationId !== publication.idpub">
+                  <div class="blog-image">
+                    <a [routerLink]="['/blog/blog-details', publication.idpub]" (click)="redirectToDetails(publication)">
+                      <img src='assets/img/blog/OIP.jpg' class="img-fluid" alt="" style="max-width: 70px; height: auto;">
+                    </a>
+                  </div>
+                  <div *ngIf="publication.closed == 'true'" style="text-align: right; color: #EE2C4D; font-weight: bold;">Résolu</div>
+                  <div class="blog-content">
+                    <ul class="entry-meta meta-item">
+                      <li>
+                        <div class="post-author">
+                          <a routerLink='/students/professor-profile'><img src="assets/img/admins/admin-thumb-{{i + 1}}.jpg" alt="Post Author"> <span> {{name }}</span></a>
+                        </div>
+                      </li>
+                      <li><i class="far fa-clock"></i> {{ publication.datePub }}</li>
+                    </ul>
+                    <h3 class="blog-title"><a routerLink='/blog/blog-details'[routerLink]="['/blog/blog-details', publication.idpub]" (click)="redirectToDetails(publication)">{{ publication.subject }}</a></h3>
+                    <p class="mb-0">{{ publication.content }}</p>
+                  </div>
+                  <div class="row pt-3">
+                    <div class="col">
+                      <button class="btn btn-primary btn-sm" (click)="showEditForm(publication.idpub)">
+                        <i class="far fa-edit"></i> Modifier
+                      </button>
+                    </div>
+                    <div class="col text-right">
+                      <a href="javascript:void(0);" class="text-danger" (click)="confirmDelete(publication.idpub)">
+                        <i class="far fa-trash-alt"></i> Supprimer
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Formulaire d'édition -->
+                <div *ngIf="editingPublicationId === publication.idpub" class="edit-form">
+                  <h3>Modifier la publication</h3>
+                  <form (submit)="onSubmitEdit()">
+                    <div class="form-group">
+                      <label for="editContent">Contenu</label>
+                      <input *ngIf="editedPublication" type="text" class="form-control" id="editContentA" name="editContent" [(ngModel)]="editedPublication.content">
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="onSubmitEdit()">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+                  </form>
+                </div>
+              </div>
+          </div>
+
+          <div class="row blog-grid-row" *ngIf="(role !== 'Admin' || !publications || publications.length === 0)">
+             <div class="col-md-4 col-sm-12" *ngFor="let publication of filteredPublications; let i = index">
               <!-- Blog Post -->
               <div class="blog grid-blog">
+
                 <!-- Contenu de la publication -->
                 <div *ngIf="editingPublicationId !== publication.idpub">
                   <div class="blog-image">
@@ -81,49 +133,16 @@
                     <div class="form-group">
                       <label for="editContent">Content</label>
                       <input *ngIf="editedPublication" type="text" class="form-control" id="editContent" name="editContent" [(ngModel)]="editedPublication.content">
-
-
                     </div>
                     <!-- Ajoutez les autres champs pour la modification -->
                     <button type="submit" class="btn btn-primary" (click)="onSubmitEdit()">Save Changes</button>
-
                     <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
                   </form>
                 </div>
-                <!-- /Formulaire d'édition -->
-              </div>
-              <!-- /Blog Post -->
-            </div>
-          </div>
-          <!-- /Blog -->
 
-          <!-- Blog Pagination -->
-          <div class="row">
-            <div class="col-md-12">
-              <div class="blog-pagination">
-                <nav>
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-double-left"></i></a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item active">
-                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
-                    </li>
-                  </ul>
-                </nav>
               </div>
             </div>
           </div>
-          <!-- /Blog Pagination -->
           <!-- /Blog -->
         </div>
       </div>
