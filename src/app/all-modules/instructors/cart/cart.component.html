@@ -28,96 +28,47 @@
                             <tr>
                                 <th>Product</th>
                                 <th>Price</th>
+                                <th>Quantity</th>
                                 <th class="text-center">Total</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let commandeProduct of commadeProductList">
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a routerLink='/instructors/course-details' class="avatar avatar-sm mr-2"><img class="avatar-img" src="assets/img/course/c1.jpg" alt="User Image"></a>
+                                        <a (click)="viewDetails(commandeProduct.product)" class="avatar avatar-sm mr-2"><img class="avatar-img" [src]="commandeProduct.product.imageUrl" alt="User Image"></a>
                                     </h2>
-                                    <a routerLink='/instructors/course-details'>How to Make Beautiful Landscape Photos?</a>
+                                    <a (click)="viewDetails(commandeProduct.product)"> {{commandeProduct.product.description}}</a>
                                 </td>
-                                <td>$19</td>
-                                <td class="text-center">$19</td>
+                                <td>
+                                    {{commandeProduct.product.price}} Dt
+                                </td>
+                                <td>
+                                    {{commandeProduct.quantity}}
+                                    <span class="table-action" style="margin-left: 10px;">
+                                        <a class="btn btn-sm bg-success-light" (click)="commandeProduct.quantity = commandeProduct.quantity + 1 ; total = total + commandeProduct.product.price ; saveState()">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                        <a  class="btn btn-sm bg-danger-light" (click)="commandeProduct.quantity = commandeProduct.quantity - 1 ; verifPositif(commandeProduct) ; saveState()">
+                                            <i class="fas fa-minus"></i>
+                                        </a>
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                {{commandeProduct.product.price * commandeProduct.quantity}} Dt 
+                                
+                                
+                                </td>
                                 <td class="text-right">
-                                    <div class="table-action">
+                                    <div class="table-action" (click)="deleteProduct(commandeProduct)">
                                         <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
                                             <i class="fas fa-times"></i>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a routerLink='/instructors/course-details' class="avatar avatar-sm mr-2"><img class="avatar-img" src="assets/img/course/c2.jpg" alt="User Image"></a>
-                                    </h2>
-                                    <a routerLink='/instructors/course-details'>Design Instruments for Communication</a>
-                                </td>
-                                <td>$22</td>
-                                <td class="text-center">$22</td>
-                                <td class="text-right">
-                                    <div class="table-action">
-                                        <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                            <i class="fas fa-times"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a routerLink='/instructors/course-details' class="avatar avatar-sm mr-2"><img class="avatar-img" src="assets/img/course/c3.jpg" alt="User Image"></a>
-                                    </h2>
-                                    <a routerLink='/instructors/course-details'>How to be a DJ? Make Electronic Music</a>
-                                </td>
-                                <td>$10</td>
-                                <td class="text-center">$10</td>
-                                <td class="text-right">
-                                    <div class="table-action">
-                                        <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                            <i class="fas fa-times"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a routerLink='/instructors/course-details' class="avatar avatar-sm mr-2"><img class="avatar-img" src="assets/img/course/c4.jpg" alt="User Image"></a>
-                                    </h2>
-                                    <a routerLink='/instructors/course-details'>Introduction Web Design with HTML</a>
-                                </td>
-                                <td>$26</td>
-                                <td class="text-center">$26</td>
-                                <td class="text-right">
-                                    <div class="table-action">
-                                        <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                            <i class="fas fa-times"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a routerLink='/instructors/course-details' class="avatar avatar-sm mr-2"><img class="avatar-img" src="assets/img/course/c5.jpg" alt="User Image"></a>
-                                    </h2>
-                                    <a routerLink='/instructors/course-details'>Designing a Responsive Mobile Website with Muse</a>
-                                </td>
-                                <td>$12</td>
-                                <td class="text-center">$12</td>
-                                <td class="text-right">
-                                    <div class="table-action">
-                                        <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                            <i class="fas fa-times"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>		
                 </div>
@@ -140,17 +91,17 @@
                         <div class="booking-summary">
                             <div class="booking-item-wrap">
                                 <ul class="booking-date">
-                                    <li>Subtotal <span>$5,877.00</span></li>
+                                    <li>Subtotal <span>{{total}} Dt</span></li>
                                     
                                 </ul>
                                 <ul class="booking-fee pt-4">
-                                    <li>Tax <span>$0.00</span></li>
+                                    <li>Delivery <span>6 Dt</span></li>
                                 </ul>
                                 <div class="booking-total">
                                     <ul class="booking-total-list">
                                         <li>
                                             <span>Total</span>
-                                            <span class="total-cost">$160</span>
+                                            <span class="total-cost">{{total+6}} Dt</span>
                                         </li>
                                         <li>
                                             <div class="clinic-booking pt-4">

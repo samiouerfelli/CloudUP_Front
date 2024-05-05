@@ -10,11 +10,10 @@ import { ComponentsComponent } from './components/components.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
 import { BlankPageComponent } from './blank-page/blank-page.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,15 +26,15 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     InvoicesComponent,
     InvoiceViewComponent,
     BlankPageComponent,
-    LoginComponent,
-    RegisterComponent,
     ForgotPasswordComponent,
     TermConditionComponent,
     PrivacyPolicyComponent
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    FormsModule
+
   ]
 })
 export class PagesModule { }

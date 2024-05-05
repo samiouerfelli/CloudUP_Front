@@ -1,0 +1,111 @@
+<!-- Breadcrumb -->
+
+<div class="breadcrumb-bar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Products</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Products </h2>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+            
+                <!-- Search Filter -->
+                <div class="card search-filter">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Search Filter</h4>
+                    </div>
+                    <div class="card-body">
+                    <div class="filter-widget">
+                        <div class="">
+                            <input type="text" class="form-control datetimepicker" placeholder="Enter Product Name" [(ngModel)]="keyWord" (input)="getByKeyWord()">
+                        </div>			
+                    </div>
+                    <div class="filter-widget">
+                        <h4>Price</h4>
+
+                        <mat-slider min="0" max="5000" step="1" showTickMarks discrete [displayWith]="formatLabel" >
+                            <input matSliderStartThumb (change)="getFiltredProductByPrice()" [(ngModel)]="minValue">
+                            <input matSliderEndThumb (change)="getFiltredProductByPrice()" [(ngModel)]="maxValue">
+                          </mat-slider>
+                          
+                        
+                    </div>
+                    
+                        <div class="btn-search">
+                            <button (click)="getByKeyWord()" type="button" class="btn btn-block">Search</button>
+                        </div>	
+                    </div>
+                </div>
+                <!-- /Search Filter -->
+                
+            </div>
+            
+            <div class="col-md-12 col-lg-8 col-xl-9">
+
+                <div  class="row course">
+
+                    <div *ngFor="let product of products" class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+                        
+                        <div class="profile-widget">
+                            <div class="doc-img">
+                                    <img class="img-fluid" alt="User Image" [src]="product.imageUrl" (click)="viewDetails(product)">
+                                <a href="javascript:void(0)" class="fav-btn">
+                                    <i class="fas fa-edit" (click)="edit(product)"></i>
+                                </a>
+                                <span class="price-course">{{product.price}} Dt</span>
+                            </div>
+                            <div class="pro-content">
+                                <h3 class="title">
+                                    <a routerLink='/instructors/course-details'>{{product.description}}</a> 
+                            
+                                </h3>
+                                <p class="speciality">{{product.name}}</p>
+                                <div class="rating">
+                                    <i *ngFor="let i of range(product.rating)" class="fas fa-star filled"></i>
+                                    <span class="d-inline-block average-rating">({{product.ratingsUsersNumber}})</span>
+                                </div>
+                                <div class="row row-sm">
+                                    <div class="col-6" (click)="viewDetails(product)">
+                                        <a class="btn view-btn">View</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="btn book-btn" (click)="addToCart(product)">Add To Cart</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  
+                    
+                    
+                </div>
+
+                <div class="load-more text-center">
+                    <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>	
+                    <a class="btn btn-primary btn-sm" routerLink='/instructors/cart' style="margin-left: 20px;" >View Cart</a>
+                </div>	
+               
+            </div>
+        </div>
+
+    </div>
+
+</div>		
+<!-- /Page Content -->

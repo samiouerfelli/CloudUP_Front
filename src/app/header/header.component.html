@@ -28,11 +28,18 @@
                     <li [ngClass]="[activeRoute === '' ? 'active' : '']">
                         <a routerLink='/'>Home </a>
                     </li>
-                    <li class="has-submenu" [ngClass]="[activeRoute === 'instructors' ? 'active' : '']">
+                    <li class="has-submenu" [ngClass]="[activeRoute === 'instructors' ? 'active' : '']" >
                         <a href="">INSTRUCTORS <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <li [ngClass]="[active2Route === 'professor-dashboard' ? 'active' : '']"><a routerLink='/instructors/professor-dashboard'>Professor Dashboard</a></li>
-                            <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/instructors/course'>Course</a></li>
+                            <!-- <li [ngClass]="[active2Route === 'product' ? 'active' : '']"><a routerLink='/list-produit'>Products</a></li> -->
+                            <li class="has-submenu">
+                                <a href="#">Products</a>
+                                <ul class="submenu">
+                                    <li [ngClass]="[active2Route === 'map-grid' ? 'active' : '']"  routerLink='/products/add'><a >Add New Product</a></li>
+                                    <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/products/list'>Product List</a></li>
+                                </ul>
+                            </li>
                             <li [ngClass]="[active2Route === 'sessions' ? 'active' : '']"><a routerLink='/instructors/sessions'>Sessions</a></li>
                             <li [ngClass]="[active2Route === 'schedule-timings' ? 'active' : '']"><a routerLink='/instructors/schedule-timings'>Schedule Timing</a></li>
                             <li [ngClass]="[active2Route === 'my-students' ? 'active' : '']"><a routerLink='/instructors/my-students'>Students List</a></li>
@@ -52,7 +59,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="has-submenu" [ngClass]="[activeRoute === 'students' ? 'active' : '']">
+                    <li class="has-submenu" [ngClass]="[activeRoute === 'students' ? 'active' : '']"  >
                         <a href="">STUDENTS <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <li class="has-submenu">
@@ -62,6 +69,7 @@
                                     <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/students/map-list'>Map List</a></li>
                                 </ul>
                             </li>
+                            <li [ngClass]="[active2Route === 'product' ? 'active' : '']"><a routerLink='/products/list'>Products</a></li>
                             <li [ngClass]="[active2Route === 'search' ? 'active' : '']"><a routerLink='/students/search'>Search Professor</a></li>
                             <li [ngClass]="[active2Route === 'professor-profile' ? 'active' : '']"><a routerLink='/students/professor-profile'>Professor Profile</a></li>
                             <li [ngClass]="[active2Route === 'booking' ? 'active' : '']"><a routerLink='/students/booking'>Booking</a></li>
@@ -109,47 +117,16 @@
                 </ul>
             </div>
             <ul class="nav header-navbar-rht">
-                <li class="nav-item">
-                    <a routerLink='/pages/login'>Log in</a>
+                <li class="nav-item" >
+                    <a routerLink='/pages/login'>Login</a>
                 </li>
                 <li class="nav-item contact-item">
-                    <a routerLink='/pages/login'>Sign up</a>
+                    <a routerLink='/home'>Logout</a>
                 </li>
                 
-                <!-- Flag -->
-                <li class="nav-item dropdown flag-nav">
-                    <a class="nav-link dropdown-toggle align-items-center text-center" data-toggle="dropdown" href="#" role="button">
-                    <img src="assets/img/flags/us-1.png" alt="" width="18" height="12" class="lang-flag">
-                    ENG 
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/us.png" alt="" height="16"> ENG
-                        </a>
-                        <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/fr.png" alt="" height="16"> FRA
-                        </a>
-                        <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/es.png" alt="" height="16"> SPN
-                        </a>
-                        <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/de.png" alt="" height="16"> GER
-                        </a>
-                    </div>
-                </li>
-                <!-- /Flag --> 
-                
-                <li class="nav-item d-flex">
-                    <a routerLink='/students/booking' class="nav-booking mr-2">
-                        <img src="assets/img/course.png" width="22" alt="">
-                    </a>
-                    <a routerLink='/students/booking' class="nav-book-content">
-                        <span>Courses</span>
-                        <p>$200</p>
-                    </a>
-                </li>
+               
+ 
             </ul>
         </div>
     </nav>
 </header>
-<!-- /Header -->

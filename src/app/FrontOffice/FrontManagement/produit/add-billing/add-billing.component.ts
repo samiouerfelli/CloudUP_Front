@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadService } from '../../../FrontOffice/Service/upload/upload.service';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Product } from 'src/app/FrontOffice/model/Product';
 import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/FrontOffice/Service/product.service';
 import { Router } from '@angular/router';
+import { UploadService } from '../../../Service/upload/upload.service';
 
 @Component({
   selector: 'app-add-billing',

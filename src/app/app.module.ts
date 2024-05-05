@@ -8,6 +8,12 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductService } from './FrontOffice/Service/product.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { httpInterceptorProviders } from './helpers/http.interceptor';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -20,9 +26,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     CarouselModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    MatAutocompleteModule
   ],
-  providers: [],
+  providers: [
+    
+    ProductService,
+    HttpClient,
+    {provide: 'ProductService', useExisting: ProductService},
+    httpInterceptorProviders
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

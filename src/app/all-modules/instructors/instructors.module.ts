@@ -9,7 +9,6 @@ import { SessionsComponent } from './sessions/sessions.component';
 import { ScheduleTimingsComponent } from './schedule-timings/schedule-timings.component';
 import { MyStudentsComponent } from './my-students/my-students.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
-import { ChatProfessorComponent } from './chat-professor/chat-professor.component';
 import { ProfessorProfileSettingsComponent } from './professor-profile-settings/professor-profile-settings.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ProfessorRegisterComponent } from './professor-register/professor-register.component';
@@ -23,11 +22,14 @@ import { CourseCheckoutComponent } from './course-checkout/course-checkout.compo
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { ProfessorPendingBlogComponent } from './professor-pending-blog/professor-pending-blog.component';
 import { CartComponent } from './cart/cart.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TagInputModule } from 'ngx-chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
@@ -39,7 +41,6 @@ import { NgSelect2Module } from 'ng-select2';
     ScheduleTimingsComponent,
     MyStudentsComponent,
     StudentProfileComponent,
-    ChatProfessorComponent,
     ProfessorProfileSettingsComponent,
     ReviewsComponent,
     ProfessorRegisterComponent,
@@ -53,7 +54,7 @@ import { NgSelect2Module } from 'ng-select2';
     EditBlogComponent,
     ProfessorPendingBlogComponent,
     CartComponent,
-    CourseDetailsComponent
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +63,11 @@ import { NgSelect2Module } from 'ng-select2';
     TagInputModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSelect2Module
+    NgSelect2Module,
+    MatAutocompleteModule,
+    MatInputModule
+    
+
   ]
 })
 export class InstructorsModule { }

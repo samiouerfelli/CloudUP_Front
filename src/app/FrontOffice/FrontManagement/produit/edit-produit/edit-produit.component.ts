@@ -1,36 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadService } from '../../../FrontOffice/Service/upload/upload.service';
-import { Observable } from 'rxjs';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Product } from 'src/app/FrontOffice/model/Product';
 import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/FrontOffice/Service/product.service';
+import { UploadService } from 'src/app/FrontOffice/Service/upload/upload.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-billing',
-  templateUrl: './add-billing.component.html',
-  styleUrls: ['./add-billing.component.css']
+  selector: 'app-edit-produit',
+  templateUrl: './edit-produit.component.html',
+  styleUrls: ['./edit-produit.component.css']
 })
-export class AddBillingComponent implements OnInit {
+export class EditProduitComponent implements OnInit {
+
 
   todayDate: Date;
   imageUrl:String;
   selectedFiles?: FileList;
   currentFile?: File;
   message = '';
+  imgUrl :string;
+  product : Product;
+  isUploaded = false;
 
-  product: any ={
-    name: null,
-    description: null,
-    price: null,
-    available: false,
-    rating: 0,
-    imageUrl: null,
-    ratingsUsersNumber: 0
-
-
-  };
 
 
   constructor(private uploadService: UploadService ,
@@ -41,14 +32,11 @@ export class AddBillingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.getSelectedProduct();
   }
   save(){
-    if(this.selectedFiles){
-      this.product.imageUrl = environment.apiUrl +"/files/"+this.selectedFiles.item(0).name;
-    }
-    this.upload();
-    this.productService.addProduct(this.product).subscribe(
+    
+    this.productService.updateProduct(this.product).subscribe(
       {
         next: (data: any) => {
           console.log(data)
@@ -59,11 +47,13 @@ export class AddBillingComponent implements OnInit {
       }
     );
     this.router.navigate(["/products/list"]);
-
   }
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
+    this.upload();
+    this.product.imageUrl = this.imgUrl;
+    
   }
   upload(): void {
 
@@ -75,7 +65,8 @@ export class AddBillingComponent implements OnInit {
 
         this.uploadService.upload(this.currentFile).subscribe({
           next: (event: any) => {
-           // this.message = event.body.message;
+            this.isUploaded = true;
+            //this.imgUrl = environment.apiUrl +"/files/"+this.selectedFiles.item(0).name; 
           },
           error: (err: any) => {
             console.log(err);
@@ -86,13 +77,20 @@ export class AddBillingComponent implements OnInit {
               this.message = 'Could not upload the file!';
             }
 
+            
+             
             this.currentFile = undefined;
           }
         });
       }
-
+      this.imgUrl = environment.apiUrl +"/files/"+this.selectedFiles.item(0).name;      
       this.selectedFiles = undefined;
     }
   }
+  getSelectedProduct(){
+    this.product = this.productService.getSelectedProduct();
+  }
+
 
 }
+

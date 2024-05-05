@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddBillingComponent } from './add-billing/add-billing.component';
 import { CartComponent } from './cart/cart.component';
-import { ChatProfessorComponent } from './chat-professor/chat-professor.component';
 import { CourseCheckoutComponent } from './course-checkout/course-checkout.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CourseComponent } from './course/course.component';
 import { EditBillingComponent } from './edit-billing/edit-billing.component';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
@@ -32,7 +31,6 @@ const routes: Routes = [
     { path: 'schedule-timings', component: ScheduleTimingsComponent },
     { path: 'my-students', component: MyStudentsComponent },
     { path: 'student-profile', component: StudentProfileComponent },
-    { path: 'chat-professor', component: ChatProfessorComponent },
     { path: 'professor-profile-settings', component: ProfessorProfileSettingsComponent },
     { path: 'reviews', component: ReviewsComponent },
     { path: 'professor-register', component: ProfessorRegisterComponent },
@@ -46,7 +44,7 @@ const routes: Routes = [
     { path: 'edit-blog', component: EditBlogComponent },
     { path: 'professor-pending-blog', component: ProfessorPendingBlogComponent },
     { path: 'cart', component: CartComponent },
-    { path: 'course-details', component: CourseDetailsComponent }
+    { path: 'product-details', component: ProductDetailsComponent }
   ] 
   }
 ];

@@ -13,7 +13,10 @@ export class HeaderComponent implements OnInit {
   active2Route!: string;
   guestuser: boolean = false;
   registereduser: boolean = false;
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    
+  ) { 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url.split("/");
@@ -25,7 +28,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    // Sidebar
+   
 	
 	if($(window).width() <= 991){
     var Sidemenu = function() {
@@ -51,11 +54,9 @@ export class HeaderComponent implements OnInit {
       });
     }
   
-    // Sidebar Initiate
     init();
     }
     
-    // Mobile menu sidebar overlay
 	
     $('body').append('<div class="sidebar-overlay"></div>');
     $(document).on('click', '#mobile_btn', function() {
@@ -77,5 +78,6 @@ export class HeaderComponent implements OnInit {
       $('main-wrapper').removeClass('slide-nav');
     });
   }
+  
 
 }

@@ -82,13 +82,26 @@
 
                                             <tr>								
                                                 <th style="min-width:200px;">Image</th>
-                                                <td>
-                                                    <input type="file"  accept="image/*" class="form-control" (change)="selectFile($event)">
+                                                <td class="doc-img ">
+                                                    <input type="file" accept="image/*" class="form-control img-fluid" #fileInput style="display: none" (change)="selectFile($event)">
+                                                    <img *ngIf="!isUploaded" [src]="product.imageUrl" alt="Importer un fichier" (click)="fileInput.click()" class="img-control">
+                                                    <div *ngIf="isUploaded"  class="img-control"> Image Changed</div>
                                                 </td>							
                                                 <td>
                                                     <div class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></div>															
                                                 </td>
                                             </tr>
+
+                                            <tr>								
+                                                <th style="min-width:200px;">Rating</th>
+                                                <td>
+                                                    <input type="number" class="form-control" [(ngModel)]="product.rating" name="rating" placeholder="rating" max="5">
+                                                </td>							
+                                                <td>
+                                                    <div class="btn bg-danger-light trash" (click)="product.rating= 0"><i class="far fa-trash-alt"></i></div>															
+                                                </td>
+                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                     <div class="row">
