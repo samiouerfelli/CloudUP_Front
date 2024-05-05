@@ -1,0 +1,653 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/auth/updateUser": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "updateUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/image": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "uploadUserPhoto",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/authenticate": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "authenticate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthentificationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthentificationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/Register": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{idUser}": {
+      "get": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "findUserById",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getUser": {
+      "get": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "getUser",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/callback": {
+      "get": {
+        "tags": [
+          "authentification-github-controller"
+        ],
+        "operationId": "callback",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/activate-account": {
+      "get": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "confirm",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UpdateRequest": {
+        "required": [
+          "nom",
+          "phoneNumber",
+          "prenom"
+        ],
+        "type": "object",
+        "properties": {
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "pattern": "^\\+(?:[0-9] ?){6,14}[0-9]$",
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female"
+            ]
+          },
+          "aboutMe": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "codePostal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "college": {
+            "type": "string",
+            "enum": [
+              "ESB",
+              "ESPRIT"
+            ]
+          },
+          "degree": {
+            "type": "string",
+            "enum": [
+              "CLASS_1ERE",
+              "CLASS_2EME",
+              "CLASS_3EME",
+              "CLASS_4EME",
+              "CLASS_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "DS",
+              "SE",
+              "TWIN",
+              "GL",
+              "SIM",
+              "NIDS",
+              "SLEAM",
+              "INFINI",
+              "ERP_BI",
+              "GAMIX"
+            ]
+          },
+          "membership": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "AuthentificationRequest": {
+        "required": [
+          "email",
+          "motDePasse"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "motDePasse": {
+            "maxLength": 2147483647,
+            "minLength": 8,
+            "type": "string"
+          }
+        }
+      },
+      "AuthentificationResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "RegistrationRequest": {
+        "required": [
+          "email",
+          "motDePasse",
+          "nom",
+          "phoneNumber",
+          "prenom"
+        ],
+        "type": "object",
+        "properties": {
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "pattern": "^\\+(?:[0-9] ?){6,14}[0-9]$",
+            "type": "string"
+          },
+          "motDePasse": {
+            "maxLength": 2147483647,
+            "minLength": 8,
+            "type": "string"
+          },
+          "roles": {
+            "type": "string",
+            "enum": [
+              "Professor",
+              "Student",
+              "Club",
+              "Admin"
+            ]
+          }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "motDePasse": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female"
+            ]
+          },
+          "aboutMe": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "codePostal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "college": {
+            "type": "string",
+            "enum": [
+              "ESB",
+              "ESPRIT"
+            ]
+          },
+          "degree": {
+            "type": "string",
+            "enum": [
+              "CLASS_1ERE",
+              "CLASS_2EME",
+              "CLASS_3EME",
+              "CLASS_4EME",
+              "CLASS_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "DS",
+              "SE",
+              "TWIN",
+              "GL",
+              "SIM",
+              "NIDS",
+              "SLEAM",
+              "INFINI",
+              "ERP_BI",
+              "GAMIX"
+            ]
+          },
+          "membership": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "GrantedAuthority": {
+        "type": "object",
+        "properties": {
+          "authority": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "motDePasse": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "pattern": "^\\+(?:[0-9] ?){6,14}[0-9]$",
+            "type": "string"
+          },
+          "roles": {
+            "type": "string",
+            "enum": [
+              "Professor",
+              "Student",
+              "Club",
+              "Admin"
+            ]
+          },
+          "image": {
+            "type": "string"
+          },
+          "accountLocked": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female"
+            ]
+          },
+          "aboutMe": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "codePostal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "college": {
+            "type": "string",
+            "enum": [
+              "ESB",
+              "ESPRIT"
+            ]
+          },
+          "degree": {
+            "type": "string",
+            "enum": [
+              "CLASS_1ERE",
+              "CLASS_2EME",
+              "CLASS_3EME",
+              "CLASS_4EME",
+              "CLASS_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "DS",
+              "SE",
+              "TWIN",
+              "GL",
+              "SIM",
+              "NIDS",
+              "SLEAM",
+              "INFINI",
+              "ERP_BI",
+              "GAMIX"
+            ]
+          },
+          "membership": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "authorities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GrantedAuthority"
+            }
+          },
+          "username": {
+            "type": "string"
+          },
+          "accountNonLocked": {
+            "type": "boolean"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "credentialsNonExpired": {
+            "type": "boolean"
+          },
+          "accountNonExpired": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
