@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {TimeSlotService} from '../../../services/services/CoursReservationServices/time-slot.service';
 import {SlotsControllerService} from '../../../services/services/slots-controller.service';
 
 @Component({
@@ -14,8 +13,7 @@ export class ScheduleTimingsComponent implements OnInit {
   professorId = 1;
 
 
-  constructor(private timeSlotService: TimeSlotService,
-              private service: SlotsControllerService) {
+  constructor( private service: SlotsControllerService) {
   }
 
   // tslint:disable-next-line:typedef
@@ -23,6 +21,7 @@ export class ScheduleTimingsComponent implements OnInit {
     const startDateTime = this.formatDateTime(formData.date, formData.time);
     const endDateTime = this.formatDateTime(formData.date, formData.endTime);
     const date = new Date(formData.date);
+
     const day = date.toLocaleString('en-US', {weekday: 'long'});
     let newTimeSlot: { dayOfWeek: string; startTime: string; endTime: string };
     newTimeSlot = {

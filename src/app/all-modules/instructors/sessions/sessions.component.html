@@ -7,6 +7,7 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Appointments</li>
+
           </ol>
         </nav>
         <h2 class="breadcrumb-title">Appointments</h2>
@@ -34,7 +35,7 @@
                 <h3>Prof. Darren Elder</h3>
 
                 <div class="student-details">
-                  <h5 class="mb-0">Senior Professor - Civil &  Mechanical Engineering</h5>
+                  <h5 class="mb-0"></h5>
                 </div>
               </div>
             </div>
@@ -138,56 +139,64 @@
               <!--     -->
               <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#appointments" (click)="getReservationForProfessor()">Sessions</a>
+                  <a class="nav-link active" data-toggle="tab" href="#appointments"
+                     (click)="getReservationForProfessor()">Sessions</a>
                 </li>
+
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#my_appointments" (click)="getReservationForStudent()">My Sessions</a>
+                  <a class="nav-link" data-toggle="tab" href="#my_appointments" (click)="getReservationForStudent()">My
+                    Sessions</a>
                 </li>
               </ul>
             </nav>
+
+
             <!-- Tab Content -->
             <div class="tab-content pt-0">
-              <div class="tab-pane fade show active in" id="appointments" role="tabpanel" >
+              <div class="tab-pane fade show active in" id="appointments" role="tabpanel">
                 <div class="card card-table mb-0">
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-hover table-center mb-0">
                         <thead>
-                          <tr>
-                            <th scope="col">Student Name</th>
-                            <th scope="col">Course Name</th>
-                            <th scope="col">Reservation Date</th>
-                            <th scope="col">Status</th>
-                          </tr>
+                        <tr>
+                          <th scope="col">Student Name</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Reservation Date</th>
+                          <th scope="col">Status</th>
+                        </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let reservation of list">
-                            <td>{{ reservation.etudiantName }}</td>
-                            <td>{{ reservation.nomcours }}</td>
-                            <td>{{ reservation.dateR | date:'EEE, MMM d' }}<span class="d-block">{{ reservation.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
+                        <tr *ngFor="let reservation of list">
+                          <td>{{ reservation.etudiantName }}</td>
+                          <td>{{ reservation.nomcours }}</td>
+                          <td>{{ reservation.dateR | date:'EEE, MMM d' }}<span
+                            class="d-block">{{ reservation.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
 
-                            <td>
+                          <td>
                             <ng-container [ngSwitch]="reservation.statusR">
-                              <span *ngSwitchCase="'Canceled'" class="badge badge-pill bg-danger-light">{{ reservation.statusR }}</span>
-                              <span *ngSwitchCase="'Confirmed'" class="badge badge-pill bg-success-light">{{ reservation.statusR }}</span>
-                              <span *ngSwitchCase="'Pending'" class="badge badge-pill bg-warning-light">{{ reservation.statusR }}</span>
+                              <span *ngSwitchCase="'Canceled'"
+                                    class="badge badge-pill bg-danger-light">{{ reservation.statusR }}</span>
+                              <span *ngSwitchCase="'Confirmed'"
+                                    class="badge badge-pill bg-success-light">{{ reservation.statusR }}</span>
+                              <span *ngSwitchCase="'Pending'"
+                                    class="badge badge-pill bg-warning-light">{{ reservation.statusR }}</span>
                             </ng-container>
                           </td>
-                            <td>
-                              <div class="table-action">
-                                <a href="javascript:void(0);" class="btn btn-sm bg-success-light" *ngIf="reservation.statusR === 'Pending'" (click)="confirmReservation(reservation)">
-                                    <i class="fas fa-check"></i> Confirm
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-sm bg-danger-light" *ngIf="reservation.statusR === 'Pending'" (click)="cancelReservation(reservation)">
-                                  <i class="far fa-trash-alt"></i> Cancel
-                                </a>
-<!--  <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                                                     Cancel
-                                                                </a>-->
+                          <td>
+                            <div class="table-action">
+                              <a href="javascript:void(0);" class="btn btn-sm bg-success-light"
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="confirmReservation(reservation)" (click)="sendSmsConfirmation(reservation)">
+                                <i class="fas fa-check"></i> Confirm
+                              </a>
 
-                              </div>
-                            </td>
-                          </tr>
+                              <a href="javascript:void(0);" class="btn btn-sm bg-danger-light"
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="cancelReservation(reservation)" (click)="sendSmsCancelation(reservation)">
+                                <i class="far fa-trash-alt"></i> Cancel
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
                         </tbody>
                       </table>
                     </div>
@@ -201,41 +210,49 @@
                     <div class="table-responsive">
                       <table class="table table-hover table-center mb-0">
                         <thead>
-                          <tr>
-                            <th scope="col">Professor Name</th>
-                            <th scope="col">Course Name</th>
-                            <th scope="col">Reservation Date</th>
-                            <th scope="col">Status</th>
-                          </tr>
+                        <tr>
+                          <th scope="col">Professor Name</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Reservation Date</th>
+                          <th scope="col">Status</th>
+                        </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let reservation2 of list2">
-                            <td>{{ reservation2.professeurName }}</td>
-                            <td>{{ reservation2.nomcours }}</td>
-                            <td>{{ reservation2.dateR | date:'EEE, MMM d' }}<span class="d-block ">{{ reservation2.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
-                            <td>
-                              <ng-container [ngSwitch]="reservation2.statusR">
-                                <span *ngSwitchCase="'Canceled'" class="badge badge-pill bg-danger-light">{{ reservation2.statusR }}</span>
-                                <span *ngSwitchCase="'Confirmed'" class="badge badge-pill bg-success-light">{{ reservation2.statusR }}</span>
-                                <span *ngSwitchCase="'Pending'" class="badge badge-pill bg-warning-light">{{ reservation2.statusR }}</span>
-                              </ng-container>
-                            </td>
-                            <td>
-                              <div class="table-action">
-                                <a *ngIf="reservation2.statusR === 'Pending'" href="javascript:void(0);" class="btn btn-sm bg-success-light" (click)="updateReservationDate(reservation2.idR,reservation2.id_professeur)">
-                                  <i class="fas fa-edit"></i> Edit     
-                                </a>  
-                                <a href="javascript:void(0);" class="btn btn-sm bg-danger-light" *ngIf="reservation2.statusR === 'Pending'" (click)="cancelReservation2(reservation2)">
-                                  <i class="far fa-trash-alt"></i>Cancel
-                                </a>
-                              </div>
-                            </td>
-                          </tr>
+                        <tr *ngFor="let reservation2 of list2">
+                          <td>{{ reservation2.professeurName }}</td>
+                          <td>{{ reservation2.nomcours }}</td>
+                          <td>{{ reservation2.dateR | date:'EEE, MMM d' }}<span
+                            class="d-block ">{{ reservation2.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
+                          <td>
+                            <ng-container [ngSwitch]="reservation2.statusR">
+                              <span *ngSwitchCase="'Canceled'"
+                                    class="badge badge-pill bg-danger-light">{{ reservation2.statusR }}</span>
+                              <span *ngSwitchCase="'Confirmed'"
+                                    class="badge badge-pill bg-success-light">{{ reservation2.statusR }}</span>
+                              <span *ngSwitchCase="'Pending'"
+                                    class="badge badge-pill bg-warning-light">{{ reservation2.statusR }}</span>
+                            </ng-container>
+                          </td>
+                          <td>
+                            <div class="table-action">
+                              <a *ngIf="reservation2.statusR === 'Pending'" href="javascript:void(0);"
+                                 class="btn btn-sm bg-success-light"
+                                 (click)="updateReservationDate(reservation2.idR,reservation2.id_professeur)">
+                                <i class="fas fa-edit"></i> Edit
+                              </a>
+                              <a href="javascript:void(0);" class="btn btn-sm bg-danger-light"
+                                 *ngIf="reservation2.statusR === 'Pending'" (click)="cancelReservation2(reservation2)" (click)="sendSmsCancelation(reservation2)">
+                                <i class="far fa-trash-alt"></i>Cancel
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                </div>              </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

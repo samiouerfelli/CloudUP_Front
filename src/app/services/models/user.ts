@@ -8,7 +8,7 @@ export interface User {
   authorities?: Array<GrantedAuthority>;
   createdDate?: string;
   credentialsNonExpired?: boolean;
-  email?: string;
+  email: string;
   enabled?: boolean;
   idUser?: number;
   lastModifiedDate?: string;
@@ -16,7 +16,7 @@ export interface User {
   name?: string;
   nom?: string;
   password?: string;
-  phoneNumber?: string;
+  phoneNumber: string;
   prenom?: string;
   roles?: 'Professor' | 'Student' | 'Club' | 'Admin';
   username?: string;
