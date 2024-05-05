@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
   // tslint:disable-next-line:typedef
   showSlides(ne: any) {
     var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("testi-user-img");
+    var slides = document.getElementsByClassName('mySlides');
+    var dots = document.getElementsByClassName('testi-user-img');
     if (ne > slides.length) {
       this.slideIndex = 1
     }
