@@ -1,0 +1,175 @@
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
+        
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div  class="chat-window">
+                    
+                        <!-- Chat Left -->
+                        <div class="chat-cont-left">
+                            <div class="chat-header">
+                                <span>Chats</span>
+                                <a href="javascript:void(0)" class="chat-compose">
+                                    <i class="material-icons">control_point</i>
+                                </a>
+                            </div>
+                            <form class="chat-search">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Search">
+                                </div>
+                            </form>
+                            <div class="chat-users-list">
+                                <div class="chat-scroll">
+                                    <ng-container  *ngIf="allprivateChat.length>0">
+                                        <ng-container *ngFor="let allchat of allprivateChat ;let i=index">
+                                            <ng-container *ngFor="let message of allchat.messages">
+                                                <a  *ngIf="message === allchat.messages[allchat.messages.length - 1]" (click)="getmsg(i)"  href="javascript:void(0);" class="media read-chat active">
+                                                    <div class="media-img-wrap">
+                                                        <div class="avatar avatar-online">
+                                                            <img src="assets/img/admins/admin-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div>
+                                                            <div class="user-name" *ngIf="userrole=='Admin'">
+                                                                {{allchat?.creator?.nom}} 
+                                                                {{allchat?.creator?.prenom}}
+                                                            </div>
+                                                            <span class="bg-danger"></span>
+                                                            <div class="user-name" *ngIf="userrole!='Admin'">ADMIN</div>
+
+                                                            <div class="user-last-chat">
+                                                                {{message.content}} </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="last-chat-time block">  
+                                                                 {{message.timestamp}}</div>
+                                                                 <span *ngIf="unreadMessageCount (allchat)!=0" style="font-size: 12px;" class="badge badge-info">{{unreadMessageCount (allchat)}}</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </ng-container>
+                                         
+                                        </ng-container>
+                         
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Chat Left -->
+                    
+                        <!-- Chat Right -->
+                        <div class="chat-cont-right" >
+                            <div class="chat-header">
+                                <a id="back_user_list" href="javascript:void(0)" class="back-user-list">
+                                    <i class="material-icons">chevron_left</i>
+                                </a>
+                                <div class="media">
+                                    <div class="media-img-wrap">
+                                        <div class="avatar avatar-online">
+                                            <img src="assets/img/admins/admin-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                                    <div class="user-name" *ngIf="userrole=='Admin'">
+                                                        {{privateChat?.creator?.nom}} 
+                                                        {{privateChat?.creator?.prenom}}
+                                                    </div>
+                                                    <div class="user-name" *ngIf="userrole!='Admin'">ADMIN</div>
+
+                                        <div class="user-status">online</div>
+                                    </div>
+                                </div>
+                                <div class="chat-options">
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#voice_call">
+                                        <i class="material-icons">local_phone</i>
+                                    </a>
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#video_call">
+                                        <i class="material-icons">videocam</i>
+                                    </a>
+                                    <a href="javascript:void(0)">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="chat-body">
+                                <div class="chat-scroll">
+                                    <ul class="list-unstyled">
+                                        <ng-container  *ngIf="privateChat!=null">
+                                            <ng-container *ngFor="let msg of privateChat.messages">
+                                                <li class="media sent" *ngIf="userId==msg.senderId" >
+                                                    <div class="media-body">
+                                                        <div class="msg-box">
+                                                            <div>
+                                                                <p>{{msg.content}}</p>
+                                                                <ul class="chat-msg-info">
+                                                                    <li>
+                                                                        <div class="chat-time">
+                                                                            <span>{{msg.timestamp}}</span>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="media received" *ngIf="userId!=msg.senderId" >
+                                
+                                       
+                                                <div class="avatar">
+                                                    <img src="assets/img/admins/admin-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="msg-box">
+                                                        <div class="msg-box">
+                                                            <div>
+                                                                <p>{{msg.content}}</p>
+                                                                <ul class="chat-msg-info">
+                                                                    <li>
+                                                                        <div class="chat-time">
+                                                                            <span>{{msg.timestamp}}</span>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li> 
+                                            </ng-container>
+                                       
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="chat-footer">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="btn-file btn">
+                                            <i class="fa fa-paperclip"></i>
+                                            <input type="file">
+                                        </div>
+                                    </div>
+                                    <input [(ngModel)]="msg" type="text" class="input-msg-send form-control" placeholder="Type something">
+                                    <div class="input-group-append">
+                                        <button (click)="sendPrivateMsg(privateChat?.creator?.idUser)" type="button" class="btn msg-send-btn"><i class="fab fa-telegram-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Chat Right -->
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- /Row -->
+
+        </div>
+
+    </div>		
+    <!-- /Page Content -->
