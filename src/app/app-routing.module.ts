@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import {BlogDetailsComponent} from './all-modules/blog/blog-details/blog-details.component';
-import {BlogListComponent} from "./all-modules/blog/blog-list/blog-list.component";
+import {BlogListComponent} from './all-modules/blog/blog-list/blog-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },

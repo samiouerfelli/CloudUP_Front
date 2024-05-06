@@ -92,6 +92,5 @@ export class PublicationService {
     formData.append('imageFile', imageFile, imageFile.name);
     return this.http.post(`http://localhost:8080/api/v1/auth/upload/${idpub}`, formData);
   }
-
   }
-}
+

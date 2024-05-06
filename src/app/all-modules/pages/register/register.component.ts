@@ -22,7 +22,7 @@ export class RegisterComponent   {
 
 
   // tslint:disable-next-line:typedef
-   register() {
+  register() {
     this.errorMsg = [];
     this.authService.register({
       body: this.registerRequest
