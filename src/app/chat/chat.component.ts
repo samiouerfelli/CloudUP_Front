@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ReclamationService } from '../services/reclamation/reclamation.service';
+import { ReclamationService } from '../servicesalah/reclamation/reclamation.service';
 import { WebSocketService } from '../all-modules/web-socket-service.service';
-import { ChatService } from '../services/chat/chat.service';
+import { ChatService } from '../servicesalah/chat/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -39,7 +39,7 @@ console.log(this.userrole)
         this.privateChat=result[this.chatOpenIndex]
         this.allprivateChat=result
      } })
-  
+
 setTimeout(() => {
   console.log(this.privateChat)
 }, 100);

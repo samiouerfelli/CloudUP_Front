@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RecformulaireComponent } from '../recformulaire/recformulaire.component';
-import { ReclamationService } from '../services/reclamation/reclamation.service';
+import { ReclamationService } from '../servicesalah/reclamation/reclamation.service';
 import { HttpClient } from '@angular/common/http';
 import { Reclamation } from '../reclamation';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,7 +16,7 @@ import { error } from 'console';
   selector: 'app-reclamarchives',
   templateUrl: './reclamarchives.component.html',
   styleUrls: ['./reclamarchives.component.css'],
-  providers: [ ReclamationService ] 
+  providers: [ ReclamationService ]
 })
 
 export class ReclamarchivesComponent implements OnInit{
@@ -36,13 +36,13 @@ export class ReclamarchivesComponent implements OnInit{
   ngOnInit(): void {
     this.GetAllReclamsA()
   }
-  
+
   SetPage(i:number)
   {
     this.page=i;
     this.GetAllReclamsA();
   }
-  
+
   GetAllReclamsA()
   {
     this.recs.GetArchive(this.page,this.size,this.sortBy,this.sortOrder).subscribe((data:any) => {
@@ -51,13 +51,13 @@ export class ReclamarchivesComponent implements OnInit{
       this.pages=new Array(data['totalPages'])
     })
   }
- 
+
 ViewDetails (reclamation:Reclamation)
 { console.log(reclamation.time);
   this.temps=reclamation.time
   this._dialog.open(RecformulaireComponent,{
 
-    data:{ 
+    data:{
       title:"Details",
       reclamation:reclamation,
       view:true
@@ -88,5 +88,5 @@ sort(field:string){
 
 }
 
-  
+
 

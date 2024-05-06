@@ -7,6 +7,7 @@ import {Commentary} from '../../../model/commentary.model';
 import Swal from 'sweetalert2';
 import {AuthentificationService} from '../../../services/services/authentification.service';
 import {CommentaryService} from '../../../service/commentary.service';
+import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-professor-blog',
@@ -30,7 +31,7 @@ export class ProfessorBlogComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(private publicationService: PublicationService,
               private router: Router,
-              private authservice: AuthentificationService,
+              private authservice: UserService,
               private commentaryService: CommentaryService) { }
 
   ngOnInit(): void {

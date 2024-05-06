@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { TokenService } from '../services/token/token.service';
-import {catchError} from 'rxjs/operators';
-import {Observable, throwError} from 'rxjs';
-import {PublicationService} from '../service/publication.service';
-import {Publication} from '../model/publication.model';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {Router} from "@angular/router";
+import {PublicationService} from "../service/publication.service";
+import {Publication} from "../model/publication.model";
+import {Observable, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -151,36 +151,12 @@ export class HomeComponent implements OnInit {
   errorMessage: any;
   p: Publication | undefined;
   // tslint:disable-next-line:typedef
-  plusSlides(n: any) {
-    this.currentSlide(n);
-  }
-  // tslint:disable-next-line:typedef
-  currentSlide(n: any) {
-    // tslint:disable-next-line:indent
-    this.showSlides(this.slideIndex = n);
-  }
 
   // tslint:disable-next-line:typedef
-  showSlides(ne: any) {
-    let i;
-    let slides = document.getElementsByClassName('mySlides');
-    let dots = document.getElementsByClassName('testi-user-img');
-    if (ne > slides.length) {
-      this.slideIndex = 1;
-    }
-    if (ne < 1) {
-      this.slideIndex = slides.length;
-    }
-    for (i = 0; i < slides.length; i++) {
-      slides[i].classList.add('d-none');
-      slides[i].className = slides[i].className.replace('d-block', 'd-none');
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(' active', '');
-    }
-    slides[this.slideIndex - 1].classList.add('d-block');
-    dots[this.slideIndex - 1].className += ' active';
-  }
+
+
+  // tslint:disable-next-line:typedef
+
 
   ngOnInit(): void {
     this.showSlides(this.slideIndex);

@@ -8,6 +8,7 @@ import {PublicationService} from '../../../service/publication.service';
 import {categories, Publication} from '../../../model/publication.model';
 import Swal from 'sweetalert2';
 import {AuthentificationService} from '../../../services/services/authentification.service';
+import {UserService} from "../../../service/user.service";
 
 
 @Component({
@@ -51,7 +52,7 @@ export class BlogDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private publicationService: PublicationService,
     private router: Router,
-    private authservice: AuthentificationService
+    private authservice: UserService
   ) {
   }
 

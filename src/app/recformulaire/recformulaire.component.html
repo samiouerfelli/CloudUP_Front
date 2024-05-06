@@ -1,107 +1,106 @@
 <h2 mat-dialog-title>{{data.title}}</h2>
 <mat-dialog-content class="mat-typography">
-    <!-- Breadcrumb -->
-<!-- <div class="breadcrumb-bar">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-12 col-12">
-                <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
-                        <li class="breadcrumb-item"><a routerLink="/reclamation">Reclamation></a></li>
-                        <li class="breadcrumb-item active" routerLink="/archives">Archive</li>
-                    </ol>
-                </nav>
-                <h2 class="breadcrumb-title">Archive</h2>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- Page Content -->
-<form [formGroup]="RecForm">
-<div class="content">
-    <div *ngIf="data.view">
-    <h4>Date de creation: <span class="text-primary"><span>{{time}}</span> </span></h4>
-    </div>
-    <div class="container">
-        
+  <!-- Breadcrumb -->
+  <!-- <div class="breadcrumb-bar">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-md-12 col-12">
+                  <nav aria-label="breadcrumb" class="page-breadcrumb">
+                      <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
+                          <li class="breadcrumb-item"><a routerLink="/reclamation">Reclamation></a></li>
+                          <li class="breadcrumb-item active" routerLink="/archives">Archive</li>
+                      </ol>
+                  </nav>
+                  <h2 class="breadcrumb-title">Archive</h2>
+              </div>
+          </div>
+      </div>
+  </div> -->
+  <!-- Page Content -->
+  <form [formGroup]="RecForm">
+    <div class="content">
+      <div *ngIf="data.view">
+        <h4>Date de creation: <span class="text-primary"><span>{{time}}</span> </span></h4>
+      </div>
+      <div class="container">
+
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-xl-12">
-                <div class="doc-review review-listing custom-edit-service">
-                    <div class="card">
-                        <div class="card-body">
-                                <div class="service-fields mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                                <label>Objet <span class="text-danger">*</span></label>
-                                                <input class="form-control" type="text" placeholder="Objet" formControlName="objet">
-                                            </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                                <div class="service-fields mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Categorie <span class="text-danger">*</span></label>
-                                                <mat-form-field appearence="outline">
-                                                    <mat-select placeholder="Categorie" formControlName="type">
-                                                      <mat-option *ngFor="let val of Categorie" [value]="val">
-                                                        {{val}}
-                                                      </mat-option>
-                                                    </mat-select>
-                                                  </mat-form-field>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                                <div class="service-fields mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-grouprec">
-                                                <label>Description <span class="text-danger">*</span></label>
-                                                <textarea type="text" class="form-control service-desc" name="Description" 
-                                                placeholder="description.." formControlName="description"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="service-fields mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                <div class="form-group" *ngIf="getuser()=='Admin'">
-                                    <label>Statut <span class="text-danger">*</span></label>
-                                    <mat-form-field appearence="outline">
-                                        <mat-select placeholder="Statut" formControlName="traite">
-                                          <mat-option *ngFor="let val of Statut" [value]="val">
-                                            {{val}}
-                                          </mat-option>
-                                        </mat-select>
-                                      </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                                <div class="submit-section" *ngIf="!data.view">
-                                    <button class="btn btn-primary submit-btn" (click)="onFormSubmit()" type="submit" [disabled]="RecForm.invalid">Submit</button>                                
-                                </div>
-                                <div *ngIf="getuser()=='Admin'">
-                                <button class="btn btn-primary submit-btn" (click)="SetStatut()" type="submit">Submit</button>                                
-                                </div>
-                        </div>
-                    </div>
-                    <!-- /Add Blog -->
+          <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="doc-review review-listing custom-edit-service">
+              <div class="card">
+                <div class="card-body">
+                  <div class="service-fields mb-3">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <label>Objet <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="Objet" formControlName="objet">
+                      </div>
 
+                    </div>
+                  </div>
+
+                  <div class="service-fields mb-3">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label>Categorie <span class="text-danger">*</span></label>
+                          <mat-form-field appearence="outline">
+                            <mat-select placeholder="Categorie" formControlName="type">
+                              <mat-option *ngFor="let val of Categorie" [value]="val">
+                                {{val}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="service-fields mb-3">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-grouprec">
+                          <label>Description <span class="text-danger">*</span></label>
+                          <textarea type="text" class="form-control service-desc" name="Description"
+                                    placeholder="description.." formControlName="description"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="service-fields mb-3">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group" *ngIf="getuser()=='Admin'">
+                          <label>Statut <span class="text-danger">*</span></label>
+                          <mat-form-field appearence="outline">
+                            <mat-select placeholder="Statut" formControlName="traite">
+                              <mat-option *ngFor="let val of Statut" [value]="val">
+                                {{val}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="submit-section" *ngIf="!data.view">
+                    <button class="btn btn-primary submit-btn" (click)="onFormSubmit()" type="submit" [disabled]="RecForm.invalid">Submit</button>
+                  </div>
+                  <div *ngIf="getuser()=='Admin'">
+                    <button class="btn btn-primary submit-btn" (click)="SetStatut()" type="submit">Submit</button>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
+              </div>
+              <!-- /Add Blog -->
 
-</div>
-</form> 		
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
 </mat-dialog-content>
- 
-  
+

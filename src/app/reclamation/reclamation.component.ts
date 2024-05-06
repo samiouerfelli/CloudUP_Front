@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RecformulaireComponent } from '../recformulaire/recformulaire.component';
-import { ReclamationService } from '../services/reclamation/reclamation.service';
+import { ReclamationService } from '../servicesalah/reclamation/reclamation.service';
 import { HttpClient } from '@angular/common/http';
 import { Reclamation } from '../reclamation';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,7 +16,7 @@ import { error } from 'console';
   selector: 'app-reclamation',
   templateUrl: './reclamation.component.html',
   styleUrls: ['./reclamation.component.css'],
-  providers: [ ReclamationService ] 
+  providers: [ ReclamationService ]
 })
 
 export class ReclamationComponent implements OnInit{
@@ -30,15 +30,15 @@ export class ReclamationComponent implements OnInit{
   temps:any;
   canEdit: boolean = true;
   data: any;
-  
+
   constructor(private _dialog: MatDialog, private http:HttpClient,private recs:ReclamationService,
     private snackBar:MatSnackBar,private offcanvasService :NgbOffcanvas) {}
-    
+
 
   openAddFormulaire() {
-    
+
     this._dialog.open(RecformulaireComponent,{
-      data:{ 
+      data:{
         title:"Ajouter une reclamation"},
     }).afterClosed().subscribe(
       result=> {this.snackBar.open(result,'',{duration: 1000});
@@ -56,7 +56,7 @@ export class ReclamationComponent implements OnInit{
     this.page=i;
     this.GetAllReclams();
   }
-  
+
   GetAllReclams()
   {
     this.recs.getRs(this.page,this.size,this.sortBy,this.sortOrder).subscribe((data:any) => {
@@ -68,7 +68,7 @@ export class ReclamationComponent implements OnInit{
   UpdateReclams(reclamation:Reclamation)
   {
     this._dialog.open(RecformulaireComponent,{
-      data:{ 
+      data:{
         title:"Modifier reclamation",
         reclamation:reclamation,
         view:false
@@ -82,11 +82,11 @@ export class ReclamationComponent implements OnInit{
   DeleteReclams(recid: number)
   {
     this._dialog.open(ConfirmationDeleteComponent,{
-      
+
     }).afterClosed().subscribe((result)=>
     {
       if(result)
-      {this.recs.DeleteReclams(recid).subscribe((res) => 
+      {this.recs.DeleteReclams(recid).subscribe((res) =>
         {this.snackBar.open('Supprimé avec succés','',{duration: 1000});
         this.GetAllReclams()
       })}
@@ -96,15 +96,15 @@ export class ReclamationComponent implements OnInit{
       }
     }
     )
-         
+
   }
- 
+
 ViewDetails (reclamation:Reclamation)
 { console.log(reclamation.time);
   this.temps=reclamation.time
   this._dialog.open(RecformulaireComponent,{
 
-    data:{ 
+    data:{
       title:"Details",
       reclamation:reclamation,
       view:true
@@ -165,6 +165,6 @@ getuser()
   const userrole = JSON.parse(localStorage.getItem('user')!).authorities[0].authority
   return userrole
 }
-  
+
 
 }

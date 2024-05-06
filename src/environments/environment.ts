@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  urlWebSocket: "http://localhost:8087/api/v1/websocket",
-  apiUrl: "http://localhost:8087/api/v1/reclamation",
+  urlWebSocket: "http://localhost:8080/api/v1/websocket",
+  apiUrl: "http://localhost:8080/api/v1/reclamation",
 
   base_url: 'http://localhost:8080/api/v1/auth',
   showNameDropdown : false,

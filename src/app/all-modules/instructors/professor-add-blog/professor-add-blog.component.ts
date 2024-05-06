@@ -5,6 +5,7 @@ import {ActivatedRoute, Route, Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {AuthentificationService} from '../../../services/services/authentification.service';
 import {Observable} from 'rxjs';
+import {UserService} from "../../../service/user.service";
 
 
 
@@ -17,7 +18,7 @@ import {Observable} from 'rxjs';
 export class ProfessorAddBlogComponent implements OnInit {
   constructor(private publicationService: PublicationService,
               private router: Router, private route: ActivatedRoute,
-              private authservice: AuthentificationService
+              private authservice: UserService
   ) { }
   @ViewChild('contentInput') contentInput!: ElementRef<HTMLTextAreaElement>;
   publication: Publication | undefined;
