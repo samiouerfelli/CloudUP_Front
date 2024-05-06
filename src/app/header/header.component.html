@@ -108,8 +108,9 @@
                             <li [ngClass]="[active2Route === 'blog-details' ? 'active' : '']"><a routerLink='/blog/blog-details'>Blog Details</a></li>
                         </ul>
                     </li>
-
-
+                    <li [ngClass]="[activeRoute === '/Home/reclamation' ? 'active' : '']">
+                        <a routerLink='/reclamation'>Reclamation </a>
+                    </li>
                     <li class="login-link"  >
                         <a routerLink='/pages/login'>Login / Signup</a>
                     </li>
