@@ -27,7 +27,10 @@ import {HttpTokenInterceptor} from './Interceptor/http-token.interceptor';
 import {MatSortModule} from '@angular/material/sort';
 import { ReclamarchivesComponent } from './reclamarchives/reclamarchives.component';
 import {NgxPayPalModule} from 'ngx-paypal';
-
+import { CollaborationComponent } from './collaboration/collaboration.component';
+import { CollaborationadminComponent } from './collaborationadmin/collaborationadmin.component';
+import { PartenairesadminComponent } from './partenairesadmin/partenairesadmin.component';
+import { CollaborationdetailsComponent } from './collaborationdetails/collaborationdetails.component';
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,6 +45,10 @@ export function tokenGetter() {
     RecformulaireComponent,
     ConfirmationDeleteComponent,
     ChatComponent,
+    CollaborationComponent,
+    CollaborationadminComponent,
+    PartenairesadminComponent,
+    CollaborationdetailsComponent ,
     ReclamarchivesComponent
   ],
   imports: [

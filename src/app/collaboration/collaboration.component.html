@@ -1,0 +1,193 @@
+<!-- Breadcrumb -->
+
+<div class="breadcrumb-bar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Course</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">2245 matches found for : Introduction Web Design with HTML </h2>
+            </div>
+            <div class="col-md-4 col-12 d-md-block d-none">
+                <div class="sort-by">
+                    <span class="sort-title">Sort by</span>
+                    <span class="sortby-fliter">
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Breadcrumb -->
+<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+            
+    
+    
+</div>
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+                <div class="col">
+                <ul class="nav nav-tabs nav-tabs-solid">
+                    <div class="input-group">
+                        <input [(ngModel)]="search" type="text" placeholder="Search..." class="form-control" (ngModelChange)="FindObj()">
+                        <div class="input-group-append"></div>
+                    </div>
+                </ul>
+            </div>
+            <div class="filter-widget">
+                <h4>Select a filter</h4>
+                 
+                
+                <div class="col">
+                    <ul class="nav nav-tabs nav-tabs-solid">
+                        <div class="input-group">
+                            <div *ngFor="let collab of CollaborationArray">
+                                <button class="btn btn-link" (click)="filterByNomcol(collab.nomcol)">{{ collab.nomcol }}</button>
+<!--                                 <button class="btn btn-link" (click)="filterByCategorie(collab.categorieCollaboraiton)">{{ collab.categorieCollaboraiton }}</button>
+ -->                            </div>
+ <div *ngFor="let category of categorieCollaboraiton">
+    <button class="btn btn-link" (click)="filterByCategory(category)">{{ category }}</button>
+  </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            
+            </div>
+            <!-- Search Filter -->
+            
+            <!-- <div class="col">
+                <ul class="nav nav-tabs nav-tabs-solid">
+                    <div class="input-group">
+                        <div *ngFor="let collab of CollaborationArray">
+                            <button class="btn btn-link" (click)="filterByNomcol(collab.nomcol)">{{ collab.nomcol }}</button>
+                        </div>
+                    </div>
+                </ul>
+            </div> -->
+            <div class="col-md-12 col-lg-8 col-xl-9 " >
+                <div class="row course">
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3"  *ngFor="let collab of CollaborationArray">
+                        <!-- Each item -->
+                        <div class="profile-widget">
+                            <div class="doc-img">
+                                <img class="img-fluid" [src]="'data:image/jpeg;base64,' + collab.imgcol" alt="Collaboration Image">
+                                <!-- Add favorite button if needed -->
+                                <a href="javascript:void(0)" class="fav-btn" (click)="likeComment(collab.idcol)">
+                                    <i class="fas fa-heart">{{ collab.votePositif }}</i>
+                                    <!-- Display stars based on the number of likes -->
+                                    
+                                </a>
+                                <!-- Display price if needed -->
+                                <span class="price-course"> 
+                                    {{ collab.nbrres === 0 ? 'No places left &#128546; ' : (collab.nbrres >0 ? collab.nbrres + ' Places left  &#128578;' : '') }}
+                                  </span>
+                            </div>
+                            <div class="pro-content">
+                                <span *ngIf="collab.votePositif >= 1" class="star">&#9733;</span>
+                                <span *ngIf="collab.votePositif > 4 && collab.votePositif <= 10" class="star">&#9733;&#9733;</span>
+                                <span *ngIf="collab.votePositif > 10 && collab.votePositif <= 15" class="star">&#9733;&#9733;&#9733;</span>
+                                <span *ngIf="collab.votePositif > 15 && collab.votePositif <= 20" class="star">&#9733;&#9733;&#9733;&#9733;</span>
+                                <span *ngIf="collab.votePositif > 20" class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+
+                                <h3 class="title">{{ collab.nomcol }}</h3>
+                                <p class="speciality">when? at {{ collab.datecol | date: 'yyyy-MM-dd HH:mm' }}!</p>
+                                <p class="speciality">where? {{ collab.placecol }}!</p>
+<!--                                 <p class="speciality">cataegorie? {{ collab.categorieCollaboraiton }}!</p>
+ -->                             <!--   <p class="speciality"> {{ collab.user?.nom }}</p>-->
+                              
+                                
+                               
+                                
+                                <div class="row row-sm">
+                                    <!-- Display other collaboration details -->
+                                    <button class="btn view-btn"(click)="showCollabDetails(collab)">View Collaboration</button>
+                                   
+                                </div>
+
+                                      <!-- Collaboration Form Overlay -->
+                                      <div *ngIf="showCollabForm" class="collab-form-overlay" id="htmlElementIdd">
+                                        <div class="collab-form" *ngIf="selectedCollab">
+                                          <!-- Display other collaboration details -->
+                                           <!-- Form fields -->
+                                           <img *ngIf="selectedCollab.qrCodeUrl" [src]="selectedCollab.qrCodeUrl" alt="QR Code">
+                              
+                                           <img class="img-fluid" [src]="'data:image/jpeg;base64,' + selectedCollab.imgcol" alt="Collaboration Image">
+                                           <p>{{this.user.nom}}<a>-</a>{{this.user.prenom}} </p>
+                              <p><strong>Teacher:</strong> {{ selectedCollab.user?.nom }}</p>
+
+                              <p><strong>Description:</strong> {{ selectedCollab.desccol }}</p>
+                              <p><strong>Date:</strong> {{ selectedCollab.datecol | date: 'yyyy-MM-dd' }}</p>
+                              <p><strong>Place:</strong> {{ selectedCollab.placecol }}</p>
+                        
+                              <p><strong>Partner:</strong> {{ selectedCollab.partenaires?.nom }}</p>
+                              <button class="btn view-btn" (click)="getReservedPlaces(selectedCollab.idcol)">
+                                Reserved
+                              </button>
+                              <button (click)="hideCollabForm()">Close</button>
+                             
+                          </div>
+                          <div *ngIf="showCollabqrs" class="collab-form-overlay">
+                            <div class="collab-form" *ngIf="selectedCollab">
+                             
+                   <button class="btn view-btn" (click)="showCollabDetails(collab)">View Collaboration</button>
+                </div>
+                
+                <!-- Collaboration Form Overlay -->
+              
+
+                                          <!-- Other form fields and buttons -->
+                                        </div>
+                                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search Filter -->
+<div class="card search-filter">
+         
+    <div class="card-body">
+     
+    
+    
+     
+     
+        
+    </div>
+</div>
+<!-- /Search Filter -->
+<!-- Display collaborations with sorting -->
+<div class="pagination-container">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item" (click)="SetPage(page-1)">
+                <a class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo; Previous</span>
+                </a>
+            </li>
+            <li class="page-item" *ngFor="let x of pages,let i=index" (click)="SetPage(i)">
+                <a class="page-link">{{i+1}}</a>
+            </li>
+            <li class="page-item" (click)="SetPage(page+1)">
+                <a class="page-link" aria-label="Next">
+                    <span aria-hidden="true">Next &raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- 
+    
+-->

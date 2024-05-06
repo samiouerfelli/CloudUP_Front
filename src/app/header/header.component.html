@@ -111,6 +111,18 @@
                     <li [ngClass]="[activeRoute === '/Home/reclamation' ? 'active' : '']">
                         <a routerLink='/reclamation'>Reclamation </a>
                     </li>
+                    <li [ngClass]="[activeRoute === '' ? 'active' : '']">
+                        <a routerLink='/collaboration'>Collaboration </a>
+                    </li>
+                    <li class="has-submenu" [ngClass]="[activeRoute === 'instructors' ? 'active' : '']">
+                        <a routerLink='/'>Admin </a>
+                       <ul class="submenu">
+                           <li [ngClass]="[active2Route === 'professor-dashboard' ? 'active' : '']"><a routerLink='/collaborationadmin'>Collaborationadmin</a></li>
+                           <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/partenairesadmin'>Partenairesadmin</a></li>
+                          
+                            
+                       </ul>
+                        </li>
                     <li class="login-link"  >
                         <a routerLink='/pages/login'>Login / Signup</a>
                     </li>

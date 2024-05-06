@@ -1,0 +1,224 @@
+.blog-item .blog-image img {
+    max-width: 150px; /* Adjust the maximum width as needed */
+    height: auto;
+}
+.blog-item {
+    position: relative;
+}
+
+.blog-item .blog-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-item .blog-image img {
+    transition: transform 0.3s ease;
+}
+
+.blog-item .blog-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(255, 1, 1, 0.1);
+}
+.collab-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   
+    box-shadow: 0 0 10px #ff0000;
+    z-index: 999; /* Higher z-index to appear in front */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.collab-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+   
+    max-width: 80%;
+    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    max-height: 80vh;
+}
+.collab-form .img-fluid {
+    width: 200px; /* Set the desired width for the image */
+    max-width: 100%; /* Ensure the image does not exceed its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.collab-form img {
+    max-width: 100%; /* Ensure the image does not exceed its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .pagination li {
+    list-style-type: none;
+    margin-left: 5px;
+  }
+  
+  .pagination li a {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid blue;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .pagination li.active a {
+    background-color: blue;
+    color: white;
+  }
+  
+  .pagination li a:hover {
+    background-color: #d0dfff;
+    color: darkblue;
+  }
+  
+  .pagination li.disabled a {
+    color: #aaa;
+    pointer-events: none;
+  }
+  
+  .pagination li.disabled a:hover {
+    background-color: transparent;
+  }
+  /* CSS for the stars */
+.star {
+    font-size: 20px; /* Adjust the size of the stars */
+    color: rgb(255, 217, 0); /* Gold color for the stars */
+    display: inline-block; /* Ensure stars are displayed in-line */
+    position: relative; /* Enable absolute positioning of glitter elements */
+    animation: glitter 1s infinite alternate; /* Apply the glitter animation */
+}
+
+@keyframes glitter {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+        filter: brightness(150%);
+    }
+}
+
+.form-container {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-container button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Add any additional styles as needed for your form */
+.ajouter-form {
+  position: fixed;
+  top: 54%;
+  left: 54%;
+  width: 620px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ff0000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ajouter-form h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.ajouter-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.ajouter-form input,
+.ajouter-form select {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+.card.search-filter {
+  position: absolute;
+  top: 155px; /* Adjust the top position as needed */
+  right: 20px; /* Adjust the right position as needed */
+  z-index: 1000; /* Ensure it appears above other elements */
+  width: 300px; /* Adjust the width as needed */
+   
+}
+
+.card.search-filter.hidden {
+  transform: translateY(-100%); /* Move filter out of viewport when hidden */
+}
+
+.card.search-filter .card-body {
+  padding: 15px;
+}
+
+ 
+
+.filter-widget h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+ 
+
+.filter-widget .nav-tabs-solid .nav-link {
+  color: #333;
+}
+
+.filter-widget .nav-tabs-solid .nav-link.active {
+  color: #000;
+}
+
+.filter-widget .input-group {
+  margin-bottom: 15px;
+}
