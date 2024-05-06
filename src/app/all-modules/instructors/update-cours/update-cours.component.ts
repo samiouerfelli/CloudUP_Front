@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {CoursControllerService} from '../../../services/services/cours-controller.service';
 import {CoursRequest, Niveau} from '../../../services/models/cours-request';
+import { User } from 'src/app/services/models';
+import { AuthentificationService } from 'src/app/services/services';
 
 // @ts-ignore
 // @ts-ignore
@@ -17,14 +19,19 @@ export class UpdateCoursComponent implements OnInit {
   updateForm!: FormGroup;
   public showNameDropdown = environment.showNameDropdown;
 
+  public user! : User;
 
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
+              private authService: AuthentificationService,
+
               private service: CoursControllerService,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.authService.getUser().subscribe(user => { this.user=user});
+
     console.log(this.coursId);
     this.coursId = this.route.snapshot.params.idCours;
     this.service.findCoursById({idC: this.coursId}).subscribe({

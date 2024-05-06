@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { CoursControllerService } from './services/cours-controller.service';
+import { AuthentificationService } from './services/authentification.service';
 import { OtpControllerService } from './services/otp-controller.service';
 import { PaypalControllerService } from './services/paypal-controller.service';
-import { AuthentificationService } from './services/authentification.service';
 import { SlotsControllerService } from './services/slots-controller.service';
 import { ReservationControllerService } from './services/reservation-controller.service';
 import { AuthentificationGithubControllerService } from './services/authentification-github-controller.service';
@@ -21,9 +21,9 @@ import { AuthentificationGithubControllerService } from './services/authentifica
   declarations: [],
   providers: [
     CoursControllerService,
+    AuthentificationService,
     OtpControllerService,
     PaypalControllerService,
-    AuthentificationService,
     SlotsControllerService,
     ReservationControllerService,
     AuthentificationGithubControllerService,
@@ -43,7 +43,7 @@ export class ApiModule {
     }
   }
 
-  constructor(
+  constructor( 
     @Optional() @SkipSelf() parentModule: ApiModule,
     @Optional() http: HttpClient
   ) {

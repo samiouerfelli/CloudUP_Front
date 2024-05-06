@@ -4,7 +4,8 @@ import {CoursServiceService} from '../../../services/services/CoursReservationSe
 // @ts-ignore
 import {Cours} from '../../../services/models/MyModels/cours';
 import {CoursControllerService} from '../../../services/services/cours-controller.service';
-import {PageResponseCoursResponse} from '../../../services/models/page-response-cours-response';
+import { AuthentificationService } from 'src/app/services/services';
+import { CoursResponse, User } from 'src/app/services/models';
 @Component({
   selector: 'app-get-cours',
   templateUrl: './get-cours.component.html',
@@ -13,6 +14,8 @@ import {PageResponseCoursResponse} from '../../../services/models/page-response-
 export class GetCoursComponent implements OnInit {
   constructor(private coursService: CoursServiceService,
               private router: Router,
+              private authService: AuthentificationService,
+
               private service: CoursControllerService ) {
   }
 
@@ -23,27 +26,24 @@ export class GetCoursComponent implements OnInit {
   public page = 0;
   pages: any = [];
   public size = 10;
+  public user! : User;
 
 
 
-  public coursResponse: PageResponseCoursResponse = {};
+  public coursResponse: CoursResponse[] = [];
 
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.fetchCoursByOwner();
+    this.authService.getUser().subscribe(user => { this.user=user});
+
   }
   // tslint:disable-next-line:typedef
   fetchCoursByOwner() {
-    this.service.findCoursByOwner({
-      page: this.page,
-      size: this.size
-    }).subscribe({
+    this.service.findCoursByOwner().subscribe({
       next: (cours) => {
         this.coursResponse = cours ;
-        this.pages = Array(this.coursResponse.totalPages)
-        .fill(0)
-        .map((x, i) => i);
     }
       }
 
@@ -57,11 +57,8 @@ export class GetCoursComponent implements OnInit {
       this.fetchCoursByOwner();
     } else {
       this.service.findCoursByName({name : this.keyword}).subscribe({
-        next: (cours: PageResponseCoursResponse) => {
+        next: (cours) => {
           this.coursResponse = cours ;
-          this.pages = Array(this.coursResponse.totalPages)
-            .fill(0)
-            .map((x, i) => i);
         },
         error: (err) => {
           console.error('Nom Cours Not Found', err);
@@ -84,40 +81,7 @@ export class GetCoursComponent implements OnInit {
     }
   }
 
-  // tslint:disable-next-line:typedef
-  get isLastPage() {
-    return this.page === this.coursResponse.totalPages as number - 1;
-  }
-
-  // tslint:disable-next-line:typedef
-  gotToPage(page: number) {
-    this.page = page;
-    this.fetchCoursByOwner();
-  }
-
-  // tslint:disable-next-line:typedef
-  goToFirstPage() {
-    this.page = 0;
-    this.fetchCoursByOwner();
-  }
-
-  // tslint:disable-next-line:typedef
-  goToPreviousPage() {
-    this.page --;
-    this.fetchCoursByOwner();
-  }
-
-  // tslint:disable-next-line:typedef
-  goToLastPage() {
-    this.page = this.coursResponse.totalPages as number - 1;
-    this.fetchCoursByOwner();
-  }
-
-  // tslint:disable-next-line:typedef
-  goToNextPage() {
-    this.page++;
-    this.fetchCoursByOwner();
-  }
+  
   // tslint:disable-next-line:typedef
   handleEditCours(idCours: number) {
     this.router.navigateByUrl(`/instructors/update-course/${idCours}`);

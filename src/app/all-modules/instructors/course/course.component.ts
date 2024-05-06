@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Cours} from '../../../services/models/MyModels/cours';
-import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
-import {ReservationService} from '../../../services/services/CoursReservationServices/reservation.service';
 import {User} from '../../../services/models/user';
 import {CoursControllerService} from '../../../services/services/cours-controller.service';
-import {PageResponseCoursResponse} from '../../../services/models/page-response-cours-response';
+import { AuthentificationService } from 'src/app/services/services';
+import { CoursResponse } from 'src/app/services/models';
 
 @Component({
   selector: 'app-course',
@@ -18,18 +17,24 @@ export class CourseComponent implements OnInit {
   public courses!: Array<Cours>;
   // tslint:disable-next-line:variable-name
   public keyword!: string;
-  public coursResponse: PageResponseCoursResponse = {};
+  public coursResponse: CoursResponse[] = [];
   pages: any = [];
+  isProfessor: boolean = false;
+  idOwner: any ;
 
-
-  constructor(private coursService: CoursServiceService,
-              private reservationService: ReservationService,
-              private service: CoursControllerService,
-              private router: Router) {
+  constructor(private service: CoursControllerService,
+              private router: Router,
+            private authService: AuthentificationService) {
   }
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
+    this.authService.getUser().subscribe(user => {
+      this.isProfessor = user.roles === 'Professor';
+      this.idOwner = user.idUser;
+
+    });
+    
     this.fetchAllCours();
   }
 
@@ -57,11 +62,8 @@ export class CourseComponent implements OnInit {
       this.fetchAllCours();
     } else {
       this.service.findCoursByName({name: this.keyword}).subscribe({
-        next: (cours: PageResponseCoursResponse) => {
+        next: (cours) => {
           this.coursResponse = cours;
-          this.pages = Array(this.coursResponse.totalPages)
-            .fill(0)
-            .map((x, i) => i);
         },
         error: (err) => {
           console.error('Nom Cours NotFound', err);

@@ -4,8 +4,8 @@ import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CoursServiceService} from '../../../services/services/CoursReservationServices/cours-service.service';
 // @ts-ignore
-import {CoursControllerService} from 'src/app/services/services';
-import {CoursRequest} from 'src/app/services/models';
+import {AuthentificationService, CoursControllerService} from 'src/app/services/services';
+import {CoursRequest, User} from 'src/app/services/models';
 import {Niveau} from '../../../services/models/MyModels/cours';
 
 
@@ -18,11 +18,12 @@ export class AddCoursComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private coursService: CoursServiceService,
               private service: CoursControllerService,
+              private authService: AuthentificationService,
               private router: Router) {
   }
   public courseForm!: FormGroup;
   public showNameDropdown = environment.showNameDropdown;
-
+public user! : User;
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
@@ -36,6 +37,7 @@ export class AddCoursComponent implements OnInit {
       type: this.fb.control('', Validators.required)
     });
     this.onChanges();
+    this.authService.getUser().subscribe(user => { this.user=user});
 
   }
 

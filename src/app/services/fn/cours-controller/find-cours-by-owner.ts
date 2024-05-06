@@ -6,18 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PageResponseCoursResponse } from '../../models/page-response-cours-response';
+import { CoursResponse } from '../../models/cours-response';
 
 export interface FindCoursByOwner$Params {
-  page?: number;
-  size?: number;
 }
 
-export function findCoursByOwner(http: HttpClient, rootUrl: string, params?: FindCoursByOwner$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseCoursResponse>> {
+export function findCoursByOwner(http: HttpClient, rootUrl: string, params?: FindCoursByOwner$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursResponse>>> {
   const rb = new RequestBuilder(rootUrl, findCoursByOwner.PATH, 'get');
   if (params) {
-    rb.query('page', params.page, {});
-    rb.query('size', params.size, {});
   }
 
   return http.request(
@@ -25,7 +21,7 @@ export function findCoursByOwner(http: HttpClient, rootUrl: string, params?: Fin
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PageResponseCoursResponse>;
+      return r as StrictHttpResponse<Array<CoursResponse>>;
     })
   );
 }

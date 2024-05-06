@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/services/models';
-import { ReservationControllerService } from 'src/app/services/services';
+import { AuthentificationService, ReservationControllerService } from 'src/app/services/services';
 
 @Component({
   selector: 'app-my-students',
@@ -9,10 +9,15 @@ import { ReservationControllerService } from 'src/app/services/services';
 })
 export class MyStudentsComponent implements OnInit {
   public data :User[] = [];
-  constructor(private service :ReservationControllerService ) { }
+  constructor(private service :ReservationControllerService,
+    private authService: AuthentificationService
+   ) { }
+  public user! : User;
 
   ngOnInit(): void {
     this.fetchAllStudents();
+    this.authService.getUser().subscribe(user => { this.user=user});
+
   }
 
   fetchAllStudents() {

@@ -6,13 +6,13 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { CoursResponse } from '../../models/cours-response';
+import { CoursParticuliers } from '../../models/cours-particuliers';
 
-export interface FindAllCours$Params {
+export interface GetTopCourses$Params {
 }
 
-export function findAllCours(http: HttpClient, rootUrl: string, params?: FindAllCours$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursResponse>>> {
-  const rb = new RequestBuilder(rootUrl, findAllCours.PATH, 'get');
+export function getTopCourses(http: HttpClient, rootUrl: string, params?: GetTopCourses$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursParticuliers>>> {
+  const rb = new RequestBuilder(rootUrl, getTopCourses.PATH, 'get');
   if (params) {
   }
 
@@ -21,9 +21,9 @@ export function findAllCours(http: HttpClient, rootUrl: string, params?: FindAll
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<CoursResponse>>;
+      return r as StrictHttpResponse<Array<CoursParticuliers>>;
     })
   );
 }
 
-findAllCours.PATH = '/auth/retrieveAllCours';
+getTopCourses.PATH = '/auth/getTopCourses';

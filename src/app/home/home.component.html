@@ -72,6 +72,7 @@
 <!-- /Info Section -->
 
 <!-- Top Universities -->
+ <!--
 <section class="top-universities">
     <div class="container">
         <div class="row">
@@ -87,12 +88,13 @@
                 </div>
             </div>
         </div>
+
+       
         <div class="university">
             <owl-carousel-o [options]="coursesCarouselOptions">
                 <ng-container *ngFor="let slide of coursesCarouselslides">
                     <ng-template carouselSlide>
 
-                        <!-- carousel item -->
                         <div class="item universities">
                             <div class="universities-card">
                                 <a routerLink='/instructors/course'>
@@ -117,7 +119,6 @@
                                 </a>
                             </div>
                         </div>
-                        <!-- /carousel item -->
 
                     </ng-template>
                 </ng-container>
@@ -131,7 +132,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- /Top Universities -->
 
 <!-- Popular Course -->
@@ -152,7 +153,7 @@
         </div>
         <div class="popular-courses">
             <owl-carousel-o [options]="popularcoursesCarouselOptions">
-                <ng-container>
+                <ng-container *ngFor="let course of List  | slice:0:3">
                     <ng-template carouselSlide>
                         <!-- carousel item -->
                         <div class="item">
@@ -162,10 +163,10 @@
                                         <img src="assets/img/courses.png" alt="" class="img-fluid">
                                     </div>
                                     <div class="text-course">
-                                        <span class="course-main">Teesside University</span>
-                                        <h5>Aerospace Engineering</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
+                                        <span class="course-main">{{ course.professeur?.nom }}  {{ course.professeur?.prenom }}</span>
+                                        <h5>{{course.nomCours}}</h5>
+                                        <span class="course-secondary">{{course.niveau}} {{course.option}}</span>
+                                        <p>{{ course.descriptionCours }}</p>
                                     </div>
                                     <div class="course-rating">
                                         <span>3.2</span>
@@ -183,308 +184,15 @@
                                         </div>
                                         <div class="text-center">
                                             <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
+                                            <p><i class="far fa-file-alt mr-1"></i>{{course.dureeC}}</p>
                                         </div>
                                     </div>
                                     <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/blog/blog-01.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">Imperial College London</span>
-                                        <h5>Computer Science</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/blog/blog-02.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">University of Hertfordshire</span>
-                                        <h5>Business Management</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
+                                        <a routerLink='/students/booking' class="btn btn-secondary" >BOOK NOW</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- /carousel item -->
-                    </ng-template>
-                    <ng-template carouselSlide>
-                        <!-- carousel item -->
-                        <div class="item">
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/courses.png" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">Teesside University</span>
-                                        <h5>Aerospace Engineering</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/blog/blog-01.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">Imperial College London</span>
-                                        <h5>Computer Science</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/blog/blog-02.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">University of Hertfordshire</span>
-                                        <h5>Business Management</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /carousel item -->
-                    </ng-template>
-                    <ng-template carouselSlide>
-                        <!-- carousel item -->
-                        <div class="item">
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/courses.png" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">Teesside University</span>
-                                        <h5>Aerospace Engineering</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/blog/blog-01.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">Imperial College London</span>
-                                        <h5>Computer Science</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popular-course">
-                                <div class="course-header d-md-flex align-items-center mb-4">
-                                    <div class="img-course">
-                                        <img src="assets/img/blog/blog-02.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="text-course">
-                                        <span class="course-main">University of Hertfordshire</span>
-                                        <h5>Business Management</h5>
-                                        <span class="course-secondary">Technology / Space / Aerospace</span>
-                                        <p>Classes started from coming friday (21 jun 2017)</p>
-                                    </div>
-                                    <div class="course-rating">
-                                        <span>3.2</span>
-                                    </div>
-                                </div>
-                                <div class="course-footer d-md-flex align-items-center">
-                                    <div class="course-details d-flex">
-                                        <div class="text-center">
-                                            <h5>Total Seats</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 200</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Available</h5>
-                                            <p><i class="fas fa-user-graduate mr-1"></i> 100</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <h5>Duration</h5>
-                                            <p><i class="far fa-file-alt mr-1"></i> 6 Months</p>
-                                        </div>
-                                    </div>
-                                    <div class="course-book">
-                                        <a routerLink='/students/booking' class="btn btn-secondary">BOOK NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /carousel item -->
                     </ng-template>
                 </ng-container>
             </owl-carousel-o>
@@ -517,45 +225,35 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-xl-3">
+            <div *ngFor="let prof of ListProf " class="col-md-6 col-xl-3">
                 <div class="popular-instructors">
                     <div class="instructors-head">
                         <div class="instructors-aut-img">
-                            <img src="assets/img/admins/admin-02.jpg" alt="">
+                           <!-- <img src="assets/img/admins/admin-02.jpg" alt=""> --> 
+                           <img src={{prof.image}} alt="{{prof.name}}"> 
                         </div>
                     </div>
                     <div class="instructors-body">
                         <div class="instructors-ratings">
-                            <ul class="mb-0">
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star not-checked"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0">David Lee</p>
-                            <h4 class="mb-0">Aerospace Engineering</h4>
+                            
+                            <p class="mb-0">{{prof.nom}} {{prof.prenom}}</p>
+                            <h4 class="mb-0">{{prof.degree}}</h4>
                         </div>
                     </div>
                     <div class="about-instructor">
                         <div class="w-100 d-flex mb-2">
                             <div class="w-50">
                                 <div class="instructor-univ d-flex align-items-center border-univ">
-                                    <i class="fas fa-university"></i>
-                                    <p>University of Hertfordshire</p>
+                                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                    
+                                 <Address> {{prof.city}} {{prof.codePostal}} {{prof.country}}  </Address>
                                 </div>
                             </div>
                             <div class="w-50 pl-3">
                                 <div class="instructor-univ d-flex align-items-center">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fa fa-mobile"></i>
                                     <div class="d-block">
-                                        <h5>Expertise </h5>
-                                        <p>Aerodynamics</p>
+                                        <h5>{{prof.phoneNumber}} </h5>
                                     </div>
                                 </div>
                             </div>
@@ -564,172 +262,7 @@
                     <div class="instructors-border"></div>
                     <div class="instructors-footer d-flex align-items-center">
                         <div class="instructors-count">
-                            <p>Experience : 25 years</p>
-                        </div>
-                        <div class="instructors-amt ml-auto">
-                            <a routerLink='/students/professor-profile' class="btn btn-secondary">BOOK NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="popular-instructors">
-                    <div class="instructors-head">
-                        <div class="instructors-aut-img">
-                            <img src="assets/img/admins/admin-11.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="instructors-body">
-                        <div class="instructors-ratings">
-                            <ul class="mb-0">
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star not-checked"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0">Melba Schaefer</p>
-                            <h4 class="mb-0">Aerospace Engineering</h4>
-                        </div>
-                    </div>
-                    <div class="about-instructor">
-                        <div class="w-100 d-flex mb-2">
-                            <div class="w-50">
-                                <div class="instructor-univ d-flex align-items-center border-univ">
-                                    <i class="fas fa-university"></i>
-                                    <p>University of Hertfordshire</p>
-                                </div>
-                            </div>
-                            <div class="w-50 pl-3">
-                                <div class="instructor-univ d-flex align-items-center">
-                                    <i class="fas fa-book"></i>
-                                    <div class="d-block">
-                                        <h5>Expertise </h5>
-                                        <p>Aerodynamics</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="instructors-border"></div>
-                    <div class="instructors-footer d-flex align-items-center">
-                        <div class="instructors-count">
-                            <p>Experience : 25 years</p>
-                        </div>
-                        <div class="instructors-amt ml-auto">
-                            <a routerLink='/students/professor-profile' class="btn btn-secondary">BOOK NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="popular-instructors">
-                    <div class="instructors-head">
-                        <div class="instructors-aut-img">
-                            <img src="assets/img/admins/admin-04.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="instructors-body">
-                        <div class="instructors-ratings">
-                            <ul class="mb-0">
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star not-checked"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0">Diego Cantu</p>
-                            <h4 class="mb-0">Aerospace Engineering</h4>
-                        </div>
-                    </div>
-                    <div class="about-instructor">
-                        <div class="w-100 d-flex mb-2">
-                            <div class="w-50">
-                                <div class="instructor-univ d-flex align-items-center border-univ">
-                                    <i class="fas fa-university"></i>
-                                    <p>University of Hertfordshire</p>
-                                </div>
-                            </div>
-                            <div class="w-50 pl-3">
-                                <div class="instructor-univ d-flex align-items-center">
-                                    <i class="fas fa-book"></i>
-                                    <div class="d-block">
-                                        <h5>Expertise </h5>
-                                        <p>Aerodynamics</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="instructors-border"></div>
-                    <div class="instructors-footer d-flex align-items-center">
-                        <div class="instructors-count">
-                            <p>Experience : 25 years</p>
-                        </div>
-                        <div class="instructors-amt ml-auto">
-                            <a routerLink='/students/professor-profile' class="btn btn-secondary">BOOK NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="popular-instructors">
-                    <div class="instructors-head">
-                        <div class="instructors-aut-img">
-                            <img src="assets/img/admins/admin-07.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="instructors-body">
-                        <div class="instructors-ratings">
-                            <ul class="mb-0">
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star checked"></i>
-                                </li>
-                                <li>	<i class="fas fa-star not-checked"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0">Laura Richter</p>
-                            <h4 class="mb-0">Aerospace Engineering</h4>
-                        </div>
-                    </div>
-                    <div class="about-instructor">
-                        <div class="w-100 d-flex mb-2">
-                            <div class="w-50">
-                                <div class="instructor-univ d-flex align-items-center border-univ">
-                                    <i class="fas fa-university"></i>
-                                    <p>University of Hertfordshire</p>
-                                </div>
-                            </div>
-                            <div class="w-50 pl-3">
-                                <div class="instructor-univ d-flex align-items-center">
-                                    <i class="fas fa-book"></i>
-                                    <div class="d-block">
-                                        <h5>Expertise </h5>
-                                        <p>Aerodynamics</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="instructors-border"></div>
-                    <div class="instructors-footer d-flex align-items-center">
-                        <div class="instructors-count">
-                            <p>Experience : 25 years</p>
+                            <p>{{prof.email}}</p>
                         </div>
                         <div class="instructors-amt ml-auto">
                             <a routerLink='/students/professor-profile' class="btn btn-secondary">BOOK NOW</a>

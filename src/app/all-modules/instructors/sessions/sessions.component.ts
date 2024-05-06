@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 
 import {environment} from '../../../../environments/environment';
 import {OtpControllerService} from '../../../services/services/otp-controller.service';
+import { User } from 'src/app/services/models';
+import { AuthentificationService } from 'src/app/services/services';
 
 @Component({
   selector: 'app-sessions',
@@ -19,11 +21,16 @@ export class SessionsComponent implements OnInit {
 
   constructor(private service: ReservationControllerService,
               private smsService: OtpControllerService,
+              private authService: AuthentificationService,
+
               private router: Router) {
   }
+  public user! : User;
 
   ngOnInit(): void {
     this.getReservationForProfessor();
+    this.authService.getUser().subscribe(user => { this.user=user});
+
   }
 
   /* ----- */

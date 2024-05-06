@@ -6,19 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PageResponseCoursResponse } from '../../models/page-response-cours-response';
+import { CoursResponse } from '../../models/cours-response';
 
 export interface FindCoursByName$Params {
-  page?: number;
-  size?: number;
   name: string;
 }
 
-export function findCoursByName(http: HttpClient, rootUrl: string, params: FindCoursByName$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseCoursResponse>> {
+export function findCoursByName(http: HttpClient, rootUrl: string, params: FindCoursByName$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursResponse>>> {
   const rb = new RequestBuilder(rootUrl, findCoursByName.PATH, 'get');
   if (params) {
-    rb.query('page', params.page, {});
-    rb.query('size', params.size, {});
     rb.path('name', params.name, {});
   }
 
@@ -27,7 +23,7 @@ export function findCoursByName(http: HttpClient, rootUrl: string, params: FindC
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PageResponseCoursResponse>;
+      return r as StrictHttpResponse<Array<CoursResponse>>;
     })
   );
 }

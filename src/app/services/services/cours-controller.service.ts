@@ -9,6 +9,7 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { CoursParticuliers } from '../models/cours-particuliers';
 import { CoursResponse } from '../models/cours-response';
 import { deleteCours1 } from '../fn/cours-controller/delete-cours-1';
 import { DeleteCours1$Params } from '../fn/cours-controller/delete-cours-1';
@@ -20,11 +21,15 @@ import { findCoursByName } from '../fn/cours-controller/find-cours-by-name';
 import { FindCoursByName$Params } from '../fn/cours-controller/find-cours-by-name';
 import { findCoursByOwner } from '../fn/cours-controller/find-cours-by-owner';
 import { FindCoursByOwner$Params } from '../fn/cours-controller/find-cours-by-owner';
-import { PageResponseCoursResponse } from '../models/page-response-cours-response';
+import { getTopCourses } from '../fn/cours-controller/get-top-courses';
+import { GetTopCourses$Params } from '../fn/cours-controller/get-top-courses';
+import { getTopProfessor } from '../fn/cours-controller/get-top-professor';
+import { GetTopProfessor$Params } from '../fn/cours-controller/get-top-professor';
 import { saveCours } from '../fn/cours-controller/save-cours';
 import { SaveCours$Params } from '../fn/cours-controller/save-cours';
 import { updateCours } from '../fn/cours-controller/update-cours';
 import { UpdateCours$Params } from '../fn/cours-controller/update-cours';
+import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class CoursControllerService extends BaseService {
@@ -91,7 +96,7 @@ export class CoursControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findCoursByName$Response(params: FindCoursByName$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseCoursResponse>> {
+  findCoursByName$Response(params: FindCoursByName$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursResponse>>> {
     return findCoursByName(this.http, this.rootUrl, params, context);
   }
 
@@ -101,9 +106,9 @@ export class CoursControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findCoursByName(params: FindCoursByName$Params, context?: HttpContext): Observable<PageResponseCoursResponse> {
+  findCoursByName(params: FindCoursByName$Params, context?: HttpContext): Observable<Array<CoursResponse>> {
     return this.findCoursByName$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PageResponseCoursResponse>): PageResponseCoursResponse => r.body)
+      map((r: StrictHttpResponse<Array<CoursResponse>>): Array<CoursResponse> => r.body)
     );
   }
 
@@ -141,7 +146,7 @@ export class CoursControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllCours$Response(params?: FindAllCours$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseCoursResponse>> {
+  findAllCours$Response(params?: FindAllCours$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursResponse>>> {
     return findAllCours(this.http, this.rootUrl, params, context);
   }
 
@@ -151,9 +156,59 @@ export class CoursControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllCours(params?: FindAllCours$Params, context?: HttpContext): Observable<PageResponseCoursResponse> {
+  findAllCours(params?: FindAllCours$Params, context?: HttpContext): Observable<Array<CoursResponse>> {
     return this.findAllCours$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PageResponseCoursResponse>): PageResponseCoursResponse => r.body)
+      map((r: StrictHttpResponse<Array<CoursResponse>>): Array<CoursResponse> => r.body)
+    );
+  }
+
+  /** Path part for operation `getTopProfessor()` */
+  static readonly GetTopProfessorPath = '/auth/getTopProfessors';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getTopProfessor()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getTopProfessor$Response(params?: GetTopProfessor$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
+    return getTopProfessor(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getTopProfessor$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getTopProfessor(params?: GetTopProfessor$Params, context?: HttpContext): Observable<Array<User>> {
+    return this.getTopProfessor$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<User>>): Array<User> => r.body)
+    );
+  }
+
+  /** Path part for operation `getTopCourses()` */
+  static readonly GetTopCoursesPath = '/auth/getTopCourses';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getTopCourses()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getTopCourses$Response(params?: GetTopCourses$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursParticuliers>>> {
+    return getTopCourses(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getTopCourses$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getTopCourses(params?: GetTopCourses$Params, context?: HttpContext): Observable<Array<CoursParticuliers>> {
+    return this.getTopCourses$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<CoursParticuliers>>): Array<CoursParticuliers> => r.body)
     );
   }
 
@@ -166,7 +221,7 @@ export class CoursControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findCoursByOwner$Response(params?: FindCoursByOwner$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseCoursResponse>> {
+  findCoursByOwner$Response(params?: FindCoursByOwner$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursResponse>>> {
     return findCoursByOwner(this.http, this.rootUrl, params, context);
   }
 
@@ -176,9 +231,9 @@ export class CoursControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findCoursByOwner(params?: FindCoursByOwner$Params, context?: HttpContext): Observable<PageResponseCoursResponse> {
+  findCoursByOwner(params?: FindCoursByOwner$Params, context?: HttpContext): Observable<Array<CoursResponse>> {
     return this.findCoursByOwner$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PageResponseCoursResponse>): PageResponseCoursResponse => r.body)
+      map((r: StrictHttpResponse<Array<CoursResponse>>): Array<CoursResponse> => r.body)
     );
   }
 

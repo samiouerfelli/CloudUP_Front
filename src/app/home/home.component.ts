@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import { CoursControllerService } from '../services/services';
+import { CoursParticuliers, User } from '../services/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -40,7 +43,70 @@ export class HomeComponent implements OnInit {
     slides[this.slideIndex - 1].classList.add("d-block");
     dots[this.slideIndex - 1].className += " active";
   }
+public List: CoursParticuliers[]=[];
+public ListProf: User[]=[];
 
+fetchTopProfessor()
+{
+  this.service.getTopProfessor().subscribe({
+    next : (user) => 
+      {
+      console.log("top professor fetch successfully");
+      this.ListProf=user;
+      },
+      error : (err) => {console.log(err);}
+  })
+}
+
+
+fetchTopCourses()
+  {
+this.service.getTopCourses().subscribe({
+  next : (cours) => 
+    {
+    console.log("top courses fetch successfully");
+    this.List=cours;
+    },
+    error : (err) => {console.log(err);}
+})
+  }
+  popularcoursesCarouselOptions = {
+    loop: true,
+    margin: 15,
+    nav: true,
+    navText: ['<span class="fas fa-chevron-left"></span>', '<span class="fas fa-chevron-right"></span>'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      500: {
+        items: 1
+      },
+      768: {
+        items: 1
+      },
+      1000: {
+        items: 2
+      },
+      1300: {
+        items: 2
+      }
+    }
+  };
+
+
+  constructor(private service:CoursControllerService  ) {
+  }
+
+  ngOnInit(): void {
+    this.showSlides(this.slideIndex);
+    this.fetchTopCourses();
+    this.fetchTopProfessor();
+
+  }
+
+}
+/*
   coursesCarouselOptions = {
     loop: true,
     margin: 15,
@@ -137,12 +203,4 @@ export class HomeComponent implements OnInit {
       count2: "17 Courses",
     },
   ];
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-    this.showSlides(this.slideIndex)
-  }
-
-}
+*/

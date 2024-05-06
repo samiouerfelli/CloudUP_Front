@@ -6,13 +6,13 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { CoursResponse } from '../../models/cours-response';
+import { User } from '../../models/user';
 
-export interface FindAllCours$Params {
+export interface GetTopProfessor$Params {
 }
 
-export function findAllCours(http: HttpClient, rootUrl: string, params?: FindAllCours$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<CoursResponse>>> {
-  const rb = new RequestBuilder(rootUrl, findAllCours.PATH, 'get');
+export function getTopProfessor(http: HttpClient, rootUrl: string, params?: GetTopProfessor$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
+  const rb = new RequestBuilder(rootUrl, getTopProfessor.PATH, 'get');
   if (params) {
   }
 
@@ -21,9 +21,9 @@ export function findAllCours(http: HttpClient, rootUrl: string, params?: FindAll
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<CoursResponse>>;
+      return r as StrictHttpResponse<Array<User>>;
     })
   );
 }
 
-findAllCours.PATH = '/auth/retrieveAllCours';
+getTopProfessor.PATH = '/auth/getTopProfessors';
