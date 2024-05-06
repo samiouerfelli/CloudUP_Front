@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -163,6 +163,9 @@ export class AuthentificationService extends BaseService {
   getIDFromToken(token: string): Observable<number> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<number>('http://localhost:8080/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
+  }
+  getRole(idUser: number):Observable<string> {
+    return this.http.get<string>(`Http://localhost:8080/api/v1/auth/getRole/${idUser}`);
   }
 
 }

@@ -4,8 +4,6 @@ import { PublicationService } from '../../../service/publication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {forkJoin, Observable} from 'rxjs';
 import {Commentary} from '../../../model/commentary.model';
-// @ts-ignore
-import {ToastrService} from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import {AuthentificationService} from '../../../services/services/authentification.service';
 import {CommentaryService} from '../../../service/commentary.service';
@@ -17,6 +15,12 @@ import {CommentaryService} from '../../../service/commentary.service';
 })
 export class ProfessorBlogComponent implements OnInit {
   filteredPublications: Publication[] = [];
+  publications: Publication[] = [];
+  currentPage = 1; // Page actuelle
+  itemsPerPage = 6; // Nombre de publications par page
+  pagesArray: number[] = []; // Tableau pour stocker les numéros de page
+  totalPages = 0; // Nombre total de pages
+  role = '';
   name = '';
   publication: Observable<Publication[]> | undefined;
   editedPublication: Publication | null = null;
@@ -25,9 +29,7 @@ export class ProfessorBlogComponent implements OnInit {
 
   // tslint:disable-next-line:max-line-length
   constructor(private publicationService: PublicationService,
-              private route: ActivatedRoute,
               private router: Router,
-              private toastr: ToastrService,
               private authservice: AuthentificationService,
               private commentaryService: CommentaryService) { }
 
@@ -45,13 +47,44 @@ export class ProfessorBlogComponent implements OnInit {
             console.error('Erreur lors de la récupération des publications:', error);
           }
         );
-      },
-    );
-    this.getCommentName();
+        this.authservice.getRole(userId).subscribe(
+          (role: string) => {
+            this.role = role;
+            if (role === 'Admin') {
+              this.publicationService.getPublications().subscribe(
+                (allPub: Publication[]) => {
+                  this.publications = allPub;
+                }
+              );
+            }
+          },
+          (error) => {
+            console.error('Erreur lors du chargement du rôle');
+          }
+        );
+        this.getCommentName();
+  });
   }
   // tslint:disable-next-line:typedef
   getIDUSER(token: string): Observable<number> {
     return this.authservice.getIDFromToken(token);
+  }
+
+  confirmDelete(id: number): void {
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Êtes-vous sûr de vouloir supprimer cette publication ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer',
+      cancelButtonText: 'Non, annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deletePublication(id);
+      }
+    });
   }
   deletePublication(id: number): void {
     // Fetch all comments associated with the publication
@@ -168,6 +201,23 @@ export class ProfessorBlogComponent implements OnInit {
         console.error('Erreur lors de la récupération de l\'ID de l\'utilisateur:', error);
       }
     );
+  }
+
+  // tslint:disable-next-line:typedef
+  loadPublicationsForPage(page: number) {
+    // Calculer l'indice de départ et de fin des publications pour la page donnée
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    // Extraire les publications pour la page donnée
+    this.filteredPublications = this.publications.slice(startIndex, endIndex);
+  }
+
+  // Méthode pour définir la page actuelle
+  // tslint:disable-next-line:typedef
+  setCurrentPage(page: number) {
+    this.currentPage = page;
+    // Charger les publications pour la nouvelle page
+    this.loadPublicationsForPage(this.currentPage);
   }
 
 }

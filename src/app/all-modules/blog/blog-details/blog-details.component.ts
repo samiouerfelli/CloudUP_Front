@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {Commentary} from '../../../model/commentary.model';
 import {CommentaryService} from '../../../service/commentary.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -23,7 +23,6 @@ export class BlogDetailsComponent implements OnInit {
   tagsArray: string[] = [];
   errorMessage: any;
   searchTerm = '';
-  publicationById: Observable<Publication> | undefined;
   publicationList: Observable<Publication[]> | undefined;
   p: Publication | undefined;
   commentContent = '';
@@ -31,7 +30,6 @@ export class BlogDetailsComponent implements OnInit {
   allTags: string[] = [];
   searchResults: Commentary[] = [];
   tagHovered: string | null = null;
-  editedComment: Commentary | null = null;
   isEditing = false;
   editingCommentId = 0;
   editedCommentContent: Commentary | null | undefined = null;
@@ -46,6 +44,7 @@ export class BlogDetailsComponent implements OnInit {
   category = categories;
   sub = '';
   closed = '';
+  imageUrl = '';
 
   constructor(
     private commentaryService: CommentaryService,
@@ -97,6 +96,8 @@ export class BlogDetailsComponent implements OnInit {
       this.category = this.v[0].categories;
       // @ts-ignore
       this.closed = this.v[0].closed;
+      // @ts-ignore
+      this.imageUrl = this.v[0].image;
 
     }, error => {
       console.error('Error fetching publication details:', error);
@@ -212,7 +213,7 @@ export class BlogDetailsComponent implements OnInit {
   // tslint:disable-next-line:typedef
   searchComments(): void {
     this.route.params.subscribe(params => {
-      const idpub = params['idpub'];
+      const idpub = params.idpub;
 
       if (!idpub) {
         console.error('No publication ID provided.');
@@ -297,17 +298,6 @@ export class BlogDetailsComponent implements OnInit {
       }
     );
   }
-
-  showEditForm(commentId: number): void {
-    this.editingCommentId = commentId;
-    const edited = this.comments.find(comment => comment.idCom === commentId);
-    if (edited) {
-      this.editedComment = edited;
-    } else {
-      console.error('Comment not found:', commentId);
-    }
-  }
-
   toggleEditForm(commentId: number): void {
     if (this.isEditing && this.editingCommentId === commentId) {
       this.isEditing = false;
@@ -351,7 +341,22 @@ export class BlogDetailsComponent implements OnInit {
     this.editingCommentId = 0;
     this.editedCommentContent = null;
   }
-
+  confirmDelete(id: number): void {
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Êtes-vous sûr de vouloir supprimer ce commentaire ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer',
+      cancelButtonText: 'Non, annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteComment(id);
+      }
+    });
+  }
 
   deleteComment(commentId: number): void {
     const commentToDelete = this.comments.find(comment => comment.idCom === commentId);
@@ -388,7 +393,7 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   toggleTag(tag: string): void {
-    const idpub = this.route.snapshot.params['idpub'];
+    const idpub = this.route.snapshot.params.idpub;
 
     if (!idpub) {
       console.error('No publication ID provided.');
@@ -405,6 +410,7 @@ export class BlogDetailsComponent implements OnInit {
       this.commentaryService.searchByTags(idpub, tag).subscribe(
         (data: Commentary[]) => {
           this.searchResults = data;
+          console.log(this.searchResults);
         },
         (error) => {
           console.error('Erreur lors de la recherche par tag :', error);
@@ -442,7 +448,6 @@ export class BlogDetailsComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === ' ') { // Vérifie si la touche appuyée est la barre d'espace
       const newTag = this.tagInput.trim(); // Récupère le nouveau tag
@@ -487,6 +492,5 @@ export class BlogDetailsComponent implements OnInit {
       }
     );
   }
-
 }
 

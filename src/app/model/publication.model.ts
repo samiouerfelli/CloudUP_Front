@@ -20,6 +20,7 @@ export interface Publication {
   content: string;
   datePub: Date;
   idpub: number;
+  image: string;
   nbr_com: number;
   nbr_vue: number;
   subject: string;

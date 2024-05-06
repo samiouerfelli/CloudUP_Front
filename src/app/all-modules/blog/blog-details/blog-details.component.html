@@ -41,6 +41,10 @@
             <div class="blog-content">
               <p>{{ c }}</p>
             </div>
+            <div class="blog-image" *ngIf="imageUrl!= null">
+              <img [src]="'data:image;base64,' + imageUrl" alt="Publication Image">
+            </div>
+
           </div>
 
 
@@ -67,7 +71,7 @@
               <div class="comment">
                 <div class="comment-content">
       <span class="comment-by">
-        <span class="blog-author-name">{{name}}</span>
+        <span class="blog-author-name">{{comment.username}}</span>
         <!-- Afficher l'indicateur de solution si le commentaire est marqué comme solution -->
         <p *ngIf="comment.solution == 'true'" class="recommended">
           <i class="far fa-thumbs-up"></i> I recommend this solution!</p>
@@ -86,10 +90,10 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <div>
                       <ng-container *ngIf="!isEditing || editingCommentId !== comment.idCom">
-                        <button *ngIf="name === comment.username" class="btn btn-primary btn-sm" (click)="toggleEditForm(comment.idCom)">
+                        <button *ngIf="name === comment.username && comment.solution === 'false'" class="btn btn-primary btn-sm" (click)="toggleEditForm(comment.idCom)">
                           <i class="far fa-edit"></i> Edit
                         </button>
-                        <a *ngIf="name === comment.username" href="javascript:void(0);" class="text-danger btn btn-lg" (click)="deleteComment(comment.idCom)">
+                        <a *ngIf="name === comment.username && comment.solution === 'false'" href="javascript:void(0);" class="text-danger btn btn-lg" (click)="confirmDelete(comment.idCom)">
                           <i class="far fa-trash-alt"></i>
                         </a>
                       </ng-container>
@@ -115,6 +119,9 @@
               </div>
             </div>
           </div>
+          <br>
+          <br>
+          <br>
 
           <!-- add comment -->
           <div class="card new-comment clearfix" *ngIf="closed != 'true'">
@@ -138,7 +145,7 @@
                     <label>Tags</label>
                     <div class="tags-input-container">
                       <!-- Supprimer la classe "form-control" pour permettre l'affichage des tags côte à côte -->
-                      <input type="text" placeholder="Tags..."class="form-control" id="tags" name="tags" [(ngModel)]="tagInput" (keydown)="handleKeyDown($event)">
+                      <input type="text" placeholder="Press space to enter the new tag"class="form-control" id="tags" name="tags" [(ngModel)]="tagInput" (keydown)="handleKeyDown($event)">
                       <div class="tags-container">
                         <!-- Ajouter la classe "tags-list" pour afficher les tags côte à côte -->
                         <div *ngFor="let tag of tagsArray; let i = index" class="tag">
@@ -164,6 +171,9 @@
 
         </div>
       </div>
+      <br>
+      <br>
+      <br>
 
       <!-- Blog Sidebar -->
       <div class="col-lg-4 col-md-12 sidebar-right theiaStickySidebar">
@@ -227,13 +237,11 @@
           </div>
         </div>
         <!-- /Tags -->
+
         <style>
           .tag {
             cursor: pointer;
           }
-        </style>
-
-        <style>
           .custom-btn {
             background-color: rgba(40, 167, 69, 0.5);
             color: white;
@@ -247,8 +255,6 @@
             background-color: #28a745;
             cursor: pointer;
           }
-        </style>
-        <style>
           .custom-btn-red {
             background-color: rgba(220, 53, 69, 0.5);
             color: white;
@@ -267,9 +273,6 @@
             padding: 8px;
             border-radius: 5px;
           }
-
-        </style>
-        <style>
           .tags-input-container {
             display: flex;
             flex-wrap: wrap; /* Permettre le retour à la ligne des tags si nécessaire */
@@ -280,17 +283,6 @@
             width: calc(100% - 10px); /* La largeur du champ de saisie est égale à la largeur du conteneur moins un espace pour le scroll */
             margin-bottom: 10px; /* Ajoutez un espacement entre le champ de saisie et les tags */
           }
-
-          /* Style pour chaque tag */
-          .tag {
-            background-color: #f0f0f0;
-            padding: 3px 6px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-right: 5px; /* Espacement entre les tags */
-            margin-bottom: 5px; /* Espacement entre les lignes de tags */
-          }
-
           .tag button {
             position: absolute;
             top: -5px; /* Positionner le bouton un peu plus bas que le haut du rectangle */

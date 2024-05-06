@@ -64,7 +64,7 @@
                         <label>Tags <span class="text-danger">*</span></label>
                         <div class="tags-input-container">
                           <!-- Supprimer la classe "form-control" pour permettre l'affichage des tags côte à côte -->
-                          <input type="text" placeholder="Tags..."class="form-control" id="tags" name="tags" [(ngModel)]="tagInput" (keydown)="handleKeyDown($event)">
+                          <input type="text" placeholder="Press space to enter the new tag"class="form-control" id="tags" name="tags" [(ngModel)]="tagInput" (keydown)="handleKeyDown($event)">
                           <div class="tags-container">
                             <!-- Ajouter la classe "tags-list" pour afficher les tags côte à côte -->
                             <div *ngFor="let tag of tagsArray; let i = index" class="tag">
@@ -81,11 +81,12 @@
                   </div>
                 </div>
 
+
                 <div class="service-fields mb-3">
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="form-group">
-                        <label>Content <span class="text-danger">*</span></label>
+                        <label>Content <span class="text-danger">*</span> </label>
                         <textarea class="form-control" placeholder="Content..." id="content" name="content" [(ngModel)]="content" rows="6" required></textarea>
                       </div>
                     </div>
@@ -93,9 +94,21 @@
                 </div>
 
 
-                <div class="submit-section">
-                  <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit" [disabled]="!isValidForm()">Submit</button>
+                <div class="service-fields mb-3">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                          <label for="image">Upload Image</label>
+                        <input type="file" (change)="onFileSelected($event)"
+                        class="form-control" id="image" name="image" required>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                    <div class="submit-section">
+                      <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit" [disabled]="!isValidForm()">Submit</button>
+                   </div>
               </form>
 
             </div>

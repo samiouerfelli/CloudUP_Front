@@ -30,10 +30,6 @@ export class PublicationService {
     return this.http.get<Array<Publication>>('Http://localhost:8080/api/v1/auth/retrieveByContent?content=' + query);
   }
 
-  searchByCategory(query: categories): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>>('');
-  }
-
   addPublication(publication: {
     commentaries: any[];
     subject: string;
@@ -45,12 +41,9 @@ export class PublicationService {
     nbr_vue: number;
     tags: string;
     username: string
-  },             idUSER: number): Observable<number> { // Modifiez le type de retour pour qu'il soit Observable<number>
-    // tslint:disable-next-line:max-line-length
-    return this.http.post<number>(`Http://localhost:8080/api/v1/auth/${idUSER}/1/addPub`, publication); // Ajoutez le type de retour pour récupérer l'ID
+  },             idUSER: number): Observable<Publication> {
+    return this.http.post<Publication>(`Http://localhost:8080/api/v1/auth/${idUSER}/1/addPub`, publication);
   }
-
-
   public countCategoriesOccurences(): Observable<Map<categories, number>> {
     return this.getPublications().pipe(
       map((publications: Publication[]) => {
@@ -88,14 +81,17 @@ export class PublicationService {
   incrementViewsForPublication(id: number): Observable<any> {
     return this.http.put(`Http://localhost:8080/api/v1/auth/publications/${id}/increment-views`, {});
   }
-  deleteComment(commentId: number): Observable<void> {
-    return this.http.delete<void>(`Http://localhost:8080/api/v1/auth/deleteC/${commentId}`);
-  }
   searchByTags(tag: string): Observable<Array<Publication>> {
     return this.http.get<Array<Publication>> ('Http://localhost:8080/api/v1/auth/retrieveByTagsP?tags=' + tag);
   }
   fetchPubByIdUser(idUser: number): Observable<Publication[]> {
     return this.http.get<Publication[]>(`Http://localhost:8080/api/v1/auth/retrieveByUser/${idUser}`);
   }
+  uploadImage(imageFile: File, idpub: number): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('imageFile', imageFile, imageFile.name);
+    return this.http.post(`http://localhost:8080/api/v1/auth/upload/${idpub}`, formData);
+  }
 
+  }
 }
