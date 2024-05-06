@@ -51,6 +51,8 @@ export class BookingComponent implements OnInit {
       this.selectedReservation = +param.reservationID;
       this.selectedReservationProfessor = +param.professorId;
     });
+    this.selectDay ('MONDAY');
+
   }
 
 
