@@ -1,0 +1,127 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-md-8 col-12">
+              <nav aria-label="breadcrumb" class="page-breadcrumb">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">partenaires</li>
+                  </ol>
+              </nav>
+              <h2 class="breadcrumb-title">partenaires admin</h2>
+          </div>
+          <div class="col-md-4 col-12 d-md-block d-none">
+              <div class="sort-by">
+                  <span class="sort-title">Sort by</span>
+                  <span class="sortby-fliter">
+                      
+                  </span>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- /Breadcrumb -->
+<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+          
+  
+  
+</div>
+<!-- Page Content -->
+<div class="content">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar"></div>
+          <!-- Search Filter -->
+          
+           
+          <div class="col-md-12 col-lg-8 col-xl-9 " >
+              <div class="row course">
+                  <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3"   >
+                      <!-- Each item -->
+                      <table>
+                          <thead>
+                            <tr>
+                              <th>nom du partenaire</th>
+                              <th>description du partenaire</th>
+                              <th>imgpart</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let user of UsersArray">
+                              <td>{{ user.nom }}</td>
+                              <td>{{ user.descpart }}</td>
+                              <td>
+                                <img [src]="'data:image/jpeg;base64,' + user.imgpart" alt="Partenaire Image" style="width: 100px;height: 100px;">
+                              </td>
+                       
+                              <td>
+                                <button (click)="deleteUser(user.id_part)"><i class="fa fa-trash"></i></button>
+                                <button (click)="showUpdate(user)" class="edit-button"><i class="fas fa-edit"></i></button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <button (click)="ajoutuser(user)">Add Partenaire</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table> 
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- your form here -->
+<div *ngIf="showUpdateForm">
+  <form (ngSubmit)="updatePart(selectedUser, selectedUser?.id_part)" #updateForm class="update-form"
+  style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+    <h2>Modification duuuu compte</h2>
+    <label for="nom"><i class="fas fa-user"></i> Nom d'utilisateur:</label>
+    <input type="text" name="nom" [ngModel]="selectedUser?.nom" (ngModelChange)="selectedUser.nom = $event">
+
+    <label for="descpart"><i class="fas fa-envelope"></i> desc:</label>
+    <input type="text" name="descpart" [ngModel]="selectedUser?.descpart" (ngModelChange)="selectedUser.descpart = $event">
+
+    <label for="imgpart">Images du partenaire:</label>
+    <input type="file" id="imgpart" name="imgpart" multiple>
+    
+
+    <button type="submit">Ajouter</button>
+    <button type="button" (click)="cancelUpdate()">Annuler</button>
+  </form>
+</div>
+
+
+<!-- your form here for ajout -->
+<div *ngIf="showajoutForm"> 
+  <form (ngSubmit)="addPartenaire(user.nom, user.descpart)" #ajoutForm="ngForm" class="ajouter-form" 
+  style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;" novalidate>
+      <h2>Ajout d'un partenaire</h2>
+    <label for="nom">Nom du partenaire:</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="user.nom" required #nom="ngModel">
+    <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="error-message">
+      <span *ngIf="nom.errors?.required">Le nom du partenaire est requis.</span>
+    </div>
+
+    <label for="descpart">Description du partenaire:</label>
+    <textarea id="descpart" name="descpart" [(ngModel)]="user.descpart" required ></textarea>
+    <div *ngIf="descpart.invalid && (descpart.dirty || descpart.touched)" class="error-message">
+      <span *ngIf="descpart.errors?.required">La description du partenaire est requise.</span>
+    </div>
+
+    <label for="imgpart">Image du partenaire:</label>
+    <input type="file" id="imgpart" name="imgpart" required #fileInput>
+    <div *ngIf="ajoutForm.invalid && (ajoutForm.dirty || ajoutForm.touched)" class="error-message">
+      <span>L'image du partenaire est requise.</span>
+    </div>
+
+    <button type="submit" [disabled]="ajoutForm.invalid">Ajouter</button>
+    <button type="button" (click)="cancelAjout()">Annuler</button>
+  </form>
+</div>
+

@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-  user!: User;
+user! : User;
   url!: string;
   url1!: string;
   activeRoute!: string;
@@ -48,11 +48,11 @@ export class HeaderComponent implements OnInit {
           this.user = value;
           const id = this.user.idUser as number ;
           this.authService.findUserById({idUser: id}).subscribe({
-            next: (data) =>
-            {
-              this.selectedPicture = 'data:image/jpg;base64,' + data.image ;
-            }
-          });
+              next: (data) =>
+              {
+                this.selectedPicture = 'data:image/jpg;base64,' + data.image ;
+              }
+            });
         },
         // tslint:disable-next-line:typedef
         error(err){
@@ -129,6 +129,7 @@ export class HeaderComponent implements OnInit {
       next: async () => {
         localStorage.removeItem('token');
         localStorage.removeItem('isLogedIn');
+        localStorage.removeItem('user');
         await this.sleep(1000);
         this.router.navigate(['Home']);
       },

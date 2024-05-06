@@ -1,0 +1,140 @@
+<head>
+    <style>
+        .clickable {
+            cursor: pointer; /* Change le curseur pour indiquer que l'élément est cliquable */
+        }
+
+        .clickable:hover {
+            color: blue; /* Change la couleur du texte lorsque survolé */
+        }
+    </style>
+</head>
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Reclamation</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Archive</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="doc-review review-listing custom-edit-service">
+
+                    <div class="row mb-5">
+                        <div class="col">
+                            <ul class="nav nav-tabs nav-tabs-solid">
+                                <div class="input-group">
+                                <input [(ngModel)]="search" type="text" placeholder="Search..." class="form-control" (ngModelChange)="FindObj()">
+                                <div class="input-group-append" >
+                                </div>
+                            </div>
+                            </ul>
+                        </div>
+                        
+                      
+                    </div>
+                    <th class="text-left"><u class="clickable" routerLink="/reclamation">Liste de reclamations</u></th>
+                    <!-- Add Blog -->
+                    <div class="card">
+                        <div class="card-body">	            
+                            <div class="card card-table">
+                                <div class="card-body">
+                                
+                                    <!-- Invoice Table -->
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="th-pointer" (click)="sort('id')">ID</th>
+                                                    <th class="th-pointer"  (click)="sort('type')">Categorie</th>
+                                                    <th class="th-pointer" (click)="sort('objet')">Objet</th>
+                                                    <th class="th-pointer" (click)="sort('traite')">Statut </th>  
+                                                    <th class="th-pointer" class="text-right">Action</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <tr *ngFor ="let r of reclamation">
+                                                <td>
+                                                    {{r.id}}
+                                                </td>
+                                                <td>
+                                                {{r.type}}
+                                                </td>
+                                                <td>
+                                                    {{r.objet}}
+                                                </td>
+                                                <td>
+                                                    <span class="badge" [ngClass]="[r.traite === 'Resolue' ? 'bg-success' :'',
+                                                    r.traite === 'EnAttente' ? 'bg-info' :'',
+                                                    r.traite === 'EnCours' ? 'bg-warning' :'',]">
+                                                    {{r.traite}}
+                                                </span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <div class="table-action">
+                                                        <a (click)="ViewDetails(r)" href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                                            <i class="far fa-eye"></i> 
+                                                        </a>
+                                                        
+                                                    </div>
+                                                </td>
+                                                </tr>
+                                            </tbody> 
+                                        </table>
+                                        
+                                    </div>
+                                    <!-- /Invoice Table -->
+                                    
+                                </div>
+                            </div>
+                            <div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-end">
+                                      <li class="page-item" (click)="SetPage(page-1)">
+                                        <a class="page-link" aria-label="Previous" style="color: blue;">
+                                        
+                                          <span aria-hidden="true">&laquo; Previous</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item" *ngFor="let x of pages,let i=index" (click)="SetPage(i)">
+                                        <a class="page-link" style="color: blue;">
+                                            {{i+1}}
+                                        </a></li>
+                                      <li class="page-item" (click)="SetPage(page+1)">
+                                        <a class="page-link" aria-label="Next" style="color: blue;"
+                                        >
+                                          <span aria-hidden="true">Next &raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                            </div>
+                            
+                    </div>
+                    </div>
+                    <!-- /Add Blog -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>		
+<!-- /Page Content -->

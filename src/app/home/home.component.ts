@@ -1,7 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import { CoursControllerService } from '../services/services';
 import { CoursParticuliers, User } from '../services/models';
-import { Router } from '@angular/router';
+import { TokenService } from '../services/token/token.service';
+import {Router} from "@angular/router";
+import {PublicationService} from "../service/publication.service";
+import {Publication} from "../model/publication.model";
+import {Observable, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -9,6 +14,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+
+  constructor(private publicationService: PublicationService, private router: Router,private service:CoursControllerService ) {
+  }
   slideIndex = 1;
 
   // tslint:disable-next-line:typedef
@@ -49,7 +58,7 @@ public ListProf: User[]=[];
 fetchTopProfessor()
 {
   this.service.getTopProfessor().subscribe({
-    next : (user) => 
+    next : (user) =>
       {
       console.log("top professor fetch successfully");
       this.ListProf=user;
@@ -62,7 +71,7 @@ fetchTopProfessor()
 fetchTopCourses()
   {
 this.service.getTopCourses().subscribe({
-  next : (cours) => 
+  next : (cours) =>
     {
     console.log("top courses fetch successfully");
     this.List=cours;
@@ -95,18 +104,17 @@ this.service.getTopCourses().subscribe({
   };
 
 
-  constructor(private service:CoursControllerService  ) {
-  }
 
+/*
   ngOnInit(): void {
     this.showSlides(this.slideIndex);
     this.fetchTopCourses();
     this.fetchTopProfessor();
 
   }
+*/
 
-}
-/*
+
   coursesCarouselOptions = {
     loop: true,
     margin: 15,
@@ -130,6 +138,7 @@ this.service.getTopCourses().subscribe({
       }
     }
   };
+  /*
   popularcoursesCarouselOptions = {
     loop: true,
     margin: 15,
@@ -152,7 +161,7 @@ this.service.getTopCourses().subscribe({
         items: 2
       }
     }
-  };
+  };*/
   coursesCarouselslides = [
     {
       img: "assets/img/universities/c1.jpg",
@@ -203,4 +212,37 @@ this.service.getTopCourses().subscribe({
       count2: "17 Courses",
     },
   ];
-*/
+
+  publicationList: Observable<Publication[]> | undefined;
+  errorMessage: any;
+  p: Publication | undefined;
+  // tslint:disable-next-line:typedef
+
+  // tslint:disable-next-line:typedef
+
+
+  // tslint:disable-next-line:typedef
+
+
+  ngOnInit(): void {
+    this.showSlides(this.slideIndex);
+    this.getPublication1();
+    this.fetchTopCourses();
+    this.fetchTopProfessor();
+  }
+
+  getPublication1(): void {
+    this.publicationList = this.publicationService.getPublications().pipe(
+      catchError(err => {
+        this.errorMessage = err.message;
+        return throwError(err);
+      })
+    );
+  }
+  redirectToDetails(publication: Publication): void {
+    const idpub = publication.idpub;
+    console.log('l id de la pub récupérée:' + idpub);
+    // Rediriger vers la page de détails avec l'ID de la publication
+    this.router.navigate(['/blog/blog-details', idpub]);
+  }
+}

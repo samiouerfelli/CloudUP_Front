@@ -22,7 +22,7 @@ speed-measure-plugin*.json
 *.launch
 .settings/
 *.sublime-workspace
-
+.angular/*
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
@@ -44,3 +44,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/.angular/

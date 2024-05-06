@@ -1,0 +1,191 @@
+table {
+    border-collapse: collapse;
+    width: 70%;
+    margin-left: 10%;
+
+  }
+ 
+
+  th, td {
+
+    padding: 5px;
+    text-align: center;
+
+  }
+
+  th {
+    background-color: #F7F7F7;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  tr:nth-child(even) {
+    background-color: #F7F7F7;
+  }
+
+  tr:hover {
+    background-color: #ECECEC;
+  }
+
+  button {
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #26292d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  .edit-button {
+    background-color: #26292d;
+    border: none;
+    cursor: pointer;
+  }
+
+  .edit-button:hover {
+    background-color: green;
+  }
+
+  button:hover {
+    background-color: #dc3545;
+  }
+ 
+  
+
+  .update-form {
+    position: fixed;
+    top: 54%;
+    left: 54%;
+    width: 620px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ff0000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .update-form h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .update-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .update-form input,
+  .update-form select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1rem;
+  }
+  
+
+  button[type="submit"] {
+    background-color: #26292d; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #00cc00; 
+  }
+  
+  /* Style for the "Annuler" button */
+  button[type="button"] {
+    background-color: #26292d; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  }
+  
+  button[type="button"]:hover {
+    background-color: #ff3333; 
+  }
+    
+
+
+  .ajouter-form {
+    position: fixed;
+    top: 54%;
+    left: 54%;
+    width: 620px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ff0000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ajouter-form h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .ajouter-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .ajouter-form input,
+  .ajouter-form select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1rem;
+  }
+
+  button[type="submit"] {
+  background-color: #26292d; 
+  color: #fff; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s; 
+}
+
+button[type="submit"]:hover {
+  background-color: #00cc00; 
+}
+
+/* Style for the "Annuler" button */
+button[type="button"] {
+  background-color: #26292d; 
+  color: #fff; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s; 
+}
+
+button[type="button"]:hover {
+  background-color: #ff3333; 
+}
+  

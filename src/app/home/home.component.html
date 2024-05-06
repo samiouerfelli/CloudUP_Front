@@ -1,5 +1,5 @@
 <!-- Banner -->
-<section class="banner-section">
+<section class="banner-section" xmlns="http://www.w3.org/1999/html">
     <div class="banner-bg"></div>
     <div class="container">
         <div class="row">
@@ -393,76 +393,41 @@
     </div>
 </section>
 <!-- /Testimonial -->
-
 <!-- Blog -->
 <section class="blog-sections">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="heading">
-                    <div class="section-heading">
-                        <div class="header-main">
-                            <div class="header-left"></div>
-                            <h2>Latest  <span class="text-primary">NEWS</span></h2>
-                            <div class="header-right"></div>
-                        </div>
-                    </div>
-                </div>
+  <div class="container" *ngIf="publicationList | async as publications">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="heading">
+          <div class="section-heading">
+            <div class="header-main">
+              <div class="header-left"></div>
+              <h2>Latest <span class="text-primary">POSTS</span></h2>
+              <div class="header-right"></div>
             </div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4">
-                <div class="blog-box blog-grid-box">
-                    <div class="blog-grid-box-img">
-                        <a routerLink='/blog/blog-details'>
-                        <img src="assets/img/blog/blog-01.jpg" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-grid-box-content">
-                        <div class="blog-avatar text-center">
-                            <p>Posted on 24-01-2021</p>
-                        </div>
-                        <h4><a routerLink='/blog/blog-details'>Contrary to popular belief, Lorem Ipsum is</a></h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-                        <a routerLink='/blog/blog-details' class="text-info view-more">View More <i class="fas fa-caret-right right-nav-white-2"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="blog-box blog-grid-box">
-                    <div class="blog-grid-box-img">
-                        <a routerLink='/blog/blog-details'>
-                        <img src="assets/img/blog/blog-02.jpg" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-grid-box-content">
-                        <div class="blog-avatar text-center">
-                            <p>Posted on 24-01-2021</p>
-                        </div>
-                        <h4><a routerLink='/blog/blog-details'>The standard chunk of Lorem Ipsum used</a></h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-                        <a routerLink='/blog/blog-details' class="text-info view-more">View More <i class="fas fa-caret-right right-nav-white-2"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="blog-box blog-grid-box">
-                    <div class="blog-grid-box-img">
-                        <a routerLink='/blog/blog-details'>
-                        <img src="assets/img/blog/blog-03.jpg" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-grid-box-content">
-                        <div class="blog-avatar text-center">
-                            <p>Posted on 24-01-2021</p>
-                        </div>
-                        <h4><a routerLink='/blog/blog-details'>The standard Lorem Ipsum passage, used</a></h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-                        <a routerLink='/blog/blog-details' class="text-info view-more">View More <i class="fas fa-caret-right right-nav-white-2"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row">
+      <div *ngFor="let p of publications.slice(-3)" class="col-md-4">
+        <div class="blog-box blog-grid-box">
+          <div class="blog-grid-box-img">
+            <a [routerLink]="['/blog/blog-details', p.idpub]" (click)="redirectToDetails(p)">
+                <img src='assets/img/blog/OIP.jpg' class="img-fluid" alt="">
+            </a>
+          </div>
+          <div class="blog-grid-box-content">
+            <div class="blog-avatar text-center">
+              <p>Posted on {{p.datePub }}</p>
+            </div>
+            <h4><a [routerLink]="['/blog/blog-details', p.idpub]" (click)="redirectToDetails(p)">{{p.subject}}</a></h4>
+            <p>{{p.content}}</p>
+            <a [routerLink]="['/blog/blog-details', p.idpub]" (click)="redirectToDetails(p)" class="text-info view-more">View More <i class="fas fa-caret-right right-nav-white-2"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- /Blog -->

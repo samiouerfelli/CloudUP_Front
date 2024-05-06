@@ -8,14 +8,29 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReclamationComponent } from './reclamation/reclamation.component';
+import { RecformulaireComponent } from './recformulaire/recformulaire.component';
+import {MatButtonModule} from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatIconModule} from '@angular/material/icon';
+import { ConfirmationDeleteComponent } from './confirmation-delete/confirmation-delete.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChatComponent } from './chat/chat.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {AngularEnumsListModule} from 'angular-enum-list';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import {HttpTokenInterceptor} from './Interceptor/http-token.interceptor';
+import {MatSortModule} from '@angular/material/sort';
+import { ReclamarchivesComponent } from './reclamarchives/reclamarchives.component';
 import {NgxPayPalModule} from 'ngx-paypal';
-
+import { CollaborationComponent } from './collaboration/collaboration.component';
+import { CollaborationadminComponent } from './collaborationadmin/collaborationadmin.component';
+import { PartenairesadminComponent } from './partenairesadmin/partenairesadmin.component';
+import { CollaborationdetailsComponent } from './collaborationdetails/collaborationdetails.component';
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -25,7 +40,16 @@ export function tokenGetter() {
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ReclamationComponent,
+    RecformulaireComponent,
+    ConfirmationDeleteComponent,
+    ChatComponent,
+    CollaborationComponent,
+    CollaborationadminComponent,
+    PartenairesadminComponent,
+    CollaborationdetailsComponent ,
+    ReclamarchivesComponent
   ],
   imports: [
     HttpClientModule,
@@ -38,12 +62,17 @@ export function tokenGetter() {
     NgxPayPalModule,
     AngularEnumsListModule.forRoot(),
     CommonModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatIconModule,
+    NgbModule,
     JwtModule.forRoot({
       config: {
         tokenGetter}
     }),
+    MatSortModule
   ],
   providers: [
     HttpClient,
