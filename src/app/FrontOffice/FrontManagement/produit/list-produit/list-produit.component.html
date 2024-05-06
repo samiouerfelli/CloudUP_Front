@@ -68,6 +68,11 @@
                                 <a href="javascript:void(0)" class="fav-btn">
                                     <i class="fas fa-edit" (click)="edit(product)"></i>
                                 </a>
+
+                                <a style="margin-right: 40px;" class="fav-btn">
+                                    <i class="fas fa-trash" (click)="deleteProduct(product)"></i>
+                                </a>
+                                
                                 <span class="price-course">{{product.price}} Dt</span>
                             </div>
                             <div class="pro-content">

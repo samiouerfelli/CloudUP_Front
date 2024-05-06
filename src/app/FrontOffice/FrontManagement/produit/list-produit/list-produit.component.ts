@@ -64,6 +64,16 @@ export class ListProduitComponent implements OnInit {
 
     return `${value}`;
   }
+  deleteProduct(product:Product){
+    this.produitService.deleteProduct(product.id).subscribe(
+      product => {
+        console.log(product)
+      },
+      error => {
+        console.log('Erreur lors de la récupération des produits :', error);
+      }
+    );
+  }
   getFiltredProductByPrice(){
     if(!(this.minValue == 0 && this.maxValue == 0)){
       this.produitService.getFiltredProductByPrice(this.minValue,this.maxValue).subscribe(
