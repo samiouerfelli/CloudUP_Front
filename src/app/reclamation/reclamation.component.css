@@ -19,3 +19,26 @@
 .th-pointer{
 	cursor: pointer;
 }
+.sticky-button {
+	position: fixed;
+	bottom: 20px; /* Ajustez la position verticale selon vos besoins */
+	right: 20px; /* Ajustez la position horizontale selon vos besoins */
+	z-index: 999; /* Assurez-vous que le bouton soit au-dessus des autres éléments */
+	background-color: #007bff; /* Couleur de fond du bouton */
+	color: #fff; /* Couleur du texte */
+	border: none; /* Supprime les bordures */
+	padding: 10px 20px; /* Ajoute du rembourrage pour le style */
+	border-radius: 5px; /* Ajoute un arrondi aux coins */
+	cursor: pointer; /* Affiche un curseur pointeur au survol */
+	transition: all 0.3s ease; /* Ajoute une transition douce pour une animation fluide */
+  }
+  
+  .sticky-button:hover {
+	background-color: #0056b3; /* Change la couleur de fond au survol */
+  }
+  
+  /* Si vous souhaitez ajouter une ombre portée */
+  .sticky-button {
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre portée */
+  }
+  

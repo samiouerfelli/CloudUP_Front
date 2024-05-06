@@ -204,4 +204,3 @@ export class PartenairesadminComponent implements OnInit {
 
 
 }
-
