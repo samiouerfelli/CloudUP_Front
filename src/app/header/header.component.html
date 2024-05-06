@@ -1,6 +1,6 @@
 <!-- Header -->
 <header class="header">
-    <nav class="navbar navbar-expand-lg header-nav header-inner-nav">
+    <nav class="navbar navbar-expand-md header-nav header-inner-nav">
 
         <div class="container">
             <div class="navbar-header">
@@ -12,13 +12,13 @@
                 </span>
                 </a>
                 <a routerLink='/' class="navbar-brand logo">
-                <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                <img src="assets/img/logoEsprit%20.png" class="img-fluid" alt="Logo">
                 </a>
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
                     <a routerLink='/' class="menu-logo">
-                    <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                    <img src="assets/img/logoEsprit%20.png" class="img-fluid" alt="Logo">
                     </a>
                     <a id="menu_close" class="menu-close" href="javascript:void(0);">
                     <i class="fas fa-times"></i>
@@ -41,6 +41,7 @@
                             <li [ngClass]="[active2Route === 'sessions' ? 'active' : '']"><a routerLink='/instructors/sessions'>Sessions</a></li>
                             <li [ngClass]="[active2Route === 'schedule-timings' ? 'active' : '']"><a routerLink='/instructors/schedule-timings'>Schedule Timing</a></li>
                             <li [ngClass]="[active2Route === 'my-students' ? 'active' : '']"><a routerLink='/instructors/my-students'>Students List</a></li>
+                           <!-- <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/instructors/course'>Course</a></li>
                             <li [ngClass]="[active2Route === 'student-profile' ? 'active' : '']"><a routerLink='/instructors/student-profile'>Students Profile</a></li>
                             <li [ngClass]="[active2Route === 'chat-professor' ? 'active' : '']"><a routerLink='/instructors/chat-professor'>Chat</a></li>
                             <li [ngClass]="[active2Route === 'invoices' ? 'active' : '']"><a routerLink='/pages/invoices'>Invoices</a></li>
@@ -55,27 +56,32 @@
                                     <li [ngClass]="[active2Route === 'blog-details' ? 'active' : '']"><a routerLink='/blog/blog-details'>Blog view</a></li>
                                     <li [ngClass]="[active2Route === 'professor-add-blog' ? 'active' : '']"><a routerLink='/instructors/professor-add-blog'>Add Blog</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li class="has-submenu"  *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === 'students' ? 'active' : '']">
                         <a href="">STUDENTS <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
+                      <ul class="submenu">
                             <li class="has-submenu">
-                                <a href="#">Professor</a>
-                                <ul class="submenu">
-                                    <li [ngClass]="[active2Route === 'map-grid' ? 'active' : '']"><a routerLink='/students/map-grid'>Map Grid</a></li>
-                                    <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/students/map-list'>Map List</a></li>
-                                </ul>
+                              <!-- <a href="#">Professor</a>
+                               <ul class="submenu">
+                                   <li [ngClass]="[active2Route === 'map-grid' ? 'active' : '']"><a routerLink='/students/map-grid'>Map Grid</a></li>
+                                   <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/students/map-list'>Map List</a></li>
+                               </ul> -->
+
                             </li>
-                            <li [ngClass]="[active2Route === 'search' ? 'active' : '']"><a routerLink='/students/search'>Search Professor</a></li>
-                            <li [ngClass]="[active2Route === 'professor-profile' ? 'active' : '']"><a routerLink='/students/professor-profile'>Professor Profile</a></li>
+                          <li [ngClass]="[active2Route === 'student-dashboard' ? 'active' : '']"><a routerLink='/students/student-dashboard'>Student Dashboard</a></li>
+
+                          <li [ngClass]="[active2Route === 'search' ? 'active' : '']"><a routerLink='/students/search'>Search Professor</a></li>
+                          <!--  <li [ngClass]="[active2Route === 'professor-profile' ? 'active' : '']"><a routerLink='/students/professor-profile'>Professor Profile</a></li>
                             <li [ngClass]="[active2Route === 'booking' ? 'active' : '']"><a routerLink='/students/booking'>Booking</a></li>
-                            <li [ngClass]="[active2Route === 'checkout' ? 'active' : '']"><a routerLink='/students/checkout'>Checkout</a></li>
-                            <li [ngClass]="[active2Route === 'booking-success' ? 'active' : '']"><a routerLink='/students/booking-success'>Booking Success</a></li>
-                            <li [ngClass]="[active2Route === 'student-dashboard' ? 'active' : '']"><a routerLink='/students/student-dashboard'>Student Dashboard</a></li>
-                            <li [ngClass]="[active2Route === 'favourites' ? 'active' : '']"><a routerLink='/students/favourites'>Favourites</a></li>
+                         <   <li [ngClass]="[active2Route === 'checkout' ? 'active' : '']"><a routerLink='/students/checkout'>Checkout</a></li>
                             <li [ngClass]="[active2Route === 'chat' ? 'active' : '']"><a routerLink='/students/chat'>Chat</a></li>
+                            <li [ngClass]="[active2Route === 'booking-success' ? 'active' : '']"><a routerLink='/students/booking-success'>Booking Success</a></li> -->
+                         <li [ngClass]="[active2Route === 'checkout' ? 'active' : '']"><a routerLink='/students/checkout'>Checkout</a></li>
+                        <li [ngClass]="[active2Route === 'booking-success' ? 'active' : '']"><a routerLink='/students/booking-success'>Booking Success</a></li>
+
+                        <li [ngClass]="[active2Route === 'favourites' ? 'active' : '']"><a routerLink='/students/favourites'>Favourites</a></li>
                             <li [ngClass]="[active2Route === 'profile-settings' ? 'active' : '']"><a routerLink='/students/profile-settings'>Profile Settings</a></li>
                             <li [ngClass]="[active2Route === 'change-password' ? 'active' : '']"><a routerLink='/students/change-password'>Change Password</a></li>
                         </ul>
@@ -120,6 +126,7 @@
                     </li>
                 </ul>
             </div>
+
             <ul class="nav header-navbar-rht">
                 <li class="nav-item" *ngIf="!localStorage.getItem('isLogedIn')">
                     <a routerLink='/pages/login'>Log in</a>
@@ -127,9 +134,21 @@
                 <li class="nav-item contact-item" *ngIf="!localStorage.getItem('isLogedIn')" >
                     <a routerLink='/pages/register'>Sign up</a>
                 </li>
+
+              <li class="nav-item dropdown flag-nav " *ngIf="localStorage.getItem('isLogedIn')" >
+                <a class="nav-link dropdown-toggle align-items-center text-center" data-toggle="dropdown" href="#" role="button">
+                  <img src="assets/img/flags/account.png" alt="" width="30" height="30" class="lang-flag">
+                 {{User.nom}}<a>-</a>{{User.prenom}}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a routerLink='/pages/update-account' class="dropdown-item">Account</a>
+                </div>
+              </li>
+
               <li class="nav-item contact-item" *ngIf="localStorage.getItem('isLogedIn')">
                 <a (click)="logout()">Log out</a>
               </li>
+
 
             </ul>
         </div>

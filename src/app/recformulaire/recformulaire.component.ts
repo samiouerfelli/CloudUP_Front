@@ -21,6 +21,7 @@ Categorie: string [] = [
   'Evenement'
 ];
 Statut: string [] = [
+  'EnAttente',
   'EnCours',
   'Resolue'
 ];
@@ -101,7 +102,7 @@ SetStatut()
   
 
   if(this.RecForm.value.traite==""){
-    console.log("seleeeeeect")
+    console.log("erreur")
   }else{
     console.log(this.RecForm.getRawValue())
     this.recs.Traitereclam(this.RecForm.getRawValue()).subscribe(    (res)=>{console.log(res);

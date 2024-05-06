@@ -42,7 +42,10 @@
               "node_modules/select2/dist/css/select2.min.css",
               "node_modules/ng2-daterangepicker/assets/daterangepicker.css",
               "node_modules/fullcalendar/main.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "src/styles.css",
               "src/assets/css/styles.css"
+              
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

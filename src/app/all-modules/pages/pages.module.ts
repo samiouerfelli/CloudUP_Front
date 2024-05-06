@@ -15,9 +15,12 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ActivateAccountComponent } from './activate-account/activate-account.component';
 import {CodeInputModule} from 'angular-code-input';
+import { UpdateAccountComponent } from './update-account/update-account.component';
+import {NgxDropzoneModule} from "ngx-dropzone";
+import {TagInputModule} from "ngx-chips";
 
 
 @NgModule({
@@ -36,12 +39,16 @@ import {CodeInputModule} from 'angular-code-input';
     TermConditionComponent,
     PrivacyPolicyComponent,
     ActivateAccountComponent,
+    UpdateAccountComponent,
 ],
     imports: [
         CommonModule,
         PagesRoutingModule,
         FormsModule,
-        CodeInputModule
+        CodeInputModule,
+        NgxDropzoneModule,
+        TagInputModule,
+        ReactiveFormsModule
     ],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]
 

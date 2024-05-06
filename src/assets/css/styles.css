@@ -3249,7 +3249,7 @@ html.menu-opened body {
 -----------------------*/
 
 .banner-section {
-	background: url(../img/banner.jpg);
+	background: url(../img/esprit.jpg);
 	background-position: 50% 0;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -9350,7 +9350,7 @@ ul.benifits-col li i {
 	.login-right {
 		margin: 0 15px;
 		padding: 15px;
-	}	
+	}
 	.banner-btn {
 		max-width: 300px;
     	margin: 0 auto;
