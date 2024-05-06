@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SlotsControllerService} from '../../../services/services/slots-controller.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-schedule-timings',
@@ -15,7 +16,7 @@ export class ScheduleTimingsComponent implements OnInit {
 
   constructor( private service: SlotsControllerService) {
   }
-
+/*
   // tslint:disable-next-line:typedef
   saveSlot(formData: any) {
     const startDateTime = this.formatDateTime(formData.date, formData.time);
@@ -48,7 +49,7 @@ export class ScheduleTimingsComponent implements OnInit {
 
 
   }
-
+*/
   formatDateTime(date: string, time: string, hoursToAdd = 0): string {
     const timeParts = time.split(':');
     const dateObj = new Date(date);
@@ -61,7 +62,7 @@ export class ScheduleTimingsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.selectDay ("MONDAY");
+    this.selectDay ('MONDAY');
   }
 
   selectDay(day: string): void {

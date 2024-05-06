@@ -178,8 +178,8 @@
                                     <!-- Header similar to first snippet -->
                                     <h4 class="card-title d-flex justify-content-between">
                                       <span>Time Slots</span>
-                                      <a class="edit-link" data-toggle="modal" href="#edit_time_slot"><i
-                                        class="fa fa-edit mr-1"></i>Edit</a>
+                                      <a class="edit-link" data-toggle="modal" href="#ajout_time_slot"><i
+                                        class="fa fa-edit mr-1"></i>Add Slots</a>
                                     </h4>
 
                                     <!-- Time slots list similar to first snippet -->
@@ -215,7 +215,7 @@
         </div>
       </div>
 
-
+<!--
       <div class="modal fade custom-modal" id="add_time_slot" tabindex="-1" role="dialog"
            aria-labelledby="addTimeSlotLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -246,37 +246,4 @@
           </div>
         </div>
       </div>
-
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addTimeSlotModalLabel2">Add New Time Slot</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form #slotForm="ngForm" (ngSubmit)="saveSlot(slotForm.value)">
-              <div class="form-group">
-                <label for="date">Date</label>
-                <input type="date" class="form-control" id="date" name="date" ngModel required>
-              </div>
-              <div class="form-group">
-                <label for="time">Start Time</label>
-                <input type="time" class="form-control" id="time" name="time" ngModel required>
-              </div>
-
-
-              <div class="form-group">
-                <label for="endTime">End Time</label>
-                <input type="time" class="form-control" id="endTime" name="endTime" ngModel required>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" [disabled]="!slotForm.valid">Save</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-
+-->
