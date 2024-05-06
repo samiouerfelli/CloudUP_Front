@@ -1,492 +1,263 @@
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-12 col-12">
-                <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Appointments</li>
-                    </ol>
-                </nav>
-                <h2 class="breadcrumb-title">Appointments</h2>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-12 col-12">
+        <nav aria-label="breadcrumb" class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink='/'>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Appointments</li>
+
+          </ol>
+        </nav>
+        <h2 class="breadcrumb-title">Appointments</h2>
+      </div>
     </div>
+  </div>
 </div>
 <!-- /Breadcrumb -->
 
 <!-- Page Content -->
 <div class="content">
-    <div class="container">
+  <div class="container">
 
-        <div class="row">
-            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-            
-                <!-- Profile Sidebar -->
-                <div class="profile-sidebar">
-                    <div class="widget-profile pro-widget-content">
-                        <div class="profile-info-widget">
-                            <a href="#" class="booking-doc-img">
-                                <img src="assets/img/admins/admin-02.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3>Prof. Darren Elder</h3>
-                                
-                                <div class="student-details">
-                                    <h5 class="mb-0">Senior Professor - Civil &  Mechanical Engineering</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard-widget">
-                        <nav class="dashboard-menu">
-                            <ul>
-                                <li>
-                                    <a routerLink='/instructors/professor-dashboard'>
-                                        <i class="fas fa-columns"></i>
-                                        <span>Dashboard</span>
-                                    </a>
-                                </li>
-                                <li class="active">
-                                    <a routerLink='/instructors/sessions'>
-                                        <i class="fas fa-calendar-check"></i>
-                                        <span>Appointments</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/instructors/my-students'>
-                                        <i class="fas fa-user-injured"></i>
-                                        <span>My Students</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/instructors/schedule-timings'>
-                                        <i class="fas fa-hourglass-start"></i>
-                                        <span>Schedule Timings</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/pages/invoices'>
-                                        <i class="fas fa-file-invoice"></i>
-                                        <span>Invoices</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/instructors/reviews'>
-                                        <i class="fas fa-star"></i>
-                                        <span>Reviews</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/instructors/chat-professor'>
-                                        <i class="fas fa-comments"></i>
-                                        <span>Message</span>
-                                        <small class="unread-msg">23</small>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/instructors/professor-profile-settings'>
-                                        <i class="fas fa-user-cog"></i>
-                                        <span>Profile Settings</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/instructors/social-media'>
-                                        <i class="fas fa-share-alt"></i>
-                                        <span>Social Media</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/instructors/professor-change-password'>
-                                        <i class="fas fa-lock"></i>
-                                        <span>Change Password</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink='/'>
-                                        <i class="fas fa-sign-out-alt"></i>
-                                        <span>Logout</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+    <div class="row">
+      <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+        <!-- Profile Sidebar -->
+        <div class="profile-sidebar">
+          <div class="widget-profile pro-widget-content">
+            <div class="profile-info-widget">
+              <a href="#" class="booking-doc-img">
+                <img src="assets/img/admins/admin-02.jpg" alt="User Image">
+              </a>
+              <div class="profile-det-info">
+                <h3>Prof. Darren Elder</h3>
+
+                <div class="student-details">
+                  <h5 class="mb-0"></h5>
                 </div>
-                <!-- /Profile Sidebar -->
-                
+              </div>
             </div>
-            
-            <div class="col-md-7 col-lg-8 col-xl-9">
-                <div class="appointments">
-                
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Richard Wilson</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 14 Nov 2019, 10.00 AM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> richard@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 923 782 4575</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client1.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Charlene Reed </a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 12 Nov 2019, 5.00 PM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> North Carolina, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> charlenereed@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 828 632 9170</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client2.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Travis Trimble</a></h3>
-                                
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 11 Nov 2019, 8.00 PM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Maine, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> travistrimble@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 207 729 9974</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client3.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Carl Kelly</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 9 Nov 2019, 9.00 AM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> carlkelly@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 260 724 7769</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client4.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Michelle Fairfax</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 9 Nov 2019, 1.00 PM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Indiana, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> michellefairfax@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 504 368 6874</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client5.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Gina Moore</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 8 Nov 2019, 3.00 PM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Florida, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> ginamoore@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 954 820 7887</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client6.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Elsie Gilley</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 6 Nov 2019, 9.00 AM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Kentucky, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> elsiegilley@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 315 384 4562</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client7.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Joan Gardner</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 5 Nov 2019, 12.00 PM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> California, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> joangardner@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 707 2202 603</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client8.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Daniel Griffing</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 5 Nov 2019, 7.00 PM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> New Jersey, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> danielgriffing@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 973 773 9497</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client9.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Walter Roberson</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 4 Nov 2019, 10.00 AM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Florida, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> walterroberson@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 850 358 4445</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client10.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Robert Rhodes</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 4 Nov 2019, 11.00 AM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> California, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> robertrhodes@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 858 259 5285</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                    <!-- Appointment List -->
-                    <div class="appointment-list">
-                        <div class="profile-info-widget">
-                            <a routerLink='/instructors/student-profile' class="booking-doc-img">
-                                <img src="assets/img/clients/client11.jpg" alt="User Image">
-                            </a>
-                            <div class="profile-det-info">
-                                <h3><a routerLink='/instructors/student-profile'>Harry Williams</a></h3>
-                                <div class="student-details">
-                                    <h5><i class="far fa-clock"></i> 3 Nov 2019, 6.00 PM</h5>
-                                    <h5><i class="fas fa-map-marker-alt"></i> Colorado, United States</h5>
-                                    <h5><i class="fas fa-envelope"></i> harrywilliams@example.com</h5>
-                                    <h5 class="mb-0"><i class="fas fa-phone"></i> +1 303 607 7075</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-                                <i class="fas fa-check"></i> Accept
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-                                <i class="fas fa-times"></i> Cancel
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /Appointment List -->
-                    
-                </div>
-            </div>
+          </div>
+          <div class="dashboard-widget">
+            <nav class="dashboard-menu">
+              <ul>
+                <li>
+                  <a routerLink='/instructors/professor-dashboard'>
+                    <i class="fas fa-columns"></i>
+                    <span>Dashboard</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/add-course'>
+                    <i class="fas fa-columns"></i>
+                    <span>Add Course</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/get-course'>
+                    <i class="fas fa-columns"></i>
+                    <span> Courses List </span>
+                  </a>
+                </li>
+
+                <li class="active">
+                  <a routerLink='/instructors/sessions'>
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Appointments</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/my-students'>
+                    <i class="fas fa-user-injured"></i>
+                    <span>My Students</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/schedule-timings'>
+                    <i class="fas fa-hourglass-start"></i>
+                    <span>Schedule Timings</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/pages/invoices'>
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Invoices</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/reviews'>
+                    <i class="fas fa-star"></i>
+                    <span>Reviews</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/chat-professor'>
+                    <i class="fas fa-comments"></i>
+                    <span>Message</span>
+                    <small class="unread-msg">23</small>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/professor-profile-settings'>
+                    <i class="fas fa-user-cog"></i>
+                    <span>Profile Settings</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/social-media'>
+                    <i class="fas fa-share-alt"></i>
+                    <span>Social Media</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/instructors/professor-change-password'>
+                    <i class="fas fa-lock"></i>
+                    <span>Change Password</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink='/'>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
+        <!-- /Profile Sidebar -->
 
+      </div>
+
+      <div class="col-md-7 col-lg-8 col-xl-9">
+        <div class="card">
+          <div class="card-body pt-0">
+            <!-- Tab Menu -->
+            <nav class="user-tabs mb-4">
+              <!--     -->
+              <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#appointments"
+                     (click)="getReservationForProfessor()">Sessions</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#my_appointments" (click)="getReservationForStudent()">My
+                    Sessions</a>
+                </li>
+              </ul>
+            </nav>
+
+
+            <!-- Tab Content -->
+            <div class="tab-content pt-0">
+              <div class="tab-pane fade show active in" id="appointments" role="tabpanel">
+                <div class="card card-table mb-0">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-center mb-0">
+                        <thead>
+                        <tr>
+                          <th scope="col">Student Name</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Reservation Date</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let reservation of list">
+                          <td>{{ reservation.etudiantName }}</td>
+                          <td>{{ reservation.nomcours }}</td>
+                          <td>{{ reservation.dateR | date:'EEE, MMM d' }}<span
+                            class="d-block">{{ reservation.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
+
+                          <td>
+                            <ng-container [ngSwitch]="reservation.statusR">
+                              <span *ngSwitchCase="'Canceled'"
+                                    class="badge badge-pill bg-danger-light">{{ reservation.statusR }}</span>
+                              <span *ngSwitchCase="'Confirmed'"
+                                    class="badge badge-pill bg-success-light">{{ reservation.statusR }}</span>
+                              <span *ngSwitchCase="'Pending'"
+                                    class="badge badge-pill bg-warning-light">{{ reservation.statusR }}</span>
+                            </ng-container>
+                          </td>
+                          <td>
+                            <div class="table-action">
+                              <a href="javascript:void(0);" class="btn btn-sm bg-success-light"
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="confirmReservation(reservation)" (click)="sendSmsConfirmation(reservation)">
+                                <i class="fas fa-check"></i> Confirm
+                              </a>
+
+                              <a href="javascript:void(0);" class="btn btn-sm bg-danger-light"
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="cancelReservation(reservation)" (click)="sendSmsCancelation(reservation)">
+                                <i class="far fa-trash-alt"></i> Cancel
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="my_appointments" role="tabpanel">
+                <div class="card card-table mb-0">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-center mb-0">
+                        <thead>
+                        <tr>
+                          <th scope="col">Professor Name</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Reservation Date</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let reservation2 of list2">
+                          <td>{{ reservation2.professeurName }}</td>
+                          <td>{{ reservation2.nomcours }}</td>
+                          <td>{{ reservation2.dateR | date:'EEE, MMM d' }}<span
+                            class="d-block ">{{ reservation2.dateR | date:'h:mm a':'GMT+0200' }}</span></td>
+                          <td>
+                            <ng-container [ngSwitch]="reservation2.statusR">
+                              <span *ngSwitchCase="'Canceled'"
+                                    class="badge badge-pill bg-danger-light">{{ reservation2.statusR }}</span>
+                              <span *ngSwitchCase="'Confirmed'"
+                                    class="badge badge-pill bg-success-light">{{ reservation2.statusR }}</span>
+                              <span *ngSwitchCase="'Pending'"
+                                    class="badge badge-pill bg-warning-light">{{ reservation2.statusR }}</span>
+                            </ng-container>
+                          </td>
+                          <td>
+                            <div class="table-action">
+                              <a *ngIf="reservation2.statusR === 'Pending'" href="javascript:void(0);"
+                                 class="btn btn-sm bg-success-light"
+                                 (click)="updateReservationDate(reservation2.idR,reservation2.id_professeur)">
+                                <i class="fas fa-edit"></i> Edit
+                              </a>
+                              <a href="javascript:void(0);" class="btn btn-sm bg-danger-light"
+                                 *ngIf="reservation2.statusR === 'Pending'" (click)="cancelReservation2(reservation2)" (click)="sendSmsCancelation(reservation2)">
+                                <i class="far fa-trash-alt"></i>Cancel
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-</div>		
+  </div>
+</div>
 <!-- /Page Content -->

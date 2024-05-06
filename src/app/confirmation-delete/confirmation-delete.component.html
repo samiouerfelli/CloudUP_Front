@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Confirmation de la suppression</h2>
+<mat-dialog-content class="mat-typography">
+ Vous êtes sur de vouloir supprimer cette reclamation?   		
+</mat-dialog-content>
+ 
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="decline()">Non</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="accept()">Oui</button>
+  </mat-dialog-actions>  
+  

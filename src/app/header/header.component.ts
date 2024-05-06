@@ -5,7 +5,7 @@ import {NavigationEnd, Router, Event} from '@angular/router';
 import {AuthentificationService} from '../services/services';
 import {TokenService} from '../services/token/token.service';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
-import {tap} from "rxjs/operators";
+import {User} from '../services/models/user';
 
 declare var $: any;
 
@@ -15,6 +15,7 @@ declare var $: any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  private selectedPicture: string | undefined;
   constructor(private router: Router,
               protected tokenService: TokenService,
               private authService: AuthentificationService,
@@ -29,7 +30,7 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-
+user! : User;
   url!: string;
   url1!: string;
   activeRoute!: string;
@@ -41,6 +42,24 @@ export class HeaderComponent implements OnInit {
   protected readonly localStorage = localStorage;
 
   ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.authService.getUser().subscribe({
+        next: value => {
+          this.user = value;
+          const id = this.user.idUser as number ;
+          this.authService.findUserById({idUser: id}).subscribe({
+              next: (data) =>
+              {
+                this.selectedPicture = 'data:image/jpg;base64,' + data.image ;
+              }
+            });
+        },
+        // tslint:disable-next-line:typedef
+        error(err){
+          console.log(err);
+        }
+      });
+    }
     // Sidebar
 
     if ($(window).width() <= 991) {
@@ -110,6 +129,7 @@ export class HeaderComponent implements OnInit {
       next: async () => {
         localStorage.removeItem('token');
         localStorage.removeItem('isLogedIn');
+        localStorage.removeItem('user');
         await this.sleep(1000);
         this.router.navigate(['Home']);
       },

@@ -1,6 +1,10 @@
+import { WebSocketService } from './all-modules/web-socket-service.service';
 import {Component, OnInit} from '@angular/core';
 import {NavigationStart, Router, Event, ActivatedRoute} from '@angular/router';
 import {MyHttpService} from './my-http.service';
+import { AuthentificationService } from './services/services';
+import { TokenService } from './services/token/token.service';
+import {saveSlot} from "./services/fn/slots-controller/save-slot";
 
 @Component({
   selector: 'app-root',
@@ -14,10 +18,17 @@ export class AppComponent implements OnInit{
   url1!: string;
   activeRoute!: string;
   active2Route!: string;
-  hideFooter = false;
+  hideFooter: boolean = false;
+   
+    
+
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private http: MyHttpService) {
+              private http: MyHttpService,
+              private webSocketService:WebSocketService,
+              private authservice:TokenService) {
+              //  this.initUser() 
+    webSocketService._connect()
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         // tslint:disable-next-line:no-shadowed-variable
@@ -63,4 +74,7 @@ export class AppComponent implements OnInit{
           }
         );
     }
+    
+
+  protected readonly saveSlot = saveSlot;
 }

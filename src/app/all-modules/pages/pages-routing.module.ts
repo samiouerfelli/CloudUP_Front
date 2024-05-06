@@ -14,6 +14,8 @@ import { TermConditionComponent } from './term-condition/term-condition.componen
 import { VideoCallComponent } from './video-call/video-call.component';
 import { VoiceCallComponent } from './voice-call/voice-call.component';
 import {ActivateAccountComponent} from './activate-account/activate-account.component';
+import {UpdateAccountComponent} from './update-account/update-account.component';
+
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
@@ -28,6 +30,7 @@ const routes: Routes = [
       { path: 'blank-page', component: BlankPageComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'update-account', component: UpdateAccountComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'term-condition', component: TermConditionComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent }

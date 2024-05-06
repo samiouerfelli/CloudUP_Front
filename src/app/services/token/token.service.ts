@@ -6,9 +6,10 @@ import { Injectable } from '@angular/core';
 export class TokenService {
   public isLogedIn!: boolean;
 
-  set token(token: string){
-    localStorage.setItem('token', token);
+  set token(res: any){
+    localStorage.setItem('token', res.token);
     localStorage.setItem('isLogedIn', 'true');
+    localStorage.setItem('user', JSON.stringify(res.user));
   }
   // tslint:disable-next-line:typedef
   get gettoken(){

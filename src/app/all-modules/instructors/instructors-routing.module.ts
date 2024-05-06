@@ -22,6 +22,11 @@ import { ScheduleTimingsComponent } from './schedule-timings/schedule-timings.co
 import { SessionsComponent } from './sessions/sessions.component';
 import { SocialMediaComponent } from './social-media/social-media.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import {AddCoursComponent} from './add-cours/add-cours.component';
+import {GetCoursComponent} from './get-cours/get-cours.component';
+import {UpdateCoursComponent} from './update-cours/update-cours.component';
+import {BookingComponent} from '../students/booking/booking.component';
+import {MysessionComponent} from './mysession/mysession.component';
 
 const routes: Routes = [
   { path: '', component: InstructorsComponent,
@@ -29,6 +34,7 @@ const routes: Routes = [
     { path: 'professor-dashboard', component: ProfessorDashboardComponent },
     { path: 'course', component: CourseComponent },
     { path: 'sessions', component: SessionsComponent },
+    {path: 'mysessions', component: MysessionComponent},
     { path: 'schedule-timings', component: ScheduleTimingsComponent },
     { path: 'my-students', component: MyStudentsComponent },
     { path: 'student-profile', component: StudentProfileComponent },
@@ -46,8 +52,12 @@ const routes: Routes = [
     { path: 'edit-blog', component: EditBlogComponent },
     { path: 'professor-pending-blog', component: ProfessorPendingBlogComponent },
     { path: 'cart', component: CartComponent },
-    { path: 'course-details', component: CourseDetailsComponent }
-  ] 
+    { path: 'course-details', component: CourseDetailsComponent },
+    {path: 'add-course', component: AddCoursComponent},
+    {path: 'get-course', component: GetCoursComponent},
+    {path: 'update-course/:idCours', component: UpdateCoursComponent},
+    {path: 'students/booking/:professorId/:coursID', component: BookingComponent}
+  ]
   }
 ];
 
