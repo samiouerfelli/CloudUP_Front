@@ -67,7 +67,7 @@
                     <span>Appointments</span>
                   </a>
                 </li>
-                
+
                 <li>
                   <a routerLink='/instructors/my-students'>
                     <i class="fas fa-user-injured"></i>
@@ -142,7 +142,7 @@
               <div class="card-body">
                 <input type="text" class="form-control" id="filter-text-box" [(ngModel)]="keyword"
                        (ngModelChange)="searchCourse()">
-                </div>
+              </div>
 
 
               <table class="table table-striped">
@@ -170,23 +170,23 @@
                   <td>
                     <div class="table-action">
                       <a  href="javascript:void(0);" class="btn btn-sm bg-success-light" (click)="handleEditCours(cr.idCours)">
-                        <i class="fas fa-edit"></i>      Edit     
-                      </a>  
+                        <i class="fas fa-edit"></i>      Edit
+                      </a>
                       <a href="javascript:void(0);" class="btn btn-sm bg-danger-light" (click)="handleDeleteCours(cr.idCours)">
                         <i class="far fa-trash-alt"></i>    Delete
                       </a>
                     </div>
                   </td>
 
-                 
+
                 </tr>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-                     
+

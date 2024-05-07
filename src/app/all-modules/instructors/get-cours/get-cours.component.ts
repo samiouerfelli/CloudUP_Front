@@ -42,9 +42,9 @@ export class GetCoursComponent implements OnInit {
   // tslint:disable-next-line:typedef
   fetchCoursByOwner() {
     this.service.findCoursByOwner().subscribe({
-      next: (cours) => {
-        this.coursResponse = cours ;
-    }
+        next: (cours) => {
+          this.coursResponse = cours ;
+        }
       }
 
     );
@@ -81,7 +81,7 @@ export class GetCoursComponent implements OnInit {
     }
   }
 
-  
+
   // tslint:disable-next-line:typedef
   handleEditCours(idCours: number) {
     this.router.navigateByUrl(`/instructors/update-course/${idCours}`);

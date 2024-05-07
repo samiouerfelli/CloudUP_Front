@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -246,4 +246,5 @@ export class AuthentificationService extends BaseService {
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
+
 }

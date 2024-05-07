@@ -24,6 +24,8 @@ import { GetReservationStatus$Params } from '../fn/reservation-controller/get-re
 import { ReservationResponse } from '../models/reservation-response';
 import { saveReservation } from '../fn/reservation-controller/save-reservation';
 import { SaveReservation$Params } from '../fn/reservation-controller/save-reservation';
+import { sendPaymentEmail } from '../fn/reservation-controller/send-payment-email';
+import { SendPaymentEmail$Params } from '../fn/reservation-controller/send-payment-email';
 import { updateReservationDate } from '../fn/reservation-controller/update-reservation-date';
 import { UpdateReservationDate$Params } from '../fn/reservation-controller/update-reservation-date';
 import { updateReservationStatus } from '../fn/reservation-controller/update-reservation-status';
@@ -34,6 +36,31 @@ import { User } from '../models/user';
 export class ReservationControllerService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `sendPaymentEmail()` */
+  static readonly SendPaymentEmailPath = '/auth/sendPaymentEmail/{idR}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `sendPaymentEmail()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendPaymentEmail$Response(params: SendPaymentEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return sendPaymentEmail(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `sendPaymentEmail$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendPaymentEmail(params: SendPaymentEmail$Params, context?: HttpContext): Observable<void> {
+    return this.sendPaymentEmail$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
   }
 
   /** Path part for operation `saveReservation()` */

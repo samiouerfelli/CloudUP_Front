@@ -16,40 +16,40 @@ export class ScheduleTimingsComponent implements OnInit {
 
   constructor( private service: SlotsControllerService) {
   }
-/*
-  // tslint:disable-next-line:typedef
-  saveSlot(formData: any) {
-    const startDateTime = this.formatDateTime(formData.date, formData.time);
-    const endDateTime = this.formatDateTime(formData.date, formData.endTime);
-    const date = new Date(formData.date);
+  /*
+    // tslint:disable-next-line:typedef
+    saveSlot(formData: any) {
+      const startDateTime = this.formatDateTime(formData.date, formData.time);
+      const endDateTime = this.formatDateTime(formData.date, formData.endTime);
+      const date = new Date(formData.date);
 
-    const day = date.toLocaleString('en-US', {weekday: 'long'});
-    let newTimeSlot: { dayOfWeek: string; startTime: string; endTime: string };
-    newTimeSlot = {
-      startTime: startDateTime,
-      endTime: endDateTime,
-      dayOfWeek: day.toUpperCase()
-    };
-    const params = {
-      body: newTimeSlot
-    };
+      const day = date.toLocaleString('en-US', {weekday: 'long'});
+      let newTimeSlot: { dayOfWeek: string; startTime: string; endTime: string };
+      newTimeSlot = {
+        startTime: startDateTime,
+        endTime: endDateTime,
+        dayOfWeek: day.toUpperCase()
+      };
+      const params = {
+        body: newTimeSlot
+      };
 
-    this.service.saveSlot(params).subscribe({
-      error: err => {
-        console.log('Error saving time slot:', err);
-        alert('There was an error saving the time slot.');
-      },
-      next: response => {
-        console.log('TimeSlot saved:', response);
-        alert('TimeSlot ajouté avec succès');
-        this.selectDay(params.body.dayOfWeek);
-        this.service.getSlotsOfConnectedUserOnly({day: params.body.dayOfWeek});
-      }
-    });
+      this.service.saveSlot(params).subscribe({
+        error: err => {
+          console.log('Error saving time slot:', err);
+          alert('There was an error saving the time slot.');
+        },
+        next: response => {
+          console.log('TimeSlot saved:', response);
+          alert('TimeSlot ajouté avec succès');
+          this.selectDay(params.body.dayOfWeek);
+          this.service.getSlotsOfConnectedUserOnly({day: params.body.dayOfWeek});
+        }
+      });
 
 
-  }
-*/
+    }
+  */
   formatDateTime(date: string, time: string, hoursToAdd = 0): string {
     const timeParts = time.split(':');
     const dateObj = new Date(date);

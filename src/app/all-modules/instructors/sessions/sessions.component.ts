@@ -139,4 +139,9 @@ export class SessionsComponent implements OnInit {
     });
 
   }
+
+  sendEmailPaiement(idR:any)
+  {
+    this.service.sendPaymentEmail({idR:idR}).subscribe({next : value => console.log(value)})
+  }
 }

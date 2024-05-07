@@ -11,6 +11,590 @@
     }
   ],
   "paths": {
+    "/reclamation/updatereclam": {
+      "put": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "UpdateReclamation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reclamation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reclamation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/traitereclam": {
+      "put": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "SetReclam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reclamation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reclamation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{commentId}/upvote": {
+      "put": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "upvoteCommentary",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{commentId}/downvote": {
+      "put": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "downvoteCommentary",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updatePub": {
+      "put": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "updatePub",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Publication"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Publication"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateCours/{coursID}": {
+      "put": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "updateCours",
+        "parameters": [
+          {
+            "name": "coursID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoursRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateC": {
+      "put": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "updateC",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Commentary"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commentary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reaction/modify-reaction": {
+      "put": {
+        "tags": [
+          "reaction-controller"
+        ],
+        "operationId": "modifyReaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reactions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reactions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/publications/{id}/increment-views": {
+      "put": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "incrementViewsForPublication",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/profile/update/{id}": {
+      "put": {
+        "tags": [
+          "user-profile-controller"
+        ],
+        "operationId": "updateEvenement",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/mark-solution-and-close": {
+      "put": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "markSolutionAndClosePublication",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/update/{id}": {
+      "put": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "updateEvenement_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Evenement"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/categories/update/{id}": {
+      "put": {
+        "tags": [
+          "categorie-evenement-controller"
+        ],
+        "operationId": "updateEvenement_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategorieEvenement"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategorieEvenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/send-private-message/{id}": {
+      "post": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "sendPrivateMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/reclamation/addreclamation": {
+      "post": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "AjouterReclamation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reclamation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reclamation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{idu}/{idf}/addPub": {
+      "post": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "addPub",
+        "parameters": [
+          {
+            "name": "idf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "idu",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Publication"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Publication"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/upload/{idpub}": {
+      "post": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "uploadImage",
+        "parameters": [
+          {
+            "name": "idpub",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "imageFile"
+                ],
+                "type": "object",
+                "properties": {
+                  "imageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/auth/updateUser": {
       "post": {
         "tags": [
@@ -35,6 +619,201 @@
                 "schema": {
                   "type": "integer",
                   "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sendReservationConfirmationSMS": {
+      "post": {
+        "tags": [
+          "otp-controller"
+        ],
+        "operationId": "sendReservationConfirmationSMS",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationResponse"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sendReservationCancelationSMS": {
+      "post": {
+        "tags": [
+          "otp-controller"
+        ],
+        "operationId": "sendReservationCancelationSMS",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationResponse"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sendPaymentEmail/{idR}": {
+      "post": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "sendPaymentEmail",
+        "parameters": [
+          {
+            "name": "idR",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/send-reservation-details": {
+      "post": {
+        "tags": [
+          "otp-controller"
+        ],
+        "operationId": "sendReservationDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reaction/add-reaction/{post-id}/{user-id}": {
+      "post": {
+        "tags": [
+          "reaction-controller"
+        ],
+        "operationId": "addReaction",
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "user-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reactions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reactions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/profile/addP": {
+      "post": {
+        "tags": [
+          "user-profile-controller"
+        ],
+        "operationId": "addUserProfile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -100,6 +879,246 @@
         }
       }
     },
+    "/auth/evenement/report/{eventId}": {
+      "post": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "reportEvent",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/join/{evenementId}/{utilisateurId}": {
+      "post": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "addParticipant",
+        "parameters": [
+          {
+            "name": "evenementId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "utilisateurId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/add": {
+      "post": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "addEvenement",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Evenement"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/add2": {
+      "post": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "addCollaboration",
+        "parameters": [
+          {
+            "name": "nom",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "datedebut",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "datefin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "lieu",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxparticipant",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "organisateur_id_user",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "categorie_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/categories/add": {
+      "post": {
+        "tags": [
+          "categorie-evenement-controller"
+        ],
+        "operationId": "addCategorieEvenement",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategorieEvenement"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategorieEvenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/authenticate": {
       "post": {
         "tags": [
@@ -130,6 +1149,220 @@
         }
       }
     },
+    "/auth/addUser": {
+      "post": {
+        "tags": [
+          "user-rest-controller"
+        ],
+        "operationId": "addU",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addSlots": {
+      "post": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "saveSlot",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addReservation/{idCours}": {
+      "post": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "saveReservation",
+        "parameters": [
+          {
+            "name": "idCours",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addForum": {
+      "post": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "addForum",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Forum"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forum"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addCours": {
+      "post": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "saveCours",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoursRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addCom/{idu}/{idpub}": {
+      "post": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "addC",
+        "parameters": [
+          {
+            "name": "idpub",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "idu",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Commentary"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commentary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/Register": {
       "post": {
         "tags": [
@@ -153,6 +1386,322 @@
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateReservationStatus": {
+      "patch": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "updateReservationStatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateReservationDate": {
+      "patch": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "updateReservationDate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/vu-message/{id}": {
+      "get": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "sendPrivateMessage_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/reclamation/pagination": {
+      "get": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "GetAllPagination",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageReclamation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/getidreclam/{id}": {
+      "get": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "RetrieveById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reclamation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/getarchivereclam": {
+      "get": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "GetArchives",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "id"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageReclamation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/getallreclams": {
+      "get": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "RetrieveAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reclamation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/get-private-chat": {
+      "get": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "getPrivateChat",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PrivateChat"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reclamation/findobjetrec/{objet}": {
+      "get": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "RetrieveObjet",
+        "parameters": [
+          {
+            "name": "objet",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reclamation"
+                  }
                 }
               }
             }
@@ -191,6 +1740,764 @@
         }
       }
     },
+    "/auth/{commentId}/likes": {
+      "get": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "getCommentLikes",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{commentId}/dislikes": {
+      "get": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "getCommentDislikes",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveCoursByName/{name}": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "findCoursByName",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoursResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByUser/{idUser}": {
+      "get": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "retrievePubByUser",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Publication"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByTagsP": {
+      "get": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "retrieveByTagsContaining",
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByTagsC/{idpub}": {
+      "get": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "retrieveByTags",
+        "parameters": [
+          {
+            "name": "idpub",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentaryDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveBySubject": {
+      "get": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "retrieveBySubject",
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByIdPub/{idpub}": {
+      "get": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "retrieveByIdPub",
+        "parameters": [
+          {
+            "name": "idpub",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByIdCours/{idC}": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "findCoursByID",
+        "parameters": [
+          {
+            "name": "idC",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoursResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByContent": {
+      "get": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "retrieveByContent",
+        "parameters": [
+          {
+            "name": "content",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByContentC/{idpub}": {
+      "get": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "retrieveByContent_1",
+        "parameters": [
+          {
+            "name": "idpub",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "content",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentaryDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByCategories/{categories}": {
+      "get": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "retrieveByCategories",
+        "parameters": [
+          {
+            "name": "categories",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "CIVIL_ENGINEERING",
+                "SOFTWARE_ENGINEERING",
+                "ELECTRICAL_ENGINEERING",
+                "MATERIAL_SCIENCE",
+                "ELECTRONICS",
+                "ROBOTICS",
+                "EMBEDDED_SYSTEMS",
+                "RENEWABLE_ENERGY",
+                "ARTIFICIAL_INTELLIGENCE",
+                "STUDY_TIPS",
+                "UNIVERSITY_DETAILS",
+                "COURSE_DETAILS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveAllPtoUser": {
+      "get": {
+        "tags": [
+          "user-rest-controller"
+        ],
+        "operationId": "retrieveAllP",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Publication"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveAllPofForum": {
+      "get": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "retrieveAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveAllCtoUser": {
+      "get": {
+        "tags": [
+          "user-rest-controller"
+        ],
+        "operationId": "retrieveAllC",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commentary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveAllCours": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "findAllCours",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoursResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveALLC/{idpub}": {
+      "get": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "retrieveAllC_1",
+        "parameters": [
+          {
+            "name": "idpub",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentaryDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reaction/retrieve-reaction/{reaction-id}": {
+      "get": {
+        "tags": [
+          "reaction-controller"
+        ],
+        "operationId": "retrieveReaction",
+        "parameters": [
+          {
+            "name": "reaction-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reactions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reaction/retrieve-all-reactions": {
+      "get": {
+        "tags": [
+          "reaction-controller"
+        ],
+        "operationId": "getReactions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reactions"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reaction/get-reaction/{post-id}/{user-id}": {
+      "get": {
+        "tags": [
+          "reaction-controller"
+        ],
+        "operationId": "getReactionByPostAndUser",
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "user-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reactions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reaction/count-reaction/{post-id}": {
+      "get": {
+        "tags": [
+          "reaction-controller"
+        ],
+        "operationId": "countReactionsByPost",
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/profile/{userId}": {
+      "get": {
+        "tags": [
+          "user-profile-controller"
+        ],
+        "operationId": "getUserProfile",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user-profile-controller"
+        ],
+        "operationId": "deleteUserProfile",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/process": {
+      "get": {
+        "tags": [
+          "otp-controller"
+        ],
+        "operationId": "processSMS",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/getUser": {
       "get": {
         "tags": [
@@ -204,6 +2511,585 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getTopProfessors": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "getTopProfessor",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getTopCourses": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "getTopCourses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoursParticuliers"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getTokenAndReturnID": {
+      "get": {
+        "tags": [
+          "user-rest-controller"
+        ],
+        "operationId": "getTokenAndReturnId",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getSlotsOfConnectedUserOnly/{day}": {
+      "get": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "getSlotsOfConnectedUserOnly",
+        "parameters": [
+          {
+            "name": "day",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeSlotResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getSlotsForBooking/{userID}/{day}": {
+      "get": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "getSlotsForBooking",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "day",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeSlotResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getRole/{idUser}": {
+      "get": {
+        "tags": [
+          "user-rest-controller"
+        ],
+        "operationId": "getRole",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "Professor",
+                    "Student",
+                    "Club",
+                    "Admin"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getReservationStatus/{status}": {
+      "get": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "getReservationStatus",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getReservationByOwnerStudent": {
+      "get": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "getReservationByOwnerStudent",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getReservationByOwnerProfeesor": {
+      "get": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "getReservationByOwnerProfeesor",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getReservationById/{idReservation}": {
+      "get": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "getReservationById",
+        "parameters": [
+          {
+            "name": "idReservation",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/getMyStudents": {
+      "get": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "getMyStudents",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/findCoursByOwner": {
+      "get": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "findCoursByOwner",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoursResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/{id}": {
+      "get": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "retrieveEvenementById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/participants/{eventId}/count": {
+      "get": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "getParticipantCount",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/isParticipating/{evenementId}/{utilisateurId}": {
+      "get": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "isParticipating",
+        "parameters": [
+          {
+            "name": "evenementId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "utilisateurId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/all": {
+      "get": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "retrieveAllEvenements",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Evenement"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/Top3": {
+      "get": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "getAllEvents",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Evenement"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/comments": {
+      "get": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "getCommentsForUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/categories/{id}": {
+      "get": {
+        "tags": [
+          "categorie-evenement-controller"
+        ],
+        "operationId": "retrieveCategorieEvenementById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategorieEvenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/categories/all": {
+      "get": {
+        "tags": [
+          "categorie-evenement-controller"
+        ],
+        "operationId": "retrieveAllCategoriesEvenement",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategorieEvenement"
+                  }
                 }
               }
             }
@@ -263,10 +3149,850 @@
           }
         }
       }
+    },
+    "/reclamation/deletereclam/{id}": {
+      "delete": {
+        "tags": [
+          "reclamation-controller"
+        ],
+        "operationId": "DeleteReclamation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/reaction/remove-reaction/{reaction-id}": {
+      "delete": {
+        "tags": [
+          "reaction-controller"
+        ],
+        "operationId": "removeReaction",
+        "parameters": [
+          {
+            "name": "reaction-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/evenement/leave/{evenementId}/{utilisateurId}": {
+      "delete": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "removeParticipant",
+        "parameters": [
+          {
+            "name": "evenementId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "utilisateurId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evenement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/evenement/delete/{id}": {
+      "delete": {
+        "tags": [
+          "evenement-controller"
+        ],
+        "operationId": "deleteEvenement",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteSlot/{idS}": {
+      "delete": {
+        "tags": [
+          "slots-controller"
+        ],
+        "operationId": "deleteCours",
+        "parameters": [
+          {
+            "name": "idS",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteReservation/{idReservation}": {
+      "delete": {
+        "tags": [
+          "reservation-controller"
+        ],
+        "operationId": "deleteReservation",
+        "parameters": [
+          {
+            "name": "idReservation",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deletePub/{idP}": {
+      "delete": {
+        "tags": [
+          "publication-rest-controller"
+        ],
+        "operationId": "deletePub",
+        "parameters": [
+          {
+            "name": "idP",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteForum/{idf}": {
+      "delete": {
+        "tags": [
+          "forum-rest-controller"
+        ],
+        "operationId": "deleteForum",
+        "parameters": [
+          {
+            "name": "idf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteCours/{idC}": {
+      "delete": {
+        "tags": [
+          "cours-controller"
+        ],
+        "operationId": "deleteCours_1",
+        "parameters": [
+          {
+            "name": "idC",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteC/{idC}/{idpub}": {
+      "delete": {
+        "tags": [
+          "commentary-rest-controller"
+        ],
+        "operationId": "deleteC",
+        "parameters": [
+          {
+            "name": "idC",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "idpub",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/categories/delete/{id}": {
+      "delete": {
+        "tags": [
+          "categorie-evenement-controller"
+        ],
+        "operationId": "deleteCategorieEvenement",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Reclamation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "objet": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Cours",
+              "Utilisateur",
+              "Evenement",
+              "Business"
+            ]
+          },
+          "traite": {
+            "type": "string",
+            "enum": [
+              "EnAttente",
+              "EnCours",
+              "Resolue"
+            ]
+          },
+          "archive": {
+            "type": "boolean"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Forum": {
+        "type": "object",
+        "properties": {
+          "id_Forum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nbr_pub": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Publication": {
+        "type": "object",
+        "properties": {
+          "idpub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "datePub": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "nbr_vue": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nbr_com": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categories": {
+            "type": "string",
+            "enum": [
+              "CIVIL_ENGINEERING",
+              "SOFTWARE_ENGINEERING",
+              "ELECTRICAL_ENGINEERING",
+              "MATERIAL_SCIENCE",
+              "ELECTRONICS",
+              "ROBOTICS",
+              "EMBEDDED_SYSTEMS",
+              "RENEWABLE_ENERGY",
+              "ARTIFICIAL_INTELLIGENCE",
+              "STUDY_TIPS",
+              "UNIVERSITY_DETAILS",
+              "COURSE_DETAILS"
+            ]
+          },
+          "closed": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "gotMail": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "image": {
+            "type": "string"
+          },
+          "forum": {
+            "$ref": "#/components/schemas/Forum"
+          }
+        }
+      },
+      "CoursRequest": {
+        "type": "object",
+        "properties": {
+          "idCours": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "niveau": {
+            "type": "string",
+            "enum": [
+              "LEVEL_1A",
+              "LEVEL_2A",
+              "LEVEL_3A",
+              "LEVEL_3B",
+              "LEVEL_4EME",
+              "LEVEL_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "GAMIX",
+              "GL",
+              "INFINI",
+              "ERP_BI",
+              "DS",
+              "SIM",
+              "TWIN",
+              "SLEAM",
+              "NIDS",
+              "SE"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "En_Ligne",
+              "En_Présentiel"
+            ]
+          },
+          "nomCours": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "float"
+          },
+          "dureeC": {
+            "type": "number",
+            "format": "float"
+          },
+          "descriptionCours": {
+            "type": "string"
+          }
+        }
+      },
+      "Commentary": {
+        "type": "object",
+        "properties": {
+          "idCom": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "datePublication": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "votePositif": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "voteNegatif": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "solution": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "idpub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gotMail": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Award": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "recievedDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "Education": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "dateDebut": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateFin": {
+            "type": "string",
+            "format": "date"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "Reactions": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reactionType": {
+            "type": "string",
+            "enum": [
+              "LIKE",
+              "LOVE",
+              "SUPPORT",
+              "ANGRY",
+              "SAD"
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "Speciality": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "speciality": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "motDePasse": {
+            "type": "string"
+          },
+          "nbr_pub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nbr_com": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "phoneNumber": {
+            "pattern": "^\\+(?:[0-9] ?){6,14}[0-9]$",
+            "type": "string"
+          },
+          "roles": {
+            "type": "string",
+            "enum": [
+              "Professor",
+              "Student",
+              "Club",
+              "Admin"
+            ]
+          },
+          "image": {
+            "type": "string"
+          },
+          "accountLocked": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female"
+            ]
+          },
+          "aboutMe": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "codePostal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "college": {
+            "type": "string",
+            "enum": [
+              "ESB",
+              "ESPRIT"
+            ]
+          },
+          "degree": {
+            "type": "string",
+            "enum": [
+              "CLASS_1ERE",
+              "CLASS_2EME",
+              "CLASS_3EME",
+              "CLASS_4EME",
+              "CLASS_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "DS",
+              "SE",
+              "TWIN",
+              "GL",
+              "SIM",
+              "NIDS",
+              "SLEAM",
+              "INFINI",
+              "ERP_BI",
+              "GAMIX"
+            ]
+          },
+          "membership": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "educations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Education"
+            }
+          },
+          "specialities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Speciality"
+            }
+          },
+          "awards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Award"
+            }
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "username": {
+            "type": "string"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "accountNonExpired": {
+            "type": "boolean"
+          },
+          "credentialsNonExpired": {
+            "type": "boolean"
+          },
+          "accountNonLocked": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CategorieEvenement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          }
+        }
+      },
+      "Evenement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reports": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "maxparticipant": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dateDebut": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateFin": {
+            "type": "string",
+            "format": "date"
+          },
+          "lieu": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "PRIVATE",
+              "PUBLIC"
+            ]
+          },
+          "organisateur": {
+            "$ref": "#/components/schemas/User"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "categorie": {
+            "$ref": "#/components/schemas/CategorieEvenement"
+          },
+          "salle": {
+            "$ref": "#/components/schemas/Salle"
+          },
+          "imgevent": {
+            "type": "string"
+          }
+        }
+      },
+      "Salle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "capacite": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "MessageRequest": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "UpdateRequest": {
         "required": [
           "nom",
@@ -347,6 +4073,69 @@
           }
         }
       },
+      "ReservationResponse": {
+        "type": "object",
+        "properties": {
+          "idR": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dateR": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "statusR": {
+            "type": "string",
+            "enum": [
+              "Confirmed",
+              "Pending",
+              "Canceled"
+            ]
+          },
+          "id_etudiant": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id_professeur": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id_cours": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "etudiantName": {
+            "type": "string"
+          },
+          "professeurName": {
+            "type": "string"
+          },
+          "nomcours": {
+            "type": "string"
+          },
+          "etudiantPhoneNumber": {
+            "type": "string"
+          },
+          "professeurPhoneNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "OtpResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "DELIVERED",
+              "FAILED"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "AuthentificationRequest": {
         "required": [
           "email",
@@ -369,6 +4158,50 @@
         "properties": {
           "token": {
             "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "TimeSlotRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dayOfWeek": {
+            "type": "string"
+          }
+        }
+      },
+      "ReservationRequest": {
+        "type": "object",
+        "properties": {
+          "idR": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dateR": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "statusR": {
+            "type": "string",
+            "enum": [
+              "Confirmed",
+              "Pending",
+              "Canceled"
+            ]
           }
         }
       },
@@ -408,6 +4241,133 @@
               "Club",
               "Admin"
             ]
+          }
+        }
+      },
+      "PageReclamation": {
+        "type": "object",
+        "properties": {
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reclamation"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "unpaged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "content": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "senderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vu": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PrivateChat": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creator": {
+            "$ref": "#/components/schemas/User"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            }
           }
         }
       },
@@ -502,149 +4462,256 @@
           }
         }
       },
-      "GrantedAuthority": {
+      "CoursResponse": {
         "type": "object",
         "properties": {
-          "authority": {
-            "type": "string"
-          }
-        }
-      },
-      "User": {
-        "required": [
-          "phoneNumber"
-        ],
-        "type": "object",
-        "properties": {
-          "idUser": {
+          "idCours": {
             "type": "integer",
             "format": "int64"
           },
-          "nom": {
-            "type": "string"
-          },
-          "prenom": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "motDePasse": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "pattern": "^\\+(?:[0-9] ?){6,14}[0-9]$",
-            "type": "string"
-          },
-          "roles": {
+          "niveau": {
             "type": "string",
             "enum": [
-              "Professor",
-              "Student",
-              "Club",
-              "Admin"
-            ]
-          },
-          "image": {
-            "type": "string"
-          },
-          "accountLocked": {
-            "type": "boolean"
-          },
-          "enabled": {
-            "type": "boolean"
-          },
-          "createdDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "gender": {
-            "type": "string",
-            "enum": [
-              "Male",
-              "Female"
-            ]
-          },
-          "aboutMe": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "codePostal": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "college": {
-            "type": "string",
-            "enum": [
-              "ESB",
-              "ESPRIT"
-            ]
-          },
-          "degree": {
-            "type": "string",
-            "enum": [
-              "CLASS_1ERE",
-              "CLASS_2EME",
-              "CLASS_3EME",
-              "CLASS_4EME",
-              "CLASS_5EME"
+              "LEVEL_1A",
+              "LEVEL_2A",
+              "LEVEL_3A",
+              "LEVEL_3B",
+              "LEVEL_4EME",
+              "LEVEL_5EME"
             ]
           },
           "option": {
             "type": "string",
             "enum": [
               "ARCTIC",
-              "DS",
-              "SE",
-              "TWIN",
+              "GAMIX",
               "GL",
-              "SIM",
-              "NIDS",
-              "SLEAM",
               "INFINI",
               "ERP_BI",
-              "GAMIX"
+              "DS",
+              "SIM",
+              "TWIN",
+              "SLEAM",
+              "NIDS",
+              "SE"
             ]
           },
-          "membership": {
+          "nomCours": {
             "type": "string"
           },
-          "name": {
+          "price": {
+            "type": "number",
+            "format": "float"
+          },
+          "descriptionCours": {
             "type": "string"
           },
-          "password": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "En_Ligne",
+              "En_Présentiel"
+            ]
+          },
+          "dureeC": {
+            "type": "number",
+            "format": "float"
+          },
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usernameCours": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicationDTO": {
+        "type": "object",
+        "properties": {
+          "idpub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "datePub": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject": {
             "type": "string"
           },
-          "authorities": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GrantedAuthority"
-            }
+          "content": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "nbr_vue": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nbr_com": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categories": {
+            "type": "string",
+            "enum": [
+              "CIVIL_ENGINEERING",
+              "SOFTWARE_ENGINEERING",
+              "ELECTRICAL_ENGINEERING",
+              "MATERIAL_SCIENCE",
+              "ELECTRONICS",
+              "ROBOTICS",
+              "EMBEDDED_SYSTEMS",
+              "RENEWABLE_ENERGY",
+              "ARTIFICIAL_INTELLIGENCE",
+              "STUDY_TIPS",
+              "UNIVERSITY_DETAILS",
+              "COURSE_DETAILS"
+            ]
+          },
+          "closed": {
+            "type": "string"
+          },
+          "forumId": {
+            "type": "integer",
+            "format": "int32"
           },
           "username": {
             "type": "string"
           },
-          "accountNonLocked": {
-            "type": "boolean"
+          "image": {
+            "type": "string"
           },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date"
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CommentaryDTO": {
+        "type": "object",
+        "properties": {
+          "idCom": {
+            "type": "integer",
+            "format": "int32"
           },
-          "lastModifiedDate": {
+          "datePublication": {
             "type": "string",
             "format": "date-time"
           },
-          "credentialsNonExpired": {
-            "type": "boolean"
+          "content": {
+            "type": "string"
           },
-          "accountNonExpired": {
-            "type": "boolean"
+          "tags": {
+            "type": "string"
+          },
+          "votePositif": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "voteNegatif": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "solution": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "idpub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userID": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CoursParticuliers": {
+        "type": "object",
+        "properties": {
+          "idCours": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "niveau": {
+            "type": "string",
+            "enum": [
+              "LEVEL_1A",
+              "LEVEL_2A",
+              "LEVEL_3A",
+              "LEVEL_3B",
+              "LEVEL_4EME",
+              "LEVEL_5EME"
+            ]
+          },
+          "option": {
+            "type": "string",
+            "enum": [
+              "ARCTIC",
+              "GAMIX",
+              "GL",
+              "INFINI",
+              "ERP_BI",
+              "DS",
+              "SIM",
+              "TWIN",
+              "SLEAM",
+              "NIDS",
+              "SE"
+            ]
+          },
+          "nomCours": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "float"
+          },
+          "descriptionCours": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "En_Ligne",
+              "En_Présentiel"
+            ]
+          },
+          "dureeC": {
+            "type": "number",
+            "format": "float"
+          },
+          "professeur": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "TimeSlotResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dayOfWeek": {
+            "type": "string"
+          },
+          "idUser": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       }

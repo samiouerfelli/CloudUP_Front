@@ -23,7 +23,7 @@ export class AddCoursComponent implements OnInit {
   }
   public courseForm!: FormGroup;
   public showNameDropdown = environment.showNameDropdown;
-public user! : User;
+  public user! : User;
 
   // tslint:disable-next-line:typedef
   ngOnInit() {

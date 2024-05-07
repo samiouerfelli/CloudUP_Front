@@ -4,12 +4,21 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { ReclamationControllerService } from './services/reclamation-controller.service';
+import { CommentaryRestControllerService } from './services/commentary-rest-controller.service';
+import { PublicationRestControllerService } from './services/publication-rest-controller.service';
 import { CoursControllerService } from './services/cours-controller.service';
+import { ReactionControllerService } from './services/reaction-controller.service';
+import { UserProfileControllerService } from './services/user-profile-controller.service';
+import { EvenementControllerService } from './services/evenement-controller.service';
+import { CategorieEvenementControllerService } from './services/categorie-evenement-controller.service';
+import { MessageControllerService } from './services/message-controller.service';
 import { AuthentificationService } from './services/authentification.service';
 import { OtpControllerService } from './services/otp-controller.service';
-import { PaypalControllerService } from './services/paypal-controller.service';
-import { SlotsControllerService } from './services/slots-controller.service';
 import { ReservationControllerService } from './services/reservation-controller.service';
+import { UserRestControllerService } from './services/user-rest-controller.service';
+import { SlotsControllerService } from './services/slots-controller.service';
+import { ForumRestControllerService } from './services/forum-rest-controller.service';
 import { AuthentificationGithubControllerService } from './services/authentification-github-controller.service';
 
 /**
@@ -20,12 +29,21 @@ import { AuthentificationGithubControllerService } from './services/authentifica
   exports: [],
   declarations: [],
   providers: [
+    ReclamationControllerService,
+    CommentaryRestControllerService,
+    PublicationRestControllerService,
     CoursControllerService,
+    ReactionControllerService,
+    UserProfileControllerService,
+    EvenementControllerService,
+    CategorieEvenementControllerService,
+    MessageControllerService,
     AuthentificationService,
     OtpControllerService,
-    PaypalControllerService,
-    SlotsControllerService,
     ReservationControllerService,
+    UserRestControllerService,
+    SlotsControllerService,
+    ForumRestControllerService,
     AuthentificationGithubControllerService,
     ApiConfiguration
   ],

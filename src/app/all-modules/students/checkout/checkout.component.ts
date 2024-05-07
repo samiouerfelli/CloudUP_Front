@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {PaypalControllerService} from '../../../services/services/paypal-controller.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
@@ -14,7 +13,7 @@ export class CheckoutComponent implements OnInit {
   selectedPaymentMethod = 'paypal'; // Assuming direct selection for demonstration
   amount = 160; // This could be dynamically calculated based on booking details
 
-  constructor(private service: PaypalControllerService,
+  constructor(
               private route: Router,
               private fb: FormBuilder) {
   }
