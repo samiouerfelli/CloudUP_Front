@@ -18,11 +18,11 @@ import { SocialMediaComponent } from './social-media/social-media.component';
 import { ProfessorChangePasswordComponent } from './professor-change-password/professor-change-password.component';
 import { AddBillingComponent } from './add-billing/add-billing.component';
 import { EditBillingComponent } from './edit-billing/edit-billing.component';
-import { CourseCheckoutComponent } from './course-checkout/course-checkout.component';
+
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { ProfessorPendingBlogComponent } from './professor-pending-blog/professor-pending-blog.component';
-import { CartComponent } from './cart/cart.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+
+
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TagInputModule } from 'ngx-chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,11 +50,10 @@ import { MatInputModule } from '@angular/material/input';
     ProfessorChangePasswordComponent,
     AddBillingComponent,
     EditBillingComponent,
-    CourseCheckoutComponent,
     EditBlogComponent,
     ProfessorPendingBlogComponent,
-    CartComponent,
-    ProductDetailsComponent
+   
+    
   ],
   imports: [
     CommonModule,

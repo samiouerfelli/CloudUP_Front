@@ -222,11 +222,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>University Images</label>
-                                    <ngx-dropzone (change)="onSelect($event)">
-                                        <ngx-dropzone-label>Drop files here to upload</ngx-dropzone-label>
-                                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                                        </ngx-dropzone-image-preview>
-                                    </ngx-dropzone>
+                                   
                                 </div>
                                 <div class="upload-wrap">
                                     <div class="upload-images">
@@ -327,9 +323,7 @@
                         <h4 class="card-title">Specialization</h4>
                         <div class="form-group mb-0">
                             <label>Specialization </label>
-                            <div class="tagsinput-dv">
-                                <tag-input [(ngModel)]='tagitemsSpecialization' [placeholder]="'Enter Specialization'" ></tag-input>
-                            </div>
+                           
                             <small class="form-text text-muted">Note : Type & Press  enter to add new specialization</small>
                         </div> 
                     </div>              

@@ -35,7 +35,7 @@ export class ListProduitComponent implements OnInit {
   }
   viewDetails(product : Product){
     this.produitService.setSelectedProduct(product);
-    this.route.navigate(["/instructors/product-details"]);
+    this.route.navigate(["/products/details"]);
 
   }
   edit(product : Product){
@@ -46,6 +46,7 @@ export class ListProduitComponent implements OnInit {
   range(value: number): number[] {
     return Array.from({length: value}, (v, k) => k);
   }
+  
     addToCart(product : Product){
       this.commandeProduct.product = product;
       this.commandeProductList = this.produitService.getCommandeProducts();

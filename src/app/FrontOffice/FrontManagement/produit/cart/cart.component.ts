@@ -49,7 +49,7 @@ export class CartComponent implements OnInit {
   viewDetails(product : Product){
     this.productService.setSelectedProduct(product);
     this.router.navigate([
-      "/instructors/product-details"
+      "/products/details"
     ])
   }
 }

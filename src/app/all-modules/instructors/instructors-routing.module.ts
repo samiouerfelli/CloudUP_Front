@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddBillingComponent } from './add-billing/add-billing.component';
-import { CartComponent } from './cart/cart.component';
-import { CourseCheckoutComponent } from './course-checkout/course-checkout.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+
+
 import { CourseComponent } from './course/course.component';
 import { EditBillingComponent } from './edit-billing/edit-billing.component';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
@@ -40,11 +39,10 @@ const routes: Routes = [
     { path: 'professor-change-password', component: ProfessorChangePasswordComponent },
     { path: 'add-billing', component: AddBillingComponent },
     { path: 'edit-billing', component: EditBillingComponent },
-    { path: 'course-checkout', component: CourseCheckoutComponent },
     { path: 'edit-blog', component: EditBlogComponent },
-    { path: 'professor-pending-blog', component: ProfessorPendingBlogComponent },
-    { path: 'cart', component: CartComponent },
-    { path: 'product-details', component: ProductDetailsComponent }
+    { path: 'professor-pending-blog', component: ProfessorPendingBlogComponent }
+
+   
   ] 
   }
 ];

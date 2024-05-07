@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/FrontOffice/Service/product.service';
-import { StorageService } from '../../../FrontOffice/Service/storage/storage.service';
+import { StorageService } from 'src/app/FrontOffice/Service/storage/storage.service'; 
 import { Router } from '@angular/router';
 import { Time } from '@angular/common';
 import { CommandService } from 'src/app/FrontOffice/Service/Command/command.service';

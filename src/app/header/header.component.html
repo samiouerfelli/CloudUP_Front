@@ -33,13 +33,7 @@
                         <ul class="submenu">
                             <li [ngClass]="[active2Route === 'professor-dashboard' ? 'active' : '']"><a routerLink='/instructors/professor-dashboard'>Professor Dashboard</a></li>
                             <!-- <li [ngClass]="[active2Route === 'product' ? 'active' : '']"><a routerLink='/list-produit'>Products</a></li> -->
-                            <li class="has-submenu">
-                                <a href="#">Products</a>
-                                <ul class="submenu">
-                                    <li [ngClass]="[active2Route === 'map-grid' ? 'active' : '']"  routerLink='/products/add'><a >Add New Product</a></li>
-                                    <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/products/list'>Product List</a></li>
-                                </ul>
-                            </li>
+                           
                             <li [ngClass]="[active2Route === 'sessions' ? 'active' : '']"><a routerLink='/instructors/sessions'>Sessions</a></li>
                             <li [ngClass]="[active2Route === 'schedule-timings' ? 'active' : '']"><a routerLink='/instructors/schedule-timings'>Schedule Timing</a></li>
                             <li [ngClass]="[active2Route === 'my-students' ? 'active' : '']"><a routerLink='/instructors/my-students'>Students List</a></li>
@@ -109,6 +103,19 @@
                             <li [ngClass]="[active2Route === 'blog-list' ? 'active' : '']"><a routerLink='/blog/blog-list'>Blog List</a></li>
                             <li [ngClass]="[active2Route === 'blog-grid' ? 'active' : '']"><a routerLink='/blog/blog-grid'>Blog Grid</a></li>
                             <li [ngClass]="[active2Route === 'blog-details' ? 'active' : '']"><a routerLink='/blog/blog-details'>Blog Details</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu" [ngClass]="[activeRoute === 'students' ? 'active' : '']"  >
+                        <a href="">Products <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li class="has-submenu">
+                                <a href="#">Products</a>
+                                <ul class="submenu">
+                                    <li [ngClass]="[active2Route === 'map-grid' ? 'active' : '']"  routerLink='/products/add'><a >Add New Product</a></li>
+                                    <li [ngClass]="[active2Route === 'map-list' ? 'active' : '']"><a routerLink='/products/list'>Product List</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <li class="login-link">

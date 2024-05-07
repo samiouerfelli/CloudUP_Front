@@ -8,6 +8,9 @@ import { EditProduitComponent } from './edit-produit/edit-produit.component';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule for making HTTP requests
 import { FormsModule } from '@angular/forms';
 import { AddBillingComponent } from './add-billing/add-billing.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CartComponent } from './cart/cart.component';
+import { CourseCheckoutComponent } from './course-checkout/course-checkout.component';
 import {MatSliderModule} from '@angular/material/slider';
 
 
@@ -16,7 +19,10 @@ import {MatSliderModule} from '@angular/material/slider';
     ListProduitComponent,
     AddProduitComponent,
     EditProduitComponent,
-    AddBillingComponent
+    AddBillingComponent,
+    ProductDetailsComponent,
+    CartComponent,
+    CourseCheckoutComponent
 
   ],
   imports: [
