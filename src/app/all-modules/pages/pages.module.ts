@@ -29,6 +29,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { EventCategoryComponent } from '../admin/event-category/event-category.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import {MatButtonModule} from '@angular/material/button';
     UpdateEventPopupComponent,
     CalendarAffComponent,
     AddEventComponent,
+    EventCategoryComponent
+
 ],
     imports: [
         CommonModule,

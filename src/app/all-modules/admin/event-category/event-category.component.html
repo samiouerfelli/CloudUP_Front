@@ -1,0 +1,54 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">List Of Events Category</h5>
+          <button (click)="ajoutuser(user)">Add Partenaire</button>
+
+        </div>
+      <!-- <button (click)="goToPartenairePage()">Add Partenaire</button>-->
+        <table>
+          <thead>
+            <tr>
+              <th>Category name</th>
+              <th>Category delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of UsersArray">
+              <td>{{ user.nom }}</td>
+              <td>
+                <button (click)="deleteUser(user.id)"><i class="fa fa-trash"></i></button>
+
+              </td>
+              <td>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+
+<div *ngIf="showajoutForm">
+  <form (ngSubmit)="ajoutPart(user)" #ajoutForm="ngForm" class="ajouter-form" novalidate>
+    <h2>Ajout d'un category</h2>
+    <label for="nom">Nom du category:</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="user.nom" required #nom="ngModel">
+    <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="error-message">
+      <span *ngIf="nom.errors?.required">Le nom du partenaire est requis.</span>
+    </div>
+
+    <!-- You can add additional validation messages for file input if necessary -->
+
+    <button type="submit" [disabled]="ajoutForm.invalid">Ajouter</button>
+    <button type="button" (click)="cancelAjout()">Annuler</button>
+  </form>
+</div></div>
