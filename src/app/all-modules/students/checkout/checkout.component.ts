@@ -104,6 +104,7 @@ export class CheckoutComponent implements OnInit {
         // @ts-ignore
         actions.order.get().then(details => {
           console.log('Payment approved: ', details);
+          this.route.navigate(['/students/booking-success']);
 
         });
       },

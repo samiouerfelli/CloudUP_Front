@@ -29,7 +29,7 @@
           <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
               <div class="profile-img">
-                <img class="rounded-1" [src]="selectedPicture " width="150" height="150" alt="Profile Picture">
+                <img class="rounded-1" [src]="selectedPicture " width="150" height="150" >
               </div>
 
               <div class="profile-det-info">
@@ -187,7 +187,7 @@
                           <td>
                             <div class="table-action">
                               <a href="javascript:void(0);" class="btn btn-sm bg-success-light"
-                                 *ngIf="reservation.statusR === 'Pending'" (click)="confirmReservation(reservation)"  (click)="sendEmailPaiement(reservation.idR)"> <!-- (click)="sendSmsConfirmation(reservation)" -->
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="sendSmsConfirmation(reservation)" (click)="confirmReservation(reservation)"  (click)="sendEmailPaiement(reservation.idR)"> <!-- (click)="sendSmsConfirmation(reservation)" -->
                                 <i class="fas fa-check"></i> Confirm
                               </a>
 
