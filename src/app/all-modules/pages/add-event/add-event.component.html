@@ -1,0 +1,109 @@
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form">
+  <div class="content">
+      <div class="container">
+
+          <div class="row">
+              <div class="col-md-12 col-lg-12 col-xl-12">
+                  <div class="doc-review review-listing custom-edit-service">
+                      <div class="card">
+                          <div class="card-body">
+
+                                  <div class="service-fields mb-3">
+                                      <div class="row">
+                                          <div class="col-lg-12">
+                                              <div class="form-group">
+                                                  <label>Event place <span class="text-danger">*</span></label>
+                                                  <input class="form-control" type="text" placeholder="Lieu" formControlName="lieu">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="service-fields mb-3">
+                                      <div class="row">
+                                          <div class="col-lg-6">
+                                              <div class="form-group">
+                                                  <label>Category <span class="text-danger">*</span></label>
+                                                  <mat-form-field appearence="outline">
+                                                      <mat-select placeholder="Categorie" formControlName="categorie">
+                                                        <mat-option *ngFor="let Category of categories" [value]="Category.id">
+                                                          {{ Category.nom }}
+                                                              </mat-option>
+                                                      </mat-select>
+                                                    </mat-form-field>
+                                              </div>
+                                          </div>
+
+                                      </div>
+                                  </div>
+
+                                  <div class="service-fields mb-3">
+                                      <div class="row">
+                                          <div class="col-lg-12">
+                                              <div class="form-grouprec">
+                                                  <label>Description <span class="text-danger">*</span></label>
+                                                  <textarea type="text" class="form-control service-desc" name="Description"
+                                                  placeholder="description" formControlName="description"></textarea>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="service-fields mb-3">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-grouprec">
+                                                <label>Max pariticipant <span class="text-danger">*</span></label>
+                                                <textarea type="text" class="form-control service-desc" name="max"
+                                                placeholder="max" formControlName="max"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="service-fields mb-3">
+                                    <div class="row">
+                                          <div class="col-lg-12">
+                                              <div class="form-grouprec">
+                                    <label for="imgcol">Image du partenaire:</label>
+                                  <input type="file" id="imgcol" name="imgcol" required #fileInput >
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                                  <div class="service-fields mb-3">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-grouprec">
+                                                <label>Event Name <span class="text-danger">*</span></label>
+                                                <textarea type="text" class="form-control service-desc" name="nom"
+                                                placeholder="nom" formControlName="nom"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                  <label for="dateDebut">Start Date:</label>
+                                  <input type="date" id="dateDebut" name="dateDebut" formControlName="date_Debut" required>
+                                </div>
+                                <div>
+                                  <label for="dateFin">End Date:</label>
+                                  <input type="date" id="dateFin" name="dateFin" formControlName="date_Fin" required>
+                                </div>
+                                  <div class="submit-section" *ngIf="!data.view">
+                                      <button class="btn btn-primary submit-btn" (click)="onSubmit()" type="submit" >Submit</button>
+                                  </div>
+                          </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </form>
+  </mat-dialog-content>
+
+

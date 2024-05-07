@@ -1,6 +1,5 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { VoiceCallComponent } from './voice-call/voice-call.component';
@@ -21,7 +20,15 @@ import {CodeInputModule} from 'angular-code-input';
 import { UpdateAccountComponent } from './update-account/update-account.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {TagInputModule} from "ngx-chips";
-
+import { UpdateEventPopupComponent } from './update-event-popup/update-event-popup.component';
+import { CalendarAffComponent } from './calendar-aff/calendar-aff.component';
+import { AddEventComponent } from './add-event/add-event.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -40,6 +47,9 @@ import {TagInputModule} from "ngx-chips";
     PrivacyPolicyComponent,
     ActivateAccountComponent,
     UpdateAccountComponent,
+    UpdateEventPopupComponent,
+    CalendarAffComponent,
+    AddEventComponent,
 ],
     imports: [
         CommonModule,
@@ -48,7 +58,14 @@ import {TagInputModule} from "ngx-chips";
         CodeInputModule,
         NgxDropzoneModule,
         TagInputModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule,
+        NgbModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatIconModule
+
     ],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]
 
