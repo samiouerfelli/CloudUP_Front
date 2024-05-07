@@ -12,9 +12,9 @@ export class UserService {
 
   getIDFromToken(token: string): Observable<number> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<number>('http://localhost:8080/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
+    return this.http.get<number>('http://localhost:8087/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
   }
   getRole(idUser: number):Observable<string> {
-    return this.http.get<string>(`Http://localhost:8080/api/v1/auth/getRole/${idUser}`);
+    return this.http.get<string>(`Http://localhost:8087/api/v1/auth/getRole/${idUser}`);
   }
 }
