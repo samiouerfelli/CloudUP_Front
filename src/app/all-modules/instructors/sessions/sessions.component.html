@@ -28,9 +28,10 @@
         <div class="profile-sidebar">
           <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
-              <a href="#" class="booking-doc-img">
-                <img src="assets/img/admins/admin-02.jpg" alt="User Image">
-              </a>
+              <div class="profile-img">
+                <img class="rounded-1" [src]="selectedPicture " width="150" height="150" alt="Profile Picture">
+              </div>
+
               <div class="profile-det-info">
                 <h3>{{user.nom}} {{user.prenom}}</h3>
 
@@ -186,7 +187,7 @@
                           <td>
                             <div class="table-action">
                               <a href="javascript:void(0);" class="btn btn-sm bg-success-light"
-                                 *ngIf="reservation.statusR === 'Pending'" (click)="confirmReservation(reservation)" (click)="sendSmsConfirmation(reservation)" (click)="sendEmailPaiement(reservation.idR)">
+                                 *ngIf="reservation.statusR === 'Pending'" (click)="confirmReservation(reservation)"  (click)="sendEmailPaiement(reservation.idR)"> <!-- (click)="sendSmsConfirmation(reservation)" -->
                                 <i class="fas fa-check"></i> Confirm
                               </a>
 

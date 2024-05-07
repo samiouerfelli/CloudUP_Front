@@ -30,30 +30,6 @@
 
                             <div class="payment-widget">
                                 <h4 class="card-title">Payment Method</h4>
-
-                                <!-- Credit Card Payment -->
-                                <div class="payment-list">
-                                    <label class="payment-radio credit-card-option">
-                                        <input type="radio" name="radio"  [(ngModel)]="selectedPaymentMethod" value="credit_card" checked>
-                                        <span class="checkmark"></span>
-                                        Credit card
-                                    </label>
-                                    <div class="row">
-                                        <!-------  other methode  ---------->
-                                    </div>
-                                </div>
-                                <!-- /Credit Card Payment -->
-
-                                <!-- Paypal Payment -->
-                                <div class="payment-list">
-                                    <label class="payment-radio paypal-option">
-                                        <input type="radio" name="radio" [(ngModel)]="selectedPaymentMethod" value="paypal">
-                                        <span class="checkmark"></span>
-                                        Paypal
-                                    </label>
-                                </div>
-
-
                               <div *ngIf="selectedPaymentMethod === 'paypal'" class="payment-list">
                                 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                               </div>
@@ -65,66 +41,64 @@
 
             </div>
 
-            <div class="col-md-5 col-lg-4 theiaStickySidebar">
+          <div class="col-md-5 col-lg-4 theiaStickySidebar">
 
-                <!-- Booking Summary -->
-                <div class="card booking-card">
-                    <div class="card-header">
-                        <h4 class="card-title">Booking Summary</h4>
-                    </div>
-                    <div class="card-body">
+            <!-- Booking Summary -->
+            <div class="card booking-card">
+              <div class="card-header">
+                <h4 class="card-title">Booking Summary</h4>
+              </div>
+              <div class="card-body">
 
-                        <!-- Booking professor Info -->
-                        <div class="booking-doc-info">
-                            <a routerLink='/students/professor-profile' class="booking-doc-img">
-                                <img src="assets/img/admins/admin-02.jpg" alt="User Image">
-                            </a>
-                            <div class="booking-info">
-                                <h4><a routerLink='/students/professor-profile'>Prof. Darren Elder</a></h4>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="d-inline-block average-rating">35</span>
-                                </div>
-                                <div class="clinic-details">
-                                    <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Booking professor Info -->
+                <!-- Booking professor Info -->
+                <div class="booking-doc-info" >
 
-                        <div class="booking-summary">
-                            <div class="booking-item-wrap">
-                                <ul class="booking-date">
-                                    <li>Date <span>16 Nov 2019</span></li>
-                                    <li>Time <span>10:00 AM</span></li>
-                                </ul>
-                                <ul class="booking-fee">
-                                    <li>Consulting Fee <span>$100</span></li>
-                                    <li>Booking Fee <span>$10</span></li>
-                                    <li>Video Call <span>$50</span></li>
-                                </ul>
-                                <div class="booking-total">
-                                    <ul class="booking-total-list">
-                                        <li>
-                                            <span>Total</span>
-                                            <span class="total-cost">$160</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <!--
+                  <a routerLink="/students/professor-profile/{{ reservationDetails.professeur?.nom}} {{ reservationDetails.professeur?.prenom}}" class="booking-doc-img">
+                    <img [src]="reservationDetails.professeur?.image || 'assets/img/admins/admin-02.jpg'" alt="User Image">
+                  </a>
+                  -->
+                  <div class="profile-img">
+                    <img class="rounded-1" [src]="selectedPicture " width="80" height="80" alt="Profile Picture">
+                  </div>
+
+                  <div class="booking-info">
+                    <h4> {{ reservationDetails.professeur?.nom }} {{ reservationDetails.professeur?.prenom }}</h4>
+                  </div>
                 </div>
-                <!-- /Booking Summary -->
+                <!-- /Booking professor Info -->
 
+
+                <div class="booking-summary">
+                  <div class="booking-item-wrap">
+                    <ul class="booking-date">
+                      <li>Date <span>{{ reservationDetails.dateR | date: 'dd MMM yyyy' }}</span></li>
+                      <li>Time <span>{{ reservationDetails.dateR | date: 'h:mm a' }}</span></li>
+                    </ul>
+
+                    <ul class="booking-fee">
+                      <li>Booking Price<span> {{ reservationDetails.cours?.price }} DT </span></li>
+                      <li>Booking Duration<span>{{ reservationDetails.cours?.dureeC }} Hours</span></li>
+
+
+                    </ul>
+
+                    <div class="booking-total">
+                      <ul class="booking-total-list">
+                        <li>
+                          <span>Total</span>
+                          <span class="total-cost">{{ reservationDetails.cours?.price }} DT </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- /Booking Summary -->
+
+          </div>
         </div>
-
     </div>
-
 </div>
-<!-- /Page Content -->
+          <!-- /Page Content -->

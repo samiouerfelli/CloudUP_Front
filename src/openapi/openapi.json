@@ -71,12 +71,74 @@
         }
       }
     },
+    "/auth/{commentId}/upvotesssssssss": {
+      "put": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "upvoteCommentary",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/{commentId}/upvote": {
       "put": {
         "tags": [
           "commentary-rest-controller"
         ],
-        "operationId": "upvoteCommentary",
+        "operationId": "upvoteCommentary_1",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{commentId}/downvotessssssss": {
+      "put": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "downvoteCommentary",
         "parameters": [
           {
             "name": "commentId",
@@ -107,7 +169,38 @@
         "tags": [
           "commentary-rest-controller"
         ],
-        "operationId": "downvoteCommentary",
+        "operationId": "downvoteCommentary_1",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{commentId}/downbssssssss": {
+      "put": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "downnumber",
         "parameters": [
           {
             "name": "commentId",
@@ -163,6 +256,47 @@
         }
       }
     },
+    "/auth/updatePartenaires/{id}": {
+      "put": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "updateEvenement",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partenaires"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partenaires"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/updateCours/{coursID}": {
       "put": {
         "tags": [
@@ -198,6 +332,47 @@
                 "schema": {
                   "type": "integer",
                   "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updateCollaboration/{id}": {
+      "put": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "updateCol",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Collaboration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collaboration"
                 }
               }
             }
@@ -301,7 +476,7 @@
         "tags": [
           "user-profile-controller"
         ],
-        "operationId": "updateEvenement",
+        "operationId": "updateEvenement_1",
         "parameters": [
           {
             "name": "id",
@@ -362,7 +537,7 @@
         "tags": [
           "evenement-controller"
         ],
-        "operationId": "updateEvenement_1",
+        "operationId": "updateEvenement_2",
         "parameters": [
           {
             "name": "id",
@@ -403,7 +578,7 @@
         "tags": [
           "categorie-evenement-controller"
         ],
-        "operationId": "updateEvenement_2",
+        "operationId": "updateEvenement_3",
         "parameters": [
           {
             "name": "id",
@@ -1089,6 +1264,36 @@
         }
       }
     },
+    "/auth/collaborationss": {
+      "post": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "addCollaborationsssssss",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Collaboration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/categories/add": {
       "post": {
         "tags": [
@@ -1252,6 +1457,128 @@
         }
       }
     },
+    "/auth/addPartenairess": {
+      "post": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "addPartenairess",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Partenaires"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Partenaires"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addPartenaires": {
+      "post": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "addPartenaires",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partenaires"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partenaires"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addP": {
+      "post": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "Partenaires",
+        "parameters": [
+          {
+            "name": "nom",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descpart",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/addForum": {
       "post": {
         "tags": [
@@ -1356,6 +1683,145 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Commentary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addCollaboration": {
+      "post": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "addCollaboration_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Collaboration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collaboration"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/addColbeltaswira": {
+      "post": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "addCollaboration_2",
+        "parameters": [
+          {
+            "name": "nomcol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "desccol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "datecol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "placecol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prixcol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "partenaires_id_part",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nbrres",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "user_id_user",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -1740,12 +2206,76 @@
         }
       }
     },
+    "/auth/{commentId}/likesssssssssss": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "getCommentLikes",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/{commentId}/likes": {
       "get": {
         "tags": [
           "commentary-rest-controller"
         ],
-        "operationId": "getCommentLikes",
+        "operationId": "getCommentLikes_1",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/{commentId}/dislikessssssssss": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "getCommentDislikes",
         "parameters": [
           {
             "name": "commentId",
@@ -1777,7 +2307,7 @@
         "tags": [
           "commentary-rest-controller"
         ],
-        "operationId": "getCommentDislikes",
+        "operationId": "getCommentDislikes_1",
         "parameters": [
           {
             "name": "commentId",
@@ -1797,6 +2327,29 @@
                 "schema": {
                   "type": "integer",
                   "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retriveCollaboration": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "retriveCollaboration",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collaboration"
+                  }
                 }
               }
             }
@@ -2037,6 +2590,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CoursResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/retrieveByIdCollaboration/{idcol}": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "retrieveByIdCollaboration",
+        "parameters": [
+          {
+            "name": "idcol",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collaboration"
                 }
               }
             }
@@ -2418,6 +3002,30 @@
         }
       }
     },
+    "/auth/qrcode/{idcol}": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "getQRCode",
+        "parameters": [
+          {
+            "name": "idcol",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/auth/profile/{userId}": {
       "get": {
         "tags": [
@@ -2491,6 +3099,199 @@
               "application/json": {
                 "schema": {
                   "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/partenairesbyname/{name}": {
+      "get": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "findPartenairesByNom",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partenaires"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/partenaires": {
+      "get": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "findAllPartenaires",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Partenaires"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/partenaires/{id}": {
+      "get": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "findPartenairesById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Partenaires"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/paginations/{offset}/{pageSize}": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "getProductsWithPagination",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collaboration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/pagination": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "GetAllPagination_1",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageCollaboration"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/momo/{field}": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "getProductsWithSort",
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collaboration"
+                  }
                 }
               }
             }
@@ -2809,7 +3610,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReservationResponse"
+                  "$ref": "#/components/schemas/Reservation"
                 }
               }
             }
@@ -2840,6 +3641,39 @@
         }
       }
     },
+    "/auth/findobjetrecssssss/{objet}": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "RetrieveObjet_1",
+        "parameters": [
+          {
+            "name": "objet",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collaboration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/findCoursByOwner": {
       "get": {
         "tags": [
@@ -2855,6 +3689,29 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/CoursResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/findAllusers": {
+      "get": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
                   }
                 }
               }
@@ -3334,6 +4191,37 @@
         }
       }
     },
+    "/auth/deletePartenaires/{id}": {
+      "delete": {
+        "tags": [
+          "partenaires-controller"
+        ],
+        "operationId": "deletepartenaires",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/deleteForum/{idf}": {
       "delete": {
         "tags": [
@@ -3372,6 +4260,30 @@
             "schema": {
               "type": "integer",
               "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/deleteCollaboration/{idcol}": {
+      "delete": {
+        "tags": [
+          "collaboration-controller"
+        ],
+        "operationId": "deleteCollaboration",
+        "parameters": [
+          {
+            "name": "idcol",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -3557,6 +4469,24 @@
           }
         }
       },
+      "Partenaires": {
+        "type": "object",
+        "properties": {
+          "id_part": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "descpart": {
+            "type": "string"
+          },
+          "imgpart": {
+            "type": "string"
+          }
+        }
+      },
       "CoursRequest": {
         "type": "object",
         "properties": {
@@ -3614,22 +4544,29 @@
           }
         }
       },
-      "Commentary": {
+      "Collaboration": {
         "type": "object",
         "properties": {
-          "idCom": {
+          "idcol": {
             "type": "integer",
             "format": "int32"
           },
-          "datePublication": {
+          "nomcol": {
+            "type": "string"
+          },
+          "desccol": {
+            "type": "string"
+          },
+          "datecol": {
             "type": "string",
             "format": "date-time"
           },
-          "content": {
+          "placecol": {
             "type": "string"
           },
-          "tags": {
-            "type": "string"
+          "prixcol": {
+            "type": "number",
+            "format": "float"
           },
           "votePositif": {
             "type": "integer",
@@ -3639,101 +4576,36 @@
             "type": "integer",
             "format": "int32"
           },
-          "solution": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "idpub": {
+          "nbrres": {
             "type": "integer",
             "format": "int32"
           },
-          "gotMail": {
+          "qrString": {
+            "type": "string"
+          },
+          "imgcol": {
+            "type": "string"
+          },
+          "cours": {
+            "$ref": "#/components/schemas/Cours"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "partenaires": {
+            "$ref": "#/components/schemas/Partenaires"
+          }
+        }
+      },
+      "Cours": {
+        "type": "object",
+        "properties": {
+          "idcour": {
             "type": "integer",
             "format": "int32"
-          }
-        }
-      },
-      "Award": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
           },
-          "name": {
+          "nom": {
             "type": "string"
-          },
-          "recievedDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        }
-      },
-      "Education": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          },
-          "location": {
-            "type": "string"
-          },
-          "dateDebut": {
-            "type": "string",
-            "format": "date"
-          },
-          "dateFin": {
-            "type": "string",
-            "format": "date"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        }
-      },
-      "Reactions": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "reactionType": {
-            "type": "string",
-            "enum": [
-              "LIKE",
-              "LOVE",
-              "SUPPORT",
-              "ANGRY",
-              "SAD"
-            ]
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        }
-      },
-      "Speciality": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "speciality": {
-            "type": "string"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
           }
         }
       },
@@ -3852,49 +4724,91 @@
           "location": {
             "type": "string"
           },
-          "educations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Education"
-            }
-          },
-          "specialities": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Speciality"
-            }
-          },
-          "awards": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Award"
-            }
+          "name": {
+            "type": "string"
           },
           "password": {
             "type": "string"
           },
-          "name": {
+          "username": {
             "type": "string"
           },
           "dateOfBirth": {
             "type": "string",
             "format": "date"
           },
-          "username": {
-            "type": "string"
-          },
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
           },
-          "accountNonExpired": {
+          "accountNonLocked": {
             "type": "boolean"
           },
           "credentialsNonExpired": {
             "type": "boolean"
           },
-          "accountNonLocked": {
+          "accountNonExpired": {
             "type": "boolean"
+          }
+        }
+      },
+      "Commentary": {
+        "type": "object",
+        "properties": {
+          "idCom": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "datePublication": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "votePositif": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "voteNegatif": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "solution": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "idpub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gotMail": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Reactions": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reactionType": {
+            "type": "string",
+            "enum": [
+              "LIKE",
+              "LOVE",
+              "SUPPORT",
+              "ANGRY",
+              "SAD"
+            ]
           }
         }
       },
@@ -4247,13 +5161,13 @@
       "PageReclamation": {
         "type": "object",
         "properties": {
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
           "totalPages": {
             "type": "integer",
             "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
           },
           "size": {
             "type": "integer",
@@ -4300,11 +5214,11 @@
           "sort": {
             "$ref": "#/components/schemas/SortObject"
           },
-          "pageSize": {
+          "pageNumber": {
             "type": "integer",
             "format": "int32"
           },
-          "pageNumber": {
+          "pageSize": {
             "type": "integer",
             "format": "int32"
           },
@@ -4631,6 +5545,52 @@
           }
         }
       },
+      "PageCollaboration": {
+        "type": "object",
+        "properties": {
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Collaboration"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
       "CoursParticuliers": {
         "type": "object",
         "properties": {
@@ -4712,6 +5672,40 @@
           "idUser": {
             "type": "integer",
             "format": "int64"
+          }
+        }
+      },
+      "Reservation": {
+        "type": "object",
+        "properties": {
+          "idR": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dateR": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "statusR": {
+            "type": "string",
+            "enum": [
+              "Confirmed",
+              "Pending",
+              "Canceled"
+            ]
+          },
+          "professeur": {
+            "$ref": "#/components/schemas/User"
+          },
+          "etudiant": {
+            "$ref": "#/components/schemas/User"
+          },
+          "cours": {
+            "$ref": "#/components/schemas/CoursParticuliers"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       }

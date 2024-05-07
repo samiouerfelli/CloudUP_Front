@@ -6,16 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Reservation } from '../../models/reservation';
 
-export interface GetReservationById$Params {
-  idReservation: number;
+export interface GetCommentLikes$Params {
+  commentId: number;
 }
 
-export function getReservationById(http: HttpClient, rootUrl: string, params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<Reservation>> {
-  const rb = new RequestBuilder(rootUrl, getReservationById.PATH, 'get');
+export function getCommentLikes(http: HttpClient, rootUrl: string, params: GetCommentLikes$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  const rb = new RequestBuilder(rootUrl, getCommentLikes.PATH, 'get');
   if (params) {
-    rb.path('idReservation', params.idReservation, {});
+    rb.path('commentId', params.commentId, {});
   }
 
   return http.request(
@@ -23,9 +22,9 @@ export function getReservationById(http: HttpClient, rootUrl: string, params: Ge
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Reservation>;
+      return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
     })
   );
 }
 
-getReservationById.PATH = '/auth/getReservationById/{idReservation}';
+getCommentLikes.PATH = '/auth/{commentId}/likesssssssssss';

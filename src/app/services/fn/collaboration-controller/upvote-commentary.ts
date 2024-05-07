@@ -7,12 +7,13 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface GetCommentLikes$Params {
+export interface UpvoteCommentary$Params {
   commentId: number;
 }
 
-export function getCommentLikes(http: HttpClient, rootUrl: string, params: GetCommentLikes$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-  const rb = new RequestBuilder(rootUrl, getCommentLikes.PATH, 'get');
+export function upvoteCommentary(http: HttpClient, rootUrl: string, params: UpvoteCommentary$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+}>> {
+  const rb = new RequestBuilder(rootUrl, upvoteCommentary.PATH, 'put');
   if (params) {
     rb.path('commentId', params.commentId, {});
   }
@@ -22,9 +23,10 @@ export function getCommentLikes(http: HttpClient, rootUrl: string, params: GetCo
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
+      return r as StrictHttpResponse<{
+      }>;
     })
   );
 }
 
-getCommentLikes.PATH = '/auth/{commentId}/likes';
+upvoteCommentary.PATH = '/auth/{commentId}/upvotesssssssss';

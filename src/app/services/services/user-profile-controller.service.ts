@@ -15,8 +15,8 @@ import { deleteUserProfile } from '../fn/user-profile-controller/delete-user-pro
 import { DeleteUserProfile$Params } from '../fn/user-profile-controller/delete-user-profile';
 import { getUserProfile } from '../fn/user-profile-controller/get-user-profile';
 import { GetUserProfile$Params } from '../fn/user-profile-controller/get-user-profile';
-import { updateEvenement } from '../fn/user-profile-controller/update-evenement';
-import { UpdateEvenement$Params } from '../fn/user-profile-controller/update-evenement';
+import { updateEvenement1 } from '../fn/user-profile-controller/update-evenement-1';
+import { UpdateEvenement1$Params } from '../fn/user-profile-controller/update-evenement-1';
 import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
@@ -25,27 +25,27 @@ export class UserProfileControllerService extends BaseService {
     super(config, http);
   }
 
-  /** Path part for operation `updateEvenement()` */
-  static readonly UpdateEvenementPath = '/auth/profile/update/{id}';
+  /** Path part for operation `updateEvenement1()` */
+  static readonly UpdateEvenement1Path = '/auth/profile/update/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateEvenement()` instead.
+   * To access only the response body, use `updateEvenement1()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateEvenement$Response(params: UpdateEvenement$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
-    return updateEvenement(this.http, this.rootUrl, params, context);
+  updateEvenement1$Response(params: UpdateEvenement1$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+    return updateEvenement1(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateEvenement$Response()` instead.
+   * To access the full response (for headers, for example), `updateEvenement1$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateEvenement(params: UpdateEvenement$Params, context?: HttpContext): Observable<User> {
-    return this.updateEvenement$Response(params, context).pipe(
+  updateEvenement1(params: UpdateEvenement1$Params, context?: HttpContext): Observable<User> {
+    return this.updateEvenement1$Response(params, context).pipe(
       map((r: StrictHttpResponse<User>): User => r.body)
     );
   }

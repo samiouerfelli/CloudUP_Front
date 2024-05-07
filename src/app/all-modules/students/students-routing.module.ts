@@ -29,6 +29,7 @@ const routes: Routes = [
       { path: 'chat', component: ChatComponent },
       { path: 'profile-settings', component: ProfileSettingsComponent },
       { path: 'change-password', component: ChangePasswordComponent }
+
     ]
   }
 ];
