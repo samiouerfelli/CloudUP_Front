@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ export class LoginService {
   headerState$ = this.headerState.asObservable();
   private dataSource = new BehaviorSubject<any>(null);
   data = this.dataSource.asObservable();
+  private PhoneNumberSource = new BehaviorSubject<any>(null);
+  PhoneNumber = this.PhoneNumberSource.asObservable();
 
   private imageSource = new BehaviorSubject<any>(null);
   image = this.imageSource.asObservable();
@@ -25,5 +27,11 @@ export class LoginService {
   // tslint:disable-next-line:typedef
   updateImage(image: any) {
     this.imageSource.next(image);
+  }
+
+  // tslint:disable-next-line:typedef
+  GetPhoneNumber(PhoneNumber: any) {
+    this.PhoneNumberSource.next(PhoneNumber);
+
   }
 }

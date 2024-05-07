@@ -6,14 +6,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { User } from '../../models/user';
+import { UserUpdatePwdRequest } from '../../models/user-update-pwd-request';
 
-export interface FindAll$Params {
+export interface SendUpdatePasswordSms$Params {
+      body: UserUpdatePwdRequest
 }
 
-export function findAll(http: HttpClient, rootUrl: string, params?: FindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<User>>> {
-  const rb = new RequestBuilder(rootUrl, findAll.PATH, 'get');
+export function sendUpdatePasswordSms(http: HttpClient, rootUrl: string, params: SendUpdatePasswordSms$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  const rb = new RequestBuilder(rootUrl, sendUpdatePasswordSms.PATH, 'post');
   if (params) {
+    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -21,9 +23,9 @@ export function findAll(http: HttpClient, rootUrl: string, params?: FindAll$Para
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<User>>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }
 
-findAll.PATH = '/auth/findAll';
+sendUpdatePasswordSms.PATH = '/auth/sendUpdatePasswordSMS';

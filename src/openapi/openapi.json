@@ -72,6 +72,67 @@
         }
       }
     },
+    "/auth/updatePassword": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "updatePassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CombinedPasswordUpdateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sendUpdatePasswordSMS": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "sendUpdatePasswordSMS",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdatePWDRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/sendUpdateConfirmationSMS": {
       "post": {
         "tags": [
@@ -241,6 +302,36 @@
         }
       }
     },
+    "/auth/getUserbyPhoneNumber": {
+      "get": {
+        "tags": [
+          "Authentification"
+        ],
+        "operationId": "getUserbyPhoneNumber",
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/getUser": {
       "get": {
         "tags": [
@@ -375,6 +466,47 @@
           "dateOfBirth": {
             "type": "string",
             "format": "date"
+          }
+        }
+      },
+      "CombinedPasswordUpdateDto": {
+        "type": "object",
+        "properties": {
+          "updatePasswordRequest": {
+            "$ref": "#/components/schemas/UpdatePasswordRequest"
+          },
+          "userUpdatePasswordRequest": {
+            "$ref": "#/components/schemas/UserUpdatePWDRequest"
+          }
+        }
+      },
+      "UpdatePasswordRequest": {
+        "required": [
+          "motDePasse"
+        ],
+        "type": "object",
+        "properties": {
+          "motDePasse": {
+            "maxLength": 2147483647,
+            "minLength": 8,
+            "type": "string"
+          }
+        }
+      },
+      "UserUpdatePWDRequest": {
+        "type": "object",
+        "properties": {
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
           }
         }
       },
@@ -660,15 +792,6 @@
           "username": {
             "type": "string"
           },
-          "accountNonLocked": {
-            "type": "boolean"
-          },
-          "accountNonExpired": {
-            "type": "boolean"
-          },
-          "credentialsNonExpired": {
-            "type": "boolean"
-          },
           "dateOfBirth": {
             "type": "string",
             "format": "date"
@@ -676,6 +799,15 @@
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "accountNonLocked": {
+            "type": "boolean"
+          },
+          "credentialsNonExpired": {
+            "type": "boolean"
+          },
+          "accountNonExpired": {
+            "type": "boolean"
           }
         }
       }

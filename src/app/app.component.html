@@ -381,3 +381,49 @@
   </div>
 </div>
 <!-- /Update-account -->
+
+
+<!-- /Forget-password -->
+
+<div class="modal fade custom-modal" id="Forget-password">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Password</h5>
+        <button type="button" #closeUpdatePassword class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container" *ngIf="submittedF else codeFormF">
+          <div class="activation-message" *ngIf="isOkF else activationErrorF">
+            <h2>Update Successful!</h2>
+            <p>Your password has been successfully Updated.</p>
+            <button class="btn btn-primary" (click)="redirectToChangePassword()">Go to Change password</button>
+          </div>
+          <ng-template #activationErrorF>
+            <div class="activation-error">
+              <h2>Update Failed!</h2>
+              <p>{{ message }}</p>
+              <button class="btn btn-primary" (click)="submittedF = false">Try again</button>
+            </div>
+          </ng-template>
+        </div>
+        <ng-template #codeFormF>
+          <div class="container">
+            <div class="text-center" style="width: 400px;">
+              <h2>Type your activation code</h2>
+              <code-input [isCodeHidden]="false"
+                          [codeLength]="6"
+                          [code]="'number'"
+                          (codeCompleted)="onCodeCompletedF($event)">
+              </code-input>
+              <button class="btn btn-primary mt-3" (click)="redirectToChangePassword()">Go to Change password</button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Forget-password -->

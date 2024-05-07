@@ -12,8 +12,6 @@ declare var $: any;
 export class RegisterComponent   {
 
   hide = true;
-
-
   registerRequest: RegistrationRequest = {email: '', motDePasse: '', nom: '' , phoneNumber: '' , prenom: '' , roles: 'Student'};
   errorMsg: Array<string> = [];
   constructor(private authService: AuthentificationService,
