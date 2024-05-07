@@ -83,7 +83,7 @@ export class EditProduitComponent implements OnInit {
           }
         });
       }
-      this.imgUrl = environment.apiUrl +"/files/"+this.selectedFiles.item(0).name;      
+      this.imgUrl = environment.apiurl +"/files/"+this.selectedFiles.item(0).name;      
       this.selectedFiles = undefined;
     }
   }

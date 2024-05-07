@@ -45,7 +45,7 @@ export class AddBillingComponent implements OnInit {
   }
   save(){
     if(this.selectedFiles){
-      this.product.imageUrl = environment.apiUrl +"/files/"+this.selectedFiles.item(0).name;
+      this.product.imageUrl = environment.apiurl +"/files/"+this.selectedFiles.item(0).name;
     }
     this.upload();
     this.productService.addProduct(this.product).subscribe(

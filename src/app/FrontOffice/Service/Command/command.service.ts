@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CommandService {
 
-  private baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiurl;
   constructor(private http: HttpClient) { }
 
   addCommand(command: any): Observable<any> {
