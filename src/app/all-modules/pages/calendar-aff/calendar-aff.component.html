@@ -6,8 +6,8 @@
         <div class="blog-view">
           <div class="blog blog-single-post">
             <div class="blog-image">
-              <a href="javascript:void(0);"><img alt="" src="assets/img/blog/blog-01.jpg" class="img-fluid"></a>
-            </div>
+              <img [src]="'data:image/jpeg;base64,' + event.imgevent" alt="Event Image" style="width: 100px;height: 100px;">
+              </div>
             <h3 class="blog-title">{{ event.nom }}</h3>
             <div class="blog-info clearfix">
               <div class="post-left">
@@ -42,19 +42,46 @@
               </div>
               <div class="d-flex flex-wrap price-discount-btn">
                   <div>
-                    <button class="btn btn-outline-success" *ngIf="!(isParticipating) && event.maxparticipant > participantCount && daysLeft !== null" (click)="addParticipant(1)">Join Event</button>
-                    <button class="btn btn-outline-primary" *ngIf="(isParticipating)" (click)="removeParticipant(1)">Leave Event</button>
+                    <button class="btn btn-outline-success" *ngIf="!(isParticipating) && event.maxparticipant > participantCount && daysLeft !== null" (click)="addParticipant()">Join Event</button>
+                    <button class="btn btn-outline-primary" *ngIf="(isParticipating)" (click)="removeParticipant()">Leave Event</button>
 
                   </div>
                   <div>
                     <button class="btn btn-outline-primary" (click)="reportEvent()">Report Event</button>
                   </div>
+
+                  <div class="facebook-post">
+
+                    <div class="post-interactions">
+
+                      <button (click)="toggleReactions(event.id, $event)">
+                        <img style="max-width: 30px;"
+                          [src]="getReactionColor(event.id)">
+
+                        <p>{{ reactionCount || 0 }}</p>
+
+                        <span class="reaction-options flex gap-4 p-10" *ngIf="postShowReactions[event.id]">
+                    <button (click)="reactToPost(event.id, 1, 'LIKE')"> <img
+                        src="src/assets/img/reactions/like.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'LOVE')"> <img
+                        src="src/assets/img/reactions/heart.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'SUPPORT')"><img
+                        src="src/assets/img/reactions/wow.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'ANGRY')"> <img
+                        src="src/assets/img/reactions/laugh.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'SAD')"> <img
+                        src="src/assets/img/reactions/sad.png"/></button>
+
+                    </span>
+                    </button>
+                  </div>
+                  </div>
                   <div>
-                    <button class="btn btn-outline-primary" (click)="openUpdateEventPopup()">Update Event</button>
+                    <button class="btn btn-outline-primary" *ngIf="UserId==event.organisateur.idUser"(click)="openUpdateEventPopup()">Update Event</button>
 
                   </div>
                   <div>
-                    <button class="btn btn-outline-danger" (click)="deleteUser(event.id)">Delete Event</button>
+                    <button class="btn btn-outline-danger"*ngIf="UserId==event.organisateur.idUser" (click)="deleteUser(event.id)">Delete Event</button>
 
                   </div>
               </div>

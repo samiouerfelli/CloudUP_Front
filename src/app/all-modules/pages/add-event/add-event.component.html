@@ -1,5 +1,4 @@
-<mat-dialog-content class="mat-typography"> 
-<!-- Page Content -->
+<mat-dialog-content class="mat-typography">
 <form [formGroup]="form">
 <div class="content">
     <div class="container">
@@ -54,6 +53,27 @@
                                   <div class="row">
                                       <div class="col-lg-12">
                                           <div class="form-grouprec">
+                                              <label>Max pariticipant <span class="text-danger">*</span></label>
+                                              <textarea type="text" class="form-control service-desc" name="max"
+                                              placeholder="max" formControlName="max"></textarea>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="service-fields mb-3">
+                                  <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-grouprec">
+                                  <label for="imgcol">Image du partenaire:</label>
+                                <input type="file" id="imgcol" name="imgcol" required #fileInput >
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                                <div class="service-fields mb-3">
+                                  <div class="row">
+                                      <div class="col-lg-12">
+                                          <div class="form-grouprec">
                                               <label>Event Name <span class="text-danger">*</span></label>
                                               <textarea type="text" class="form-control service-desc" name="nom"
                                               placeholder="nom" formControlName="nom"></textarea>
@@ -77,7 +97,6 @@
                     </div>
                   </div>
 
-                    <!-- /Add Blog -->
 
                 </div>
             </div>

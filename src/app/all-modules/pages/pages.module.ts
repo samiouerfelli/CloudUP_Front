@@ -26,7 +26,6 @@ import { ActivateAccountComponent } from './activate-account/activate-account.co
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 @NgModule({
   declarations: [
     PagesComponent,
@@ -59,7 +58,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MatButtonModule,
         MatDialogModule,
         NgbModule,
-
         // CodeInputModule
     ],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]

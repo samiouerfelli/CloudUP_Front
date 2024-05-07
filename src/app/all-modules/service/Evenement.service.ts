@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PostService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,) { }
   apiurl = 'http://localhost:8087/api/v1/auth/evenement/';
 
   GetAll(): Observable<any> {
@@ -23,6 +23,23 @@ export class PostService {
   }
   Deletepart(id: any): Observable<any> {
     return this.http.delete(`${this.apiurl}delete/${id}`);
+  }
+  addColla(file: File, nomcol: string, desccol: string, datecol: string, dateFin: string,placecol: string, maxparticipant: number, partenaires_id_part: any, nbrres: number): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('nom', nomcol);
+    formData.append('description', desccol);
+    formData.append('datedebut', datecol);
+    formData.append('datefin', dateFin);
+    formData.append('lieu', placecol);
+    formData.append('maxparticipant', maxparticipant.toString());
+    formData.append('organisateur_id_user', partenaires_id_part.toString());
+    formData.append('categorie_id', nbrres.toString()); // Corrected field name here
+    return this.http.post(this.apiurl + 'add2', formData, {
+      responseType: 'text'
+    }).pipe(
+      catchError(this.handleError)
+    );
   }
 
 

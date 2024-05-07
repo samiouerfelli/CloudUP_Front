@@ -4,4 +4,5 @@ export class Event {
   description?: string;
   dateDebut?: Date;
   dateFin?:Date;
+  imgevent?:string;
 }

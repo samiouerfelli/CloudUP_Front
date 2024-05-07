@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 declare var FullCalendar: any;
 
 @Component({
@@ -20,7 +21,7 @@ export class CalendarComponent implements OnInit {
   calendarEl: any;
   events: any[] = []; // Array to store fetched events
   selectedEvent: any;
-  constructor(private postService: PostService, private snackBar:MatSnackBar, private http:HttpClient,public dialog: MatDialog,private router: Router) { }
+  constructor(   private postService: PostService, private snackBar:MatSnackBar, private http:HttpClient,public dialog: MatDialog,private router: Router) { }
 
   ngOnInit(): void {
     const calendarEl = document.getElementById('calendar');
@@ -35,7 +36,9 @@ export class CalendarComponent implements OnInit {
           lieu:event.lieu,
           title: event.nom,
           start: event.dateDebut,
+          imgevent:event.imgevent,
           end: event.dateDebut,
+          organisateur:event.organisateur_id_user,
           color: 'blue'
         }));
 console.log(data)
@@ -73,6 +76,7 @@ console.log(data)
     console.log(selectedDate)
     this.openDialog(selectedDate); // Open dialog passing the selected date
   }
+
 
   handleEventClick(info:any) {
     this.selectedEvent = info.event;
