@@ -13,6 +13,10 @@ import {AuthentificationService} from '../services/services';
 import {TokenService} from '../services/token/token.service';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {User} from '../services/models/user';
+import {
+  CollaborationReservationService
+} from "../collaborationservice/collabReservationservice/collabreservation.service";
+import {Observable} from "rxjs";
 
 const routes: Routes = [
   // Other routes
@@ -23,13 +27,20 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+export class reservation_collaboration {
+  id!: number;
+  collaboration_id!: number;
+  user_id!: number;
+  user?: { nom: string,idUser:number | undefined};
+  collaboration?: { nomcol: string | undefined };
+}
 export class Collaboration {
   idcol!: number;
   desccol!: string;
   imgcol!: string;
   nomcol!: string;
-  cours!: { nom: string }; 
-  user!: { nom: string }; 
+  cours!: { nom: string };
+  user!: { nom: string };
   partenaires!: { nom: string };
   datecol!: string;
   placecol!: string;
@@ -55,6 +66,8 @@ export class partenaire {
 
 export class CollaborationComponent implements OnInit {
   @Input() qrCodeData: any;
+  ResArray: reservation_collaboration[] = [];
+
   CollaborationArray:  Collaboration[] = [];
   isResultLoaded = false;
   showajoutForm: boolean = false;
@@ -64,7 +77,7 @@ export class CollaborationComponent implements OnInit {
   newCollab: Collaboration = new Collaboration();
   selectedFile: File | null = null;
   @ViewChild('fileInput') fileInput!: ElementRef;
-  collab: any = { nomcol: '', desccol: '', dattecol: new Date(), placecol: '', prixcol: 0 };  
+  collab: any = { nomcol: '', desccol: '', dattecol: new Date(), placecol: '', prixcol: 0 };
   showForm: boolean = false;
   selectedCollab: any;
   showCollabForm = false;
@@ -91,7 +104,9 @@ export class CollaborationComponent implements OnInit {
   showQrCodeForm: boolean = false;
   categorieCollaboraiton: string[] = [];
   isButtonClicked = false;
-  constructor(private collaborationservice: CollaborationService,private router: Router, protected tokenService: TokenService,
+  token = localStorage.getItem('token');
+
+  constructor(private collabreservationService: CollaborationReservationService,private collaborationservice: CollaborationService,private router: Router, protected tokenService: TokenService,
     private authService: AuthentificationService,
     private http: HttpClient) { }
     user! : User;
@@ -101,7 +116,7 @@ export class CollaborationComponent implements OnInit {
     active2Route!: string;
     guestuser = false;
     registereduser = false;
-  
+
     protected readonly AuthentificationService = AuthentificationService;
     protected readonly localStorage = localStorage;
   ngOnInit() : void {
@@ -113,7 +128,7 @@ export class CollaborationComponent implements OnInit {
           this.authService.findUserById({idUser: id}).subscribe({
               next: (data) =>
               {
-                
+
               }
             });
         },
@@ -123,7 +138,7 @@ export class CollaborationComponent implements OnInit {
         }
       });
     }
-    
+
     this.getAllCollaborations();
     this.fetchPartenaireList();
     this.collaborationservice.getCategorieCollaboraitonEnumValues().subscribe(
@@ -134,7 +149,7 @@ export class CollaborationComponent implements OnInit {
         console.error('Error fetching enum values:', error);
       }
     );
-     
+
   }
   filterByCategory(categorieCollaboraiton: string): void {
     this.collaborationservice.findByCategory(categorieCollaboraiton).subscribe(
@@ -143,18 +158,18 @@ export class CollaborationComponent implements OnInit {
         console.log(data);
       },
       (error: any) => {
-        console.error('Error fetching data:', error); 
+        console.error('Error fetching data:', error);
       }
     );
   }
   generatePDF() {
     const element = document.getElementById('htmlElementIdd');
-  
+
     if (!element) {
       console.error('HTML element not found.');
       return;
     }
-  
+
     html2canvas(element, { scale: 2 }).then((canvas) => { // Set the scale to 2 or higher as needed
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jspdf.jsPDF();
@@ -199,29 +214,49 @@ export class CollaborationComponent implements OnInit {
     );
   }
   ////////////////////////////////////////////////
-  getReservedPlaces(idcol: number) {
-    
-    this.collaborationservice.getresplaces(idcol).subscribe();
-    const element = document.getElementById('htmlElementIdd');
-    this.isButtonClicked = true;
-    if (!element) {
-      console.error('HTML element not found.');
-      return;
+  getReservedPlaces(collaborationId: number) {
+        this.getIDUSER(this.token).subscribe(
+            (idu: number) => {
+                this.collabreservationService.addReservationCollaboration(idu, collaborationId).subscribe(
+                    (data) => {
+                        console.log('Reservation collaboration added for ID:', collaborationId);
+                        this.getReservationCollaborationByuserId();
+
+                        // Add the getresplaces functionality
+                        this.collaborationservice.getresplaces(collaborationId).subscribe(() => {
+                            // Generate PDF after adding reservation
+                            const element = document.getElementById('htmlElementIdd');
+                            this.isButtonClicked = true;
+                            if (!element) {
+                                console.error('HTML element not found.');
+                                return;
+                            }
+                            html2canvas(element, { scale: 2 }).then((canvas) => {
+                                const imgData = canvas.toDataURL('image/png');
+                                const pdf = new jspdf.jsPDF();
+                                const imgProps = pdf.getImageProperties(imgData);
+                                const pdfWidth = pdf.internal.pageSize.getWidth();
+                                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                                pdf.save('generated.pdf');
+                            });
+                            setTimeout(() => {
+                                location.reload();
+                            }, 3000);
+                        });
+                    },
+                    (error) => {
+                        console.error('Error adding reservation collaboration:', error);
+                    }
+                );
+            },
+            (error) => {
+                console.error('Error getting user ID:', error);
+            }
+        );
     }
-  
-    html2canvas(element, { scale: 2 }).then((canvas) => { // Set the scale to 2 or higher as needed
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jspdf.jsPDF();
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('generated.pdf');
-    }); setTimeout(() => {
-      location.reload();
-    }, 3000);
-  }
- ////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////
   ajoutuser(user: any) {
 
     this.showajoutForm = true; // Show the update form
@@ -229,9 +264,9 @@ export class CollaborationComponent implements OnInit {
   cancelAjout() {
     this.showajoutForm = false; // Set showAjoutForm to false to hide the ajout form
   }
- 
+
   reserveAndGeneratePDF(  idcol: number) {
-   
+
     this.getReservedPlaces(idcol);
     this.generatePDF();
     // Refresh the page after 3 seconds
@@ -240,18 +275,18 @@ export class CollaborationComponent implements OnInit {
     }, 3000); */
   }
   filterByNomcol(nomcol: string): void {
-     
+
     this.collaborationservice.FindObjet(nomcol).subscribe((data: any) => {
-       
-      this.CollaborationArray = data;  
+
+      this.CollaborationArray = data;
     }, (error: any) => {
-      console.error('Error fetching data:', error); 
+      console.error('Error fetching data:', error);
     });
   }
 
 
   /* filterrrrrrrrrr */
- 
+
 
 
 
@@ -281,11 +316,11 @@ export class CollaborationComponent implements OnInit {
 
 
 
- 
 
 
 
-  
+
+
   // Method to hide the form
   hideCollabForm() {
     this.showCollabForm = false;
@@ -295,7 +330,7 @@ export class CollaborationComponent implements OnInit {
 
    this.showCollabForm = true;
     this.collaborationservice.retrivecolabid(idcol).subscribe
-    
+
      (
         (response: any) => {
           Swal.fire({
@@ -310,23 +345,23 @@ export class CollaborationComponent implements OnInit {
           alert(error.message)
       );
   }
-  
 
 
 
-  getAllCollaborations() 
+
+  getAllCollaborations()
     {
       this.collaborationservice.getRs(this.page,this.size).subscribe((data:any) => {
         console.log(data)
         this.CollaborationArray=data.content;
-        
+
         this.pages=new Array(data['totalPages'])
-        
+
       })
     }
 //
  // Filter the array based on searchText
- 
+
   fetchPartenaireList() {
     this.collaborationservice.getPartenaireList().subscribe(
       (data: partenaire[]) => {
@@ -385,7 +420,51 @@ getCours() {
       }
     );
   }
-  
 
-  
+  getIDUSER(token: any): Observable<number> {
+    return this.collabreservationService.getIDFromToken(token);
+
+  }
+  getReservationCollaborationByuserId()  {
+    this.getIDUSER(this.token).subscribe(
+      (idu: number) => {
+        this.collabreservationService.getReservationCollaborationByuserId(idu).subscribe(
+          (resultData: any) => {
+            this.ResArray = resultData;
+            console.log('Data fetched mte3current user:', resultData);
+          },
+          (error: any) => {
+            console.error('Error fetching data:', error);
+          }
+        );
+      },
+      (error: any) => {
+        console.error('Error getting user ID:', error);
+      }
+    );
+  }
+
+  addReservationCollaboration(userId: number, collaborationId: number) {
+
+    this.getIDUSER(this.token).subscribe(
+      (idu: number) => {
+
+        this.collabreservationService.addReservationCollaboration(idu, collaborationId)
+          .subscribe(data => {
+
+            console.log('Reservation collaboration added mte3id:', data);
+
+            this.getReservationCollaborationByuserId();
+          }, error => {
+
+            console.error('Error adding reservation collaboration:', error);
+          });
+      },
+      error => {
+
+        console.error('Error getting user ID:', error);
+      }
+    );
+  }
+
 }

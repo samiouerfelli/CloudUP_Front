@@ -31,6 +31,9 @@ import { CollaborationComponent } from './collaboration/collaboration.component'
 import { CollaborationadminComponent } from './collaborationadmin/collaborationadmin.component';
 import { PartenairesadminComponent } from './partenairesadmin/partenairesadmin.component';
 import { CollaborationdetailsComponent } from './collaborationdetails/collaborationdetails.component';
+import { CollaborationreservationComponent } from './collaborationreservation/collaborationreservation.component';
+import { CollaborationresssssComponent } from './collaborationresssss/collaborationresssss.component';
+
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -49,7 +52,10 @@ export function tokenGetter() {
     CollaborationadminComponent,
     PartenairesadminComponent,
     CollaborationdetailsComponent ,
-    ReclamarchivesComponent
+    ReclamarchivesComponent,
+    CollaborationreservationComponent,
+    CollaborationresssssComponent,
+
   ],
   imports: [
     HttpClientModule,

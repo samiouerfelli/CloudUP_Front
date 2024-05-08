@@ -22,8 +22,8 @@ export class Collaboration {
   datecol!: Date;
   placecol!: string;
   prixcol!: number;
-  idcol?: number;// Define the 'idcol' property
-  nbrres!: number; 
+  idcol?: number;
+  nbrres!: number;
   categorieCollaboraiton: string[] = [];
 }
 
@@ -56,7 +56,7 @@ export class CollaborationadminComponent implements OnInit {
   newCollab: Collaboration = new Collaboration();
   selectedFile: File | null = null;
   @ViewChild('fileInput') fileInput!: ElementRef;
-  collab: any = { nomcol: '', desccol: '', dattecol: new Date(), placecol: '', prixcol: 1 };  
+  collab: any = { nomcol: '', desccol: '', dattecol: new Date(), placecol: '', prixcol: 1 };
   showForm: boolean = false;
   selectedCollab: any;
   selectedFiles?: FileList;
@@ -65,7 +65,7 @@ export class CollaborationadminComponent implements OnInit {
   categorieCollaboraiton: any;
   showCollabForm = false;
   currentPage: number = 1;
-  
+
   pageSize: number = 6;
   totalPages: any;
   displayedCollaborationArray: any;
@@ -105,12 +105,12 @@ export class CollaborationadminComponent implements OnInit {
 
   generatePDF() {
     const element = document.getElementById('htmlElementId');
-    
+
     if (!element) {
       console.error('HTML element not found.');
       return;
     }
-    
+
     html2canvas(element).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jspdf.jsPDF();
@@ -121,7 +121,7 @@ export class CollaborationadminComponent implements OnInit {
       pdf.save('generated.pdf');
     });
   }
-  closeForm() {   
+  closeForm() {
     this.showForm = false;
   }
   fetchPartenaireList() {
@@ -178,55 +178,53 @@ export class CollaborationadminComponent implements OnInit {
   cancelupdate() {
     this.showUpdateForm = false;
   }
-  
-  addCollabimg(nomcol: string, desccol: string, datecol: Date, placecol: string, prixcol: number, partenaires_id_part: number, nbrres: number, user_id_user: number,categorieCollaboraiton: string[] | string): void {
-    
+
+  addCollabimg(nomcol: string, desccol: string, datecol: Date, placecol: string, prixcol: number, partenaires_id_part: number, nbrres: number, user_id_user: number): void {
     console.log('Name:', nomcol);
     console.log('Description:', desccol);
-    console.log('Type of datecol:',  datecol);
+    console.log('Type of datecol:', datecol);
     console.log('Place:', placecol);
     console.log('Price:', prixcol);
-    console.log('partenaires_id_part:',partenaires_id_part);
-    console.log('nbrres:',nbrres);
-    console.log('user_id_user:',user_id_user);
-    console.log('categorieCollaboraiton',categorieCollaboraiton);
+    console.log('partenaires_id_part:', partenaires_id_part);
+    console.log('nbrres:', nbrres);
+    console.log('user_id_user:', user_id_user);
+
     const file = this.fileInput?.nativeElement.files?.[0];
-    
+    this.showajoutForm = false; // Hide the form after adding collaboration
+
     if (file) {
-      this.collaborationservice.addColla(file, nomcol, desccol, datecol, placecol, prixcol, partenaires_id_part, nbrres, user_id_user,categorieCollaboraiton).subscribe(
-        response => {
-          console.log('file:', file);
-          console.log('Name:', nomcol);
-          console.log('Description:', desccol);
-          console.log('Type of datecol:',  datecol);
-          console.log('Place:', placecol);
-          console.log('Price:', prixcol);
-          console.log('partenaires_id_part:',partenaires_id_part);
-          console.log('nbrres:',nbrres);
-          console.log('user_id_user:',user_id_user);
-          console.log('categorieCollaboraiton',categorieCollaboraiton);
-          console.log('collab added successfully:', response);
-          Swal.fire({
-            icon: 'success',
-            title: 'collab added successfully!',
-            showConfirmButton: false,
-            timer: 1500
-          }).then(() => {
-            setTimeout(() => {
-               
-            }, 1500);
-          });
-        },
-        error => {
-          console.error('Error  collab:', error);
-        }
+      this.collaborationservice.addColla(file, nomcol, desccol, datecol, placecol, prixcol, partenaires_id_part, nbrres, user_id_user).subscribe(
+          response => {
+            console.log('file:', file);
+            console.log('Name:', nomcol);
+            console.log('Description:', desccol);
+            console.log('Type of datecol:', datecol);
+            console.log('Place:', placecol);
+            console.log('Price:', prixcol);
+            console.log('partenaires_id_part:', partenaires_id_part);
+            console.log('nbrres:', nbrres);
+            console.log('user_id_user:', user_id_user);
+
+            console.log('collab added successfully:', response);
+            Swal.fire({
+              icon: 'success',
+              title: 'collab added successfully!',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              setTimeout(() => {
+                location.reload();}, 1500);
+            });
+          },
+          error => {
+            console.error('Error collab:', error);
+          }
       );
     } else {
       console.error('No file selected');
     }
   }
 
-  
 
 
 
@@ -234,7 +232,7 @@ export class CollaborationadminComponent implements OnInit {
 
 
 
-  
+
   ajoutCol(collaboration: any) {
     this.collaborationservice.ajoutColls(collaboration)
       .subscribe({
@@ -275,7 +273,7 @@ export class CollaborationadminComponent implements OnInit {
           alert(error.message)
       );
   }
-  
+
 
   updatecol(user: any, id: number) {
     if (!user || !id) {

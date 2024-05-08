@@ -1,0 +1,37 @@
+<div class="table-container">
+  <table>
+    <thead>
+    <tr>
+      <th>User name</th>
+      <th>Collaboration name</th>
+      <th>annuler</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let colres of ResArray">
+      <td><p>{{ colres.user?.nom }} </p></td>
+      <td>{{ colres.collaboration?.nomcol }}</td>
+      <td>                  <button (click)="deleteCol(colres.id)"><i class="fa fa-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--
+
+<div class="add-form">
+  <h2>Add Reservation Collaboration</h2>
+  <form (ngSubmit)="addReservationCollaboration(newCollab.user_id, newCollab.collaboration_id   )"    >
+
+
+    <div>
+      <label for="partenaire">collaboration:</label>
+      <select id="partenaire" name="partenaires_id_part" [(ngModel)]="newCollab.collaboration_id" required>
+        <option *ngFor="let partenaire of CollaborationArray" [ngValue]="partenaire.idcol">{{ partenaire.nomcol }}</option>
+      </select>
+    </div>
+    <button type="submit"> Add Reservation Collaboration</button>
+  </form>
+</div>
+  -->
