@@ -130,9 +130,9 @@
                               <p><strong>Place:</strong> {{ selectedCollab.placecol }}</p>
 
                               <p><strong>Partner:</strong> {{ selectedCollab.partenaires?.nom }}</p>
-                              <button class="btn view-btn" (click)="getReservedPlaces(selectedCollab.idcol)">
-                                Reserved
-                              </button>
+                                          <button class="btn view-btn" *ngIf="selectedCollab.nbrres !== 0" [disabled]="selectedCollab.nbrres === 0" (click)="getReservedPlaces(selectedCollab.idcol)">
+                                            Reserved
+                                          </button>
                               <button class="btn view-btn" (click)="hideCollabForm()">Close</button>
 
                           </div>
