@@ -5,6 +5,8 @@ import { AllModulesRoutingModule } from './all-modules-routing.module';
 import { AllModulesComponent } from './all-modules.component';
 import { EventCategoryComponent } from './admin/event-category/event-category.component';
 
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,10 @@ import { EventCategoryComponent } from './admin/event-category/event-category.co
   ],
   imports: [
     CommonModule,
-    AllModulesRoutingModule
+    AllModulesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class AllModulesModule { }

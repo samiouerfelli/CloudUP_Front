@@ -18,7 +18,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { NgSelect2Module } from 'ng-select2';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 import { Daterangepicker } from 'ng2-daterangepicker';
-import {FormsModule} from "@angular/forms";
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {NgxPayPalModule} from "ngx-paypal";
 
 
@@ -45,7 +45,8 @@ import {NgxPayPalModule} from "ngx-paypal";
         CrystalLightboxModule,
         Daterangepicker,
         FormsModule,
-        NgxPayPalModule
+        NgxPayPalModule,
+        ReactiveFormsModule
     ]
 })
 export class StudentsModule { }

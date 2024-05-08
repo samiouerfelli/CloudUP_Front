@@ -65,6 +65,10 @@ export class PostService {
         catchError(this.handleError)
       );
   }
+  getIDFromToken(token: string): Observable<number> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<number>('http://localhost:8087/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
+  }
 
   // Remove Participant Method
   removeParticipant(eventId: number, userId: number): Observable<any> {

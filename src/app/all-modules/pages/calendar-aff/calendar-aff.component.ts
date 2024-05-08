@@ -197,8 +197,7 @@ if (daysDifference > 0) {
 
 
   getIDUSER(token: any): Observable<number> {
-    return this.authservice.getIDFromToken(token);
-
+    return this.PostService.getIDFromToken(token);
   }
   parseDate(dateString: string): Date {
     const [year, month, day] = dateString.split('-').map(Number);

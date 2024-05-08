@@ -102,7 +102,7 @@ export class AddEventComponent {
   })
 }
   getIDUSER(token: any): Observable<number> {
-    return this.authservice.getIDFromToken(token);
+    return this.service.getIDFromToken(token);
 
   }
   onClose(msg:string) {
