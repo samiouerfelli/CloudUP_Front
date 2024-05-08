@@ -6,7 +6,8 @@ import {AuthentificationService} from '../services/services';
 import {TokenService} from '../services/token/token.service';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {User} from '../services/models/user';
-
+import { Observable } from 'rxjs';
+import { PostService } from '../all-modules/eventService/Evenement.service';
 declare var $: any;
 
 @Component({
@@ -15,11 +16,13 @@ declare var $: any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  uid!:number;
   private selectedPicture: string | undefined;
   constructor(private router: Router,
               protected tokenService: TokenService,
               private authService: AuthentificationService,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private PostService: PostService) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url.split('/');
@@ -41,8 +44,14 @@ user! : User;
   protected readonly AuthentificationService = AuthentificationService;
   protected readonly localStorage = localStorage;
 
-  ngOnInit(): void {
+  ngOnInit(): void
+   {
     if (localStorage.getItem('token')) {
+      this.getIDUSER(this.localStorage.getItem('token')).subscribe(
+
+        (idu: number) => {
+          this.uid=Number(idu)
+        });
       this.authService.getUser().subscribe({
         next: value => {
           this.user = value;
@@ -120,7 +129,10 @@ user! : User;
   sleep(milliseconds: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
+  getIDUSER(token: any): Observable<number> {
+    return this.PostService.getIDFromToken(token);
 
+  }
   // tslint:disable-next-line:typedef
   logout() {
     const token = localStorage.getItem('token');
@@ -138,4 +150,5 @@ user! : User;
       }
     });
   }
+
 }

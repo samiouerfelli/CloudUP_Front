@@ -15,6 +15,7 @@ import { VideoCallComponent } from './video-call/video-call.component';
 import { VoiceCallComponent } from './voice-call/voice-call.component';
 import {ActivateAccountComponent} from './activate-account/activate-account.component';
 import {UpdateAccountComponent} from './update-account/update-account.component';
+import { CalendarAffComponent } from './calendar-aff/calendar-aff.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,9 @@ const routes: Routes = [
       { path: 'update-account', component: UpdateAccountComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'term-condition', component: TermConditionComponent },
-      { path: 'privacy-policy', component: PrivacyPolicyComponent }
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+      { path: 'calendar-event-aff/:eventId',component: CalendarAffComponent}
+      // { path: 'event-category',component: EventCategoryComponent}
     ]
   }
 ];

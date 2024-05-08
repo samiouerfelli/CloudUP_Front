@@ -1,0 +1,107 @@
+<!-- Page Content -->
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        <div class="blog-view">
+          <div class="blog blog-single-post">
+            <div class="profile-widget">
+              <div class="doc-img">
+              <img class="img-fluid" [src]="'data:image/jpeg;base64,' + event.imgevent" alt="Event Image" >
+                                <!-- Add favorite button if needed -->
+
+                                <a href="javascript:void(0)" class="fav-btn" *ngIf="!(isParticipating) && event.maxparticipant > participantCount && daysLeft !== null" (click)="addParticipant()">
+                                                               <i class="fas fa-user-plus"></i>
+</a>
+                                  <a href="javascript:void(0)" class="fav-btn" *ngIf="(isParticipating)" (click)="removeParticipant()">
+                                    <i class="fas fa-user-minus"></i>
+
+                                    <!-- Display stars based on the number of likes -->
+                                </a>
+                                <a href="javascript:void(0)" class="fav-btn2"  (click)="reportEvent()">
+                                  <i class="fas fa-exclamation-triangle"></i>
+
+                                  <!-- Display stars based on the number of likes -->
+                              </a>
+              <span class="price-course">
+                <p class="text-danger" *ngIf="daysLeft !== null" ><i class="far fa-clock"></i>     {{ daysLeft }} days left until event {{ eventStatus }} And only {{diff}} places left
+                </p>
+                <p class="text-danger" *ngIf="daysLeft == null && daysLeftEnd>0" ><i class="far fa-clock"></i>      {{ eventStatus }} {{ daysLeftEnd }} days and You can still , {{diff}} places left </p>
+                <p class="text-danger" *ngIf="daysLeft == null && daysLeftEnd==0" ><i class="far fa-clock"></i>      {{ eventStatus }}
+
+                </p>              </span>
+              </div>
+              </div>
+            <h3 class="blog-title">{{ event.nom }} </h3>
+            <div class="blog-info clearfix">
+              <div class="post-left">
+                <ul>
+                  <li>
+                    <div class="post-author">
+                      <a routerLink='/students/professor-profile/{{event.organisateur.idUser}}'><img src="assets/img/admins/admin-02.jpg" alt="Post Author"> <span>{{event.organisateur.nom}} {{event.organisateur.prenom}}</span></a>
+                    </div>
+                  </li>
+                  <li><i class="far fa-calendar"></i>{{ event.dateDebut }}</li>
+                  <li><i class="far fa-calendar"></i>{{ event.dateFin }}</li>
+                  <li><i class="fa fa-tags"></i>  <p>Participants Count: {{ participantCount }}</p></li>
+                  <li>  <div class="facebook-post">
+
+                    <div class="post-interactions">
+
+                      <button (click)="toggleReactions(event.id, $event)">
+                        <img style="max-width: 30px;"
+                          [src]="getReactionColor(event.id)">
+
+                        <p>{{ reactionCount || 0 }}</p>
+
+                        <span class="reaction-options flex gap-4 p-10" *ngIf="postShowReactions[event.id]">
+                    <button (click)="reactToPost(event.id, 1, 'LIKE')"> <img
+                        src="assets/img/reactions/like.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'LOVE')"> <img
+                        src="assets/img/reactions/heart.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'SUPPORT')"><img
+                        src="assets/img/reactions/wow.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'ANGRY')"> <img
+                        src="assets/img/reactions/laugh.png"/></button>
+                    <button (click)="reactToPost(event.id, 1, 'SAD')"> <img
+                        src="assets/img/reactions/sad.png"/></button>
+
+                    </span>
+                    </button>
+                  </div>
+                  </div></li>
+                </ul>
+              </div>
+            </div>
+            <div class="blog-content">
+              <p>{{ event.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <div class="card price-discount-col">
+          <div class="card-body">
+
+              <div class="d-flex flex-wrap price-discount-btn">
+
+                  <div>
+                    <button class="btn btn-outline-primary" *ngIf="UserId==event.organisateur.idUser"(click)="openUpdateEventPopup()">Update Event</button>
+
+                  </div>
+                  <div>
+                    <button class="btn btn-outline-danger"*ngIf="UserId==event.organisateur.idUser" (click)="deleteUser(event.id)">Delete Event</button>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+  </div>
+</div>

@@ -5,18 +5,20 @@ import { TokenService } from '../services/token/token.service';
 import {Router} from "@angular/router";
 import {PublicationService} from "../service/publication.service";
 import {Publication} from "../model/publication.model";
+import { Evenement } from '../services/models';
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
-
+import { PostService } from '../all-modules/eventService/Evenement.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  token = localStorage.getItem('token');
 
-
-  constructor(private publicationService: PublicationService, private router: Router,private service:CoursControllerService ) {
+  UserId!: number;
+  constructor(private PostService:PostService,private publicationService: PublicationService, private router: Router,private service:CoursControllerService ) {
   }
   slideIndex = 1;
 
@@ -212,6 +214,7 @@ this.service.getTopCourses().subscribe({
       count2: "17 Courses",
     },
   ];
+  eventList!:Observable<Evenement[]> ;
 
   publicationList: Observable<Publication[]> | undefined;
   errorMessage: any;
@@ -227,8 +230,14 @@ this.service.getTopCourses().subscribe({
   ngOnInit(): void {
     this.showSlides(this.slideIndex);
     this.getPublication1();
+    this.getEvent();
     this.fetchTopCourses();
     this.fetchTopProfessor();
+    this.getIDUSER(this.token).subscribe(
+
+      (idu: number) => {
+        this.UserId=Number(idu)
+      })
   }
 
   getPublication1(): void {
@@ -239,10 +248,28 @@ this.service.getTopCourses().subscribe({
       })
     );
   }
+  getEvent(): void {
+    this.eventList = this.PostService.GetAll().pipe(
+      catchError(err => {
+        this.errorMessage = err.message;
+        return throwError(err);
+      })
+    );
+  }
+  getIDUSER(token: any): Observable<number> {
+    return this.PostService.getIDFromToken(token);
+
+  }
   redirectToDetails(publication: Publication): void {
     const idpub = publication.idpub;
     console.log('l id de la pub récupérée:' + idpub);
     // Rediriger vers la page de détails avec l'ID de la publication
     this.router.navigate(['/blog/blog-details', idpub]);
+  }
+  redirectToDetails2(event: Evenement): void {
+    const idpub = event.id;
+    console.log('l id de la pub récupérée:' + idpub);
+    // Rediriger vers la page de détails avec l'ID de la publication
+    this.router.navigate(['/pages/calendar-event-aff', idpub]);
   }
 }

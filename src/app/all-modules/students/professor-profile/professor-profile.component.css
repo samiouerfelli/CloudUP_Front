@@ -1,0 +1,42 @@
+.icon-red {
+  color: red; /* Set color to red */
+  margin-left: 15px; /* Adjust margin to move the icon slightly to the right */
+}
+.ajouter-form {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 670px;
+  max-height: 860px;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ff0000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ajouter-form h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.ajouter-form {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 670px;
+  max-height: 860px;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ff0000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

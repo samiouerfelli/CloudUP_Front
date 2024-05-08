@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'map-grid', component: MapGridComponent },
       { path: 'map-list', component: MapListComponent },
       { path: 'search', component: SearchComponent },
-      { path: 'professor-profile', component: ProfessorProfileComponent },
+      { path: 'professor-profile/:UserId', component: ProfessorProfileComponent },
       { path: 'booking', component: BookingComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'booking-success', component: BookingSuccessComponent },
