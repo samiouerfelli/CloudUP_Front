@@ -97,15 +97,19 @@ export class BookingComponent implements OnInit {
       this.serviceReservation.saveReservation({body: request, idCours: selectedCoursId}).subscribe({
         next: (response) => {
           console.log('Reservation added:', response );
+          alert('Reservation saved with succes');
+          this.router.navigate(['/instructors/sessions']);
+
+
           // Call the method to send SMS
           this.smsService.sendReservationDetails({body: response}).subscribe({
             next: (smsResponse) => {
               console.log('SMS Confirmation sent:', smsResponse);
-              this.router.navigateByUrl(`/students/booking-success`);
+
             },
             error: (smsError) => {
               console.error('Error sending SMS confirmation:', smsError);
-              this.router.navigateByUrl(`/students/booking-success`);
+
             }
           });
         },

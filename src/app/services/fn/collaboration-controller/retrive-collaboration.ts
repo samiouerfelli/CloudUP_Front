@@ -6,16 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Reservation } from '../../models/reservation';
+import { Collaboration } from '../../models/collaboration';
 
-export interface GetReservationById$Params {
-  idReservation: number;
+export interface RetriveCollaboration$Params {
 }
 
-export function getReservationById(http: HttpClient, rootUrl: string, params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<Reservation>> {
-  const rb = new RequestBuilder(rootUrl, getReservationById.PATH, 'get');
+export function retriveCollaboration(http: HttpClient, rootUrl: string, params?: RetriveCollaboration$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Collaboration>>> {
+  const rb = new RequestBuilder(rootUrl, retriveCollaboration.PATH, 'get');
   if (params) {
-    rb.path('idReservation', params.idReservation, {});
   }
 
   return http.request(
@@ -23,9 +21,9 @@ export function getReservationById(http: HttpClient, rootUrl: string, params: Ge
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Reservation>;
+      return r as StrictHttpResponse<Array<Collaboration>>;
     })
   );
 }
 
-getReservationById.PATH = '/auth/getReservationById/{idReservation}';
+retriveCollaboration.PATH = '/auth/retriveCollaboration';

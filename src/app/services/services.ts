@@ -1,6 +1,8 @@
 export { ReclamationControllerService } from './services/reclamation-controller.service';
+export { CollaborationControllerService } from './services/collaboration-controller.service';
 export { CommentaryRestControllerService } from './services/commentary-rest-controller.service';
 export { PublicationRestControllerService } from './services/publication-rest-controller.service';
+export { PartenairesControllerService } from './services/partenaires-controller.service';
 export { CoursControllerService } from './services/cours-controller.service';
 export { ReactionControllerService } from './services/reaction-controller.service';
 export { UserProfileControllerService } from './services/user-profile-controller.service';

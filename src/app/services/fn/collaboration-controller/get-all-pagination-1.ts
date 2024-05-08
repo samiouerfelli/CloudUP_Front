@@ -6,16 +6,18 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Reservation } from '../../models/reservation';
+import { PageCollaboration } from '../../models/page-collaboration';
 
-export interface GetReservationById$Params {
-  idReservation: number;
+export interface GetAllPagination1$Params {
+  size?: number;
+  page?: number;
 }
 
-export function getReservationById(http: HttpClient, rootUrl: string, params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<Reservation>> {
-  const rb = new RequestBuilder(rootUrl, getReservationById.PATH, 'get');
+export function getAllPagination1(http: HttpClient, rootUrl: string, params?: GetAllPagination1$Params, context?: HttpContext): Observable<StrictHttpResponse<PageCollaboration>> {
+  const rb = new RequestBuilder(rootUrl, getAllPagination1.PATH, 'get');
   if (params) {
-    rb.path('idReservation', params.idReservation, {});
+    rb.query('size', params.size, {});
+    rb.query('page', params.page, {});
   }
 
   return http.request(
@@ -23,9 +25,9 @@ export function getReservationById(http: HttpClient, rootUrl: string, params: Ge
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Reservation>;
+      return r as StrictHttpResponse<PageCollaboration>;
     })
   );
 }
 
-getReservationById.PATH = '/auth/getReservationById/{idReservation}';
+getAllPagination1.PATH = '/auth/pagination';
