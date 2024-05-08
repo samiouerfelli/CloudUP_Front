@@ -8,6 +8,6 @@ export interface Reservation {
   dateR?: string;
   etudiant?: User;
   idR?: number;
-  professeur?: User;
+  professeur: User;
   statusR?: 'Confirmed' | 'Pending' | 'Canceled';
 }
