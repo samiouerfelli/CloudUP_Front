@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import {AuthentificationService} from '../../../services/services/authentification.service';
 import {User} from '../../../services/models/user';
 import {UpdateRequest} from '../../../services/models/update-request';
 import {Router} from '@angular/router';
-
+import {LoginService} from '../login/login.service';
+declare var $: any;
 @Component({
   selector: 'app-update-account',
   templateUrl: './update-account.component.html',
@@ -30,10 +31,12 @@ export class UpdateAccountComponent implements OnInit {
     membership: ''
   };
   selectedUserCover!: Blob;
-  selectedPicture: string | undefined;
+  selectedPicture!: string | undefined;
+  adresse!: boolean;
   constructor(private fb: FormBuilder,
               private router: Router,
-              private authService: AuthentificationService) {
+              private authService: AuthentificationService,
+              private dataService: LoginService) {
     this.updateDropdownVisibility();
   }
   // tslint:disable-next-line:typedef
@@ -41,6 +44,7 @@ export class UpdateAccountComponent implements OnInit {
 this.authService.getUser().subscribe({
   next: value => {
     this.user = value;
+    this.adresse = this.verifyAdress();
     if (this.user.prenom != null && this.user.nom != null ) {
       this.updateUser.prenom = this.user.prenom;
       this.updateUser.nom = this.user.nom;
@@ -73,42 +77,26 @@ this.authService.getUser().subscribe({
   }
   // tslint:disable-next-line:typedef
   onSubmit(): void {
-    this.errorMsg = [];
-    this.authService.updateUser({body: this.updateUser} ).subscribe({
+ this.authService.sendUpdateConfirmationSms().subscribe({
       next: () => {
-        if (this.selectedUserCover){
-        this.authService.uploadUserPhoto({body: {file: this.selectedUserCover},
-        }).subscribe({
-          next: () => {
-            this.router.navigate(['']);  // Replace 'URL' with the actual path you want to navigate to
-          },
-          error: (err) => {
-            console.error(err);
-          }
-        });
-      }
-        this.router.navigate(['']);
-        },
+        this.openModal();
+      },
       error: (err) => {
-        console.error(err);
-      }
-    });
+      console.log(err);
+      }});
   }
-
   // tslint:disable-next-line:typedef
 
 
-  updateDropdownVisibility(): void {
+updateDropdownVisibility(): void {
     this.showNameDropdown = this.updateUser.college === 'ESPRIT' && (this.updateUser.degree === 'CLASS_4EME' || this.updateUser.degree === 'CLASS_5EME');
   }
 
 
   onFileSelected(event: any): void {
-    // The 'files' property is an array-like object which holds all the selected files.
-    this.selectedUserCover = event.target.files[0];  // Access the first file
-
+    this.selectedUserCover = event.target.files[0];
+    this.dataService.updateImage(this.selectedUserCover);
     console.log(this.selectedUserCover);
-
     if (this.selectedUserCover) {
       const reader: FileReader = new FileReader();
       reader.onload = () => {
@@ -117,5 +105,16 @@ this.authService.getUser().subscribe({
       reader.readAsDataURL(this.selectedUserCover);
     }
   }
-
+  // tslint:disable-next-line:typedef
+  verifyAdress(){
+    return (this.user.country != null && this.user.city != null && this.user.codePostal !== 0);
+  }
+  openModal(): void {
+    $('#Update-account').modal('show');
+  }
+  // tslint:disable-next-line:typedef
+  sendData() {
+    const data = this.updateUser;
+    this.dataService.updateData(data);
+  }
 }

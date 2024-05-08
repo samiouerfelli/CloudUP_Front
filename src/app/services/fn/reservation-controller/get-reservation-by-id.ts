@@ -6,13 +6,13 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ReservationResponse } from '../../models/reservation-response';
+import { Reservation } from '../../models/reservation';
 
 export interface GetReservationById$Params {
   idReservation: number;
 }
 
-export function getReservationById(http: HttpClient, rootUrl: string, params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<ReservationResponse>> {
+export function getReservationById(http: HttpClient, rootUrl: string, params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<Reservation>> {
   const rb = new RequestBuilder(rootUrl, getReservationById.PATH, 'get');
   if (params) {
     rb.path('idReservation', params.idReservation, {});
@@ -23,7 +23,7 @@ export function getReservationById(http: HttpClient, rootUrl: string, params: Ge
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ReservationResponse>;
+      return r as StrictHttpResponse<Reservation>;
     })
   );
 }

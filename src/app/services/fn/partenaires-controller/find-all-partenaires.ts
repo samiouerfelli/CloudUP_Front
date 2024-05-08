@@ -6,16 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { Partenaires } from '../../models/partenaires';
 
-export interface UpvoteCommentary$Params {
-  commentId: number;
+export interface FindAllPartenaires$Params {
 }
 
-export function upvoteCommentary(http: HttpClient, rootUrl: string, params: UpvoteCommentary$Params, context?: HttpContext): Observable<StrictHttpResponse<{
-}>> {
-  const rb = new RequestBuilder(rootUrl, upvoteCommentary.PATH, 'put');
+export function findAllPartenaires(http: HttpClient, rootUrl: string, params?: FindAllPartenaires$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Partenaires>>> {
+  const rb = new RequestBuilder(rootUrl, findAllPartenaires.PATH, 'get');
   if (params) {
-    rb.path('commentId', params.commentId, {});
   }
 
   return http.request(
@@ -23,10 +21,9 @@ export function upvoteCommentary(http: HttpClient, rootUrl: string, params: Upvo
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<{
-      }>;
+      return r as StrictHttpResponse<Array<Partenaires>>;
     })
   );
 }
 
-upvoteCommentary.PATH = '/auth/{commentId}/upvote';
+findAllPartenaires.PATH = '/auth/partenaires';

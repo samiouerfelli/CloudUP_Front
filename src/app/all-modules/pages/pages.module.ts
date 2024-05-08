@@ -1,5 +1,6 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { VoiceCallComponent } from './voice-call/voice-call.component';
@@ -20,40 +21,26 @@ import {CodeInputModule} from 'angular-code-input';
 import { UpdateAccountComponent } from './update-account/update-account.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {TagInputModule} from "ngx-chips";
-import { UpdateEventPopupComponent } from './update-event-popup/update-event-popup.component';
-import { CalendarAffComponent } from './calendar-aff/calendar-aff.component';
-import { AddEventComponent } from './add-event/add-event.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatDialogModule } from '@angular/material/dialog';
-import {MatSelectModule} from '@angular/material/select';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import { EventCategoryComponent } from '../admin/event-category/event-category.component';
+
 
 @NgModule({
-  declarations: [
-    PagesComponent,
-    VoiceCallComponent,
-    VideoCallComponent,
-    CalendarComponent,
-    ComponentsComponent,
-    InvoicesComponent,
-    InvoiceViewComponent,
-    BlankPageComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
-    TermConditionComponent,
-    PrivacyPolicyComponent,
-    ActivateAccountComponent,
-    UpdateAccountComponent,
-    UpdateEventPopupComponent,
-    CalendarAffComponent,
-    AddEventComponent,
-    EventCategoryComponent
-
-],
+    declarations: [
+        PagesComponent,
+        VoiceCallComponent,
+        VideoCallComponent,
+        CalendarComponent,
+        ComponentsComponent,
+        InvoicesComponent,
+        InvoiceViewComponent,
+        BlankPageComponent,
+        LoginComponent,
+        RegisterComponent,
+        ForgotPasswordComponent,
+        TermConditionComponent,
+        PrivacyPolicyComponent,
+        ActivateAccountComponent,
+        UpdateAccountComponent,
+    ],
     imports: [
         CommonModule,
         PagesRoutingModule,
@@ -61,16 +48,12 @@ import { EventCategoryComponent } from '../admin/event-category/event-category.c
         CodeInputModule,
         NgxDropzoneModule,
         TagInputModule,
-        ReactiveFormsModule,
-        MatDialogModule,
-        NgbModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        MatIconModule
-
+        ReactiveFormsModule
     ],
-  schemas : [CUSTOM_ELEMENTS_SCHEMA]
+    exports: [
+        UpdateAccountComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
 export class PagesModule { }

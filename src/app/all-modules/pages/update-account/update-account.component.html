@@ -2,11 +2,20 @@
   <div class="row">
     <div class="col-md-4">
       <div class="card">
-        <img [src]="selectedPicture" alt="...">
+        <div *ngIf="selectedPicture">
+        <img [src]="selectedPicture"  width="250" height="250"  alt="...">
+        </div>
+        <div *ngIf="!selectedPicture">
+          <img  src="assets/img/profileInconnu2.png"  width="250" height="250" alt="...">
+        </div>
         <div class="card-body">
-          <h3 class="card-title">{{this.user.prenom | uppercase }} </h3><h5 class="card-title">{{this.user.nom | uppercase }}</h5>
+          <h3 class="card-title">{{ this.user.prenom | uppercase }} {{ this.user.nom | uppercase }}</h3>
           <p class="card-text">{{ this.user.aboutMe }}</p>
-          <p><strong>12 Files</strong> | <strong>2GB Used</strong> | <strong>$24.65 Spent</strong></p>
+          <p><i class="fa fa-phone"></i>   {{ this.user.phoneNumber }}</p>
+          <p><i class="fa fa-envelope"></i>   {{ this.user.email }}</p>
+          <div *ngIf="this.adresse">
+            <p><i class="fa fa-home"></i> {{ this.user.country }}, {{ this.user.codePostal }},  {{ this.user.city }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -26,154 +35,160 @@
                         <input (change)="onFileSelected($event)" type="file" class="upload" accept="image/*">
                       </div>
                       <div class="profile-img">
-                        <img class="rounded-1" [src]="selectedPicture " alt="Profile Picture">
+                        <img class="rounded-1" [src]="selectedPicture  || 'assets/img/profileInconnu2.png'"  alt="Profile Picture">
                       </div>
                       <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                     </div>
                   </div>
                 </div>
               </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Email <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" [ngModel]="this.user.email" name="email" readonly>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div for="firstName" class="form-group">
-                <label>First Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" [(ngModel)]="updateUser.nom" name="firstName" required>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div for="lastName" class="form-group">
-                <label>Last Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" [(ngModel)]="updateUser.prenom" name="lastName" required>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div for="phoneNumber" class="form-group">
-                <label>Phone Number</label>
-                <input type="text" class="form-control" [(ngModel)]="updateUser.phoneNumber" name="phoneNumber">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div for="gender" class="form-group">
-                <label>Gender</label>
-                <select class="form-control" [(ngModel)]="updateUser.gender" name="gender">
-                  <option>Male</option>
-                  <option>Female</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div for="doa" class="form-group">
-                <label>Date of Birth</label>
-                <input type="date" class="form-control" [(ngModel)]="updateUser.dateOfBirth" name="doa" placeholder="Enter your date of birth">
-              </div>
-            </div>
-            <div class="col-12">
-              <div for="aboutMe" class="form-group">
-                <label>About Me</label>
-                <textarea class="form-control" [(ngModel)]="updateUser.aboutMe" rows="5"  name="aboutMe" placeholder="Tell us about yourself"></textarea>
-              </div>
-            </div>
-          </div>
-          <!-- /Basic Information -->
-
-
-          <!-- Contact Details -->
-          <div class="card contact-card">
-            <div class="card-body">
-              <h4 class="card-title">Contact Details</h4>
-              <div class="row form-row">
-                <div class="col-md-6">
-                  <div for="city" class="form-group">
-                    <label>City</label>
-                    <input type="text" class="form-control" [(ngModel)]="updateUser.city" name="city" placeholder="Enter your city name">
-                  </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" [ngModel]="this.user.email" name="email" readonly>
                 </div>
-                <div class="col-md-6">
-                  <div for="country" class="form-group">
-                    <label>Country</label>
-                    <input type="text" class="form-control" [(ngModel)]="updateUser.country"  name="country" placeholder="Enter your Country">
-                  </div>
+              </div>
+              <div class="col-md-6">
+                <div for="firstName" class="form-group">
+                  <label>First Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" [(ngModel)]="updateUser.nom" name="firstName" >
                 </div>
-                <div class="col-md-6">
-                  <div for="codePostal" class="form-group">
-                    <label>Postal Code</label>
-                    <input type="text" class="form-control" [(ngModel)]="updateUser.codePostal"  name="codePostal" placeholder="Enter your postal code">
-                  </div>
+              </div>
+              <div class="col-md-6">
+                <div for="lastName" class="form-group">
+                  <label>Last Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" [(ngModel)]="updateUser.prenom" name="lastName" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div for="phoneNumber" class="form-group">
+                  <label>Phone Number</label>
+                  <input type="text" class="form-control" [(ngModel)]="updateUser.phoneNumber" name="phoneNumber">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div for="gender" class="form-group">
+                  <label>Gender</label>
+                  <select class="form-control" [(ngModel)]="updateUser.gender" name="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div for="doa" class="form-group">
+                  <label>Date of Birth</label>
+                  <input type="date" class="form-control" [(ngModel)]="updateUser.dateOfBirth" name="doa"
+                         placeholder="Enter your date of birth">
+                </div>
+              </div>
+              <div class="col-12">
+                <div for="aboutMe" class="form-group">
+                  <label>About Me</label>
+                  <textarea class="form-control" [(ngModel)]="updateUser.aboutMe" rows="5" name="aboutMe"
+                            placeholder="Tell us about yourself"></textarea>
                 </div>
               </div>
             </div>
-            <!-- /Contact Details -->
+            <!-- /Basic Information -->
 
-            <!-- Education -->
-            <div class="card-body">
-              <h4 class="card-title">Education</h4>
-              <div class="row form-row">
-                <div class="col-md-6">
-                  <div for="college" class="form-group">
-                    <label>University</label>
-                    <select class="form-control" [(ngModel)]="updateUser.college" (ngModelChange)="updateDropdownVisibility()" name="college">
-                      <option>ESPRIT</option>
-                      <option>ESB</option>
+
+            <!-- Contact Details -->
+            <div class="card contact-card">
+              <div class="card-body">
+                <h4 class="card-title">Contact Details</h4>
+                <div class="row form-row">
+                  <div class="col-md-6">
+                    <div for="city" class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control" [(ngModel)]="updateUser.city" name="city"
+                             placeholder="Enter your city name">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div for="country" class="form-group">
+                      <label>Country</label>
+                      <input type="text" class="form-control" [(ngModel)]="updateUser.country" name="country"
+                             placeholder="Enter your Country">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div for="codePostal" class="form-group">
+                      <label>Postal Code</label>
+                      <input type="text" class="form-control" [(ngModel)]="updateUser.codePostal" name="codePostal"
+                             placeholder="Enter your postal code">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /Contact Details -->
+
+              <!-- Education -->
+              <div class="card-body">
+                <h4 class="card-title">Education</h4>
+                <div class="row form-row">
+                  <div class="col-md-6">
+                    <div for="college" class="form-group">
+                      <label>University</label>
+                      <select class="form-control" [(ngModel)]="updateUser.college"
+                              (ngModelChange)="updateDropdownVisibility()" name="college">
+                        <option>ESPRIT</option>
+                        <option>ESB</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>Degree</label>
+                    <select class="form-control" [(ngModel)]="updateUser.degree"
+                            (ngModelChange)="updateDropdownVisibility()" [ngModelOptions]="{standalone: true}">
+                      <option>CLASS_1ERE</option>
+                      <option>CLASS_2EME</option>
+                      <option>CLASS_3EME</option>
+                      <option>CLASS_4EME</option>
+                      <option>CLASS_5EME</option>
                     </select>
                   </div>
+
+                  <div class="mb-3" *ngIf="showNameDropdown">
+                    <label>Options Name</label>
+                    <select class="form-control" [(ngModel)]="updateUser.option" [ngModelOptions]="{standalone: true}">
+                      <option>ARCTIC</option>
+                      <option>DS</option>
+                      <option>SE</option>
+                      <option>TWIN</option>
+                      <option>GL</option>
+                      <option>SIM</option>
+                      <option>NIDS</option>
+                      <option>SLEAM</option>
+                      <option>INFINI</option>
+                      <option> ERP_BI</option>
+                      <option> GAMIX</option>
+
+
+                    </select>
+                  </div>
+
                 </div>
-
-                <div class="col-md-6">
-                  <label>Degree</label>
-                  <select class="form-control" [(ngModel)]="updateUser.degree" (ngModelChange)="updateDropdownVisibility()" [ngModelOptions]="{standalone: true}">
-                    <option>CLASS_1ERE</option>
-                    <option>CLASS_2EME</option>
-                    <option>CLASS_3EME</option>
-                    <option>CLASS_4EME</option>
-                    <option>CLASS_5EME</option>
-                  </select>
-                </div>
-
-                <div class="mb-3" *ngIf="showNameDropdown">
-                  <label>Options Name</label>
-                  <select class="form-control" [(ngModel)]="updateUser.option" [ngModelOptions]="{standalone: true}">
-                    <option>ARCTIC</option>
-                    <option>DS</option>
-                    <option>SE</option>
-                    <option>TWIN</option>
-                    <option>GL</option>
-                    <option>SIM</option>
-                    <option>NIDS</option>
-                    <option>SLEAM</option>
-                    <option>INFINI</option>
-                    <option> ERP_BI</option>
-                    <option> GAMIX</option>
-
-
-                  </select>
-                </div>
-
               </div>
-            </div>
-            <!-- /Education -->
-
-
-            <!-- Memberships -->
-            <div class="card-body">
-              <h4 class="card-title">Memberships</h4>
-              <div class="row form-row">
-                <div class="col-md-6">
-                  <div for="membership" class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="updateUser.membership" placeholder="Membership" name="membership">
+              <!-- /Education -->
+              <!-- Memberships -->
+              <div class="card-body">
+                <h4 class="card-title">Memberships</h4>
+                <div class="row form-row">
+                  <div class="col-md-6">
+                    <div for="membership" class="form-group">
+                      <input type="text" class="form-control" [(ngModel)]="updateUser.membership"
+                             placeholder="Membership" name="membership">
+                    </div>
                   </div>
                 </div>
+
               </div>
+              <!-- /Memberships -->
 
+              <button type="submit" (click)="sendData()" class="btn btn-primary btn-block btn-lg login-btn">Save Changes</button>
             </div>
-            <!-- /Memberships -->
-
-            <button type="submit" class="btn btn-primary btn-block btn-lg login-btn">Save Changes</button>
-          </div>
           </div>
         </form>
       </div>

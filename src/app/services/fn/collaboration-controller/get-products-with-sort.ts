@@ -6,18 +6,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { User } from '../../models/user';
+import { Collaboration } from '../../models/collaboration';
 
-export interface UpdateEvenement$Params {
-  id: number;
-      body: User
+export interface GetProductsWithSort$Params {
+  field: string;
 }
 
-export function updateEvenement(http: HttpClient, rootUrl: string, params: UpdateEvenement$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
-  const rb = new RequestBuilder(rootUrl, updateEvenement.PATH, 'put');
+export function getProductsWithSort(http: HttpClient, rootUrl: string, params: GetProductsWithSort$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Collaboration>>> {
+  const rb = new RequestBuilder(rootUrl, getProductsWithSort.PATH, 'get');
   if (params) {
-    rb.path('id', params.id, {});
-    rb.body(params.body, 'application/json');
+    rb.path('field', params.field, {});
   }
 
   return http.request(
@@ -25,9 +23,9 @@ export function updateEvenement(http: HttpClient, rootUrl: string, params: Updat
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<User>;
+      return r as StrictHttpResponse<Array<Collaboration>>;
     })
   );
 }
 
-updateEvenement.PATH = '/auth/profile/update/{id}';
+getProductsWithSort.PATH = '/auth/momo/{field}';

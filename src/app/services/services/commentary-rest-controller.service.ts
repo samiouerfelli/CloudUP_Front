@@ -15,12 +15,12 @@ import { Commentary } from '../models/commentary';
 import { CommentaryDto } from '../models/commentary-dto';
 import { deleteC } from '../fn/commentary-rest-controller/delete-c';
 import { DeleteC$Params } from '../fn/commentary-rest-controller/delete-c';
-import { downvoteCommentary } from '../fn/commentary-rest-controller/downvote-commentary';
-import { DownvoteCommentary$Params } from '../fn/commentary-rest-controller/downvote-commentary';
-import { getCommentDislikes } from '../fn/commentary-rest-controller/get-comment-dislikes';
-import { GetCommentDislikes$Params } from '../fn/commentary-rest-controller/get-comment-dislikes';
-import { getCommentLikes } from '../fn/commentary-rest-controller/get-comment-likes';
-import { GetCommentLikes$Params } from '../fn/commentary-rest-controller/get-comment-likes';
+import { downvoteCommentary1 } from '../fn/commentary-rest-controller/downvote-commentary-1';
+import { DownvoteCommentary1$Params } from '../fn/commentary-rest-controller/downvote-commentary-1';
+import { getCommentDislikes1 } from '../fn/commentary-rest-controller/get-comment-dislikes-1';
+import { GetCommentDislikes1$Params } from '../fn/commentary-rest-controller/get-comment-dislikes-1';
+import { getCommentLikes1 } from '../fn/commentary-rest-controller/get-comment-likes-1';
+import { GetCommentLikes1$Params } from '../fn/commentary-rest-controller/get-comment-likes-1';
 import { getCommentsForUser } from '../fn/commentary-rest-controller/get-comments-for-user';
 import { GetCommentsForUser$Params } from '../fn/commentary-rest-controller/get-comments-for-user';
 import { retrieveByContent1 } from '../fn/commentary-rest-controller/retrieve-by-content-1';
@@ -29,8 +29,8 @@ import { retrieveByTags } from '../fn/commentary-rest-controller/retrieve-by-tag
 import { RetrieveByTags$Params } from '../fn/commentary-rest-controller/retrieve-by-tags';
 import { updateC } from '../fn/commentary-rest-controller/update-c';
 import { UpdateC$Params } from '../fn/commentary-rest-controller/update-c';
-import { upvoteCommentary } from '../fn/commentary-rest-controller/upvote-commentary';
-import { UpvoteCommentary$Params } from '../fn/commentary-rest-controller/upvote-commentary';
+import { upvoteCommentary1 } from '../fn/commentary-rest-controller/upvote-commentary-1';
+import { UpvoteCommentary1$Params } from '../fn/commentary-rest-controller/upvote-commentary-1';
 
 @Injectable({ providedIn: 'root' })
 export class CommentaryRestControllerService extends BaseService {
@@ -38,58 +38,58 @@ export class CommentaryRestControllerService extends BaseService {
     super(config, http);
   }
 
-  /** Path part for operation `upvoteCommentary()` */
-  static readonly UpvoteCommentaryPath = '/auth/{commentId}/upvote';
+  /** Path part for operation `upvoteCommentary1()` */
+  static readonly UpvoteCommentary1Path = '/auth/{commentId}/upvote';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `upvoteCommentary()` instead.
+   * To access only the response body, use `upvoteCommentary1()` instead.
    *
    * This method doesn't expect any request body.
    */
-  upvoteCommentary$Response(params: UpvoteCommentary$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+  upvoteCommentary1$Response(params: UpvoteCommentary1$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
-    return upvoteCommentary(this.http, this.rootUrl, params, context);
+    return upvoteCommentary1(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `upvoteCommentary$Response()` instead.
+   * To access the full response (for headers, for example), `upvoteCommentary1$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  upvoteCommentary(params: UpvoteCommentary$Params, context?: HttpContext): Observable<{
+  upvoteCommentary1(params: UpvoteCommentary1$Params, context?: HttpContext): Observable<{
 }> {
-    return this.upvoteCommentary$Response(params, context).pipe(
+    return this.upvoteCommentary1$Response(params, context).pipe(
       map((r: StrictHttpResponse<{
 }>): {
 } => r.body)
     );
   }
 
-  /** Path part for operation `downvoteCommentary()` */
-  static readonly DownvoteCommentaryPath = '/auth/{commentId}/downvote';
+  /** Path part for operation `downvoteCommentary1()` */
+  static readonly DownvoteCommentary1Path = '/auth/{commentId}/downvote';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `downvoteCommentary()` instead.
+   * To access only the response body, use `downvoteCommentary1()` instead.
    *
    * This method doesn't expect any request body.
    */
-  downvoteCommentary$Response(params: DownvoteCommentary$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+  downvoteCommentary1$Response(params: DownvoteCommentary1$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
-    return downvoteCommentary(this.http, this.rootUrl, params, context);
+    return downvoteCommentary1(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `downvoteCommentary$Response()` instead.
+   * To access the full response (for headers, for example), `downvoteCommentary1$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  downvoteCommentary(params: DownvoteCommentary$Params, context?: HttpContext): Observable<{
+  downvoteCommentary1(params: DownvoteCommentary1$Params, context?: HttpContext): Observable<{
 }> {
-    return this.downvoteCommentary$Response(params, context).pipe(
+    return this.downvoteCommentary1$Response(params, context).pipe(
       map((r: StrictHttpResponse<{
 }>): {
 } => r.body)
@@ -146,52 +146,52 @@ export class CommentaryRestControllerService extends BaseService {
     );
   }
 
-  /** Path part for operation `getCommentLikes()` */
-  static readonly GetCommentLikesPath = '/auth/{commentId}/likes';
+  /** Path part for operation `getCommentLikes1()` */
+  static readonly GetCommentLikes1Path = '/auth/{commentId}/likes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getCommentLikes()` instead.
+   * To access only the response body, use `getCommentLikes1()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getCommentLikes$Response(params: GetCommentLikes$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-    return getCommentLikes(this.http, this.rootUrl, params, context);
+  getCommentLikes1$Response(params: GetCommentLikes1$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return getCommentLikes1(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getCommentLikes$Response()` instead.
+   * To access the full response (for headers, for example), `getCommentLikes1$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getCommentLikes(params: GetCommentLikes$Params, context?: HttpContext): Observable<number> {
-    return this.getCommentLikes$Response(params, context).pipe(
+  getCommentLikes1(params: GetCommentLikes1$Params, context?: HttpContext): Observable<number> {
+    return this.getCommentLikes1$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }
 
-  /** Path part for operation `getCommentDislikes()` */
-  static readonly GetCommentDislikesPath = '/auth/{commentId}/dislikes';
+  /** Path part for operation `getCommentDislikes1()` */
+  static readonly GetCommentDislikes1Path = '/auth/{commentId}/dislikes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getCommentDislikes()` instead.
+   * To access only the response body, use `getCommentDislikes1()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getCommentDislikes$Response(params: GetCommentDislikes$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-    return getCommentDislikes(this.http, this.rootUrl, params, context);
+  getCommentDislikes1$Response(params: GetCommentDislikes1$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return getCommentDislikes1(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getCommentDislikes$Response()` instead.
+   * To access the full response (for headers, for example), `getCommentDislikes1$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getCommentDislikes(params: GetCommentDislikes$Params, context?: HttpContext): Observable<number> {
-    return this.getCommentDislikes$Response(params, context).pipe(
+  getCommentDislikes1(params: GetCommentDislikes1$Params, context?: HttpContext): Observable<number> {
+    return this.getCommentDislikes1$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }

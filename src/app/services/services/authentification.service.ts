@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { HttpClient, HttpContext ,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,21 +18,56 @@ import { findUserById } from '../fn/authentification/find-user-by-id';
 import { FindUserById$Params } from '../fn/authentification/find-user-by-id';
 import { getUser } from '../fn/authentification/get-user';
 import { GetUser$Params } from '../fn/authentification/get-user';
+import { getUserbyPhoneNumber } from '../fn/authentification/get-userby-phone-number';
+import { GetUserbyPhoneNumber$Params } from '../fn/authentification/get-userby-phone-number';
 import { logout } from '../fn/authentification/logout';
 import { Logout$Params } from '../fn/authentification/logout';
 import { register } from '../fn/authentification/register';
 import { Register$Params } from '../fn/authentification/register';
+import { sendUpdateConfirmationSms } from '../fn/authentification/send-update-confirmation-sms';
+import { SendUpdateConfirmationSms$Params } from '../fn/authentification/send-update-confirmation-sms';
+import { sendUpdatePasswordSms } from '../fn/authentification/send-update-password-sms';
+import { SendUpdatePasswordSms$Params } from '../fn/authentification/send-update-password-sms';
+import { updatePassword } from '../fn/authentification/update-password';
+import { UpdatePassword$Params } from '../fn/authentification/update-password';
 import { updateUser } from '../fn/authentification/update-user';
 import { UpdateUser$Params } from '../fn/authentification/update-user';
 import { uploadUserPhoto } from '../fn/authentification/upload-user-photo';
 import { UploadUserPhoto$Params } from '../fn/authentification/upload-user-photo';
 import { User } from '../models/user';
 import { UserResponse } from '../models/user-response';
+import { validateOtp } from '../fn/authentification/validate-otp';
+import { ValidateOtp$Params } from '../fn/authentification/validate-otp';
 
 @Injectable({ providedIn: 'root' })
 export class AuthentificationService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `validateOtp()` */
+  static readonly ValidateOtpPath = '/auth/validateOtp';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `validateOtp()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  validateOtp$Response(params: ValidateOtp$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+    return validateOtp(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `validateOtp$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  validateOtp(params: ValidateOtp$Params, context?: HttpContext): Observable<boolean> {
+    return this.validateOtp$Response(params, context).pipe(
+      map((r: StrictHttpResponse<boolean>): boolean => r.body)
+    );
   }
 
   /** Path part for operation `updateUser()` */
@@ -59,10 +94,82 @@ export class AuthentificationService extends BaseService {
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }
-  getIDFromToken(token: string): Observable<number> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<number>('http://localhost:8087/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
+
+  /** Path part for operation `updatePassword()` */
+  static readonly UpdatePasswordPath = '/auth/updatePassword';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updatePassword()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updatePassword$Response(params: UpdatePassword$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return updatePassword(this.http, this.rootUrl, params, context);
   }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `updatePassword$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updatePassword(params: UpdatePassword$Params, context?: HttpContext): Observable<number> {
+    return this.updatePassword$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `sendUpdatePasswordSms()` */
+  static readonly SendUpdatePasswordSmsPath = '/auth/sendUpdatePasswordSMS';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `sendUpdatePasswordSms()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  sendUpdatePasswordSms$Response(params: SendUpdatePasswordSms$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return sendUpdatePasswordSms(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `sendUpdatePasswordSms$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  sendUpdatePasswordSms(params: SendUpdatePasswordSms$Params, context?: HttpContext): Observable<string> {
+    return this.sendUpdatePasswordSms$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
+  /** Path part for operation `sendUpdateConfirmationSms()` */
+  static readonly SendUpdateConfirmationSmsPath = '/auth/sendUpdateConfirmationSMS';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `sendUpdateConfirmationSms()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendUpdateConfirmationSms$Response(params?: SendUpdateConfirmationSms$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return sendUpdateConfirmationSms(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `sendUpdateConfirmationSms$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  sendUpdateConfirmationSms(params?: SendUpdateConfirmationSms$Params, context?: HttpContext): Observable<string> {
+    return this.sendUpdateConfirmationSms$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
   /** Path part for operation `logout()` */
   static readonly LogoutPath = '/auth/logout';
 
@@ -197,6 +304,31 @@ export class AuthentificationService extends BaseService {
   findUserById(params: FindUserById$Params, context?: HttpContext): Observable<UserResponse> {
     return this.findUserById$Response(params, context).pipe(
       map((r: StrictHttpResponse<UserResponse>): UserResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `getUserbyPhoneNumber()` */
+  static readonly GetUserbyPhoneNumberPath = '/auth/getUserbyPhoneNumber';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getUserbyPhoneNumber()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getUserbyPhoneNumber$Response(params: GetUserbyPhoneNumber$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+    return getUserbyPhoneNumber(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getUserbyPhoneNumber$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getUserbyPhoneNumber(params: GetUserbyPhoneNumber$Params, context?: HttpContext): Observable<User> {
+    return this.getUserbyPhoneNumber$Response(params, context).pipe(
+      map((r: StrictHttpResponse<User>): User => r.body)
     );
   }
 

@@ -8,6 +8,10 @@ import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {User} from '../services/models/user';
 import { Observable } from 'rxjs';
 import { PostService } from '../all-modules/eventService/Evenement.service';
+import {Subscription} from 'rxjs';
+import {LoginService} from '../all-modules/pages/login/login.service';
+import {logout} from "../services/fn/authentification/logout";
+
 declare var $: any;
 
 @Component({
@@ -16,13 +20,17 @@ declare var $: any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  uid!:number;
+  uid!: number;
   private selectedPicture: string | undefined;
+  nom!: string | null;
+  prenom!: string | null;
+
   constructor(private router: Router,
               protected tokenService: TokenService,
               private authService: AuthentificationService,
               private http: HttpClient,
-              private PostService: PostService) {
+              private PostService: PostService,
+              private loginService: LoginService) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url.split('/');
@@ -32,8 +40,11 @@ export class HeaderComponent implements OnInit {
         this.active2Route = this.url1;
       }
     });
+    this.nom = localStorage.getItem('nom');
+    this.prenom = localStorage.getItem('prenom');
   }
-user! : User;
+
+  user!: User;
   url!: string;
   url1!: string;
   activeRoute!: string;
@@ -44,27 +55,24 @@ user! : User;
   protected readonly AuthentificationService = AuthentificationService;
   protected readonly localStorage = localStorage;
 
-  ngOnInit(): void
-   {
+  ngOnInit(): void {
     if (localStorage.getItem('token')) {
       this.getIDUSER(this.localStorage.getItem('token')).subscribe(
-
         (idu: number) => {
-          this.uid=Number(idu)
+          this.uid = Number(idu)
         });
       this.authService.getUser().subscribe({
         next: value => {
           this.user = value;
-          const id = this.user.idUser as number ;
+          const id = this.user.idUser as number;
           this.authService.findUserById({idUser: id}).subscribe({
-              next: (data) =>
-              {
-                this.selectedPicture = 'data:image/jpg;base64,' + data.image ;
-              }
-            });
+            next: (data) => {
+              this.selectedPicture = 'data:image/jpg;base64,' + data.image;
+            }
+          });
         },
         // tslint:disable-next-line:typedef
-        error(err){
+        error(err) {
           console.log(err);
         }
       });
@@ -126,13 +134,15 @@ user! : User;
     });
   }
 
-  sleep(milliseconds: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-  }
   getIDUSER(token: any): Observable<number> {
     return this.PostService.getIDFromToken(token);
 
   }
+
+  sleep(milliseconds: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  }
+
   // tslint:disable-next-line:typedef
   logout() {
     const token = localStorage.getItem('token');
@@ -141,6 +151,8 @@ user! : User;
       next: async () => {
         localStorage.removeItem('token');
         localStorage.removeItem('isLogedIn');
+        localStorage.removeItem('nom');
+        localStorage.removeItem('prenom');
         localStorage.removeItem('user');
         await this.sleep(1000);
         this.router.navigate(['Home']);
@@ -150,5 +162,4 @@ user! : User;
       }
     });
   }
-
 }

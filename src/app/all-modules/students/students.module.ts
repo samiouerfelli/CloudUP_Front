@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsComponent } from './students.component';
 import { MapGridComponent } from './map-grid/map-grid.component';
@@ -18,8 +17,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { NgSelect2Module } from 'ng-select2';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 import { Daterangepicker } from 'ng2-daterangepicker';
-import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {NgxPayPalModule} from "ngx-paypal";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({

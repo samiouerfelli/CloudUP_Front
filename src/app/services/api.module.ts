@@ -5,8 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ReclamationControllerService } from './services/reclamation-controller.service';
+import { CollaborationControllerService } from './services/collaboration-controller.service';
 import { CommentaryRestControllerService } from './services/commentary-rest-controller.service';
 import { PublicationRestControllerService } from './services/publication-rest-controller.service';
+import { PartenairesControllerService } from './services/partenaires-controller.service';
 import { CoursControllerService } from './services/cours-controller.service';
 import { ReactionControllerService } from './services/reaction-controller.service';
 import { UserProfileControllerService } from './services/user-profile-controller.service';
@@ -18,6 +20,7 @@ import { OtpControllerService } from './services/otp-controller.service';
 import { ReservationControllerService } from './services/reservation-controller.service';
 import { UserRestControllerService } from './services/user-rest-controller.service';
 import { SlotsControllerService } from './services/slots-controller.service';
+import { ReservationCollabControllerService } from './services/reservation-collab-controller.service';
 import { ForumRestControllerService } from './services/forum-rest-controller.service';
 import { AuthentificationGithubControllerService } from './services/authentification-github-controller.service';
 
@@ -30,8 +33,10 @@ import { AuthentificationGithubControllerService } from './services/authentifica
   declarations: [],
   providers: [
     ReclamationControllerService,
+    CollaborationControllerService,
     CommentaryRestControllerService,
     PublicationRestControllerService,
+    PartenairesControllerService,
     CoursControllerService,
     ReactionControllerService,
     UserProfileControllerService,
@@ -43,6 +48,7 @@ import { AuthentificationGithubControllerService } from './services/authentifica
     ReservationControllerService,
     UserRestControllerService,
     SlotsControllerService,
+    ReservationCollabControllerService,
     ForumRestControllerService,
     AuthentificationGithubControllerService,
     ApiConfiguration

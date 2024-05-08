@@ -33,6 +33,12 @@ import { PartenairesadminComponent } from './partenairesadmin/partenairesadmin.c
 import { CollaborationdetailsComponent } from './collaborationdetails/collaborationdetails.component';
 import { CollaborationreservationComponent } from './collaborationreservation/collaborationreservation.component';
 import { CollaborationresssssComponent } from './collaborationresssss/collaborationresssss.component';
+import {CodeInputModule} from "angular-code-input";
+import {PagesModule} from "./all-modules/pages/pages.module";
+import {UpdateEventPopupComponent} from "./all-modules/pages/update-event-popup/update-event-popup.component";
+import {EventCategoryComponent} from "./all-modules/admin/event-category/event-category.component";
+import {AddEventComponent} from "./all-modules/pages/add-event/add-event.component";
+import {CalendarAffComponent} from "./all-modules/pages/calendar-aff/calendar-aff.component";
 
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
@@ -55,6 +61,10 @@ export function tokenGetter() {
     ReclamarchivesComponent,
     CollaborationreservationComponent,
     CollaborationresssssComponent,
+    UpdateEventPopupComponent,
+    EventCategoryComponent,
+    AddEventComponent,
+    CalendarAffComponent
 
   ],
   imports: [
@@ -78,7 +88,9 @@ export function tokenGetter() {
       config: {
         tokenGetter}
     }),
-    MatSortModule
+    MatSortModule,
+    CodeInputModule,
+    PagesModule,
   ],
   providers: [
     HttpClient,

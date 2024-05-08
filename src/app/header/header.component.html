@@ -147,7 +147,7 @@
               <li class="nav-item dropdown flag-nav " *ngIf="localStorage.getItem('isLogedIn')" >
                 <a class="nav-link dropdown-toggle align-items-center text-center" data-toggle="dropdown" href="#" role="button">
                   <img src="assets/img/flags/account.png" alt="" width="30" height="30" class="lang-flag">
-                 {{this.user.nom}}<a>-</a>{{this.user.prenom}}
+                 {{this.nom}}<a>-</a>{{this.prenom}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                   <a routerLink='/pages/update-account' class="dropdown-item">Account</a>

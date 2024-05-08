@@ -6,18 +6,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { CategorieEvenement } from '../../models/categorie-evenement';
+import { Education } from '../../models/education';
 
-export interface UpdateEvenement2$Params {
+export interface GetE$Params {
   id: number;
-      body: CategorieEvenement
 }
 
-export function updateEvenement2(http: HttpClient, rootUrl: string, params: UpdateEvenement2$Params, context?: HttpContext): Observable<StrictHttpResponse<CategorieEvenement>> {
-  const rb = new RequestBuilder(rootUrl, updateEvenement2.PATH, 'put');
+export function getE(http: HttpClient, rootUrl: string, params: GetE$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Education>>> {
+  const rb = new RequestBuilder(rootUrl, getE.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
-    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -25,9 +23,9 @@ export function updateEvenement2(http: HttpClient, rootUrl: string, params: Upda
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<CategorieEvenement>;
+      return r as StrictHttpResponse<Array<Education>>;
     })
   );
 }
 
-updateEvenement2.PATH = '/auth/categories/update/{id}';
+getE.PATH = '/auth/profile/getE/{id}';
