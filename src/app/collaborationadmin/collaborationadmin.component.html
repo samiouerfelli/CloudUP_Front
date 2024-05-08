@@ -16,7 +16,7 @@
               <div class="sort-by">
                   <span class="sort-title">Sort by</span>
                   <span class="sortby-fliter">
-                      
+
                   </span>
               </div>
           </div>
@@ -25,67 +25,65 @@
 </div>
 <!-- /Breadcrumb -->
 <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
-          
-  
-  
+
+
+
 </div>
 <!-- Page Content -->
-<div class="content">
-  <div class="container">
-      <div class="row">
+
          <!--  <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar"></div> -->
           <!-- Search Filter -->
-        
-           
+
+
           <!-- <div class="col-md-12 col-lg-8 col-xl-9 " > -->
               <div class="row course">
-                
+
               <!--   <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3"  *ngFor="let collab of CollaborationArray">
                   <div class="profile-widget">
                       <div class="doc-img">
                           <img class="img-fluid" [src]="'data:image/jpeg;base64,' + collab.imgcol" alt="Collaboration Image">
-                    
-                          <span class="price-course"> 
+
+                          <span class="price-course">
                               {{ collab.nbrres === 0 ? 'No places left &#128546; ' : (collab.nbrres >0 ? collab.nbrres + ' Places left  &#128578;' : '') }}
                             </span>
                       </div>
                       <div class="pro-content">
-                          
-                
+
+
                           <h3 class="title">{{ collab.nomcol }}</h3>
                           <p class="speciality">when? at {{ collab.datecol | date: 'yyyy-MM-dd HH:mm' }}!</p>
                           <p class="speciality">where? {{ collab.placecol }}!</p>
-               
-                         
-                          
-                          
-                
-                               
+
+
+
+
+
+
                                 <div *ngIf="showCollabForm" class="collab-form-overlay" id="htmlElementIdd">
                                   <div class="collab-form" *ngIf="selectedCollab">
-                                
+
                                      <img *ngIf="selectedCollab.qrCodeUrl" [src]="selectedCollab.qrCodeUrl" alt="QR Code">
-                        
+
                                      <img class="img-fluid" [src]="'data:image/jpeg;base64,' + selectedCollab.imgcol" alt="Collaboration Image">
-                                   
+
                         <p><strong>Teacher:</strong> {{ selectedCollab.user?.nom }}</p>
-                
+
                         <p><strong>Description:</strong> {{ selectedCollab.desccol }}</p>
                         <p><strong>Date:</strong> {{ selectedCollab.datecol | date: 'yyyy-MM-dd' }}</p>
                         <p><strong>Place:</strong> {{ selectedCollab.placecol }}</p>
-                  
+
                         <p><strong>Partner:</strong> {{ selectedCollab.partenaires?.nom }}</p>
-                       
+
                     </div>
                     <button (click)="ajoutCollaboration($event)" class="add-button">Add Collaboration</button>
                       <div class="collab-form" *ngIf="selectedCollab">
-                       
+
                 <button class="btn view-btn" >View Collaboration</button>
                 </div>
-              
-                
-                
-                                   
+
+
+
+
                                   </div>
                                 </div>
                 </div>
@@ -129,7 +127,7 @@
                               <button (click)="showUpdate(collab)" class="edit-button"><i class="fas fa-edit"></i></button>
                             </td>
                           </tr>
-                      
+
                           <tr>
                             <td colspan="10">
                               <button (click)="ajoutCollaboration($event)" class="add-button">Add Collaboration</button>
@@ -143,16 +141,13 @@
                 <!--   </div> -->
               </div>
         <!--   </div> -->
-      </div>
-  </div>
-</div>
+
 <!-- Search Filter -->
 <!--  form here for ajout -->
-<div style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;"></div>
 <div *ngIf="showajoutForm">
-  <form (ngSubmit)="addCollabimg(newCollab.nomcol, newCollab.desccol, newCollab.datecol, newCollab.placecol, newCollab.prixcol, newCollab.partenaires_id_part, newCollab.nbrres, newCollab.user_id_user, newCollab.categorieCollaboraiton)" #ajoutForm="ngForm" class="ajouter-form" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;" novalidate>
+  <form (ngSubmit)="addCollabimg(newCollab.nomcol, newCollab.desccol, newCollab.datecol, newCollab.placecol, newCollab.prixcol, newCollab.partenaires_id_part, newCollab.nbrres, newCollab.user_id_user )" #ajoutForm="ngForm" class="ajouter-form" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;" novalidate>
     <h2>Ajout collaboration</h2>
-    
+
     <div>
       <label for="datetime">Date and Time:</label>
       <input type="datetime-local" id="datetime" name="datetime" [(ngModel)]="newCollab.datecol" required>
@@ -177,12 +172,7 @@
       <label for="price">Price:</label>
       <input type="number" id="price" name="prixcol" [(ngModel)]="newCollab.prixcol" required>
     </div>
-    <!-- <div>
-      <label for="cours">Cours:</label>
-      <select id="cours" name="cours" [(ngModel)]="newCollab.cours" required>
-        <option *ngFor="let cours of coursList" [ngValue]="cours">{{ cours.nom }}</option>
-      </select>
-    </div> -->
+
    <div>
   <label for="partenaire">Partenaire:</label>
   <select id="partenaire" name="partenaires_id_part" [(ngModel)]="newCollab.partenaires_id_part" required>
@@ -198,11 +188,11 @@
   <!--   <div>
       <label for="categorieCollaboraiton">Categorie Collaboration:</label>
       <select id="categorieCollaboraiton" name="categorieCollaboraiton" [(ngModel)]="newCollab.categorieCollaboraiton" required>
-       Generate options dynamically based on fetched categories 
+       Generate options dynamically based on fetched categories
         <option *ngFor="let categorie of categorieCollaboraiton" [value]="categorie">{{ categorie }}</option>
       </select>
     </div> -->
-  
+
     <div>
       <label for="price">nombre des place:</label>
       <input type="number" id="nbrres" name="nbrres" [(ngModel)]="newCollab.nbrres" required>
@@ -212,13 +202,13 @@
     <button type="button" (click)="cancelAjout()">Annuler</button>
   </form>
 </div>
-<!-- update-form.component.html --> 
+<!-- update-form.component.html -->
 
 <div *ngIf="showUpdateForm">
   <form (ngSubmit)="updatecol(selectedUser, selectedUser?.idcol)" #updateForm class="update-form" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
     <h2>Modification du compte</h2>
     <h2>Ajout collaboration</h2>
-    
+
     <div>
       <label for="datetime">Date and Time:</label>
       <input type="datetime-local" id="datetime" name="datetime" [(ngModel)]="selectedUser.datecol">
@@ -273,7 +263,7 @@
 <!-- /Search Filter -->
 <!-- Display collaborations with sorting -->
 
-<!-- 
-  
+<!--
+
 -->
 

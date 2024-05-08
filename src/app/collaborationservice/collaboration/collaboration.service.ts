@@ -37,7 +37,7 @@ export class CollaborationService {
   getresplaces(commentId: number): Observable<number> {
     return this.http.put<number>(`http://localhost:8087/api/v1/auth/${commentId}/downbssssssss`, null);
   }
- 
+
 
   updatecollaboration(collaboration: any, id: number): Observable<any> {
     return this.http.put(`${this.apiurl}/updateCollaboration/${id}`, collaboration);
@@ -69,7 +69,7 @@ FindObjet(objet:string)
   }
 
   GetAllCols(): Observable<any> {
-    return this.http.get(`${this.apiurl}/retriveCollaboration`);
+    return this.http.get(`${this.apiurl}/retriveCollaborationres`);
   }
   GetAllColsbyid(idcol: any): Observable<any> {
     return this.http.get(`${this.apiurl}/retrieveByIdCollaboration/${idcol}`);
@@ -81,11 +81,11 @@ FindObjet(objet:string)
   retrivecolabid(idcol: any): Observable<any> {
     return this.http.get(`${this.apiurl}/retrieveByIdCollaboration/${idcol}`);
   }
-  
+
   getPartenaireList(): Observable<any> {
     return this.http.get(`${this.apiurl}/partenaires`);
   }
-  
+
   getUserList(): Observable<any> {
     return this.http.get(`${this.apiurl}/findAllusers`);
   }
@@ -95,7 +95,7 @@ FindObjet(objet:string)
   }
 
 
-  addColla(file: File, nomcol: string, desccol: string, datecol: Date, placecol: string, prixcol: number, partenaires_id_part: any, nbrres: number,user_id_user:any,categorieCollaboraiton: any): Observable<any> {
+  addColla(file: File, nomcol: string, desccol: string, datecol: Date, placecol: string, prixcol: number, partenaires_id_part: any, nbrres: number,user_id_user:any ): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
     formData.append('nomcol', nomcol);
@@ -106,7 +106,7 @@ FindObjet(objet:string)
     formData.append('partenaires_id_part', partenaires_id_part.toString());
     formData.append('nbrres', nbrres.toString());
     formData.append('user_id_user', user_id_user.toString());
-    formData.append('categorieCollaboraiton', categorieCollaboraiton);
+
     return this.http.post(this.apiurl + '/addColbeltaswira', formData, {
       responseType: 'text'
     }).pipe(

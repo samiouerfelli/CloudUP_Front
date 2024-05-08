@@ -36,9 +36,7 @@
       <!-- Search Filter -->
 
 
-      <div class="col-md-12 col-lg-8 col-xl-9 " >
-        <div class="row course">
-          <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3"   >
+
             <!-- Each item -->
             <table>
               <thead>
@@ -73,9 +71,7 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
 <!-- your form here -->
 <div *ngIf="showUpdateForm">
   <form (ngSubmit)="updatePart(selectedUser, selectedUser?.id_part)" #updateForm class="update-form"
@@ -102,6 +98,7 @@
   <form (ngSubmit)="addPartenaire(user.nom, user.descpart)" #ajoutForm="ngForm" class="ajouter-form"
         style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;" novalidate>
     <h2>Ajout d'un partenaire</h2>
+
     <label for="nom">Nom du partenaire:</label>
     <input type="text" id="nom" name="nom" [(ngModel)]="user.nom" required #nom="ngModel">
     <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="error-message">
@@ -110,9 +107,9 @@
 
     <label for="descpart">Description du partenaire:</label>
     <textarea id="descpart" name="descpart" [(ngModel)]="user.descpart" required ></textarea>
-
-
-
+    <div *ngIf="ajoutForm.controls['descpart'].invalid && (ajoutForm.controls['descpart'].dirty || ajoutForm.controls['descpart'].touched)" class="error-message">
+      <span *ngIf="ajoutForm.controls['descpart'].errors?.required">La description du partenaire est requise.</span>
+    </div>
 
     <label for="imgpart">Image du partenaire:</label>
     <input type="file" id="imgpart" name="imgpart" required #fileInput>
@@ -124,4 +121,5 @@
     <button type="button" (click)="cancelAjout()">Annuler</button>
   </form>
 </div>
+
 

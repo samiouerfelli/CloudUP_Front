@@ -16,7 +16,7 @@
                 <div class="sort-by">
                     <span class="sort-title">Sort by</span>
                     <span class="sortby-fliter">
-                        
+
                     </span>
                 </div>
             </div>
@@ -26,9 +26,9 @@
 
 <!-- /Breadcrumb -->
 <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
-            
-    
-    
+
+
+
 </div>
 <!-- Page Content -->
 <div class="content">
@@ -45,8 +45,8 @@
             </div>
             <div class="filter-widget">
                 <h4>Select a filter</h4>
-                 
-                
+
+
                 <div class="col">
                     <ul class="nav nav-tabs nav-tabs-solid">
                         <div class="input-group">
@@ -61,10 +61,10 @@
                     </ul>
                 </div>
             </div>
-            
+
             </div>
             <!-- Search Filter -->
-            
+
             <!-- <div class="col">
                 <ul class="nav nav-tabs nav-tabs-solid">
                     <div class="input-group">
@@ -85,10 +85,10 @@
                                 <a href="javascript:void(0)" class="fav-btn" (click)="likeComment(collab.idcol)">
                                     <i class="fas fa-heart">{{ collab.votePositif }}</i>
                                     <!-- Display stars based on the number of likes -->
-                                    
+
                                 </a>
                                 <!-- Display price if needed -->
-                                <span class="price-course"> 
+                                <span class="price-course">
                                     {{ collab.nbrres === 0 ? 'No places left &#128546; ' : (collab.nbrres >0 ? collab.nbrres + ' Places left  &#128578;' : '') }}
                                   </span>
                             </div>
@@ -104,14 +104,14 @@
                                 <p class="speciality">where? {{ collab.placecol }}!</p>
 <!--                                 <p class="speciality">cataegorie? {{ collab.categorieCollaboraiton }}!</p>
  -->                             <!--   <p class="speciality"> {{ collab.user?.nom }}</p>-->
-                              
-                                
-                               
-                                
+
+
+
+
                                 <div class="row row-sm">
                                     <!-- Display other collaboration details -->
                                     <button class="btn view-btn"(click)="showCollabDetails(collab)">View Collaboration</button>
-                                   
+
                                 </div>
 
                                       <!-- Collaboration Form Overlay -->
@@ -120,7 +120,7 @@
                                           <!-- Display other collaboration details -->
                                            <!-- Form fields -->
                                            <img *ngIf="selectedCollab.qrCodeUrl" [src]="selectedCollab.qrCodeUrl" alt="QR Code">
-                              
+
                                            <img class="img-fluid" [src]="'data:image/jpeg;base64,' + selectedCollab.imgcol" alt="Collaboration Image">
                                            <p>{{this.user.nom}}<a>-</a>{{this.user.prenom}} </p>
                               <p><strong>Teacher:</strong> {{ selectedCollab.user?.nom }}</p>
@@ -128,22 +128,22 @@
                               <p><strong>Description:</strong> {{ selectedCollab.desccol }}</p>
                               <p><strong>Date:</strong> {{ selectedCollab.datecol | date: 'yyyy-MM-dd' }}</p>
                               <p><strong>Place:</strong> {{ selectedCollab.placecol }}</p>
-                        
+
                               <p><strong>Partner:</strong> {{ selectedCollab.partenaires?.nom }}</p>
                               <button class="btn view-btn" (click)="getReservedPlaces(selectedCollab.idcol)">
                                 Reserved
                               </button>
-                              <button (click)="hideCollabForm()">Close</button>
-                             
+                              <button class="btn view-btn" (click)="hideCollabForm()">Close</button>
+
                           </div>
                           <div *ngIf="showCollabqrs" class="collab-form-overlay">
                             <div class="collab-form" *ngIf="selectedCollab">
-                             
+
                    <button class="btn view-btn" (click)="showCollabDetails(collab)">View Collaboration</button>
                 </div>
-                
+
                 <!-- Collaboration Form Overlay -->
-              
+
 
                                           <!-- Other form fields and buttons -->
                                         </div>
@@ -156,14 +156,14 @@
 </div>
 <!-- Search Filter -->
 <div class="card search-filter">
-         
+
     <div class="card-body">
-     
-    
-    
-     
-     
-        
+
+
+
+
+
+
     </div>
 </div>
 <!-- /Search Filter -->
@@ -188,6 +188,4 @@
     </nav>
 </div>
 
-<!-- 
-    
--->
+    </div>

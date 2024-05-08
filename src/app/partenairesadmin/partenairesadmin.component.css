@@ -4,7 +4,7 @@ table {
     margin-left: 10%;
 
   }
- 
+
 
   th, td {
 
@@ -49,8 +49,8 @@ table {
   button:hover {
     background-color: #dc3545;
   }
- 
-  
+
+
 
   .update-form {
     position: fixed;
@@ -89,37 +89,37 @@ table {
     border-radius: 3px;
     font-size: 1rem;
   }
-  
+
 
   button[type="submit"] {
-    background-color: #26292d; 
-    color: #fff; 
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    transition: background-color 0.3s; 
+    background-color: #26292d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
-  
+
   button[type="submit"]:hover {
-    background-color: #00cc00; 
+    background-color: #00cc00;
   }
-  
+
   /* Style for the "Annuler" button */
   button[type="button"] {
-    background-color: #26292d; 
-    color: #fff; 
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    transition: background-color 0.3s; 
+    background-color: #26292d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
-  
+
   button[type="button"]:hover {
-    background-color: #ff3333; 
+    background-color: #ff3333;
   }
-    
+
 
 
   .ajouter-form {
@@ -161,31 +161,93 @@ table {
   }
 
   button[type="submit"] {
-  background-color: #26292d; 
-  color: #fff; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s; 
+  background-color: #26292d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button[type="submit"]:hover {
-  background-color: #00cc00; 
+  background-color: #00cc00;
 }
 
 /* Style for the "Annuler" button */
 button[type="button"] {
-  background-color: #26292d; 
-  color: #fff; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s; 
+  background-color: #26292d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button[type="button"]:hover {
-  background-color: #ff3333; 
+  background-color: #ff3333;
 }
-  
+.partner-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.partner-info {
+  padding: 20px;
+}
+
+.partner-info h3 {
+  margin-top: 0;
+}
+
+.partner-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.partner-image img {
+  width: 100%;
+  height: auto;
+}
+
+.partner-actions {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #ccc;
+}
+
+.partner-actions button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-button {
+  margin-top: 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+.edit-button i, .add-button i {
+  margin-right: 5px;
+}
+

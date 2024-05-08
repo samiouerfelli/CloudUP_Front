@@ -10,6 +10,9 @@ import { CollaborationComponent } from './collaboration/collaboration.component'
 import { CollaborationadminComponent } from './collaborationadmin/collaborationadmin.component';
 import { PartenairesadminComponent } from './partenairesadmin/partenairesadmin.component';
 import { CollaborationdetailsComponent } from './collaborationdetails/collaborationdetails.component';
+import { CollaborationreservationComponent} from "./collaborationreservation/collaborationreservation.component";
+import { CollaborationresssssComponent} from "./collaborationresssss/collaborationresssss.component";
+
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '', loadChildren: () => import('./all-modules/all-modules.module').then(m => m.AllModulesModule) },
@@ -22,6 +25,8 @@ const routes: Routes = [
   { path: 'collaborationadmin', component: CollaborationadminComponent},
   { path: 'partenairesadmin', component: PartenairesadminComponent},
   { path: 'collaborationdetails', component: CollaborationdetailsComponent},
+  { path: 'Collaborationreservation', component: CollaborationreservationComponent},
+  { path: 'Collaborationresssss', component: CollaborationresssssComponent},
   { path: '**', redirectTo: '', component: HomeComponent }
 ];
 
