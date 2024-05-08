@@ -27,6 +27,7 @@ import {GetCoursComponent} from './get-cours/get-cours.component';
 import {UpdateCoursComponent} from './update-cours/update-cours.component';
 import {BookingComponent} from '../students/booking/booking.component';
 import {MysessionComponent} from './mysession/mysession.component';
+import {CheckoutComponent} from "../students/checkout/checkout.component";
 
 const routes: Routes = [
   { path: '', component: InstructorsComponent,
@@ -56,7 +57,8 @@ const routes: Routes = [
     {path: 'add-course', component: AddCoursComponent},
     {path: 'get-course', component: GetCoursComponent},
     {path: 'update-course/:idCours', component: UpdateCoursComponent},
-    {path: 'students/booking/:professorId/:coursID', component: BookingComponent}
+    {path: 'students/booking/:professorId/:coursID', component: BookingComponent},
+    {path:'students/checkout/:reservationId',component:CheckoutComponent}
   ]
   }
 ];

@@ -43,8 +43,6 @@ import { retrieveObjet1 } from '../fn/collaboration-controller/retrieve-objet-1'
 import { RetrieveObjet1$Params } from '../fn/collaboration-controller/retrieve-objet-1';
 import { retriveCollaboration } from '../fn/collaboration-controller/retrive-collaboration';
 import { RetriveCollaboration$Params } from '../fn/collaboration-controller/retrive-collaboration';
-import { retriveCollaborations } from '../fn/collaboration-controller/retrive-collaborations';
-import { RetriveCollaborations$Params } from '../fn/collaboration-controller/retrive-collaborations';
 import { updateCol } from '../fn/collaboration-controller/update-col';
 import { UpdateCol$Params } from '../fn/collaboration-controller/update-col';
 import { upvoteCommentary } from '../fn/collaboration-controller/upvote-commentary';
@@ -291,31 +289,6 @@ export class CollaborationControllerService extends BaseService {
   getCommentDislikes(params: GetCommentDislikes$Params, context?: HttpContext): Observable<number> {
     return this.getCommentDislikes$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
-    );
-  }
-
-  /** Path part for operation `retriveCollaborations()` */
-  static readonly RetriveCollaborationsPath = '/auth/retriveCollaborationres';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `retriveCollaborations()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  retriveCollaborations$Response(params?: RetriveCollaborations$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Collaboration>>> {
-    return retriveCollaborations(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `retriveCollaborations$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  retriveCollaborations(params?: RetriveCollaborations$Params, context?: HttpContext): Observable<Array<Collaboration>> {
-    return this.retriveCollaborations$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<Collaboration>>): Array<Collaboration> => r.body)
     );
   }
 

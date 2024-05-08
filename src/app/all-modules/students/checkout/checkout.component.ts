@@ -1,7 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
+import {ReservationControllerService} from "../../../services/services/reservation-controller.service";
+import {ReservationResponse} from "../../../services/models/reservation-response";
+import {Reservation} from "../../../services/models/reservation";
+import {AuthentificationService} from "../../../services/services/authentification.service";
+import {User} from "../../../services/models/user";
 
 @Component({
   selector: 'app-checkout',
@@ -9,19 +14,67 @@ import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  amount! : any;
+  selectedPicture: string | undefined;
+  UserID! : number ;
+  user!: User;
+  reservationId!: any;
+  reservationDetails!: Reservation;
+
   public payPalConfig?: IPayPalConfig;
   selectedPaymentMethod = 'paypal'; // Assuming direct selection for demonstration
-  amount = 160; // This could be dynamically calculated based on booking details
 
-  constructor(
+  constructor(private service: ReservationControllerService,
               private route: Router,
-              private fb: FormBuilder) {
+              private router: ActivatedRoute,
+              private fb: FormBuilder,
+              private authService: AuthentificationService) {
   }
 
   ngOnInit(): void {
     if (this.selectedPaymentMethod === 'paypal') {
       this.initConfig();
     }
+    this.router.params.subscribe(params => {
+      this.reservationId = params['reservationId'];
+      this.loadReservationDetails(this.reservationId);
+    });
+
+
+    this.authService.getUser().subscribe({
+      next: value => {
+        this.user = value;
+        if (this.user.prenom != null && this.user.nom != null ) {
+
+          const id = this.user.idUser as number ;
+          this.authService.findUserById({idUser: id}).subscribe({
+            next: (data) =>
+            {
+              this.selectedPicture = 'data:image/jpg;base64,' + data.image ;
+            }
+          });
+
+        }
+      },
+      // tslint:disable-next-line:typedef
+      error(err){
+        console.log(err);
+      }
+    });
+  }
+
+  loadReservationDetails(id: any): void {
+    this.service.getReservationById({idReservation:id}).subscribe(
+      data => {
+        this.reservationDetails = data;
+        this.amount = this.reservationDetails.cours?.price;
+        this.UserID=this.reservationDetails.professeur?.idUser;
+        console.log(data);
+      },
+      error => {
+        console.error('Failed to fetch reservation details:', error);
+      }
+    );
   }
 
   private initConfig(): void {
@@ -51,6 +104,8 @@ export class CheckoutComponent implements OnInit {
         // @ts-ignore
         actions.order.get().then(details => {
           console.log('Payment approved: ', details);
+          this.route.navigate(['/students/booking-success']);
+
         });
       },
       onClientAuthorization: (data) => {

@@ -34,38 +34,11 @@ import { retrieveEvenementById } from '../fn/evenement-controller/retrieve-evene
 import { RetrieveEvenementById$Params } from '../fn/evenement-controller/retrieve-evenement-by-id';
 import { updateEvenement2 } from '../fn/evenement-controller/update-evenement-2';
 import { UpdateEvenement2$Params } from '../fn/evenement-controller/update-evenement-2';
-import { updateEventStartDate } from '../fn/evenement-controller/update-event-start-date';
-import { UpdateEventStartDate$Params } from '../fn/evenement-controller/update-event-start-date';
 
 @Injectable({ providedIn: 'root' })
 export class EvenementControllerService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
-  }
-
-  /** Path part for operation `updateEventStartDate()` */
-  static readonly UpdateEventStartDatePath = '/auth/evenement/{eventId}/start-date';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateEventStartDate()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  updateEventStartDate$Response(params: UpdateEventStartDate$Params, context?: HttpContext): Observable<StrictHttpResponse<Evenement>> {
-    return updateEventStartDate(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateEventStartDate$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  updateEventStartDate(params: UpdateEventStartDate$Params, context?: HttpContext): Observable<Evenement> {
-    return this.updateEventStartDate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Evenement>): Evenement => r.body)
-    );
   }
 
   /** Path part for operation `updateEvenement2()` */

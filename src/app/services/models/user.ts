@@ -16,7 +16,7 @@ export interface User {
   email?: string;
   enabled?: boolean;
   gender?: 'Male' | 'Female';
-  idUser?: number;
+  idUser: number;
   image?: string;
   lastModifiedDate?: string;
   location?: string;
