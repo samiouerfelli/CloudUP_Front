@@ -95,7 +95,7 @@ export class AddEventComponent {
                     this.onClose("Ajout avec succés!");
                     Swal.fire({
                       icon: 'success',
-                      title: 'Partenaire a été ajouté avec succès!',
+                      title: 'Event successfully added!',
                       showConfirmButton: false,
                       timer: 1000
                     })
