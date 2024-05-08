@@ -57,14 +57,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('token')) {
-      this.getIDUSER(this.localStorage.getItem('token')).subscribe(
-        (idu: number) => {
-          this.uid = Number(idu)
-        });
+
       this.authService.getUser().subscribe({
         next: value => {
           this.user = value;
           const id = this.user.idUser as number;
+          this.uid = id;
+
           this.authService.findUserById({idUser: id}).subscribe({
             next: (data) => {
               this.selectedPicture = 'data:image/jpg;base64,' + data.image;
