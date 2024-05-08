@@ -147,7 +147,7 @@ alledu:any;
           }});
         }
   updateEventWithData(): void {
-    this.userProfileService.updateProfile(2, this.userProfile)}
+    this.userProfileService.updateProfile(Number(this.UserId), this.userProfile)}
   deleteUserProfile(userId: number): void {
     // Implement confirmation logic (optional)
     this.userProfileService.deleteUserProfile(userId).subscribe(
@@ -197,7 +197,7 @@ alledu:any;
 const ase = {
           name:name,
           location:location,
-          userId: Number(idu), // Assuming you have userId defined in your component
+          userId: Number(this.UserId), // Assuming you have userId defined in your component
           dateDebut:formattedDateDebut.substring(0,10),
           dateFin:formattedDateFin.substring(0,10)
 
@@ -223,7 +223,7 @@ const ase = {
         const name = this.addAwardForm.controls['name'].value;
 const awardData = {
           name:name,
-          userId: Number(idu), // Assuming you have userId defined in your component
+          userId: Number(this.UserId), // Assuming you have userId defined in your component
           recievedDate:formattedDateDebut.substring(0,10)
         };
         console.log(name)
@@ -246,7 +246,7 @@ onSubmitSp(): void {
       const speciality = this.addSpForm.controls['speciality'].value;
 const SpData = {
         speciality:speciality,
-        userId: Number(idu), // Assuming you have userId defined in your component
+        userId: Number(this.UserId), // Assuming you have userId defined in your component
       };
       console.log("spécialité : ", speciality);
       console.log(SpData)

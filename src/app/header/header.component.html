@@ -64,7 +64,7 @@
                                 </ul>
                             </li>
                             <li [ngClass]="[active2Route === 'search' ? 'active' : '']"><a routerLink='/students/search'>Search Professor</a></li>
-                            <li [ngClass]="[active2Route === 'professor-profile' ? 'active' : '']"><a routerLink='/students/professor-profile'>Professor Profile</a></li>
+                            <li [ngClass]="[active2Route === 'professor-profile' ? 'active' : '']"><a routerLink='/students/professor-profile/{{uid}}'>Professor Profile</a></li>
                             <li [ngClass]="[active2Route === 'booking' ? 'active' : '']"><a routerLink='/students/booking'>Booking</a></li>
                             <li [ngClass]="[active2Route === 'checkout' ? 'active' : '']"><a routerLink='/students/checkout'>Checkout</a></li>
                             <li [ngClass]="[active2Route === 'booking-success' ? 'active' : '']"><a routerLink='/students/booking-success'>Booking Success</a></li>
@@ -114,17 +114,17 @@
                     <li *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === '' ? 'active' : '']">
                         <a routerLink='/collaboration'>Collaboration </a>
                     </li>
-                    
+
                     <li *ngIf="localStorage.getItem('isLogedIn')" class="has-submenu" [ngClass]="[activeRoute === '/' ? 'active' : '']">
                         <a routerLink='/'>Admin </a>
                        <ul class="submenu">
                            <li [ngClass]="[active2Route === 'professor-dashboard' ? 'active' : '']"><a routerLink='/collaborationadmin'>Collaborationadmin</a></li>
                            <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/partenairesadmin'>Partenairesadmin</a></li>
-                          
-                            
+
+
                        </ul>
                         </li>
-                    
+
                     <li class="login-link"  >
                         <a routerLink='/pages/login'>Login / Signup</a>
                     </li>

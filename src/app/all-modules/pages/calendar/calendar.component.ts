@@ -46,6 +46,8 @@ export class CalendarComponent implements OnInit {
           color: 'red'
         }));
 console.log(data)
+      const today = new Date(); // Get today's date
+var t= new Date()
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialDate: new Date(),
           editable: true,

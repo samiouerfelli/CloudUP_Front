@@ -7,6 +7,8 @@ import { UpdateEventPopupComponent } from '../update-event-popup/update-event-po
 import { Observable } from 'rxjs';
 import {AuthentificationService} from "../../../services/services/authentification.service";
 import { ReactionService } from '../../eventService/ReactionService';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-calendar-aff',
   templateUrl: './calendar-aff.component.html',
@@ -151,11 +153,15 @@ if (daysDifference > 0) {
       (idu: number) => {
     this.PostService.addParticipant(Number(this.eventId), idu).subscribe(
       (response: any) => {
-        console.log('Participant added successfully!');
+        Swal.fire({
+          icon: 'success',
+          title: 'Welcome!',
+          showConfirmButton: false,
+          timer: 1000
+        })
         this.isParticipating = true;
         localStorage.setItem('isParticipating', JSON.stringify(true));
-        window.location.reload();
-
+        this.ngOnInit()
       },
       (error) => {
         console.error('Error adding participant:', error);
@@ -169,11 +175,15 @@ if (daysDifference > 0) {
       (idu: number) => {
     this.PostService.removeParticipant(Number(this.eventId), idu).subscribe(
       (response: any) => {
-        console.log('Participant removed successfully!');
-        this.isParticipating = false;
+        Swal.fire({
+          icon: 'success',
+          title: 'Bye!',
+          showConfirmButton: false,
+          timer: 1000
+        })
+         this.isParticipating = false;
         localStorage.removeItem('isParticipating');
-        window.location.reload();
-
+        this.ngOnInit()
       },
       (error) => {
         console.error('Error removing participant:', error);
@@ -296,8 +306,7 @@ changeReaction(reaction: any , postId: number,){
 removeReaction(reactionId: number, postId:number): void {
   this.reactionService.removeReaction(reactionId)
       .subscribe(() => {
-        window.location.reload();
-
+this.ngOnInit()
       });
 
 }

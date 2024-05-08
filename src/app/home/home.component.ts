@@ -15,8 +15,9 @@ import { PostService } from '../all-modules/eventService/Evenement.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  token = localStorage.getItem('token');
 
-
+  UserId!: number;
   constructor(private PostService:PostService,private publicationService: PublicationService, private router: Router,private service:CoursControllerService ) {
   }
   slideIndex = 1;
@@ -232,6 +233,11 @@ this.service.getTopCourses().subscribe({
     this.getEvent();
     this.fetchTopCourses();
     this.fetchTopProfessor();
+    this.getIDUSER(this.token).subscribe(
+
+      (idu: number) => {
+        this.UserId=Number(idu)
+      })
   }
 
   getPublication1(): void {
@@ -249,6 +255,10 @@ this.service.getTopCourses().subscribe({
         return throwError(err);
       })
     );
+  }
+  getIDUSER(token: any): Observable<number> {
+    return this.PostService.getIDFromToken(token);
+
   }
   redirectToDetails(publication: Publication): void {
     const idpub = publication.idpub;

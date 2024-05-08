@@ -5,20 +5,40 @@
       <div class="col-lg-8 col-md-12">
         <div class="blog-view">
           <div class="blog blog-single-post">
-                            <div class="doc-img">
-
+            <div class="profile-widget">
+              <div class="doc-img">
               <img class="img-fluid" [src]="'data:image/jpeg;base64,' + event.imgevent" alt="Event Image" >
+                                <!-- Add favorite button if needed -->
+
+                                <a href="javascript:void(0)" class="fav-btn" *ngIf="!(isParticipating) && event.maxparticipant > participantCount && daysLeft !== null" (click)="addParticipant()">
+                                                               <i class="fas fa-user-plus"></i>
+</a>
+                                  <a href="javascript:void(0)" class="fav-btn" *ngIf="(isParticipating)" (click)="removeParticipant()">
+                                    <i class="fas fa-user-minus"></i>
+
+                                    <!-- Display stars based on the number of likes -->
+                                </a>
+                                <a href="javascript:void(0)" class="fav-btn2"  (click)="reportEvent()">
+                                  <i class="fas fa-exclamation-triangle"></i>
+
+                                  <!-- Display stars based on the number of likes -->
+                              </a>
               <span class="price-course">
-                {{diff}}  Places left  &#128578;
-              </span>
+                <p class="text-danger" *ngIf="daysLeft !== null" ><i class="far fa-clock"></i>     {{ daysLeft }} days left until event {{ eventStatus }} And only {{diff}} places left
+                </p>
+                <p class="text-danger" *ngIf="daysLeft == null && daysLeftEnd>0" ><i class="far fa-clock"></i>      {{ eventStatus }} {{ daysLeftEnd }} days and You can still , {{diff}} places left </p>
+                <p class="text-danger" *ngIf="daysLeft == null && daysLeftEnd==0" ><i class="far fa-clock"></i>      {{ eventStatus }}
+
+                </p>              </span>
               </div>
-            <h3 class="blog-title">{{ event.nom }}</h3>
+              </div>
+            <h3 class="blog-title">{{ event.nom }} </h3>
             <div class="blog-info clearfix">
               <div class="post-left">
                 <ul>
                   <li>
                     <div class="post-author">
-                      <a routerLink='/students/professor-profile'><img src="assets/img/admins/admin-02.jpg" alt="Post Author"> <span>Prof. Darren Elder</span></a>
+                      <a routerLink='/students/professor-profile/{{event.organisateur.idUser}}'><img src="assets/img/admins/admin-02.jpg" alt="Post Author"> <span>{{event.organisateur.nom}} {{event.organisateur.prenom}}</span></a>
                     </div>
                   </li>
                   <li><i class="far fa-calendar"></i>{{ event.dateDebut }}</li>
@@ -62,24 +82,8 @@
       <div class="col-lg-4 col-md-12">
         <div class="card price-discount-col">
           <div class="card-body">
-              <div class="mb-3">
-                  <p class="text-danger" *ngIf="daysLeft !== null" ><i class="far fa-clock"></i>     {{ daysLeft }} days left until event {{ eventStatus }}
-                  </p>
-                  <p class="text-danger" *ngIf="daysLeft == null && daysLeftEnd>0" ><i class="far fa-clock"></i>      {{ eventStatus }} {{ daysLeftEnd }} days </p>
-                  <p class="text-danger" *ngIf="daysLeft == null && daysLeftEnd==0" ><i class="far fa-clock"></i>      {{ eventStatus }}
 
-                  </p>
-              </div>
               <div class="d-flex flex-wrap price-discount-btn">
-                  <div>
-                    <button class="btn btn-outline-success" *ngIf="!(isParticipating) && event.maxparticipant > participantCount && daysLeft !== null" (click)="addParticipant()">Join Event</button>
-                    <button class="btn btn-outline-primary" *ngIf="(isParticipating)" (click)="removeParticipant()">Leave Event</button>
-
-                  </div>
-                  <div>
-                    <button class="btn btn-outline-primary" (click)="reportEvent()">Report Event</button>
-                  </div>
-
 
                   <div>
                     <button class="btn btn-outline-primary" *ngIf="UserId==event.organisateur.idUser"(click)="openUpdateEventPopup()">Update Event</button>

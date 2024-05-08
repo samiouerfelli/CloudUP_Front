@@ -7,6 +7,8 @@ import { PostService } from '../../eventService/Evenement.service';
 import { GoogleMap } from '@angular/google-maps';
 import { CategorieEvenementService } from '../../eventService/CategoryEvenementService';
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
+
 import { Observable } from 'rxjs';
 import {AuthentificationService} from "../../../services/services/authentification.service";
 @Component({
@@ -91,9 +93,14 @@ export class AddEventComponent {
         this.service.addColla(file, nom, description, formattedDateDebut.substring(0,10), formattedDateFin.substring(0,10), lieu,max,idu,categoryId).subscribe(
                   data => {
                     this.onClose("Ajout avec succés!");
-
-        window.location.reload();
-      },
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Partenaire a été ajouté avec succès!',
+                      showConfirmButton: false,
+                      timer: 1000
+                    })
+this.ngOnInit()
+},
       err => {
       }
     );
@@ -101,6 +108,7 @@ export class AddEventComponent {
     )
   })
 }
+
   getIDUSER(token: any): Observable<number> {
     return this.service.getIDFromToken(token);
 
