@@ -6,4 +6,5 @@ export class Reclamation {
     traite?: string;
     time?: Date;
     archive?:boolean;
+    commentaire?:string;
 }

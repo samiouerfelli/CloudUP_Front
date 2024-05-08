@@ -14,7 +14,8 @@ export class ChatComponent implements OnInit {
   msg: string="";
   chatOpenIndex:number=0
    userId = JSON.parse(localStorage.getItem('user')!).idUser
-   userrole = JSON.parse(localStorage.getItem('user')!).authorities[0].authority
+   userrole = JSON.parse(localStorage.getItem('user')!).roles
+   useron = JSON.parse(localStorage.getItem('isLogedIn')!)
 
   constructor(private chatService:ChatService,private socket:WebSocketService){
 console.log(this.userrole)
@@ -80,5 +81,15 @@ setTimeout(() => {
     ()=>this.getprivate()
   )
  }
+ getstatus()
+ {
+  const useron = JSON.parse(localStorage.getItem('isLogedIn')!)
+  return useron
+ }
+ getuser()
+{
+  const userrole = JSON.parse(localStorage.getItem('user')!).roles
+  return userrole
+}
 
 }
