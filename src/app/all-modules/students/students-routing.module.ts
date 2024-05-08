@@ -13,14 +13,14 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { SearchComponent } from './search/search.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { StudentsComponent } from './students.component';
-
+import { EventCategoryComponent } from '../admin/event-category/event-category.component';
 const routes: Routes = [
   { path: '', component: StudentsComponent,
     children: [
       { path: 'map-grid', component: MapGridComponent },
       { path: 'map-list', component: MapListComponent },
       { path: 'search', component: SearchComponent },
-      { path: 'professor-profile/:UserId', component: ProfessorProfileComponent },
+      { path: 'professor-profile', component: ProfessorProfileComponent },
       { path: 'booking', component: BookingComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'booking-success', component: BookingSuccessComponent },
@@ -28,7 +28,10 @@ const routes: Routes = [
       { path: 'favourites', component: FavouritesComponent },
       { path: 'chat', component: ChatComponent },
       { path: 'profile-settings', component: ProfileSettingsComponent },
+      { path: 'change-password', component: ChangePasswordComponent },
+
       { path: 'change-password', component: ChangePasswordComponent }
+
     ]
   }
 ];

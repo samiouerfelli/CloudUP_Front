@@ -5,8 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ReclamationControllerService } from './services/reclamation-controller.service';
+import { CollaborationControllerService } from './services/collaboration-controller.service';
 import { CommentaryRestControllerService } from './services/commentary-rest-controller.service';
 import { PublicationRestControllerService } from './services/publication-rest-controller.service';
+import { PartenairesControllerService } from './services/partenaires-controller.service';
 import { CoursControllerService } from './services/cours-controller.service';
 import { ReactionControllerService } from './services/reaction-controller.service';
 import { UserProfileControllerService } from './services/user-profile-controller.service';
@@ -30,8 +32,10 @@ import { AuthentificationGithubControllerService } from './services/authentifica
   declarations: [],
   providers: [
     ReclamationControllerService,
+    CollaborationControllerService,
     CommentaryRestControllerService,
     PublicationRestControllerService,
+    PartenairesControllerService,
     CoursControllerService,
     ReactionControllerService,
     UserProfileControllerService,

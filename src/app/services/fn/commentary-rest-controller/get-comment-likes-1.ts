@@ -6,18 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Evenement } from '../../models/evenement';
 
-export interface UpdateEvenement1$Params {
-  id: number;
-      body: Evenement
+export interface GetCommentLikes1$Params {
+  commentId: number;
 }
 
-export function updateEvenement1(http: HttpClient, rootUrl: string, params: UpdateEvenement1$Params, context?: HttpContext): Observable<StrictHttpResponse<Evenement>> {
-  const rb = new RequestBuilder(rootUrl, updateEvenement1.PATH, 'put');
+export function getCommentLikes1(http: HttpClient, rootUrl: string, params: GetCommentLikes1$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  const rb = new RequestBuilder(rootUrl, getCommentLikes1.PATH, 'get');
   if (params) {
-    rb.path('id', params.id, {});
-    rb.body(params.body, 'application/json');
+    rb.path('commentId', params.commentId, {});
   }
 
   return http.request(
@@ -25,9 +22,9 @@ export function updateEvenement1(http: HttpClient, rootUrl: string, params: Upda
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Evenement>;
+      return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
     })
   );
 }
 
-updateEvenement1.PATH = '/auth/evenement/update/{id}';
+getCommentLikes1.PATH = '/auth/{commentId}/likes';

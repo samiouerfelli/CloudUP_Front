@@ -6,16 +6,21 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Reservation } from '../../models/reservation';
 
-export interface GetReservationById$Params {
-  idReservation: number;
+export interface Partenaires$Params {
+  nom: string;
+  descpart: string;
+      body?: {
+'file': Blob;
+}
 }
 
-export function getReservationById(http: HttpClient, rootUrl: string, params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<Reservation>> {
-  const rb = new RequestBuilder(rootUrl, getReservationById.PATH, 'get');
+export function partenaires(http: HttpClient, rootUrl: string, params: Partenaires$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  const rb = new RequestBuilder(rootUrl, partenaires.PATH, 'post');
   if (params) {
-    rb.path('idReservation', params.idReservation, {});
+    rb.query('nom', params.nom, {});
+    rb.query('descpart', params.descpart, {});
+    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -23,9 +28,9 @@ export function getReservationById(http: HttpClient, rootUrl: string, params: Ge
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Reservation>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }
 
-getReservationById.PATH = '/auth/getReservationById/{idReservation}';
+partenaires.PATH = '/auth/addP';

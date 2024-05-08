@@ -21,6 +21,7 @@ import { getReservationByOwnerStudent } from '../fn/reservation-controller/get-r
 import { GetReservationByOwnerStudent$Params } from '../fn/reservation-controller/get-reservation-by-owner-student';
 import { getReservationStatus } from '../fn/reservation-controller/get-reservation-status';
 import { GetReservationStatus$Params } from '../fn/reservation-controller/get-reservation-status';
+import { Reservation } from '../models/reservation';
 import { ReservationResponse } from '../models/reservation-response';
 import { saveReservation } from '../fn/reservation-controller/save-reservation';
 import { SaveReservation$Params } from '../fn/reservation-controller/save-reservation';
@@ -222,7 +223,7 @@ export class ReservationControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getReservationById$Response(params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<ReservationResponse>> {
+  getReservationById$Response(params: GetReservationById$Params, context?: HttpContext): Observable<StrictHttpResponse<Reservation>> {
     return getReservationById(this.http, this.rootUrl, params, context);
   }
 
@@ -232,9 +233,9 @@ export class ReservationControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getReservationById(params: GetReservationById$Params, context?: HttpContext): Observable<ReservationResponse> {
+  getReservationById(params: GetReservationById$Params, context?: HttpContext): Observable<Reservation> {
     return this.getReservationById$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ReservationResponse>): ReservationResponse => r.body)
+      map((r: StrictHttpResponse<Reservation>): Reservation => r.body)
     );
   }
 

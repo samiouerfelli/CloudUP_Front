@@ -18,6 +18,8 @@ import { AuthentificationService } from 'src/app/services/services';
 export class SessionsComponent implements OnInit {
   public list: ReservationResponse[] = [];
   public list2: ReservationResponse[] = [];
+  user!: User;
+  selectedPicture: string | undefined;
 
   constructor(private service: ReservationControllerService,
               private smsService: OtpControllerService,
@@ -25,11 +27,30 @@ export class SessionsComponent implements OnInit {
 
               private router: Router) {
   }
-  public user! : User;
 
   ngOnInit(): void {
     this.getReservationForProfessor();
-    this.authService.getUser().subscribe(user => { this.user=user});
+    this.authService.getUser().subscribe({
+      next: value => {
+        this.user = value;
+        if (this.user.prenom != null && this.user.nom != null ) {
+
+          const id = this.user.idUser as number ;
+          this.authService.findUserById({idUser: id}).subscribe({
+            next: (data) =>
+            {
+              this.selectedPicture = 'data:image/jpg;base64,' + data.image ;
+            }
+          });
+
+        }
+      },
+      // tslint:disable-next-line:typedef
+      error(err){
+        console.log(err);
+      }
+    });
+
 
   }
 

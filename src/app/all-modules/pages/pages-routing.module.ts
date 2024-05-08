@@ -16,7 +16,7 @@ import { VoiceCallComponent } from './voice-call/voice-call.component';
 import {ActivateAccountComponent} from './activate-account/activate-account.component';
 import {UpdateAccountComponent} from './update-account/update-account.component';
 import { CalendarAffComponent } from './calendar-aff/calendar-aff.component';
-
+import { EventCategoryComponent } from '../admin/event-category/event-category.component';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
@@ -35,8 +35,8 @@ const routes: Routes = [
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'term-condition', component: TermConditionComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
-      { path: 'calendar-event-aff/:eventId',component: CalendarAffComponent}
-      // { path: 'event-category',component: EventCategoryComponent}
+      { path: 'calendar-event-aff/:eventId',component: CalendarAffComponent},
+      { path: 'event-category',component: EventCategoryComponent}
     ]
   }
 ];

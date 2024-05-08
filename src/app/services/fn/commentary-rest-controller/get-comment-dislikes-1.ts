@@ -7,12 +7,12 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface GetCommentDislikes$Params {
+export interface GetCommentDislikes1$Params {
   commentId: number;
 }
 
-export function getCommentDislikes(http: HttpClient, rootUrl: string, params: GetCommentDislikes$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-  const rb = new RequestBuilder(rootUrl, getCommentDislikes.PATH, 'get');
+export function getCommentDislikes1(http: HttpClient, rootUrl: string, params: GetCommentDislikes1$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  const rb = new RequestBuilder(rootUrl, getCommentDislikes1.PATH, 'get');
   if (params) {
     rb.path('commentId', params.commentId, {});
   }
@@ -27,4 +27,4 @@ export function getCommentDislikes(http: HttpClient, rootUrl: string, params: Ge
   );
 }
 
-getCommentDislikes.PATH = '/auth/{commentId}/dislikes';
+getCommentDislikes1.PATH = '/auth/{commentId}/dislikes';
