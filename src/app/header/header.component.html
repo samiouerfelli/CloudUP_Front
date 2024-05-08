@@ -108,13 +108,14 @@
                             <li [ngClass]="[active2Route === 'blog-details' ? 'active' : '']"><a routerLink='/blog/blog-details'>Blog Details</a></li>
                         </ul>
                     </li>
-                    <li [ngClass]="[activeRoute === '/Home/reclamation' ? 'active' : '']">
+                    <li *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === '/Home/reclamation' ? 'active' : '']">
                         <a routerLink='/reclamation'>Reclamation </a>
                     </li>
-                    <li [ngClass]="[activeRoute === '' ? 'active' : '']">
+                    <li *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === '' ? 'active' : '']">
                         <a routerLink='/collaboration'>Collaboration </a>
                     </li>
-                    <li class="has-submenu" [ngClass]="[activeRoute === 'instructors' ? 'active' : '']">
+                    
+                    <li *ngIf="localStorage.getItem('isLogedIn')" class="has-submenu" [ngClass]="[activeRoute === '/' ? 'active' : '']">
                         <a routerLink='/'>Admin </a>
                        <ul class="submenu">
                            <li [ngClass]="[active2Route === 'professor-dashboard' ? 'active' : '']"><a routerLink='/collaborationadmin'>Collaborationadmin</a></li>
@@ -123,6 +124,7 @@
                             
                        </ul>
                         </li>
+                    
                     <li class="login-link"  >
                         <a routerLink='/pages/login'>Login / Signup</a>
                     </li>

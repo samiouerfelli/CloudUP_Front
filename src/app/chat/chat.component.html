@@ -10,19 +10,10 @@
                         <!-- Chat Left -->
                         <div class="chat-cont-left">
                             <div class="chat-header">
-                                <span>Chats</span>
-                                <a href="javascript:void(0)" class="chat-compose">
-                                    <i class="material-icons">control_point</i>
-                                </a>
+                                <span>Conversations</span>
+                                
                             </div>
-                            <form class="chat-search">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <i class="fas fa-search"></i>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                            </form>
+                           
                             <div class="chat-users-list">
                                 <div class="chat-scroll">
                                     <ng-container  *ngIf="allprivateChat.length>0">
@@ -30,7 +21,7 @@
                                             <ng-container *ngFor="let message of allchat.messages">
                                                 <a  *ngIf="message === allchat.messages[allchat.messages.length - 1]" (click)="getmsg(i)"  href="javascript:void(0);" class="media read-chat active">
                                                     <div class="media-img-wrap">
-                                                        <div class="avatar avatar-online">
+                                                        <div  class="avatar avatar-online">
                                                             <img src="assets/img/admins/admin-02.jpg" alt="User Image" class="avatar-img rounded-circle">
                                                         </div>
                                                     </div>
@@ -85,17 +76,7 @@
                                         <div class="user-status">online</div>
                                     </div>
                                 </div>
-                                <div class="chat-options">
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#voice_call">
-                                        <i class="material-icons">local_phone</i>
-                                    </a>
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#video_call">
-                                        <i class="material-icons">videocam</i>
-                                    </a>
-                                    <a href="javascript:void(0)">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                </div>
+                               
                             </div>
                             <div class="chat-body">
                                 <div class="chat-scroll">
@@ -149,12 +130,7 @@
                             </div>
                             <div class="chat-footer">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="btn-file btn">
-                                            <i class="fa fa-paperclip"></i>
-                                            <input type="file">
-                                        </div>
-                                    </div>
+                                    
                                     <input [(ngModel)]="msg" type="text" class="input-msg-send form-control" placeholder="Type something">
                                     <div class="input-group-append">
                                         <button (click)="sendPrivateMsg(privateChat?.creator?.idUser)" type="button" class="btn msg-send-btn"><i class="fab fa-telegram-plane"></i></button>

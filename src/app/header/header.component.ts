@@ -40,7 +40,7 @@ user! : User;
 
   protected readonly AuthentificationService = AuthentificationService;
   protected readonly localStorage = localStorage;
-
+  
   ngOnInit(): void {
     if (localStorage.getItem('token')) {
       this.authService.getUser().subscribe({
@@ -138,4 +138,5 @@ user! : User;
       }
     });
   }
+ 
 }

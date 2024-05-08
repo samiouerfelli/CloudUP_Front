@@ -162,7 +162,7 @@ sort(field:string){
 }
 getuser()
 {
-  const userrole = JSON.parse(localStorage.getItem('user')!).authorities[0].authority
+  const userrole = JSON.parse(localStorage.getItem('user')!).roles
   return userrole
 }
 
