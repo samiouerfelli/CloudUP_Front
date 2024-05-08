@@ -114,12 +114,15 @@
                     <li *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === '' ? 'active' : '']">
                         <a routerLink='/collaboration'>Collaboration </a>
                     </li>
-
+                    <li [ngClass]="[activeRoute === '' ? 'active' : '']">
+                        <a routerLink='/Collaborationresssss'>Reser</a>
+                    </li>
                     <li *ngIf="localStorage.getItem('isLogedIn')" class="has-submenu" [ngClass]="[activeRoute === '/' ? 'active' : '']">
                         <a routerLink='/'>Admin </a>
                        <ul class="submenu">
                            <li [ngClass]="[active2Route === 'professor-dashboard' ? 'active' : '']"><a routerLink='/collaborationadmin'>Collaborationadmin</a></li>
                            <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/partenairesadmin'>Partenairesadmin</a></li>
+                           <li [ngClass]="[active2Route === 'course' ? 'active' : '']"><a routerLink='/Collaborationreservation'>Collaborationreservation</a></li>
 
 
                        </ul>
