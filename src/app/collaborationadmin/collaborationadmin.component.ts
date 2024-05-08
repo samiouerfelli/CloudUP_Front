@@ -213,7 +213,7 @@ export class CollaborationadminComponent implements OnInit {
               timer: 1500
             }).then(() => {
               setTimeout(() => {
-                location.reload();}, 1500);
+                }, 1500);
             });
           },
           error => {

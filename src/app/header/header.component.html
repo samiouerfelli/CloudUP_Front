@@ -111,10 +111,10 @@
                     <li *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === '/Home/reclamation' ? 'active' : '']">
                         <a routerLink='/reclamation'>Reclamation </a>
                     </li>
-                    <li *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === '' ? 'active' : '']">
-                        <a routerLink='/collaboration'>Collaboration </a>
+                    <li *ngIf="localStorage.getItem('isLogedIn')" [ngClass]="[activeRoute === '/' ? 'active' : '']">
+                        <a routerLink='/collaboration'>Collab</a>
                     </li>
-                    <li [ngClass]="[activeRoute === '' ? 'active' : '']">
+                    <li  [ngClass]="[activeRoute === '/' ? 'active' : '']">
                         <a routerLink='/Collaborationresssss'>Reser</a>
                     </li>
                     <li *ngIf="localStorage.getItem('isLogedIn')" class="has-submenu" [ngClass]="[activeRoute === '/' ? 'active' : '']">
