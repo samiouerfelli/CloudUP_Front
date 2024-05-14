@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class CollaborationService {
   constructor(private http: HttpClient) { }
-  apiurl = 'http://backend-service:8087/api/v1/auth';
+  apiurl = 'http://192.168.139.109:32674/api/v1/auth';
   readonly ENDPOINT_PAGINATION="/pagination"
   readonly ENDPOINT_GETOBJET="/findobjetrecssssss/"
   readonly ENDPOINT_GETCATEGORIE="/categorie/"
@@ -19,23 +19,23 @@ export class CollaborationService {
   }
 
   likeComment(commentId: number): Observable<number> {
-    return this.http.put<number>(`http://backend-service:8087/api/v1/auth/${commentId}/upvotesssssssss`, null);
+    return this.http.put<number>(`http://192.168.139.109:32674/api/v1/auth/${commentId}/upvotesssssssss`, null);
   }
 
   dislikeComment(commentId: number): Observable<number> {
-    return this.http.put<number>(`http://backend-service:8087/api/v1/auth/${commentId}/downvotessssssss`, null);
+    return this.http.put<number>(`http://192.168.139.109:32674/api/v1/auth/${commentId}/downvotessssssss`, null);
   }
 
   getCommentLikes(commentId: number): Observable<number> {
-    return this.http.get<number>(`http://backend-service:8087/api/v1/auth/${commentId}/likesssssssssss`);
+    return this.http.get<number>(`http://192.168.139.109:32674/api/v1/auth/${commentId}/likesssssssssss`);
   }
 
   getCommentDislikes(commentId: number): Observable<number> {
-    return this.http.get<number>(`http://backend-service:8087/api/v1/auth/${commentId}/dislikessssssssss`);
+    return this.http.get<number>(`http://192.168.139.109:32674/api/v1/auth/${commentId}/dislikessssssssss`);
   }
 
   getresplaces(commentId: number): Observable<number> {
-    return this.http.put<number>(`http://backend-service:8087/api/v1/auth/${commentId}/downbssssssss`, null);
+    return this.http.put<number>(`http://192.168.139.109:32674/api/v1/auth/${commentId}/downbssssssss`, null);
   }
 
 

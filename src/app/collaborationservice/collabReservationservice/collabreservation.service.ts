@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class CollaborationReservationService {
   constructor(private http: HttpClient) { }
-  apiurl = 'http://backend-service:8087/api/v1/auth';
+  apiurl = 'http://192.168.139.109:32674/api/v1/auth';
 
 
 
@@ -39,7 +39,7 @@ export class CollaborationReservationService {
   }
   getIDFromToken(token: string): Observable<number> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<number>('http://backend-service:8087/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
+    return this.http.get<number>('http://192.168.139.109:32674/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
   }
 
 }

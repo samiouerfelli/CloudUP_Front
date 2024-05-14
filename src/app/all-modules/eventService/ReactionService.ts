@@ -5,7 +5,7 @@ import {  HttpHeaders } from '@angular/common/http';
 import {Event} from 'src/app/all-modules/eventService/event'
 import { catchError, map } from 'rxjs/operators'; // Import map operator if needed
 
-const AUTH_API = 'http://backend-service:8087/api/v1/auth/evenement/';
+const AUTH_API = 'http://192.168.139.109:32674/api/v1/auth/evenement/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ReactionService{
-  apiurl = 'http://backend-service:8087/api/v1/auth/reaction';
+  apiurl = 'http://192.168.139.109:32674/api/v1/auth/reaction';
   token: any = JSON.parse(localStorage.getItem('user') || '""');
   headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
   constructor(private http: HttpClient) { }

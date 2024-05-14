@@ -8,7 +8,7 @@ import { CategorieEvenement } from '../eventService/CategoryEvenement';
 })
 export class CategorieEvenementService {
 
-   baseUrl = 'http://backend-service:8087/api/v1/auth/categories'; // Replace with your actual base URL
+   baseUrl = 'http://192.168.139.109:32674/api/v1/auth/categories'; // Replace with your actual base URL
 
   constructor(private http: HttpClient) { }
 

@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://backend-service:8087",
+      "target": "http://192.168.139.109:32674",
       "secure": false
     }
   }

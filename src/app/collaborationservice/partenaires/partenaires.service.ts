@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class PostService {
   constructor(private http: HttpClient) { }//il httpclient nestaamlouh bech naamlo il post w get requests
-  apiurl = 'http://backend-service:8087/api/v1/auth';
+  apiurl = 'http://192.168.139.109:32674/api/v1/auth';
 
   GetAll(): Observable<any> {
     return this.http.get(`${this.apiurl}/partenaires`);

@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-  rootUrl: string = 'http://backend-service:8087/api/v1';
+  rootUrl: string = 'http://192.168.139.109:32674/api/v1';
 }
 
 /**

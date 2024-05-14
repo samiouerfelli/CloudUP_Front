@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserProfileService{
-  private baseUrl = 'http://backend-service:8087/api/v1/auth/profile'; // Change this URL to match your backend API URL
+  private baseUrl = 'http://192.168.139.109:32674/api/v1/auth/profile'; // Change this URL to match your backend API URL
 award:any;
   constructor(private http: HttpClient) { }
 
