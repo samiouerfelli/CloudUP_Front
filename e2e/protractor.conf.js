@@ -17,7 +17,7 @@ exports.config = {
   },
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
-  baseUrl: 'http://mysqldb:4200/',
+  baseUrl: 'http://backend-service:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

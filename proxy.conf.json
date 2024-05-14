@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://mysqldb:8087",
+      "target": "http://backend-service:8087",
       "secure": false
     }
   }

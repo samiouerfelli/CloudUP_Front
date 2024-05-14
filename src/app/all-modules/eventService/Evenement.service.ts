@@ -5,7 +5,7 @@ import {  HttpHeaders } from '@angular/common/http';
 import {Event} from 'src/app/all-modules/eventService/event'
 import { catchError, map } from 'rxjs/operators'; // Import map operator if needed
 
-const AUTH_API = 'http://mysqldb:8087/api/v1/auth/evenement/';
+const AUTH_API = 'http://backend-service:8087/api/v1/auth/evenement/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,7 +16,7 @@ const httpOptions = {
 })
 export class PostService {
   constructor(private http: HttpClient,) { }
-  apiurl = 'http://mysqldb:8087/api/v1/auth/evenement/';
+  apiurl = 'http://backend-service:8087/api/v1/auth/evenement/';
 
   GetAll(): Observable<any> {
     return this.http.get(`${this.apiurl}all`);
@@ -67,7 +67,7 @@ export class PostService {
   }
   getIDFromToken(token: string): Observable<number> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<number>('http://mysqldb:8087/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
+    return this.http.get<number>('http://backend-service:8087/api/v1/auth/getTokenAndReturnID?token=' + token, { headers });
   }
 
   // Remove Participant Method

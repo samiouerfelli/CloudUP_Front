@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  urlWebSocket: "http://mysqldb:8087/api/v1/websocket",
-  apiUrl: "http://mysqldb:8087/api/v1/reclamation",
-  base_url: 'http://mysqldb:8087/api/v1/auth',
+  urlWebSocket: "http://backend-service:8087/api/v1/websocket",
+  apiUrl: "http://backend-service:8087/api/v1/reclamation",
+  base_url: 'http://backend-service:8087/api/v1/auth',
   showNameDropdown : false,
   isReservationSaved : false
 };

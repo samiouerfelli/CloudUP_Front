@@ -14,20 +14,20 @@ export class PublicationService {
   }
 
   public getPublications(): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>>('Http://mysqldb:8087/api/v1/auth/retrieveAllPofForum');
+    return this.http.get<Array<Publication>>('http://backend-service:8087/api/v1/auth/retrieveAllPofForum');
   }
 
   getPublicationById(idpub: number): Observable<Publication> {
-    return this.http.get<Publication>(`Http://mysqldb:8087/api/v1/auth/retrieveByIdPub/${idpub}`);
+    return this.http.get<Publication>(`http://backend-service:8087/api/v1/auth/retrieveByIdPub/${idpub}`);
   }
 
 
   searchBySubject(query: string): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>>('Http://mysqldb:8087/api/v1/auth/retrieveBySubject?subject=' + query);
+    return this.http.get<Array<Publication>>('http://backend-service:8087/api/v1/auth/retrieveBySubject?subject=' + query);
   }
 
   searchByContent(query: string): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>>('Http://mysqldb:8087/api/v1/auth/retrieveByContent?content=' + query);
+    return this.http.get<Array<Publication>>('http://backend-service:8087/api/v1/auth/retrieveByContent?content=' + query);
   }
 
   addPublication(publication: {
@@ -42,7 +42,7 @@ export class PublicationService {
     tags: string;
     username: string
   },             idUSER: number): Observable<Publication> {
-    return this.http.post<Publication>(`Http://mysqldb:8087/api/v1/auth/${idUSER}/1/addPub`, publication);
+    return this.http.post<Publication>(`http://backend-service:8087/api/v1/auth/${idUSER}/1/addPub`, publication);
   }
   public countCategoriesOccurences(): Observable<Map<categories, number>> {
     return this.getPublications().pipe(
@@ -68,29 +68,29 @@ export class PublicationService {
   }
 
   deletePublication(id: number): Observable<any> {
-    return this.http.delete<any>(`Http://mysqldb:8087/api/v1/auth/deletePub/${id}`);
+    return this.http.delete<any>(`http://backend-service:8087/api/v1/auth/deletePub/${id}`);
   }
 
   updatePublication(publication: Publication): Observable<Publication> {
-    return this.http.put<Publication>('Http://mysqldb:8087/api/v1/auth/updatePub', publication);
+    return this.http.put<Publication>('http://backend-service:8087/api/v1/auth/updatePub', publication);
   }
 
   fetchCommentsByPublicationId(idpub: number): Observable<Array<Commentary>> {
-    return this.http.get<Array<Commentary>>(`Http://mysqldb:8087/api/v1/auth/retrieveALLC/${idpub}`);
+    return this.http.get<Array<Commentary>>(`http://backend-service:8087/api/v1/auth/retrieveALLC/${idpub}`);
   }
   incrementViewsForPublication(id: number): Observable<any> {
-    return this.http.put(`Http://mysqldb:8087/api/v1/auth/publications/${id}/increment-views`, {});
+    return this.http.put(`http://backend-service:8087/api/v1/auth/publications/${id}/increment-views`, {});
   }
   searchByTags(tag: string): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>> ('Http://mysqldb:8087/api/v1/auth/retrieveByTagsP?tags=' + tag);
+    return this.http.get<Array<Publication>> ('http://backend-service:8087/api/v1/auth/retrieveByTagsP?tags=' + tag);
   }
   fetchPubByIdUser(idUser: number): Observable<Publication[]> {
-    return this.http.get<Publication[]>(`Http://mysqldb:8087/api/v1/auth/retrieveByUser/${idUser}`);
+    return this.http.get<Publication[]>(`http://backend-service:8087/api/v1/auth/retrieveByUser/${idUser}`);
   }
   uploadImage(imageFile: File, idpub: number): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('imageFile', imageFile, imageFile.name);
-    return this.http.post(`http://mysqldb:8087/api/v1/auth/upload/${idpub}`, formData);
+    return this.http.post(`http://backend-service:8087/api/v1/auth/upload/${idpub}`, formData);
   }
   }
 

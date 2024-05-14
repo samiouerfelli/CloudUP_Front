@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://mysqldb:8087",
+            "url": "http://backend-service:8087",
             "webRoot": "${workspaceFolder}"
         }
     ]
