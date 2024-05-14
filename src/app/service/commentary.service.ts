@@ -22,47 +22,47 @@ export class CommentaryService {
     username: string;
     idpub: number;
   }): Observable<number> {
-    return this.http.post<number>(`Http://localhost:8087/api/v1/auth/addCom/${idu}/${idpub}`, newComment);
+    return this.http.post<number>(`Http://mysqldb:8087/api/v1/auth/addCom/${idu}/${idpub}`, newComment);
   }
   searchByContent(idpub: number , content: string): Observable<Commentary[]> {
-    return this.http.get<Commentary[]>(`Http://localhost:8087/api/v1/auth/retrieveByContentC/${idpub}?content=` + content);
+    return this.http.get<Commentary[]>(`Http://mysqldb:8087/api/v1/auth/retrieveByContentC/${idpub}?content=` + content);
   }
 
   searchByTags(idpub: number, tags: string): Observable<Commentary[]> {
-    return this.http.get<Commentary[]>(`Http://localhost:8087/api/v1/auth/retrieveByTagsC/${idpub}?tags=` + tags);
+    return this.http.get<Commentary[]>(`Http://mysqldb:8087/api/v1/auth/retrieveByTagsC/${idpub}?tags=` + tags);
   }
 
   likeComment(commentId: number): Observable<number> {
-    return this.http.put<number>(`Http://localhost:8087/api/v1/auth/${commentId}/upvote`, null);
+    return this.http.put<number>(`Http://mysqldb:8087/api/v1/auth/${commentId}/upvote`, null);
   }
 
   dislikeComment(commentId: number): Observable<number> {
-    return this.http.put<number>(`Http://localhost:8087/api/v1/auth/${commentId}/downvote`, null);
+    return this.http.put<number>(`Http://mysqldb:8087/api/v1/auth/${commentId}/downvote`, null);
   }
 
   getCommentLikes(commentId: number): Observable<number> {
-    return this.http.get<number>(`Http://localhost:8087/api/v1/auth/${commentId}/likes`);
+    return this.http.get<number>(`Http://mysqldb:8087/api/v1/auth/${commentId}/likes`);
   }
 
   getCommentDislikes(commentId: number): Observable<number> {
-    return this.http.get<number>(`Http://localhost:8087/api/v1/auth/${commentId}/dislikes`);
+    return this.http.get<number>(`Http://mysqldb:8087/api/v1/auth/${commentId}/dislikes`);
   }
 
   updateComment(comment: Commentary): Observable<Commentary> {
-    return this.http.put<Commentary>(`Http://localhost:8087/api/v1/auth/updateC`, comment);
+    return this.http.put<Commentary>(`Http://mysqldb:8087/api/v1/auth/updateC`, comment);
   }
 
 
 
   deleteComment(commentId: number, publicationId: number): Observable<void> {
-    return this.http.delete<void>(`Http://localhost:8087/api/v1/auth/deleteC/${commentId}/${publicationId}`);
+    return this.http.delete<void>(`Http://mysqldb:8087/api/v1/auth/deleteC/${commentId}/${publicationId}`);
   }
   checkAndMarkSolution(): Observable<boolean> {
-    return this.http.put<boolean>('Http://localhost:8087/api/v1/auth/mark-solution-and-close', {});
+    return this.http.put<boolean>('Http://mysqldb:8087/api/v1/auth/mark-solution-and-close', {});
   }
   getCommentsName(userId: number): Observable<string> {
     // @ts-ignore
-    return this.http.get<string>(`http://localhost:8087/api/v1/auth/comments?userId=${userId}`, { responseType: 'text' });
+    return this.http.get<string>(`http://mysqldb:8087/api/v1/auth/comments?userId=${userId}`, { responseType: 'text' });
   }
 
 

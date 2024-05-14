@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-  rootUrl: string = 'http://localhost:8087/api/v1';
+  rootUrl: string = 'http://mysqldb:8087/api/v1';
 }
 
 /**

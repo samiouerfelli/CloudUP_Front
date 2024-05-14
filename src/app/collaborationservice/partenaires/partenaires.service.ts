@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class PostService {
   constructor(private http: HttpClient) { }//il httpclient nestaamlouh bech naamlo il post w get requests
-  apiurl = 'http://localhost:8087/api/v1/auth';
+  apiurl = 'http://mysqldb:8087/api/v1/auth';
 
   GetAll(): Observable<any> {
     return this.http.get(`${this.apiurl}/partenaires`);
